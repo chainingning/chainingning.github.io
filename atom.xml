@@ -43,9 +43,9 @@
     
       <category term="Java" scheme="http://chainingning.github.io/tags/Java/"/>
     
-      <category term="Spring" scheme="http://chainingning.github.io/tags/Spring/"/>
-    
       <category term="单元测试" scheme="http://chainingning.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Spring" scheme="http://chainingning.github.io/tags/Spring/"/>
     
       <category term="SpringBoot" scheme="http://chainingning.github.io/tags/SpringBoot/"/>
     
