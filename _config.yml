@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://chainingning.github.io
-root: /
+url: http://chaining.coding.me/chaining/
+root: /chaining/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -85,8 +85,10 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:chainingning/chainingning.github.io.git
-
+  repo: 
+    github: git@github.com:chainingning/chainingning.github.io.git
+    coding: https://git.dev.tencent.com/chaining/chaining.git
+  branch: master
 search:
   path: search.xml
   field: post
