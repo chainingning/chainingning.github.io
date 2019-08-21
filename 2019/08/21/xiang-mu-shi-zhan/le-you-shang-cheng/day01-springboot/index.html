@@ -434,7 +434,7 @@
 <h2 id="1-1-什么是SpringBoot"><a href="#1-1-什么是SpringBoot" class="headerlink" title="1.1.什么是SpringBoot"></a>1.1.什么是SpringBoot</h2><p>SpringBoot是Spring项目中的一个子工程，与我们所熟知的Spring-framework 同属于spring的产品:</p>
 
 
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525484756737.png" alt="1525484756737"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525484756737.png" alt="1525484756737"></p>
 <p>我们可以看到下面的一段介绍：</p>
 <blockquote>
 <p>Takes an opinionated view of building production-ready Spring applications. Spring Boot favors convention over configuration and is designed to get you up and running as quickly as possible.</p>
@@ -468,19 +468,19 @@
 <p>更多细节，大家可以到<a href="http://projects.spring.io/spring-boot/" target="_blank" rel="noopener">官网</a>查看。</p>
 <h1 id="2-快速入门"><a href="#2-快速入门" class="headerlink" title="2.快速入门"></a>2.快速入门</h1><p>接下来，我们就来利用SpringBoot搭建一个web工程，体会一下SpringBoot的魅力所在！</p>
 <h2 id="2-1-创建工程"><a href="#2-1-创建工程" class="headerlink" title="2.1.创建工程"></a>2.1.创建工程</h2><p>我们先新建一个空的工程：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525485888078.png" alt="1525485888078"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525485888078.png" alt="1525485888078"></p>
 <p>工程名为demo：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525485977528.png" alt="1525485977528"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525485977528.png" alt="1525485977528"></p>
 <p>新建一个model：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486079389.png" alt="1525486079389"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486079389.png" alt="1525486079389"></p>
 <p>使用maven来构建：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486188374.png" alt="1525486188374"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486188374.png" alt="1525486188374"></p>
 <p>然后填写项目坐标：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486236967.png" alt="1525486236967"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486236967.png" alt="1525486236967"></p>
 <p>目录结构：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486282929.png" alt="1525486282929"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486282929.png" alt="1525486282929"></p>
 <p>项目结构：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486435199.png" alt="1525486435199"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486435199.png" alt="1525486435199"></p>
 <h2 id="2-2-添加依赖"><a href="#2-2-添加依赖" class="headerlink" title="2.2.添加依赖"></a>2.2.添加依赖</h2><p>看到这里很多同学会有疑惑，前面说传统开发的问题之一就是依赖管理混乱，怎么这里我们还需要管理依赖呢？难道SpringBoot不帮我们管理吗？</p>
 <p>别着急，现在我们的项目与SpringBoot还没有什么关联。SpringBoot提供了一个名为spring-boot-starter-parent的工程，里面已经对各种常用依赖（并非全部）的版本进行了管理，我们的项目需要以这个项目为父工程，这样我们就不用操心依赖的版本问题了，需要什么依赖，直接引入坐标即可！</p>
 <h3 id="2-2-1-添加父工程坐标"><a href="#2-2-1-添加父工程坐标" class="headerlink" title="2.2.1.添加父工程坐标"></a>2.2.1.添加父工程坐标</h3><pre class=" language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
@@ -497,7 +497,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span></code></pre>
 <p>需要注意的是，我们并没有在这里指定版本信息。因为SpringBoot的父工程已经对版本进行了管理了。</p>
 <p>这个时候，我们会发现项目中多出了大量的依赖：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486980765.png" alt="1525486980765"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525486980765.png" alt="1525486980765"></p>
 <p>这些都是SpringBoot根据spring-boot-starter-web这个依赖自动引入的，而且所有的版本都已经管理好，不会出现冲突。</p>
 <h3 id="2-2-3-管理jdk版本"><a href="#2-2-3-管理jdk版本" class="headerlink" title="2.2.3.管理jdk版本"></a>2.2.3.管理jdk版本</h3><p>默认情况下，maven工程的jdk版本是1.5，而我们开发使用的是1.8，因此这里我们需要修改jdk版本，只需要简单的添加以下属性即可：</p>
 <pre class=" language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
@@ -531,7 +531,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="2-3-启动类"><a href="#2-3-启动类" class="headerlink" title="2.3.启动类"></a>2.3.启动类</h2><p>Spring Boot项目通过main函数即可启动，我们需要创建一个启动类：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487293907.png" alt="1525487293907"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487293907.png" alt="1525487293907"></p>
 <p>然后编写main函数：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
@@ -541,7 +541,7 @@
 <span class="token punctuation">}</span></code></pre>
 <h2 id="2-4-编写controller"><a href="#2-4-编写controller" class="headerlink" title="2.4.编写controller"></a>2.4.编写controller</h2><p>接下来，我们就可以像以前那样开发SpringMVC的项目了！</p>
 <p>我们编写一个controller：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487465325.png" alt="1525487465325"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487465325.png" alt="1525487465325"></p>
 <p>代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloController</span> <span class="token punctuation">{</span>
@@ -553,16 +553,16 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h2 id="2-5-启动测试"><a href="#2-5-启动测试" class="headerlink" title="2.5.启动测试"></a>2.5.启动测试</h2><p>接下来，我们运行main函数，查看控制台：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487613365.png" alt="1525487613365"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487613365.png" alt="1525487613365"></p>
 <p>并且可以看到监听的端口信息：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487705460.png" alt="1525487705460"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487705460.png" alt="1525487705460"></p>
 <ul>
 <li>1）监听的端口是8080</li>
 <li>2）SpringMVC的映射路径是：/</li>
 <li>3）<code>/hello</code>路径已经映射到了<code>HelloController</code>中的<code>hello()</code>方法</li>
 </ul>
 <p>打开页面访问：<a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a></p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487820824.png" alt="1525487820824"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525487820824.png" alt="1525487820824"></p>
 <p>测试成功了！</p>
 <h1 id="3-Java配置"><a href="#3-Java配置" class="headerlink" title="3.Java配置"></a>3.Java配置</h1><p>在入门案例中，我们没有任何的配置，就可以实现一个SpringMVC的项目了，快速、高效！</p>
 <p>但是有同学会有疑问，如果没有任何的xml，那么我们如果要配置一个Bean该怎么办？比如我们要配置一个数据库连接池，以前会这么玩：</p>
@@ -651,7 +651,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>然后Debug运行并查看：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525492528558.png" alt="1525492528558"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525492528558.png" alt="1525492528558"></p>
 <p>属性注入成功了！</p>
 <h2 id="3-3-SpringBoot的属性注入"><a href="#3-3-SpringBoot的属性注入" class="headerlink" title="3.3.SpringBoot的属性注入"></a>3.3.SpringBoot的属性注入</h2><p>在上面的案例中，我们实验了java配置方式。不过属性注入使用的是@Value注解。这种方式虽然可行，但是不够强大，因为它只能注入基本类型值。</p>
 <p>在SpringBoot中，提供了一种新的属性注入方式，支持各种java基本数据类型及复杂类型的注入。</p>
@@ -674,7 +674,7 @@
 <li><p>在类上定义各个属性，名称必须与属性文件中<code>jdbc.</code>后面部分一致</p>
 </li>
 <li><p>需要注意的是，这里我们并没有指定属性文件的地址，所以我们需要把jdbc.properties名称改为application.properties，这是SpringBoot默认读取的属性文件名：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525496325572.png" alt="1525496325572"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525496325572.png" alt="1525496325572"></p>
 </li>
 </ul>
 <p>2）在JdbcConfig中使用这个属性：</p>
@@ -718,9 +718,9 @@
 </ul>
 <p>本例中，我们采用第三种方式。</p>
 <p>3）测试结果：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525492528558.png" alt="1525492528558"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525492528558.png" alt="1525492528558"></p>
 <p>大家会觉得这种方式似乎更麻烦了，事实上这种方式有更强大的功能，也是SpringBoot推荐的注入方式。两者对比关系：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525496543249.png" alt="1525496543249"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525496543249.png" alt="1525496543249"></p>
 <p>优势：</p>
 <ul>
 <li><p>Relaxed binding：松散绑定</p>
@@ -746,10 +746,10 @@
 <span class="token punctuation">}</span></code></pre>
 <p>我们直接把<code>@ConfigurationProperties(prefix = &quot;jdbc&quot;)</code>声明在需要使用的<code>@Bean</code>的方法上，然后SpringBoot就会自动调用这个Bean（此处是DataSource）的set方法，然后完成注入。使用的前提是：<strong>该类必须有对应属性的set方法！</strong></p>
 <p>我们将jdbc的url改成：/heima，再次测试：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525497513206.png" alt="1525497513206"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525497513206.png" alt="1525497513206"></p>
 <h1 id="4-自动配置原理"><a href="#4-自动配置原理" class="headerlink" title="4.自动配置原理"></a>4.自动配置原理</h1><p>使用SpringBoot之后，一个整合了SpringMVC的WEB工程开发，变的无比简单，那些繁杂的配置都消失不见了，这是如何做到的？</p>
 <p>一切魔力的开始，都是从我们的main函数来的，所以我们再次来看下启动类：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488044650.png" alt="1525488044650"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488044650.png" alt="1525488044650"></p>
 <p>我们发现特别的地方有两个：</p>
 <ul>
 <li>注解：@SpringBootApplication</li>
@@ -757,7 +757,7 @@
 </ul>
 <p>我们分别来研究这两个部分。</p>
 <h2 id="4-1-了解-SpringBootApplication"><a href="#4-1-了解-SpringBootApplication" class="headerlink" title="4.1.了解@SpringBootApplication"></a>4.1.了解@SpringBootApplication</h2><p>点击进入，查看源码：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488226710.png" alt="1525488226710"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488226710.png" alt="1525488226710"></p>
 <p>这里重点的注解有3个：</p>
 <ul>
 <li>@SpringBootConfiguration</li>
@@ -765,7 +765,7 @@
 <li>@ComponentScan</li>
 </ul>
 <h3 id="4-1-1-SpringBootConfiguration"><a href="#4-1-1-SpringBootConfiguration" class="headerlink" title="4.1.1.@SpringBootConfiguration"></a>4.1.1.@SpringBootConfiguration</h3><p>我们继续点击查看源码：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488518514.png" alt="1525488518514"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525488518514.png" alt="1525488518514"></p>
 <p>通过这段我们可以看出，在这个注解上面，又有一个<code>@Configuration</code>注解。通过上面的注释阅读我们知道：这个注解的作用就是声明当前类是一个配置类，然后Spring会自动扫描到添加了<code>@Configuration</code>的类，并且读取其中的配置信息。而<code>@SpringBootConfiguration</code>是来声明当前类是SpringBoot应用的配置类，项目中只能有一个。所以一般我们无需自己添加。</p>
 <h3 id="4-1-2-EnableAutoConfiguration"><a href="#4-1-2-EnableAutoConfiguration" class="headerlink" title="4.1.2.@EnableAutoConfiguration"></a>4.1.2.@EnableAutoConfiguration</h3><p>关于这个注解，官网上有一段说明：</p>
 <blockquote>
@@ -778,9 +778,9 @@
 <p>总结，SpringBoot内部对大量的第三方库或Spring内部库进行了默认配置，这些配置是否生效，取决于我们是否引入了对应库所需的依赖，如果有那么默认配置就会生效。</p>
 <p>所以，我们使用SpringBoot构建一个项目，只需要引入所需框架的依赖，配置就可以交给SpringBoot处理了。除非你不希望使用SpringBoot的默认配置，它也提供了自定义配置的入口。</p>
 <h4 id="4-1-3-ComponentScan"><a href="#4-1-3-ComponentScan" class="headerlink" title="4.1.3.@ComponentScan"></a>4.1.3.@ComponentScan</h4><p>我们跟进源码：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525498265579.png" alt="1525498265579"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525498265579.png" alt="1525498265579"></p>
 <p>并没有看到什么特殊的地方。我们查看注释：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525498351385.png" alt="1525498351385"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525498351385.png" alt="1525498351385"></p>
 <p>大概的意思：</p>
 <blockquote>
 <p>配置组件扫描的指令。提供了类似与<code>&lt;context:component-scan&gt;</code>标签的作用</p>
@@ -793,9 +793,9 @@
 <li>为何依赖引入就会触发配置呢？</li>
 </ul>
 <p>其实在我们的项目中，已经引入了一个依赖：spring-boot-autoconfigure，其中定义了大量自动配置类：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499397690.png" alt="1525499397690"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499397690.png" alt="1525499397690"></p>
 <p>还有：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499426598.png" alt="1525499426598"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499426598.png" alt="1525499426598"></p>
 <p>非常多，几乎涵盖了现在主流的开源框架，例如：</p>
 <ul>
 <li>redis</li>
@@ -810,9 +810,9 @@
 </ul>
 <p>… 等等</p>
 <p>我们来看一个我们熟悉的，例如SpringMVC，查看mvc 的自动配置类：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499859426.png" alt="1525499859426"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525499859426.png" alt="1525499859426"></p>
 <p>打开WebMvcAutoConfiguration：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500000816.png" alt="1525500000816"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500000816.png" alt="1525500000816"></p>
 <p>我们看到这个类上的4个注解：</p>
 <ul>
 <li><code>@Configuration</code>：声明这个类是一个配置类</li>
@@ -830,18 +830,18 @@
 </ul>
 <p>接着，我们查看该类中定义了什么：</p>
 <p>视图解析器：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500405278.png" alt="1525500405278"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500405278.png" alt="1525500405278"></p>
 <p>处理器适配器（HandlerAdapter）：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500452517.png" alt="1525500452517"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500452517.png" alt="1525500452517"></p>
 <p>还有很多，这里就不一一截图了。</p>
 <h3 id="4-2-2-默认配置属性"><a href="#4-2-2-默认配置属性" class="headerlink" title="4.2.2.默认配置属性"></a>4.2.2.默认配置属性</h3><p>另外，这些默认配置的属性来自哪里呢？</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500697391.png" alt="1525500697391"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500697391.png" alt="1525500697391"></p>
 <p>我们看到，这里通过@EnableAutoConfiguration注解引入了两个属性：WebMvcProperties和ResourceProperties。这不正是SpringBoot的属性注入玩法嘛。</p>
 <p>我们查看这两个属性类：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500810914.png" alt="1525500810914"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500810914.png" alt="1525500810914"></p>
 <p>找到了内部资源视图解析器的prefix和suffix属性。</p>
 <p>ResourceProperties中主要定义了静态资源（.js,.html,.css等)的路径：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500921773.png" alt="1525500921773"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500921773.png" alt="1525500921773"></p>
 <p>如果我们要覆盖这些默认属性，只需要在application.properties中定义与其前缀prefix和字段名一致的属性即可。</p>
 <h2 id="4-3-总结"><a href="#4-3-总结" class="headerlink" title="4.3.总结"></a>4.3.总结</h2><p>SpringBoot为我们提供了默认配置，而默认配置生效的条件一般有两个：</p>
 <ul>
@@ -860,10 +860,10 @@
 <pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># 映射端口</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">80</span></code></pre>
 <p>重启服务后测试：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525511878440.png" alt="1525511878440"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525511878440.png" alt="1525511878440"></p>
 <h3 id="5-1-2-访问静态资源"><a href="#5-1-2-访问静态资源" class="headerlink" title="5.1.2.访问静态资源"></a>5.1.2.访问静态资源</h3><p>现在，我们的项目是一个jar工程，那么就没有webapp，我们的静态资源该放哪里呢？</p>
 <p>回顾我们上面看的源码，有一个叫做ResourceProperties的类，里面就定义了静态资源的默认查找路径：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500921773.png" alt="1525500921773"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525500921773.png" alt="1525500921773"></p>
 <p>默认的静态资源路径为：</p>
 <ul>
 <li>classpath:/META-INF/resources/</li>
@@ -873,9 +873,9 @@
 </ul>
 <p>只要静态资源放在这些目录中任何一个，SpringMVC都会帮我们处理。</p>
 <p>我们习惯会把静态资源放在<code>classpath:/static/</code>目录下。我们创建目录，并且添加一些静态资源：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525512196866.png" alt="1525512196866"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525512196866.png" alt="1525512196866"></p>
 <p>重启项目后测试：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525512253682.png" alt="1525512253682"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525512253682.png" alt="1525512253682"></p>
 <h3 id="5-1-3-添加拦截器"><a href="#5-1-3-添加拦截器" class="headerlink" title="5.1.3.添加拦截器"></a>5.1.3.添加拦截器</h3><p>拦截器也是我们经常需要使用的，在SpringBoot中该如何配置呢？</p>
 <p>拦截器不是一个普通属性，而是一个类，所以就要用到java配置方式了。在SpringBoot官方文档中有这么一段说明：</p>
 <blockquote>
@@ -931,7 +931,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>结构如下：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525513555179.png" alt="1525513555179"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525513555179.png" alt="1525513555179"></p>
 <p>接下来运行并查看日志：</p>
 <p>你会发现日志中什么都没有，因为我们记录的log级别是debug，默认是显示info以上，我们需要进行配置。</p>
 <p>SpringBoot通过<code>logging.level.*=debug</code>来配置日志级别，*填写包名</p>
@@ -969,9 +969,9 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <h2 id="5-3-整合连接池"><a href="#5-3-整合连接池" class="headerlink" title="5.3.整合连接池"></a>5.3.整合连接池</h2><p>其实，在刚才引入jdbc启动器的时候，SpringBoot已经自动帮我们引入了一个连接池：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525514424562.png" alt="1525514424562"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525514424562.png" alt="1525514424562"></p>
 <p>HikariCP应该是目前速度最快的连接池了，我们看看它与c3p0的对比：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525516441005.png" alt="1525516441005"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525516441005.png" alt="1525516441005"></p>
 <p>因此，我们只需要指定连接池参数即可：</p>
 <pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># 连接四大参数</span>
 <span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/heima</span>
@@ -1045,9 +1045,9 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>我们启动项目，查看：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525516714124.png" alt="1525516714124"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525516714124.png" alt="1525516714124"></p>
 <h1 id="6-Thymeleaf快速入门"><a href="#6-Thymeleaf快速入门" class="headerlink" title="6.Thymeleaf快速入门"></a>6.Thymeleaf快速入门</h1><p>SpringBoot并不推荐使用jsp，但是支持一些模板引擎技术：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525517263421.png" alt="1525517263421"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525517263421.png" alt="1525517263421"></p>
 <p>以前大家用的比较多的是Freemarker，但是我们今天的主角是Thymeleaf！</p>
 <h2 id="6-1-为什么是Thymeleaf？"><a href="#6-1-为什么是Thymeleaf？" class="headerlink" title="6.1.为什么是Thymeleaf？"></a>6.1.为什么是Thymeleaf？</h2><p>简单说， Thymeleaf 是一个跟 Velocity、FreeMarker 类似的模板引擎，它可以完全替代 JSP 。相较与其他的模板引擎，它有如下三个极吸引人的特点：</p>
 <ul>
@@ -1073,9 +1073,9 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-thymeleaf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p>SpringBoot会自动为Thymeleaf注册一个视图解析器：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525522481007.png" alt="1525522481007"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525522481007.png" alt="1525522481007"></p>
 <p>与解析JSP的InternalViewResolver类似，Thymeleaf也会根据前缀和后缀来确定模板文件的位置：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525522811359.png" alt="1525522811359"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525522811359.png" alt="1525522811359"></p>
 <ul>
 <li>默认前缀：<code>classpath:/templates/</code></li>
 <li>默认后缀：<code>.html</code></li>
@@ -1083,7 +1083,7 @@
 <p>所以如果我们返回视图：<code>users</code>，会指向到 <code>classpath:/templates/users.html</code></p>
 <p>一般我们无需进行修改，默认即可。</p>
 <h2 id="6-4-静态页面"><a href="#6-4-静态页面" class="headerlink" title="6.4.静态页面"></a>6.4.静态页面</h2><p>根据上面的文档介绍，模板默认放在classpath下的templates文件夹，我们新建一个html文件放入其中：</p>
-<p> <img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525521721279.png" alt="1525521721279"></p>
+<p> <img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525521721279.png" alt="1525521721279"></p>
 <p>编写html模板，渲染模型中的数据：</p>
 <p>注意，把html 的名称空间，改成：<code>xmlns:th=&quot;http://www.thymeleaf.org&quot;</code> 会有语法提示</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
@@ -1137,7 +1137,7 @@
 </li>
 </ul>
 <h2 id="6-5-测试"><a href="#6-5-测试" class="headerlink" title="6.5.测试"></a>6.5.测试</h2><p>接下来，我们打开页面测试一下：</p>
-<p><img src="/chaining/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525523911854.png" alt="1525523911854"></p>
+<p><img src="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1525523911854.png" alt="1525523911854"></p>
 <h2 id="6-6-模板缓存"><a href="#6-6-模板缓存" class="headerlink" title="6.6.模板缓存"></a>6.6.模板缓存</h2><p>Thymeleaf会在第一次对模板解析之后进行缓存，极大的提高了并发处理能力。但是这给我们开发带来了不便，修改页面后并不会立刻看到效果，我们开发阶段可以关掉缓存使用：</p>
 <pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># 开发阶段关闭thymeleaf的模板缓存</span>
 <span class="token attr-name">spring.thymeleaf.cache</span><span class="token punctuation">=</span><span class="token attr-value">false</span></code></pre>
@@ -1290,7 +1290,7 @@
                     <span class="reprint-tip">
                         <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
                     </span>
-                    <a href="http://chaining.coding.me/chaining" class="b-link-green">柴米油盐</a>
+                    <a href="http://chaining.coding.me" class="b-link-green">柴米油盐</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
                     <a href="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/" class="b-link-green">day01-springboot</a>
                 </p>
@@ -1429,12 +1429,12 @@
                         <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/chaining/tags/Spring/" target="_blank">
-                        <span class="chip bg-color">Spring</span>
-                    </a>
-                    
                     <a href="/chaining/tags/单元测试/" target="_blank">
                         <span class="chip bg-color">单元测试</span>
+                    </a>
+                    
+                    <a href="/chaining/tags/Spring/" target="_blank">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                     <a href="/chaining/tags/SpringBoot/" target="_blank">
