@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>chapter1-vue介绍</title>
+      <link href="/chaining/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/"/>
+      <url>/chaining/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第-1-章-Vue-js-介绍"><a href="#第-1-章-Vue-js-介绍" class="headerlink" title="第 1 章 Vue.js 介绍"></a>第 1 章 Vue.js 介绍</h1><h2 id="疯狂发展的前端技术"><a href="#疯狂发展的前端技术" class="headerlink" title="疯狂发展的前端技术"></a>疯狂发展的前端技术</h2><ul><li><p>前端开发的三个时代</p><ul><li>纯原生 JavaScript</li><li>jQuery（仅仅是提高了 DOM 操作的效率）</li><li>框架时代</li></ul></li><li><p>前端交互越来越多，功能需求越来越复杂；旧浏览器逐渐淘汰，移动端需求增加</p></li><li><p>架构由传统的后台 MVC 向 REST API + MV* 发展</p><ul><li>以前：胖服务器，瘦客户端</li><li>现在：胖客户端，瘦服务器‘</li></ul></li><li><p>前后端分离开发方式</p><ul><li>人员职责的划分</li><li>技能的划分</li></ul></li><li><p>各种前端框架诞生</p><ul><li>Vue</li><li>React</li><li>Angular</li><li>…</li></ul></li></ul><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>以下引自官网原话：</p><blockquote><p>Vue.js (读音 /vjuː/，类似于 view) 是一套构建用户界面的渐进式框架。<br>与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。<br>Vue 的核心库只关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。<br>另一方面，当与单文件组件和 Vue 生态系统支持的库结合使用时，Vue 也完全能够为复杂的单页应用程序提供驱动。</p></blockquote><ul><li>一款非常优秀的前端渐进式 JavaScript 框架<ul><li>Vue 本身只是一个用于数据驱动视图更新的库<ul><li>让你原来操作 DOM 这件事儿更简单了</li></ul></li><li>随着生态的慢慢发展，如今已经有了 Vue Router、Vuex、Vue CLI、Vue Server Renderer 等功能库，所以当 Vue 和这些核心功能库结合到一起的时候，我们称之为一个框架</li><li>这些技术一般也称之为 Vue 全家桶，所以学习 Vue 实际上就是要学习 Vue 全家桶才能发挥出 Vue 的威力</li></ul></li><li>由尤雨溪开发并于 2014 年 2 月开源于 Github<ul><li>目前已收货了 14w+ :star:</li></ul></li><li>可以轻松构建 <strong>SPA 应用程序</strong><ul><li>Single Page Application 单页面应用程序</li></ul></li><li>通过 <strong>指令</strong> 扩展了 HTML，通过 <strong>表达式</strong> 绑定数据到 HTML</li><li>通过组件化开发极大的提高了开发的效率和可维护性</li><li><strong>最大程度上解放了 DOM 操作</strong></li><li><strong>它能让你更加的享受编程的乐趣</strong></li></ul><hr><h2 id="发展历史"><a href="#发展历史" class="headerlink" title="发展历史"></a>发展历史</h2><blockquote><p><a href="https://github.com/vuejs/vue/releases" target="_blank" rel="noopener">Github 发布记录</a></p></blockquote><ul><li>Vue.js 由尤雨溪个人正式发布于 2014 年 2 月，并开源于 Github</li><li>2015 年 10 月 27 日，正式发布 <code>1.0</code></li><li>2016 年 8 月 1 日，正式发布 <code>2.0</code></li><li>截止到 2019-6 目前最新版本为 <code>2.6.10</code></li><li>预计今年（2019）会发布 3.0 版本</li><li>目前已在 Github 收获 14w+ Star</li></ul><hr><h2 id="Vue-核心思想"><a href="#Vue-核心思想" class="headerlink" title="Vue 核心思想"></a>Vue 核心思想</h2><p>Vue 是为了克服 HTML 在构建应用上的不足而设计的。Vue 有着诸多特性，最为核心的是：</p><ul><li><strong>数据驱动</strong><ul><li>DOM 是数据的一种自然映射</li><li>数据改变自动驱动视图更新</li></ul></li><li><strong>组件化</strong><ul><li>扩展 HTML 元素，封装可重用代码</li></ul></li></ul><p><img src="/chaining/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/mvvm.png" alt="mvvm"></p><p><img src="/chaining/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/components.png" alt="components.png"></p><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul><li><p><a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">Vue Github 仓库</a></p></li><li><p><a href="https://cn.vuejs.org/" target="_blank" rel="noopener">Vue 中文官网</a></p></li><li><p><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue 官方教程</a></p></li><li><p><a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">Vue 官方 API 参考文档</a></p></li><li><p><a href="https://cn.vuejs.org/v2/examples/" target="_blank" rel="noopener">Vue 官方示例</a></p></li><li><p><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></p></li><li><p><a href="https://gitee.com/gitee-stars/14" target="_blank" rel="noopener">https://gitee.com/gitee-stars/14</a>)</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>day01-springboot</title>
       <link href="/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/"/>
       <url>/chaining/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> 项目实战 </tag>
+            <tag> SpringBoot </tag>
             
-            <tag> springboot </tag>
+            <tag> 项目实战 </tag>
             
         </tags>
       
@@ -49,9 +74,9 @@
             
             <tag> Java </tag>
             
-            <tag> Spring </tag>
-            
             <tag> 单元测试 </tag>
+            
+            <tag> Spring </tag>
             
             <tag> SpringBoot </tag>
             
@@ -242,11 +267,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Typora </tag>
             
             <tag> Markdown </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
