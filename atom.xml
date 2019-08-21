@@ -6,7 +6,7 @@
   <link href="/chaining/atom.xml" rel="self"/>
   
   <link href="http://chaining.coding.me/"/>
-  <updated>2019-08-21T03:01:49.441Z</updated>
+  <updated>2019-08-21T05:16:43.109Z</updated>
   <id>http://chaining.coding.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://chaining.coding.me/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/"/>
     <id>http://chaining.coding.me/2019/08/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/</id>
     <published>2019-08-21T02:33:23.000Z</published>
-    <updated>2019-08-21T03:01:49.441Z</updated>
+    <updated>2019-08-21T05:16:43.109Z</updated>
     
     <summary type="html">
     
@@ -34,6 +34,8 @@
       
     
     </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
       <category term="项目实战" scheme="http://chaining.coding.me/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
