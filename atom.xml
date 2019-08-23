@@ -6,7 +6,7 @@
   <link href="/chaining/atom.xml" rel="self"/>
   
   <link href="http://chaining.coding.me/"/>
-  <updated>2019-08-21T10:19:59.087Z</updated>
+  <updated>2019-08-23T06:20:57.691Z</updated>
   <id>http://chaining.coding.me/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>chapter1-vue介绍</title>
-    <link href="http://chaining.coding.me/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/"/>
-    <id>http://chaining.coding.me/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/</id>
-    <published>2019-08-21T09:54:36.000Z</published>
-    <updated>2019-08-21T10:19:59.087Z</updated>
+    <title>chapter9-基础综合案例</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter9-ji-chu-zong-he-an-li/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter9-ji-chu-zong-he-an-li/</id>
+    <published>2019-08-23T06:19:14.000Z</published>
+    <updated>2019-08-23T06:20:57.691Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,224 @@
       
         
         
-          &lt;h1 id=&quot;第-1-章-Vue-js-介绍&quot;&gt;&lt;a href=&quot;#第-1-章-Vue-js-介绍&quot; class=&quot;headerlink&quot; title=&quot;第 1 章 Vue.js 介绍&quot;&gt;&lt;/a&gt;第 1 章 Vue.js 介绍&lt;/h1&gt;&lt;h2
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter8-Vue CLI</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter8-vue-cli/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter8-vue-cli/</id>
+    <published>2019-08-23T06:18:31.000Z</published>
+    <updated>2019-08-23T06:21:18.028Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;本文转自&lt;strong&gt;vuejs-tutorial&lt;/strong&gt;，尊重原创，点击可直接访问原文&lt;/a&gt;&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter7-Vue Router</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter7-vue-router/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter7-vue-router/</id>
+    <published>2019-08-23T06:18:03.000Z</published>
+    <updated>2019-08-23T06:21:32.313Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;本文转自&lt;strong&gt;vuejs-tutorial&lt;/strong&gt;，尊重原创，点击可直接访问原文&lt;/a&gt;&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter6-过渡&amp;动画</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter6-guo-du-dong-hua/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter6-guo-du-dong-hua/</id>
+    <published>2019-08-23T06:17:41.000Z</published>
+    <updated>2019-08-23T06:21:59.758Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter5-组件基础</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter5-zu-jian-ji-chu/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter5-zu-jian-ji-chu/</id>
+    <published>2019-08-23T06:17:19.000Z</published>
+    <updated>2019-08-23T07:07:42.714Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter4-和服务端通信</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter4-he-fu-wu-duan-tong-xin/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter4-he-fu-wu-duan-tong-xin/</id>
+    <published>2019-08-23T06:16:33.000Z</published>
+    <updated>2019-08-23T06:22:16.139Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter3-基础案例</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter3-ji-chu-an-li/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter3-ji-chu-an-li/</id>
+    <published>2019-08-23T06:16:02.000Z</published>
+    <updated>2019-08-23T06:22:21.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter2-Vue 基础</title>
+    <link href="http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter2-vue-ji-chu/"/>
+    <id>http://chaining.coding.me/2019/08/23/qian-duan/vue/chapter2-vue-ji-chu/</id>
+    <published>2019-08-23T06:15:27.000Z</published>
+    <updated>2019-08-23T07:28:44.521Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://chaining.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://chaining.coding.me/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chapter1-vue介绍</title>
+    <link href="http://chaining.coding.me/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/"/>
+    <id>http://chaining.coding.me/2019/08/21/qian-duan/vue/chapter1-vue-jie-shao/</id>
+    <published>2019-08-21T09:54:36.000Z</published>
+    <updated>2019-08-23T06:22:31.284Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt; &lt;a href=&quot;https://vuejs.lipengzhou.com/&quot; target=&quot;_blank&quot;
         
       
     
@@ -360,215 +577,6 @@
       <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
     
       <category term="单元测试" scheme="http://chaining.coding.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java8新特性及使用(二)</title>
-    <link href="http://chaining.coding.me/2018/11/14/hou-duan/java/java8-xin-te-xing-ji-shi-yong-er/"/>
-    <id>http://chaining.coding.me/2018/11/14/hou-duan/java/java8-xin-te-xing-ji-shi-yong-er/</id>
-    <published>2018-11-14T14:00:00.000Z</published>
-    <updated>2019-08-07T11:09:09.207Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;扩展注解的支持&quot;&gt;&lt;a href=&quot;#扩展注解的支持&quot; class=&quot;headerlink&quot; title=&quot;扩展注解的支持&quot;&gt;&lt;/a&gt;扩展注解的支持&lt;/h2&gt;&lt;p&gt;Java
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java8新特性及使用(一)</title>
-    <link href="http://chaining.coding.me/2018/11/13/hou-duan/java/java8-xin-te-xing-ji-shi-yong-yi/"/>
-    <id>http://chaining.coding.me/2018/11/13/hou-duan/java/java8-xin-te-xing-ji-shi-yong-yi/</id>
-    <published>2018-11-13T14:30:00.000Z</published>
-    <updated>2019-08-07T11:09:09.206Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;新特性列表&quot;&gt;&lt;a href=&quot;#新特性列表&quot; class=&quot;headerlink&quot; title=&quot;新特性列表&quot;&gt;&lt;/a&gt;新特性列表&lt;/h2&gt;&lt;p&gt;以下是Java8中的引入的部分新特性。关于Java8新特性更详细的介绍可参考&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java7新特性及使用</title>
-    <link href="http://chaining.coding.me/2018/11/12/hou-duan/java/java7-xin-te-xing-ji-shi-yong/"/>
-    <id>http://chaining.coding.me/2018/11/12/hou-duan/java/java7-xin-te-xing-ji-shi-yong/</id>
-    <published>2018-11-11T16:30:00.000Z</published>
-    <updated>2019-08-07T11:09:09.206Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;新特性列表&quot;&gt;&lt;a href=&quot;#新特性列表&quot; class=&quot;headerlink&quot; title=&quot;新特性列表&quot;&gt;&lt;/a&gt;新特性列表&lt;/h2&gt;&lt;p&gt;以下是Java7中的引入的部分新特性。关于Java7更详细的介绍可参考&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java6新特性及使用</title>
-    <link href="http://chaining.coding.me/2018/11/11/hou-duan/java/java6-xin-te-xing-ji-shi-yong/"/>
-    <id>http://chaining.coding.me/2018/11/11/hou-duan/java/java6-xin-te-xing-ji-shi-yong/</id>
-    <published>2018-11-11T14:40:00.000Z</published>
-    <updated>2019-08-07T11:09:09.205Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;新特性列表&quot;&gt;&lt;a href=&quot;#新特性列表&quot; class=&quot;headerlink&quot; title=&quot;新特性列表&quot;&gt;&lt;/a&gt;新特性列表&lt;/h2&gt;&lt;p&gt;以下是Java6中的引入的部分新特性，相比Java5的新特性就少了很多了。关于Java6更详细的介绍可参考&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java5新特性及使用</title>
-    <link href="http://chaining.coding.me/2018/11/09/hou-duan/java/java5-xin-te-xing-ji-shi-yong/"/>
-    <id>http://chaining.coding.me/2018/11/09/hou-duan/java/java5-xin-te-xing-ji-shi-yong/</id>
-    <published>2018-11-08T16:30:00.000Z</published>
-    <updated>2019-08-07T11:09:09.205Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;新特性列表&quot;&gt;&lt;a href=&quot;#新特性列表&quot; class=&quot;headerlink&quot; title=&quot;新特性列表&quot;&gt;&lt;/a&gt;新特性列表&lt;/h2&gt;&lt;p&gt;以下是Java5中的引入的部分新特性，关于更详细的新特性了解，可参考&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java注解的理解和应用</title>
-    <link href="http://chaining.coding.me/2018/11/08/hou-duan/java/java-zhu-jie-de-li-jie-he-ying-yong/"/>
-    <id>http://chaining.coding.me/2018/11/08/hou-duan/java/java-zhu-jie-de-li-jie-he-ying-yong/</id>
-    <published>2018-11-07T16:30:00.000Z</published>
-    <updated>2019-08-07T11:09:09.209Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;h3 id=&quot;1-什么是注解&quot;&gt;&lt;a href=&quot;#1-什么是注解&quot; class=&quot;headerlink&quot; title=&quot;1.
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java反射基础</title>
-    <link href="http://chaining.coding.me/2018/11/07/hou-duan/java/java-fan-she-ji-chu/"/>
-    <id>http://chaining.coding.me/2018/11/07/hou-duan/java/java-fan-she-ji-chu/</id>
-    <published>2018-11-07T13:40:00.000Z</published>
-    <updated>2019-08-07T11:09:09.207Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot; class=&quot;headerlink&quot; title=&quot;一、概述&quot;&gt;&lt;/a&gt;一、概述&lt;/h2&gt;&lt;h3 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1.
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java IO 知识整理</title>
-    <link href="http://chaining.coding.me/2018/11/05/hou-duan/java/java-io-zhi-shi-zheng-li/"/>
-    <id>http://chaining.coding.me/2018/11/05/hou-duan/java/java-io-zhi-shi-zheng-li/</id>
-    <published>2018-11-05T03:30:00.000Z</published>
-    <updated>2019-08-07T11:09:09.204Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;各IO类关系梳理&quot;&gt;&lt;a href=&quot;#各IO类关系梳理&quot; class=&quot;headerlink&quot; title=&quot;各IO类关系梳理&quot;&gt;&lt;/a&gt;各IO类关系梳理&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;InputStream: Java
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
     
   </entry>
   
