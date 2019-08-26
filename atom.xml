@@ -6,7 +6,7 @@
   <link href="/chaining/atom.xml" rel="self"/>
   
   <link href="http://chaining.coding.me/"/>
-  <updated>2019-08-23T06:20:57.691Z</updated>
+  <updated>2019-08-26T08:09:41.786Z</updated>
   <id>http://chaining.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cmdb编译部署的正确姿势</title>
+    <link href="http://chaining.coding.me/2019/08/26/xiang-mu-shi-zhan/lan-jing-zhi-yun/cmdb-bian-yi-bu-shu-de-zheng-que-zi-shi/"/>
+    <id>http://chaining.coding.me/2019/08/26/xiang-mu-shi-zhan/lan-jing-zhi-yun/cmdb-bian-yi-bu-shu-de-zheng-que-zi-shi/</id>
+    <published>2019-08-26T08:09:39.000Z</published>
+    <updated>2019-08-26T08:09:41.786Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;cmdb编译部署的正确姿势&quot;&gt;&lt;a href=&quot;#cmdb编译部署的正确姿势&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="项目实战" scheme="http://chaining.coding.me/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    
+    
+      <category term="项目实战" scheme="http://chaining.coding.me/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    
+  </entry>
   
   <entry>
     <title>chapter9-基础综合案例</title>
@@ -314,9 +340,9 @@
     
       <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
     
-      <category term="单元测试" scheme="http://chaining.coding.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="Spring" scheme="http://chaining.coding.me/tags/Spring/"/>
+    
+      <category term="单元测试" scheme="http://chaining.coding.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
     
       <category term="SpringBoot" scheme="http://chaining.coding.me/tags/SpringBoot/"/>
     
@@ -549,34 +575,6 @@
     
     
       <category term="CPU缓存" scheme="http://chaining.coding.me/tags/CPU%E7%BC%93%E5%AD%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单元测试指南</title>
-    <link href="http://chaining.coding.me/2018/11/15/hou-duan/java/dan-yuan-ce-shi-zhi-nan/"/>
-    <id>http://chaining.coding.me/2018/11/15/hou-duan/java/dan-yuan-ce-shi-zhi-nan/</id>
-    <published>2018-11-15T14:50:00.000Z</published>
-    <updated>2019-08-07T11:09:09.214Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、必要性&quot;&gt;&lt;a href=&quot;#一、必要性&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="http://chaining.coding.me/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
-    
-      <category term="单元测试" scheme="http://chaining.coding.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
