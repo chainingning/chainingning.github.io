@@ -1250,6 +1250,28 @@ formData<span class="token punctuation">.</span><span class="token function">app
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'bee4fd2b7760acfaf98d',
+        clientSecret: '4ebf2c41dd6701ef493eee655aa1a9a31108b868',
+        repo: 'chainingning.github.io',
+        owner: 'ning.chai@qq.com',
+        admin: ["chainingning"],
+        id: '2019-08-23T14-16-33',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
 
     
 
