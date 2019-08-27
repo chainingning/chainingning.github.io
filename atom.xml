@@ -340,9 +340,9 @@
     
       <category term="Java" scheme="http://chaining.coding.me/tags/Java/"/>
     
-      <category term="Spring" scheme="http://chaining.coding.me/tags/Spring/"/>
-    
       <category term="单元测试" scheme="http://chaining.coding.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Spring" scheme="http://chaining.coding.me/tags/Spring/"/>
     
       <category term="SpringBoot" scheme="http://chaining.coding.me/tags/SpringBoot/"/>
     
