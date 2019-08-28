@@ -1,0 +1,1638 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="day13-搜索过滤, 柴米油盐, Chester">
+    <meta name="description" content="0.学习目标
+了解过滤功能的基本思路
+实现分类和品牌展示
+了解规格参数展示
+实现过滤条件筛选
+实现已选过滤项回显
+实现取消选择过滤项
+
+1.过滤功能分析首先看下页面要实现的效果：
+
+整个过滤部分有3块：
+
+顶部的导航，已经选择的过滤条件展示">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>day13-搜索过滤 | 柴米油盐</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/chaining/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">柴米油盐</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/photo" class="waves-effect waves-light">
+            
+            <i class="fa fa-camera-retro"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">柴米油盐</div>
+        <div class="logo-desc">
+            
+            也许,我们能在柴米油盐的生活中做的更好一些。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/photo" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-camera-retro"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chainingning" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chainingning" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        day13-搜索过滤
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/chaining/tags/SpringBoot/" target="_blank">
+                                <span class="chip bg-color">SpringBoot</span>
+                            </a>
+                        
+                            <a href="/chaining/tags/项目实战/" target="_blank">
+                                <span class="chip bg-color">项目实战</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                项目实战
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-10
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        24 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><ul>
+<li>了解过滤功能的基本思路</li>
+<li>实现分类和品牌展示</li>
+<li>了解规格参数展示</li>
+<li>实现过滤条件筛选</li>
+<li>实现已选过滤项回显</li>
+<li>实现取消选择过滤项</li>
+</ul>
+<h1 id="1-过滤功能分析"><a href="#1-过滤功能分析" class="headerlink" title="1.过滤功能分析"></a>1.过滤功能分析</h1><p>首先看下页面要实现的效果：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526725119663.png" alt="1526725119663"></p>
+<p>整个过滤部分有3块：</p>
+<ul>
+<li>顶部的导航，已经选择的过滤条件展示：<ul>
+<li>商品分类面包屑，根据用户选择的商品分类变化</li>
+<li>其它已选择过滤参数</li>
+</ul>
+</li>
+<li>过滤条件展示，又包含3部分<ul>
+<li>商品分类展示</li>
+<li>品牌展示</li>
+<li>其它规格参数</li>
+</ul>
+</li>
+<li>展开或收起的过滤条件的按钮</li>
+</ul>
+<p>顶部导航要展示的内容跟用户选择的过滤条件有关。</p>
+<ul>
+<li>比如用户选择了某个商品分类，则面包屑中才会展示具体的分类</li>
+<li>比如用户选择了某个品牌，列表中才会有品牌信息。</li>
+</ul>
+<p>所以，这部分需要依赖第二部分：过滤条件的展示和选择。因此我们先不着急去做。</p>
+<p>展开或收起的按钮是否显示，取决于过滤条件有多少，如果很少，那么就没必要展示。所以也是跟第二部分的过滤条件有关。</p>
+<p>这样分析来看，我们必须先做第二部分：过滤条件展示。</p>
+<h1 id="2-生成分类和品牌过滤"><a href="#2-生成分类和品牌过滤" class="headerlink" title="2.生成分类和品牌过滤"></a>2.生成分类和品牌过滤</h1><p>先来看分类和品牌。在我们的数据库中已经有所有的分类和品牌信息。在这个位置，是不是把所有的分类和品牌信息都展示出来呢？</p>
+<p>显然不是，用户搜索的条件会对商品进行过滤，而在搜索结果中，不一定包含所有的分类和品牌，直接展示出所有商品分类，让用户选择显然是不合适的。</p>
+<p>无论是分类信息，还是品牌信息，都应该从搜索的结果商品中进行聚合得到。</p>
+<h2 id="2-1-扩展返回的结果"><a href="#2-1-扩展返回的结果" class="headerlink" title="2.1.扩展返回的结果"></a>2.1.扩展返回的结果</h2><p>原来，我们返回的结果是PageResult对象，里面只有total、totalPage、items3个属性。但是现在要对商品分类和品牌进行聚合，数据显然不够用，我们需要对返回的结果进行扩展，添加分类和品牌的数据。</p>
+<p>那么问题来了：以什么格式返回呢？</p>
+<p>看页面：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526738120021.png" alt="1526738120021"></p>
+<p>分类：页面显示了分类名称，但背后肯定要保存id信息。所以至少要有id和name</p>
+<p>品牌：页面展示的有logo，有文字，当然肯定有id，基本上是品牌的完整数据</p>
+<p>我们新建一个类，继承PageResult，然后扩展两个新的属性：分类集合和品牌集合：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543671901773.png" alt="1543671901773"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Goods<span class="token operator">></span> items<span class="token punctuation">,</span> Long total<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>items<span class="token punctuation">,</span> total<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Goods<span class="token operator">></span> items<span class="token punctuation">,</span> Long total<span class="token punctuation">,</span> Integer totalPage<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>items<span class="token punctuation">,</span> total<span class="token punctuation">,</span> totalPage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token function">getCategories</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> categories<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCategories</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">getBrands</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setBrands</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="2-2-聚合商品分类和品牌"><a href="#2-2-聚合商品分类和品牌" class="headerlink" title="2.2.聚合商品分类和品牌"></a>2.2.聚合商品分类和品牌</h2><p>我们修改搜索的业务逻辑，对分类和品牌聚合。</p>
+<p>因为索引库中只有id，所以我们根据id聚合，然后再根据id去查询完整数据。</p>
+<p>所以，商品微服务需要提供一个接口：根据品牌id集合，批量查询品牌。</p>
+<p>修改SearchService：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 判断查询条件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 返回默认结果集</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 初始化自定义查询构建器</span>
+    NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加查询条件</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>QueryBuilders<span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">operator</span><span class="token punctuation">(</span>Operator<span class="token punctuation">.</span>AND<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加结果集过滤，只需要：id,subTitle, skus</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FetchSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"subTitle"</span><span class="token punctuation">,</span> <span class="token string">"skus"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 获取分页参数</span>
+    Integer page <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Integer size <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加分页</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withPageable</span><span class="token punctuation">(</span>PageRequest<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>page <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    String categoryAggName <span class="token operator">=</span> <span class="token string">"categories"</span><span class="token punctuation">;</span>
+    String brandAggName <span class="token operator">=</span> <span class="token string">"brands"</span><span class="token punctuation">;</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span>categoryAggName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"cid3"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span>brandAggName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"brandId"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 执行搜索，获取搜索的结果集</span>
+    AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span> goodsPage <span class="token operator">=</span> <span class="token punctuation">(</span>AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>goodsReponsitory<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>queryBuilder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 解析聚合结果集</span>
+    List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories <span class="token operator">=</span> <span class="token function">getCategoryAggResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getAggregation</span><span class="token punctuation">(</span>categoryAggName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands <span class="token operator">=</span> <span class="token function">getBrandAggResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getAggregation</span><span class="token punctuation">(</span>brandAggName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 封装成需要的返回结果集</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SearchResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getTotalElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getTotalPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> categories<span class="token punctuation">,</span> brands<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/**
+     * 解析品牌聚合结果集
+     * @param aggregation
+     * @return
+     */</span>
+<span class="token keyword">private</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">getBrandAggResult</span><span class="token punctuation">(</span>Aggregation aggregation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 处理聚合结果集</span>
+    LongTerms terms <span class="token operator">=</span> <span class="token punctuation">(</span>LongTerms<span class="token punctuation">)</span>aggregation<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 获取所有的品牌id桶</span>
+    List<span class="token operator">&lt;</span>LongTerms<span class="token punctuation">.</span>Bucket<span class="token operator">></span> buckets <span class="token operator">=</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 定义一个品牌集合，搜集所有的品牌对象</span>
+    List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 解析所有的id桶，查询品牌</span>
+    buckets<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>bucket <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        Brand brand <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>brandClient<span class="token punctuation">.</span><span class="token function">queryBrandById</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        brands<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>brand<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> brands<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 解析聚合结果集中的桶，把桶的集合转化成id的集合</span>
+    <span class="token comment" spellcheck="true">// List&lt;Long> brandIds = terms.getBuckets().stream().map(bucket -> bucket.getKeyAsNumber().longValue()).collect(Collectors.toList());</span>
+    <span class="token comment" spellcheck="true">// 根据ids查询品牌</span>
+    <span class="token comment" spellcheck="true">//return brandIds.stream().map(id -> this.brandClient.queryBrandById(id)).collect(Collectors.toList());</span>
+    <span class="token comment" spellcheck="true">// return terms.getBuckets().stream().map(bucket -> this.brandClient.queryBrandById(bucket.getKeyAsNumber().longValue())).collect(Collectors.toList());</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+     * 解析分类
+     * @param aggregation
+     * @return
+     */</span>
+<span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">>></span> <span class="token function">getCategoryAggResult</span><span class="token punctuation">(</span>Aggregation aggregation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 处理聚合结果集</span>
+    LongTerms terms <span class="token operator">=</span> <span class="token punctuation">(</span>LongTerms<span class="token punctuation">)</span>aggregation<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 获取所有的分类id桶</span>
+    List<span class="token operator">&lt;</span>LongTerms<span class="token punctuation">.</span>Bucket<span class="token operator">></span> buckets <span class="token operator">=</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 定义一个品牌集合，搜集所有的品牌对象</span>
+    List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>Long<span class="token operator">></span> cids <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 解析所有的id桶，查询品牌</span>
+    buckets<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>bucket <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        cids<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>String<span class="token operator">></span> names <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryClient<span class="token punctuation">.</span><span class="token function">queryNamesByIds</span><span class="token punctuation">(</span>cids<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cids<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">,</span> cids<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> names<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        categories<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> categories<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>测试：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532259453938.png" alt="1532259453938"></p>
+<h2 id="2-3-页面渲染数据"><a href="#2-3-页面渲染数据" class="headerlink" title="2.3.页面渲染数据"></a>2.3.页面渲染数据</h2><h3 id="2-3-1-过滤参数数据结构"><a href="#2-3-1-过滤参数数据结构" class="headerlink" title="2.3.1.过滤参数数据结构"></a>2.3.1.过滤参数数据结构</h3><p>来看下页面的展示效果：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526742664217.png" alt="1526742664217"></p>
+<p>虽然分类、品牌内容都不太一样，但是结构相似，都是key和value的结构。</p>
+<p>而且页面结构也极为类似：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526742817804.png" alt="1526742817804"></p>
+<p>所以，我们可以把所有的过滤条件放入一个<code>数组</code>中，然后在页面利用<code>v-for</code>遍历一次生成。</p>
+<p>其基本结构是这样的：</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        k<span class="token punctuation">:</span><span class="token string">"过滤字段名"</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">/*过滤字段值对象*/</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">/*过滤字段值对象*/</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<p>我们先在data中定义数组：filters，等待组装过滤参数：</p>
+<pre class=" language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    ly<span class="token punctuation">,</span>
+    search<span class="token punctuation">:</span><span class="token punctuation">{</span>
+        key<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+        page<span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    goodsList<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 接收搜索得到的结果</span>
+    total<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 总条数</span>
+    totalPage<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 总页数</span>
+    filters<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 过滤参数集合</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>然后在查询搜索结果的回调函数中，对过滤参数进行封装：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532261937404.png" alt="1532261937404"></p>
+<p>然后刷新页面，通过浏览器工具，查看封装的结果：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532260781128.png" alt="1532260781128"></p>
+<h3 id="2-3-2-页面渲染数据"><a href="#2-3-2-页面渲染数据" class="headerlink" title="2.3.2.页面渲染数据"></a>2.3.2.页面渲染数据</h3><p>首先看页面原来的代码：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526803362517.png" alt="1526803362517"></p>
+<p>我们注意到，虽然页面元素是一样的，但是品牌会比其它搜索条件多出一些样式，因为品牌是以图片展示。需要进行特殊处理。数据展示是一致的，我们采用v-for处理：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-wrap<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(f,i) in filters<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>i<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>f.k !<span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>品牌<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl key<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{f.k}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl value<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(option, j) in f.options<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>j<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token punctuation">></span></span>{{option.name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl ext<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-wrap logo<span class="token punctuation">"</span></span> <span class="token attr-name">v-else</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl key brand<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{f.k}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>value logos<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>logo-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(option, j) in f.options<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>option.image<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>option.image<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">text-align</span><span class="token punctuation">:</span> center</span><span class="token punctuation">"</span></span> <span class="token attr-name">v-else</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span> <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">12</span>px</span><span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{option.name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl ext<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript:void(0);<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sui-btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>多选<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>结果：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532264524663.png" alt="1532264524663"></p>
+<h1 id="3-生成规格参数过滤"><a href="#3-生成规格参数过滤" class="headerlink" title="3.生成规格参数过滤"></a>3.生成规格参数过滤</h1><h2 id="3-1-谋而后动"><a href="#3-1-谋而后动" class="headerlink" title="3.1.谋而后动"></a>3.1.谋而后动</h2><p>有四个问题需要先思考清楚：</p>
+<ul>
+<li>什么时候显示规格参数过滤？ 分类只有一个</li>
+<li>如何知道哪些规格需要过滤？ </li>
+<li>要过滤的参数，其可选值是如何获取的？ </li>
+<li>规格过滤的可选值，其数据格式怎样的？</li>
+</ul>
+<blockquote>
+<p>什么情况下显示有关规格参数的过滤？</p>
+</blockquote>
+<p>如果用户尚未选择商品分类，或者聚合得到的分类数大于1，那么就没必要进行规格参数的聚合。因为不同分类的商品，其规格是不同的。</p>
+<p>因此，我们在后台<strong>需要对聚合得到的商品分类数量进行判断，如果等于1，我们才继续进行规格参数的聚合</strong>。</p>
+<blockquote>
+<p>如何知道哪些规格需要过滤？</p>
+</blockquote>
+<p>我们不能把数据库中的所有规格参数都拿来过滤。因为并不是所有的规格参数都可以用来过滤，参数的值是不确定的。</p>
+<p>值的庆幸的是，我们在设计规格参数时，已经标记了某些规格可搜索，某些不可搜索。</p>
+<p>因此，一旦商品分类确定，我们就可以根据商品分类查询到其对应的规格，从而知道哪些规格要进行搜索。</p>
+<blockquote>
+<p>要过滤的参数，其可选值是如何获取的？</p>
+</blockquote>
+<p>虽然数据库中有所有的规格参数，但是不能把一切数据都用来供用户选择。</p>
+<p>与商品分类和品牌一样，应该是从用户搜索得到的结果中聚合，得到与结果品牌的规格参数可选值。</p>
+<blockquote>
+<p>规格过滤的可选值，其数据格式怎样的？</p>
+</blockquote>
+<p>我们直接看页面效果：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526805322441.png" alt="1526805322441"></p>
+<p>我们之前存储时已经将数据分段，恰好符合这里的需求</p>
+<h2 id="3-2-实战"><a href="#3-2-实战" class="headerlink" title="3.2.实战"></a>3.2.实战</h2><p>接下来，我们就用代码实现刚才的思路。</p>
+<p>总结一下，应该是以下几步：</p>
+<ul>
+<li>1）用户搜索得到商品，并聚合出商品分类</li>
+<li>2）判断分类数量是否等于1，如果是则进行规格参数聚合</li>
+<li>3）先根据分类，查找可以用来搜索的规格</li>
+<li>4）对规格参数进行聚合</li>
+<li>5）将规格参数聚合结果整理后返回</li>
+</ul>
+<h3 id="3-2-1-扩展返回结果"><a href="#3-2-1-扩展返回结果" class="headerlink" title="3.2.1.扩展返回结果"></a>3.2.1.扩展返回结果</h3><p>返回结果中需要增加新数据，用来保存规格参数过滤条件。这里与前面的品牌和分类过滤的json结构类似：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">"k"</span><span class="token operator">:</span><span class="token string">"规格参数名"</span><span class="token punctuation">,</span>
+        <span class="token property">"options"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"规格参数值"</span><span class="token punctuation">,</span><span class="token string">"规格参数值"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<p>因此，在java中我们用List&lt;Map&lt;String, Object&gt;&gt;来表示。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>specs <span class="token operator">=</span> specs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Goods<span class="token operator">></span> items<span class="token punctuation">,</span> Long total<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>items<span class="token punctuation">,</span> total<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>specs <span class="token operator">=</span> specs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">SearchResult</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Goods<span class="token operator">></span> items<span class="token punctuation">,</span> Long total<span class="token punctuation">,</span> Integer totalPage<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>items<span class="token punctuation">,</span> total<span class="token punctuation">,</span> totalPage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>specs <span class="token operator">=</span> specs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token function">getCategories</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> categories<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCategories</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>categories <span class="token operator">=</span> categories<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">getBrands</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setBrands</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> <span class="token function">getSpecs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> specs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSpecs</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>specs <span class="token operator">=</span> specs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="3-2-2-判断是否需要聚合"><a href="#3-2-2-判断是否需要聚合" class="headerlink" title="3.2.2.判断是否需要聚合"></a>3.2.2.判断是否需要聚合</h3><p>首先，在聚合得到商品分类后，判断分类的个数，如果是1个则进行规格聚合：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543673893654.png" alt="1543673893654"></p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543673960091.png" alt="1543673960091"></p>
+<p>我们将聚合的代码抽取到了一个<code>getParamAggResult</code>方法中。</p>
+<h3 id="3-2-3-获取需要聚合的规格参数"><a href="#3-2-3-获取需要聚合的规格参数" class="headerlink" title="3.2.3.获取需要聚合的规格参数"></a>3.2.3.获取需要聚合的规格参数</h3><p>然后，我们需要根据商品分类，查询所有可用于搜索的规格参数：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674113503.png" alt="1543674113503"></p>
+<p>要注意的是，这里我们需要根据分类id查询规格，而规格参数接口需要从商品微服务提供</p>
+<h3 id="3-2-4-聚合规格参数"><a href="#3-2-4-聚合规格参数" class="headerlink" title="3.2.4.聚合规格参数"></a>3.2.4.聚合规格参数</h3><p>因为规格参数保存时不做分词，因此其名称会自动带上一个.keyword后缀：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674179820.png" alt="1543674179820"></p>
+<h3 id="3-2-5-解析聚合结果"><a href="#3-2-5-解析聚合结果" class="headerlink" title="3.2.5.解析聚合结果"></a>3.2.5.解析聚合结果</h3><p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674250920.png" alt="1543674250920"></p>
+<h3 id="3-2-6-最终的完整代码"><a href="#3-2-6-最终的完整代码" class="headerlink" title="3.2.6.最终的完整代码"></a>3.2.6.最终的完整代码</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 判断查询条件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 返回默认结果集</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 初始化自定义查询构建器</span>
+    NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加查询条件</span>
+    MatchQueryBuilder basicQuery <span class="token operator">=</span> QueryBuilders<span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">operator</span><span class="token punctuation">(</span>Operator<span class="token punctuation">.</span>AND<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>basicQuery<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加结果集过滤，只需要：id,subTitle, skus</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FetchSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"subTitle"</span><span class="token punctuation">,</span> <span class="token string">"skus"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 获取分页参数</span>
+    Integer page <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Integer size <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加分页</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withPageable</span><span class="token punctuation">(</span>PageRequest<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>page <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    String categoryAggName <span class="token operator">=</span> <span class="token string">"categories"</span><span class="token punctuation">;</span>
+    String brandAggName <span class="token operator">=</span> <span class="token string">"brands"</span><span class="token punctuation">;</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span>categoryAggName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"cid3"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span>brandAggName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"brandId"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 执行搜索，获取搜索的结果集</span>
+    AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span> goodsPage <span class="token operator">=</span> <span class="token punctuation">(</span>AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>goodsReponsitory<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>queryBuilder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 解析聚合结果集</span>
+    List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories <span class="token operator">=</span> <span class="token function">getCategoryAggResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getAggregation</span><span class="token punctuation">(</span>categoryAggName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands <span class="token operator">=</span> <span class="token function">getBrandAggResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getAggregation</span><span class="token punctuation">(</span>brandAggName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 判断分类聚合的结果集大小，等于1则聚合</span>
+    List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>categories<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        specs <span class="token operator">=</span> <span class="token function">getParamAggResult</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Long<span class="token punctuation">)</span>categories<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> basicQuery<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 封装成需要的返回结果集</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SearchResult</span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getTotalElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getTotalPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> categories<span class="token punctuation">,</span> brands<span class="token punctuation">,</span> specs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+     * 聚合出规格参数过滤条件
+     * @param id
+     * @param basicQuery
+     * @return
+     */</span>
+<span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">>></span> <span class="token function">getParamAggResult</span><span class="token punctuation">(</span>Long id<span class="token punctuation">,</span> QueryBuilder basicQuery<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 创建自定义查询构建器</span>
+    NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 基于基本的查询条件，聚合规格参数</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>basicQuery<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 查询要聚合的规格参数</span>
+    List<span class="token operator">&lt;</span>SpecParam<span class="token operator">></span> params <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>specificationClient<span class="token punctuation">.</span><span class="token function">queryParams</span><span class="token punctuation">(</span>null<span class="token punctuation">,</span> id<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加聚合</span>
+    params<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>param <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        queryBuilder<span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span>param<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"specs."</span> <span class="token operator">+</span> param<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".keyword"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 只需要聚合结果集，不需要查询结果集</span>
+    queryBuilder<span class="token punctuation">.</span><span class="token function">withSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FetchSourceFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 执行聚合查询</span>
+    AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span> goodsPage <span class="token operator">=</span> <span class="token punctuation">(</span>AggregatedPage<span class="token operator">&lt;</span>Goods<span class="token operator">></span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>goodsReponsitory<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>queryBuilder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 定义一个集合，收集聚合结果集</span>
+    List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> paramMapList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 解析聚合查询的结果集</span>
+    Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Aggregation<span class="token operator">></span> aggregationMap <span class="token operator">=</span> goodsPage<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Aggregation<span class="token operator">></span> entry <span class="token operator">:</span> aggregationMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 放入规格参数名</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"k"</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 收集规格参数值</span>
+        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> options <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 解析每个聚合</span>
+        StringTerms terms <span class="token operator">=</span> <span class="token punctuation">(</span>StringTerms<span class="token punctuation">)</span>entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 遍历每个聚合中桶，把桶中key放入收集规格参数的集合中</span>
+        terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>bucket <span class="token operator">-</span><span class="token operator">></span> options<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"options"</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        paramMapList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> paramMapList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="3-2-7-测试结果"><a href="#3-2-7-测试结果" class="headerlink" title="3.2.7.测试结果"></a>3.2.7.测试结果</h3><p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532270167684.png" alt="1532270167684"></p>
+<h2 id="3-3-页面渲染"><a href="#3-3-页面渲染" class="headerlink" title="3.3.页面渲染"></a>3.3.页面渲染</h2><h3 id="3-3-1-渲染规格过滤条件"><a href="#3-3-1-渲染规格过滤条件" class="headerlink" title="3.3.1.渲染规格过滤条件"></a>3.3.1.渲染规格过滤条件</h3><p>首先把后台传递过来的specs添加到filters数组：</p>
+<p>要注意：分类、品牌的option选项是对象，里面有name属性，而specs中的option是简单的字符串，所以需要进行封装，变为相同的结构：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532271319440.png" alt="1532271319440"></p>
+<p>最后的结果：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526836508277.png" alt="1526836508277"></p>
+<h3 id="3-3-2-展示或收起过滤条件"><a href="#3-3-2-展示或收起过滤条件" class="headerlink" title="3.3.2.展示或收起过滤条件"></a>3.3.2.展示或收起过滤条件</h3><p>是不是感觉显示的太多了，我们可以通过按钮点击来展开和隐藏部分内容：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532271362148.png" alt="1532271362148"></p>
+<p>我们在data中定义变量，记录展开或隐藏的状态：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532271577293.png" alt="1532271577293"></p>
+<p>然后在按钮绑定点击事件，以改变show的取值：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532272309322.png" alt="1532272309322"></p>
+<p>在展示规格时，对show进行判断：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532272262743.png" alt="1532272262743"></p>
+<p>OK！</p>
+<h1 id="4-过滤条件的筛选"><a href="#4-过滤条件的筛选" class="headerlink" title="4.过滤条件的筛选"></a>4.过滤条件的筛选</h1><p>当我们点击页面的过滤项，要做哪些事情？</p>
+<ul>
+<li>把过滤条件保存在search对象中（watch监控到search变化后就会发送到后台）</li>
+<li>在页面顶部展示已选择的过滤项</li>
+<li>把商品分类展示到顶部面包屑</li>
+</ul>
+<h2 id="4-1-保存过滤项"><a href="#4-1-保存过滤项" class="headerlink" title="4.1.保存过滤项"></a>4.1.保存过滤项</h2><h3 id="4-1-1-定义属性"><a href="#4-1-1-定义属性" class="headerlink" title="4.1.1.定义属性"></a>4.1.1.定义属性</h3><p>我们把已选择的过滤项保存在search中：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532273487583.png" alt="1532273487583"></p>
+<p>要注意，在created构造函数中会对search进行初始化，所以要在构造函数中对filter进行初始化：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1533566768364.png" alt="1533566768364"></p>
+<p>search.filter是一个对象，结构：</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>
+    <span class="token string">"过滤项名"</span><span class="token punctuation">:</span><span class="token string">"过滤项值"</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="4-1-2-绑定点击事件"><a href="#4-1-2-绑定点击事件" class="headerlink" title="4.1.2.绑定点击事件"></a>4.1.2.绑定点击事件</h3><p>给所有的过滤项绑定点击事件：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532272879418.png" alt="1532272879418"></p>
+<p>要注意，点击事件传2个参数：</p>
+<ul>
+<li>k：过滤项的key</li>
+<li>option：当前过滤项对象</li>
+</ul>
+<p>在点击事件中，保存过滤项到<code>selectedFilter</code>：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">selectFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">===</span> <span class="token string">'分类'</span> <span class="token operator">||</span> k <span class="token operator">===</span> <span class="token string">'品牌'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        o <span class="token operator">=</span> o<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    obj<span class="token punctuation">.</span>filter<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> o<span class="token punctuation">.</span>name <span class="token operator">||</span> o<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>search <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>另外，这里search对象中嵌套了filter对象，请求参数格式化时需要进行特殊处理，修改common.js中的一段代码：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532273144046.png" alt="1532273144046"></p>
+<p>我们刷新页面，点击后通过浏览器功能查看<code>search.filter</code>的属性变化：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532274670784.png" alt="1532274670784"></p>
+<p>并且，此时浏览器地址也发生了变化：</p>
+<pre><code>http://www.leyou.com/search.html?key=%E6%89%8B%E6%9C%BA&amp;page=1&amp;filter.%E5%93%81%E7%89%8C=2032&amp;filter.CPU%E5%93%81%E7%89%8C=%E6%B5%B7%E6%80%9D%EF%BC%88Hisilicon%EF%BC%89&amp;filter.CPU%E6%A0%B8%E6%95%B0=%E5%8D%81%E6%A0%B8</code></pre><p>网络请求也正常发出：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532274821104.png" alt="1532274821104"></p>
+<h2 id="4-2-后台添加过滤条件"><a href="#4-2-后台添加过滤条件" class="headerlink" title="4.2.后台添加过滤条件"></a>4.2.后台添加过滤条件</h2><p>既然请求已经发送到了后台，那接下来我们就在后台去添加这些条件：</p>
+<h3 id="4-2-1-拓展请求对象"><a href="#4-2-1-拓展请求对象" class="headerlink" title="4.2.1.拓展请求对象"></a>4.2.1.拓展请求对象</h3><p>我们需要在请求类：<code>SearchRequest</code>中添加属性，接收过滤属性。过滤属性都是键值对格式，但是key不确定，所以用一个map来接收即可。</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526910290497.png" alt="1526910290497"></p>
+<h3 id="4-2-2-添加过滤条件"><a href="#4-2-2-添加过滤条件" class="headerlink" title="4.2.2.添加过滤条件"></a>4.2.2.添加过滤条件</h3><p>目前，我们的基本查询是这样的：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1533567897849.png" alt="1533567897849"></p>
+<p>现在，我们要把页面传递的过滤条件也加入进去。</p>
+<p>因此不能在使用普通的查询，而是要用到BooleanQuery，基本结构是这样的：</p>
+<pre class=" language-json"><code class="language-json">GET /heima/_search
+<span class="token punctuation">{</span>
+    <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">"bool"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">"must"</span><span class="token operator">:</span><span class="token punctuation">{</span> <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"小米手机"</span><span class="token punctuation">,</span>operator<span class="token operator">:</span><span class="token string">"and"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"filter"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token property">"range"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"price"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"gt"</span><span class="token operator">:</span><span class="token number">2000.00</span><span class="token punctuation">,</span><span class="token property">"lt"</span><span class="token operator">:</span><span class="token number">3800.00</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>所以，我们对原来的基本查询进行改造：（SearchService中的search方法）</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674461682.png" alt="1543674461682"></p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674644998.png" alt="1543674644998"></p>
+<p>因为比较复杂，我们将其封装到一个方法中：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+     * 构建bool查询构建器
+     * @param request
+     * @return
+     */</span>
+<span class="token keyword">private</span> BoolQueryBuilder <span class="token function">buildBooleanQueryBuilder</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    BoolQueryBuilder boolQueryBuilder <span class="token operator">=</span> QueryBuilders<span class="token punctuation">.</span><span class="token function">boolQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 添加基本查询条件</span>
+    boolQueryBuilder<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span>QueryBuilders<span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">operator</span><span class="token punctuation">(</span>Operator<span class="token punctuation">.</span>AND<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 添加过滤条件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>CollectionUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> boolQueryBuilder<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> entry <span class="token operator">:</span> request<span class="token punctuation">.</span><span class="token function">getFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        String key <span class="token operator">=</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 如果过滤条件是“品牌”, 过滤的字段名：brandId</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"品牌"</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            key <span class="token operator">=</span> <span class="token string">"brandId"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"分类"</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 如果是“分类”，过滤字段名：cid3</span>
+            key <span class="token operator">=</span> <span class="token string">"cid3"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 如果是规格参数名，过滤字段名：specs.key.keyword</span>
+            key <span class="token operator">=</span> <span class="token string">"specs."</span> <span class="token operator">+</span> key <span class="token operator">+</span> <span class="token string">".keyword"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        boolQueryBuilder<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>QueryBuilders<span class="token punctuation">.</span><span class="token function">termQuery</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> boolQueryBuilder<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>其它不变。</p>
+<h2 id="4-3-页面测试"><a href="#4-3-页面测试" class="headerlink" title="4.3.页面测试"></a>4.3.页面测试</h2><p>我们先不点击过滤条件，直接搜索手机：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526910966728.png" alt="1526910966728"></p>
+<p>总共184条</p>
+<p>接下来，我们点击一个过滤条件：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911057839.png" alt="1526911057839"></p>
+<p>得到的结果：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911090064.png" alt="1526911090064"></p>
+<h1 id="5-页面展示选择的过滤项-作业"><a href="#5-页面展示选择的过滤项-作业" class="headerlink" title="5.页面展示选择的过滤项(作业)"></a>5.页面展示选择的过滤项(作业)</h1><h2 id="5-1-商品分类面包屑"><a href="#5-1-商品分类面包屑" class="headerlink" title="5.1.商品分类面包屑"></a>5.1.商品分类面包屑</h2><p>当用户选择一个商品分类以后，我们应该在过滤模块的上方展示一个面包屑，把三级商品分类都显示出来。</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526912181355.png" alt="1526912181355"></p>
+<p>用户选择的商品分类就存放在<code>search.filter</code>中，但是里面只有第三级分类的id：cid3</p>
+<p>我们需要根据它查询出所有三级分类的id及名称</p>
+<h3 id="5-1-1-提供查询分类接口"><a href="#5-1-1-提供查询分类接口" class="headerlink" title="5.1.1.提供查询分类接口"></a>5.1.1.提供查询分类接口</h3><p>我们在商品微服务中提供一个根据三级分类id查询1~3级分类集合的方法：</p>
+<blockquote>
+<p>Controller</p>
+</blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+     * 根据3级分类id，查询1~3级的分类
+     * @param id
+     * @return
+     */</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"all/level"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Category<span class="token operator">>></span> <span class="token function">queryAllByCid3</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Category<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryService<span class="token punctuation">.</span><span class="token function">queryAllByCid3</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>list <span class="token operator">==</span> null <span class="token operator">||</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>NOT_FOUND<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>Service</p>
+</blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Category<span class="token operator">></span> <span class="token function">queryAllByCid3</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Category c3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Category c2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>c3<span class="token punctuation">.</span><span class="token function">getParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Category c1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>c2<span class="token punctuation">.</span><span class="token function">getParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">,</span>c3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>测试：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526912781014.png" alt="1526912781014"></p>
+<h3 id="5-1-2-页面展示面包屑"><a href="#5-1-2-页面展示面包屑" class="headerlink" title="5.1.2.页面展示面包屑"></a>5.1.2.页面展示面包屑</h3><p>后台提供了接口，下面的问题是，我们在哪里去查询接口？</p>
+<p>大家首先想到的肯定是当用户点击以后。</p>
+<p>但是我们思考一下：用户点击以后，就会重新发起请求，页面刷新，那么你渲染的结果就没了。</p>
+<p>因此，应该是在页面重新加载完毕后，此时因为过滤条件中加入了商品分类的条件，所以查询的结果中只有1个分类。</p>
+<p>我们判断商品分类是否只有1个，如果是，则查询三级商品分类，添加到面包屑即可。</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526914910479.png" alt="1526914910479"></p>
+<p>渲染：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1528416823546.png" alt="1528416823546"></p>
+<p>刷新页面：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526914954839.png" alt="1526914954839"></p>
+<h2 id="5-2-其它过滤项"><a href="#5-2-其它过滤项" class="headerlink" title="5.2.其它过滤项"></a>5.2.其它过滤项</h2><p>接下来，我们需要在页面展示用户已选择的过滤项，如图：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911364625.png" alt="1526911364625"></p>
+<p>我们知道，所有已选择过滤项都保存在<code>search.filter</code>中，因此在页面遍历并展示即可。</p>
+<p>但这里有个问题，filter中数据的格式：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911311273.png" alt="1526911311273"></p>
+<p>基本有四类数据：</p>
+<ul>
+<li>商品分类：这个不需要展示，分类展示在面包屑位置</li>
+<li>品牌：这个要展示，但是其key和值不合适，我们不能显示一个id在页面。需要找到其name值</li>
+<li>数值类型规格：这个展示的时候，需要把单位查询出来</li>
+<li>非数值类型规格：这个直接展示其值即可</li>
+</ul>
+<p>因此，我们在页面上这样处理：</p>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--已选择过滤项--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tags-choose<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tag<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(v,k) in search.filter<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k !<span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>cid3<span class="token punctuation">'</span><span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        {{k === 'brandId' ? '品牌' : k}}:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">color</span><span class="token punctuation">:</span> red</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{getFilterValue(k,v)}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sui-icon icon-tb-close<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+<ul>
+<li>判断如果 <code>k === &#39;cid3&#39;</code>说明是商品分类，直接忽略</li>
+<li>判断<code>k === &#39;brandId&#39;</code>说明是品牌，页面显示品牌，其它规格则直接显示<code>k</code>的值</li>
+<li>值的处理比较复杂，我们用一个方法<code>getFilterValue(k,v)</code>来处理，调用时把<code>k</code>和<code>v</code>都传递</li>
+</ul>
+<p>方法内部：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">getFilterValue</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 如果没有过滤参数，我们跳过展示</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>filters <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> filter <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 判断是否是品牌</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">===</span> <span class="token string">'brandId'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 返回品牌名称</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>f <span class="token operator">=</span><span class="token operator">></span> f<span class="token punctuation">.</span>k <span class="token operator">===</span> <span class="token string">'brandId'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>options<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> v<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后刷新页面，即可看到效果：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911811998.png" alt="1526911811998"></p>
+<h2 id="5-3-隐藏已经选择的过滤项"><a href="#5-3-隐藏已经选择的过滤项" class="headerlink" title="5.3.隐藏已经选择的过滤项"></a>5.3.隐藏已经选择的过滤项</h2><p>现在，我们已经实现了已选择过滤项的展示，但是你会发现一个问题：</p>
+<p>已经选择的过滤项，在过滤列表中依然存在：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526915075037.png" alt="1526915075037"></p>
+<p>这些已经选择的过滤项，应该从列表中移除。</p>
+<p>怎么做呢？</p>
+<p>你必须先知道用户选择了什么。用户选择的项保存在<code>search.filter</code>中：</p>
+<p> <img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526915191753.png" alt="1526915191753"></p>
+<p>我们可以编写一个计算属性，把filters中的 已经被选择的key过滤掉：</p>
+<pre class=" language-js"><code class="language-js">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+    <span class="token function">remainFilters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">const</span> keys <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>cid3<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            keys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"cid3"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>brandId<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            keys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"brandId"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>f <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">!</span>keys<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后页面不再直接遍历<code>filters</code>，而是遍历<code>remainFilters</code></p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526916315470.png" alt="1526916315470"></p>
+<p>刷新页面：</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526916538925.png" alt="1526916538925"></p>
+<p>最后发现，还剩下一堆没选过的。但是都只有一个可选项，此时再过滤没有任何意义，应该隐藏，所以，在刚才的过滤条件中，还应该添加一条：如果只剩下一个可选项，不显示</p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526916815264.png" alt="1526916815264"></p>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526916838222.png" alt="1526916838222"></p>
+<h1 id="6-取消过滤项（作业）"><a href="#6-取消过滤项（作业）" class="headerlink" title="6.取消过滤项（作业）"></a>6.取消过滤项（作业）</h1><p>我们能够看到，每个过滤项后面都有一个小叉，当点击后，应该取消对应条件的过滤。</p>
+<p>思路非常简单：</p>
+<ul>
+<li>给小叉绑定点击事件</li>
+<li>点击后把过滤项从<code>search.filter</code>中移除，页面会自动刷新，OK</li>
+</ul>
+<blockquote>
+<p>绑定点击事件：</p>
+</blockquote>
+<p><img src="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526955150293.png" alt="1526955150293"></p>
+<p>绑定点击事件时，把k传递过去，方便删除</p>
+<blockquote>
+<p>删除过滤项</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token function">removeFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h1 id="7-优化"><a href="#7-优化" class="headerlink" title="7.优化"></a>7.优化</h1><p>搜索系统需要优化的点：</p>
+<ul>
+<li>查询规格参数部分可以添加缓存 </li>
+<li>聚合计算interval变化频率极低，所以可以设计为定时任务计算（周期为天），然后缓存起来。</li>
+<li>elasticsearch本身有查询缓存，可以不进行优化</li>
+<li>商品图片应该采用缩略图，减少流量，提高页面加载速度</li>
+<li>图片采用延迟加载</li>
+<li>图片还可以采用CDN服务器</li>
+<li>sku信息应该在页面异步加载，而不是放到索引库</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://chaining.coding.me" class="b-link-green">柴米油盐</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/chaining/2019/09/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/" class="b-link-green">day13-搜索过滤</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'bee4fd2b7760acfaf98d',
+        clientSecret: '4ebf2c41dd6701ef493eee655aa1a9a31108b868',
+        repo: 'chainingning.github.io',
+        owner: 'chainingning',
+        admin: ["chainingning"],
+        id: '2019-09-10T10-33-23',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/chaining/2019/09/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="day14-商品详情及静态化">
+                        
+                        <span class="card-title">day14-商品详情及静态化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">0.学习目标
+了解Thymeleaf的基本使用
+实现商品详情页的渲染
+知道页面静态化的作用
+实现页面静态化功能
+
+1.商品详情当用户搜索到商品，肯定会点击查看，就会进入商品详情页，接下来我们完成商品详情页的展示，
+1.1.Thymeleaf</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                    项目实战
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/chaining/tags/SpringBoot/" target="_blank">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/chaining/tags/项目实战/" target="_blank">
+                        <span class="chip bg-color">项目实战</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/chaining/2019/09/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="day12-基本搜索">
+                        
+                        <span class="card-title">day12-基本搜索</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">0.学习目标
+编写数据导入功能
+实现基本搜索
+实现页面分页
+实现结果排序
+
+1.索引库数据导入昨天我们学习了Elasticsearch的基本应用。今天就学以致用，搭建搜索微服务，实现搜索功能。
+1.1.创建搜索服务创建module：
+
+
+P</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                    项目实战
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/chaining/tags/SpringBoot/" target="_blank">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/chaining/tags/项目实战/" target="_blank">
+                        <span class="chip bg-color">项目实战</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 柴米油盐<br />'
+            + '作者: Chester<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://chainingning.github.io/" target="_blank">Chester</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a>搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">347.3k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chainingning" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:ning.chai@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=88905457" class="tooltipped" data-tooltip="QQ联系我: 88905457" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/chaining/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/chaining/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
