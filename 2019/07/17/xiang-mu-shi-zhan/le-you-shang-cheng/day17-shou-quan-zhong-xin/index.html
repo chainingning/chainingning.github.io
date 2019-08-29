@@ -1,0 +1,1801 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="day17-授权中心, 柴米油盐, Chester">
+    <meta name="description" content="0.学习目标1.无状态登录原理1.1.什么是有状态？有状态服务，即服务端需要记录每次会话的客户端信息，从而识别客户端身份，根据用户身份进行请求的处理，典型的设计如tomcat中的session。
+例如登录：用户登录后，我们把登录者的信息保存">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>day17-授权中心 | 柴米油盐</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/chaining/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">柴米油盐</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/photo" class="waves-effect waves-light">
+            
+            <i class="fa fa-camera-retro"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">柴米油盐</div>
+        <div class="logo-desc">
+            
+            也许,我们能在柴米油盐的生活中做的更好一些。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/photo" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-camera-retro"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/chainingning" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/chainingning" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        day17-授权中心
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/chaining/tags/SpringBoot/" target="_blank">
+                                <span class="chip bg-color">SpringBoot</span>
+                            </a>
+                        
+                            <a href="/chaining/tags/项目实战/" target="_blank">
+                                <span class="chip bg-color">项目实战</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                项目实战
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-17
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        26 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-无状态登录原理"><a href="#1-无状态登录原理" class="headerlink" title="1.无状态登录原理"></a>1.无状态登录原理</h1><h2 id="1-1-什么是有状态？"><a href="#1-1-什么是有状态？" class="headerlink" title="1.1.什么是有状态？"></a>1.1.什么是有状态？</h2><p>有状态服务，即服务端需要记录每次会话的客户端信息，从而识别客户端身份，根据用户身份进行请求的处理，典型的设计如tomcat中的session。</p>
+<p>例如登录：用户登录后，我们把登录者的信息保存在服务端session中，并且给用户一个cookie值，记录对应的session。然后下次请求，用户携带cookie值来，我们就能识别到对应session，从而找到用户的信息。</p>
+<p>缺点是什么？</p>
+<ul>
+<li>服务端保存大量数据，增加服务端压力</li>
+<li>服务端保存用户状态，无法进行水平扩展</li>
+<li>客户端请求依赖服务端，多次请求必须访问同一台服务器</li>
+</ul>
+<h2 id="1-2-什么是无状态"><a href="#1-2-什么是无状态" class="headerlink" title="1.2.什么是无状态"></a>1.2.什么是无状态</h2><p>微服务集群中的每个服务，对外提供的都是Rest风格的接口。而Rest风格的一个最重要的规范就是：服务的无状态性，即：</p>
+<ul>
+<li>服务端不保存任何客户端请求者信息</li>
+<li>客户端的每次请求必须具备自描述信息，通过这些信息识别客户端身份</li>
+</ul>
+<p>带来的好处是什么呢？</p>
+<ul>
+<li>客户端请求不依赖服务端的信息，任何多次请求不需要必须访问到同一台服务</li>
+<li>服务端的集群和状态对客户端透明</li>
+<li>服务端可以任意的迁移和伸缩</li>
+<li>减小服务端存储压力</li>
+</ul>
+<h2 id="1-3-如何实现无状态"><a href="#1-3-如何实现无状态" class="headerlink" title="1.3.如何实现无状态"></a>1.3.如何实现无状态</h2><p>无状态登录的流程：</p>
+<ul>
+<li>当客户端第一次请求服务时，服务端对用户进行信息认证（登录）</li>
+<li>认证通过，将用户信息进行加密形成token，返回给客户端，作为登录凭证</li>
+<li>以后每次请求，客户端都携带认证的token</li>
+<li>服务的对token进行解密，判断是否有效。</li>
+</ul>
+<p>流程图：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527300483893.png" alt></p>
+<p>整个登录过程中，最关键的点是什么？</p>
+<p><strong>token的安全性</strong></p>
+<p>token是识别客户端身份的唯一标示，如果加密不够严密，被人伪造那就完蛋了。</p>
+<p>采用何种方式加密才是安全可靠的呢？</p>
+<p>我们将采用<code>JWT + RSA非对称加密</code></p>
+<h2 id="1-4-JWT"><a href="#1-4-JWT" class="headerlink" title="1.4.JWT"></a>1.4.JWT</h2><h3 id="1-4-1-简介"><a href="#1-4-1-简介" class="headerlink" title="1.4.1.简介"></a>1.4.1.简介</h3><p>JWT，全称是Json Web Token， 是JSON风格轻量级的授权和身份认证规范，可实现无状态、分布式的Web应用授权；官网：<a href="https://jwt.io" target="_blank" rel="noopener">https://jwt.io</a></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533033734163.png" alt="1533033734163"></p>
+<p>GitHub上jwt的java客户端：<a href="https://github.com/jwtk/jjwt" target="_blank" rel="noopener">https://github.com/jwtk/jjwt</a></p>
+<h3 id="1-4-2-数据格式"><a href="#1-4-2-数据格式" class="headerlink" title="1.4.2.数据格式"></a>1.4.2.数据格式</h3><p>JWT包含三部分数据：</p>
+<ul>
+<li><p>Header：头部，通常头部有两部分信息：</p>
+<ul>
+<li>声明类型，这里是JWT</li>
+</ul>
+<p>我们会对头部进行base64编码，得到第一部分数据</p>
+</li>
+<li><p>Payload：载荷，就是有效数据，一般包含下面信息：</p>
+<ul>
+<li>用户身份信息（注意，这里因为采用base64编码，可解码，因此不要存放敏感信息）</li>
+<li>注册声明：如token的签发时间，过期时间，签发人等</li>
+</ul>
+<p>这部分也会采用base64编码，得到第二部分数据</p>
+</li>
+<li><p>Signature：签名，是整个数据的认证信息。一般根据前两步的数据，再加上服务的的密钥（secret）（不要泄漏，最好周期性更换），通过加密算法生成。用于验证整个数据完整和可靠性</p>
+</li>
+</ul>
+<p>生成的数据格式：token==个人证件  jwt=个人身份证</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527322512370.png" alt="1527322512370"></p>
+<p>可以看到分为3段，每段就是上面的一部分数据</p>
+<h3 id="1-4-3-JWT交互流程"><a href="#1-4-3-JWT交互流程" class="headerlink" title="1.4.3.JWT交互流程"></a>1.4.3.JWT交互流程</h3><p>流程图：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527305891424.png" alt="1527305891424"></p>
+<p>步骤翻译：</p>
+<ul>
+<li>1、用户登录</li>
+<li>2、服务的认证，通过后根据secret生成token</li>
+<li>3、将生成的token返回给浏览器</li>
+<li>4、用户每次请求携带token</li>
+<li>5、服务端利用公钥解读jwt签名，判断签名有效后，从Payload中获取用户信息</li>
+<li>6、处理请求，返回响应结果</li>
+</ul>
+<p>因为JWT签发的token中已经包含了用户的身份信息，并且每次请求都会携带，这样服务的就无需保存用户信息，甚至无需去数据库查询，完全符合了Rest的无状态规范。</p>
+<h3 id="1-4-4-非对称加密"><a href="#1-4-4-非对称加密" class="headerlink" title="1.4.4.非对称加密"></a>1.4.4.非对称加密</h3><p>加密技术是对信息进行编码和解码的技术，编码是把原来可读信息（又称明文）译成代码形式（又称密文），其逆过程就是解码（解密），加密技术的要点是加密算法，加密算法可以分为三类：  </p>
+<ul>
+<li>对称加密，如AES<ul>
+<li>基本原理：将明文分成N个组，然后使用密钥对各个组进行加密，形成各自的密文，最后把所有的分组密文进行合并，形成最终的密文。</li>
+<li>优势：算法公开、计算量小、加密速度快、加密效率高</li>
+<li>缺陷：双方都使用同样密钥，安全性得不到保证 </li>
+</ul>
+</li>
+<li>非对称加密，如RSA<ul>
+<li>基本原理：同时生成两把密钥：私钥和公钥，私钥隐秘保存，公钥可以下发给信任客户端<ul>
+<li>私钥加密，持有私钥或公钥才可以解密</li>
+<li>公钥加密，持有私钥才可解密</li>
+</ul>
+</li>
+<li>优点：安全，难以破解</li>
+<li>缺点：算法比较耗时</li>
+</ul>
+</li>
+<li>不可逆加密，如MD5，SHA <ul>
+<li>基本原理：加密过程中不需要使用<a href="https://baike.baidu.com/item/%E5%AF%86%E9%92%A5" target="_blank" rel="noopener">密钥</a>，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的，无法根据密文推算出明文。</li>
+</ul>
+</li>
+</ul>
+<p>RSA算法历史：</p>
+<p>1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字缩写：RSA</p>
+<h2 id="1-5-结合Zuul的鉴权流程"><a href="#1-5-结合Zuul的鉴权流程" class="headerlink" title="1.5.结合Zuul的鉴权流程"></a>1.5.结合Zuul的鉴权流程</h2><p>我们逐步演进系统架构设计。需要注意的是：secret是签名的关键，因此一定要保密，我们放到鉴权中心保存，其它任何服务中都不能获取secret。</p>
+<h3 id="1-5-1-没有RSA加密时"><a href="#1-5-1-没有RSA加密时" class="headerlink" title="1.5.1.没有RSA加密时"></a>1.5.1.没有RSA加密时</h3><p>在微服务架构中，我们可以把服务的鉴权操作放到网关中，将未通过鉴权的请求直接拦截，如图：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527312464328.png" alt="1527312464328"></p>
+<ul>
+<li>1、用户请求登录</li>
+<li>2、Zuul将请求转发到授权中心，请求授权</li>
+<li>3、授权中心校验完成，颁发JWT凭证</li>
+<li>4、客户端请求其它功能，携带JWT</li>
+<li>5、Zuul将jwt交给授权中心校验，通过后放行</li>
+<li>6、用户请求到达微服务</li>
+<li>7、微服务将jwt交给鉴权中心，鉴权同时解析用户信息</li>
+<li>8、鉴权中心返回用户数据给微服务</li>
+<li>9、微服务处理请求，返回响应</li>
+</ul>
+<p>发现什么问题了？</p>
+<p>每次鉴权都需要访问鉴权中心，系统间的网络请求频率过高，效率略差，鉴权中心的压力较大。</p>
+<h3 id="1-5-2-结合RSA的鉴权"><a href="#1-5-2-结合RSA的鉴权" class="headerlink" title="1.5.2.结合RSA的鉴权"></a>1.5.2.结合RSA的鉴权</h3><p>直接看图：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527313765010.png" alt="1527313765010"></p>
+<ul>
+<li>我们首先利用RSA生成公钥和私钥。私钥保存在授权中心，公钥保存在Zuul和各个信任的微服务</li>
+<li>用户请求登录</li>
+<li>授权中心校验，通过后用私钥对JWT进行签名加密</li>
+<li>返回jwt给用户</li>
+<li>用户携带JWT访问</li>
+<li>Zuul直接通过公钥解密JWT，进行验证，验证通过则放行</li>
+<li>请求到达微服务，微服务直接用公钥解析JWT，获取用户信息，无需访问授权中心</li>
+</ul>
+<h1 id="2-授权中心"><a href="#2-授权中心" class="headerlink" title="2.授权中心"></a>2.授权中心</h1><h2 id="2-1-创建授权中心"><a href="#2-1-创建授权中心" class="headerlink" title="2.1.创建授权中心"></a>2.1.创建授权中心</h2><p>授权中心的主要职责：</p>
+<ul>
+<li>用户鉴权：<ul>
+<li>接收用户的登录请求，通过用户中心的接口进行校验，通过后生成JWT</li>
+<li>使用私钥生成JWT并返回</li>
+</ul>
+</li>
+<li>服务鉴权：微服务间的调用不经过Zuul，会有风险，需要鉴权中心进行认证<ul>
+<li>原理与用户鉴权类似，但逻辑稍微复杂一些（此处我们不做实现）</li>
+</ul>
+</li>
+</ul>
+<p>因为生成jwt，解析jwt这样的行为以后在其它微服务中也会用到，因此我们会抽取成工具。我们把鉴权中心进行聚合，一个工具module，一个提供服务的module</p>
+<h3 id="2-1-1-创建父module"><a href="#2-1-1-创建父module" class="headerlink" title="2.1.1.创建父module"></a>2.1.1.创建父module</h3><p>我们先创建父module，名称为：leyou-auth</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533263572529.png" alt="1533263572529"></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533263656410.png" alt="1533263656410"></p>
+<p>将pom打包方式改为pom：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="2-1-2-通用module"><a href="#2-1-2-通用module" class="headerlink" title="2.1.2.通用module"></a>2.1.2.通用module</h3><p>然后是授权服务的通用模块：leyou-auth-common：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533264701684.png" alt="1533264701684"></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533264779361.png" alt="1533264779361"></p>
+<p>pom.xml：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<p>结构：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533264903853.png" alt="1533264903853"></p>
+<h3 id="2-1-3-授权服务"><a href="#2-1-3-授权服务" class="headerlink" title="2.1.3.授权服务"></a>2.1.3.授权服务</h3><p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533265001140.png" alt="1533265001140"></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533265056671.png" alt="1533265056671"></p>
+<p>pom.xml：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth-service<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<p>引导类：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token annotation punctuation">@EnableDiscoveryClient</span>
+<span class="token annotation punctuation">@EnableFeignClients</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouAuthApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouAuthApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>application.yml</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8087</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> auth<span class="token punctuation">-</span>service
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>10086/eureka
+    <span class="token key atrule">registry-fetch-interval-seconds</span><span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">lease-renewal-interval-in-seconds</span><span class="token punctuation">:</span> <span class="token number">5 </span><span class="token comment" spellcheck="true"># 每隔5秒发送一次心跳</span>
+    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span></code></pre>
+<p> 结构：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533266035185.png" alt="1533266035185"></p>
+<p>在leyou-gateway工程的application.yml中，修改路由：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">zuul</span><span class="token punctuation">:</span>
+  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api <span class="token comment" spellcheck="true"># 路由路径前缀</span>
+  <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+    <span class="token key atrule">item-service</span><span class="token punctuation">:</span> /item/** <span class="token comment" spellcheck="true"># 商品微服务的映射路径</span>
+    <span class="token key atrule">search-service</span><span class="token punctuation">:</span> /search/** <span class="token comment" spellcheck="true"># 搜索微服务</span>
+    <span class="token key atrule">user-service</span><span class="token punctuation">:</span> /user/** <span class="token comment" spellcheck="true"># 用户微服务</span>
+    <span class="token key atrule">auth-service</span><span class="token punctuation">:</span> /auth/** <span class="token comment" spellcheck="true"># 授权中心微服务</span></code></pre>
+<h2 id="2-2-JWT工具类"><a href="#2-2-JWT工具类" class="headerlink" title="2.2.JWT工具类"></a>2.2.JWT工具类</h2><p>我们在<code>leyou-auth-common</code>中导入课前资料中的工具类：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533268835892.png" alt="1533268835892"></p>
+<p>需要在<code>leyou-auth-common</code>中引入JWT依赖：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-lang3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.jsonwebtoken<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jjwt<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.9.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>joda-time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>joda-time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="2-3-测试工具类"><a href="#2-3-测试工具类" class="headerlink" title="2.3.测试工具类"></a>2.3.测试工具类</h2><p>我们在<code>leyou-auth-common</code>中编写测试类：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282579972.png" alt="1533282579972"></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String pubKeyPath <span class="token operator">=</span> <span class="token string">"C:\\tmp\\rsa\\rsa.pub"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String priKeyPath <span class="token operator">=</span> <span class="token string">"C:\\tmp\\rsa\\rsa.pri"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> PublicKey publicKey<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> PrivateKey privateKey<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testRsa</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        RsaUtils<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">,</span> priKeyPath<span class="token punctuation">,</span> <span class="token string">"234"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Before</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testGetRsa</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>publicKey <span class="token operator">=</span> RsaUtils<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>privateKey <span class="token operator">=</span> RsaUtils<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span>priKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testGenerateToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 生成token</span>
+        String token <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">generateToken</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserInfo</span><span class="token punctuation">(</span>20L<span class="token punctuation">,</span> <span class="token string">"jack"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> privateKey<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"token = "</span> <span class="token operator">+</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testParseToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        String token <span class="token operator">=</span> <span class="token string">"eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjAsInVzZXJuYW1lIjoiamFjayIsImV4cCI6MTUzMzI4MjQ3N30.EPo35Vyg1IwZAtXvAx2TCWuOPnRwPclRNAM4ody5CHk8RF55wdfKKJxjeGh4H3zgruRed9mEOQzWy79iF1nGAnvbkraGlD6iM-9zDW8M1G9if4MX579Mv1x57lFewzEo-zKnPdFJgGlAPtNWDPv4iKvbKOk1-U7NUtRmMsF1Wcg"</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 解析token</span>
+        UserInfo user <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">getInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"id: "</span> <span class="token operator">+</span> user<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"userName: "</span> <span class="token operator">+</span> user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>测试生成公钥和私钥，我们运行这段代码：<strong>注意需要把@Before方法注释掉</strong></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282630089.png" alt="1533282630089"></p>
+<p>运行之后，查看目标目录：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282665940.png" alt="1533282665940"></p>
+<p>公钥和私钥已经生成了！</p>
+<p>测试生成token，把@Before的注释去掉的：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282760203.png" alt="1533282760203"></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282875434.png" alt="1533282875434"></p>
+<p>测试解析token：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282931796.png" alt="1533282931796"></p>
+<p>正常情况：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533282968301.png" alt="1533282968301"></p>
+<p>任意改动token，发现报错了：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533283024844.png" alt="1533283024844"></p>
+<h2 id="2-3-编写登录授权接口"><a href="#2-3-编写登录授权接口" class="headerlink" title="2.3.编写登录授权接口"></a>2.3.编写登录授权接口</h2><p>接下来，我们需要在<code>leyou-auth-servcice</code>编写一个接口，对外提供登录授权服务。基本流程如下：</p>
+<ul>
+<li>客户端携带用户名和密码请求登录</li>
+<li>授权中心调用用户中心接口，根据用户名和密码查询用户信息</li>
+<li>如果用户名密码正确，能获取用户，否则为空，则登录失败</li>
+<li>如果校验成功，则生成JWT并返回</li>
+</ul>
+<h3 id="2-3-1-生成公钥和私钥"><a href="#2-3-1-生成公钥和私钥" class="headerlink" title="2.3.1.生成公钥和私钥"></a>2.3.1.生成公钥和私钥</h3><p>我们需要在授权中心生成真正的公钥和私钥。我们必须有一个生成公钥和私钥的secret，这个可以配置到<code>application.yml</code>中：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">leyou</span><span class="token punctuation">:</span>
+  <span class="token key atrule">jwt</span><span class="token punctuation">:</span>
+    <span class="token key atrule">secret</span><span class="token punctuation">:</span> leyou@Login(Auth<span class="token punctuation">}</span>*^31)<span class="token important">&amp;heiMa</span>% <span class="token comment" spellcheck="true"># 登录校验的密钥</span>
+    <span class="token key atrule">pubKeyPath</span><span class="token punctuation">:</span> C<span class="token punctuation">:</span>\\tmp\\rsa\\rsa.pub <span class="token comment" spellcheck="true"># 公钥地址</span>
+    <span class="token key atrule">priKeyPath</span><span class="token punctuation">:</span> C<span class="token punctuation">:</span>\\tmp\\rsa\\rsa.pri <span class="token comment" spellcheck="true"># 私钥地址</span>
+    <span class="token key atrule">expire</span><span class="token punctuation">:</span> <span class="token number">30 </span><span class="token comment" spellcheck="true"># 过期时间,单位分钟</span></code></pre>
+<p>然后编写属性类，加载这些数据：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"leyou.jwt"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtProperties</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> String secret<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 密钥</span>
+
+    <span class="token keyword">private</span> String pubKeyPath<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 公钥</span>
+
+    <span class="token keyword">private</span> String priKeyPath<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 私钥</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> expire<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// token过期时间</span>
+
+    <span class="token keyword">private</span> PublicKey publicKey<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 公钥</span>
+
+    <span class="token keyword">private</span> PrivateKey privateKey<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 私钥</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>JwtProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * @PostContruct：在构造方法执行之后执行该方法
+     */</span>
+    <span class="token annotation punctuation">@PostConstruct</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            File pubKey <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            File priKey <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>priKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pubKey<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span>priKey<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 生成公钥和私钥</span>
+                RsaUtils<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">,</span> priKeyPath<span class="token punctuation">,</span> secret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 获取公钥和私钥</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>publicKey <span class="token operator">=</span> RsaUtils<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>privateKey <span class="token operator">=</span> RsaUtils<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span>priKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"初始化公钥和私钥失败！"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// getter setter ...</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2-3-2-Controller"><a href="#2-3-2-Controller" class="headerlink" title="2.3.2.Controller"></a>2.3.2.Controller</h3><p>编写授权接口，我们接收用户名和密码，校验成功后，写入cookie中。</p>
+<ul>
+<li>请求方式：post</li>
+<li>请求路径：/accredit</li>
+<li>请求参数：username和password</li>
+<li>返回结果：无</li>
+</ul>
+<p>代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>JwtProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> AuthService authService<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> JwtProperties prop<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 登录授权
+     *
+     * @param username
+     * @param password
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"accredit"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">authentication</span><span class="token punctuation">(</span>
+            <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span> String username<span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span> String password<span class="token punctuation">,</span>
+            HttpServletRequest request<span class="token punctuation">,</span>
+            HttpServletResponse response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 登录校验</span>
+        String token <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>authService<span class="token punctuation">.</span><span class="token function">authentication</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>UNAUTHORIZED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 将token写入cookie,并指定httpOnly为true，防止通过JS获取和修改</span>
+        CookieUtils<span class="token punctuation">.</span><span class="token function">setCookie</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> prop<span class="token punctuation">.</span><span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                token<span class="token punctuation">,</span> prop<span class="token punctuation">.</span><span class="token function">getCookieMaxAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>这里的cookie的name和生存时间，我们配置到属性文件：application.yml：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533295409903.png" alt="1533295409903"></p>
+<p>然后在<code>JwtProperties</code>中添加属性：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533295465634.png" alt="1533295465634"></p>
+<h3 id="2-3-3-CookieUtils"><a href="#2-3-3-CookieUtils" class="headerlink" title="2.3.3.CookieUtils"></a>2.3.3.CookieUtils</h3><p>要注意，这里我们使用了一个工具类，CookieUtils，可以在课前资料中找到，我们把它添加到<code>leyou-common</code>中，然后引入servlet相关依赖即可：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.tomcat.embed<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>tomcat-embed-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>代码：略</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533295716082.png" alt="1533295716082"></p>
+<h3 id="2-3-3-UserClient"><a href="#2-3-3-UserClient" class="headerlink" title="2.3.3.UserClient"></a>2.3.3.UserClient</h3><p>接下来我们肯定要对用户密码进行校验，所以我们需要通过FeignClient去访问 user-service微服务：</p>
+<p>在leyou-auth中引入user-service-interface依赖：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-user-interface<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>参照leyou-search或者leyou-goods-web，在leyou-auth-service中编写FeignClient：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"user-service"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserClient</span> <span class="token keyword">extends</span> <span class="token class-name">UserApi</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在leyou-user-interface工程中添加api接口：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533296452053.png" alt="1533296452053"></p>
+<p>内容：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserApi</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"query"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> User <span class="token function">queryUser</span><span class="token punctuation">(</span>
+            <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span> String username<span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span> String password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2-3-4-AuthService"><a href="#2-3-4-AuthService" class="headerlink" title="2.3.4.AuthService"></a>2.3.4.AuthService</h3><p>在leyou-auth-service：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> UserClient userClient<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> JwtProperties properties<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> String <span class="token function">authentication</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 调用微服务，执行查询</span>
+            User user <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userClient<span class="token punctuation">.</span><span class="token function">queryUser</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// 如果查询结果为null，则直接返回null</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>user <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment" spellcheck="true">// 如果有查询结果，则生成token</span>
+            String token <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">generateToken</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserInfo</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    properties<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> properties<span class="token punctuation">.</span><span class="token function">getExpire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> token<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2-3-5-项目完整结构"><a href="#2-3-5-项目完整结构" class="headerlink" title="2.3.5.项目完整结构"></a>2.3.5.项目完整结构</h3><p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533301291420.png" alt="1533301291420"></p>
+<h3 id="2-3-6-测试"><a href="#2-3-6-测试" class="headerlink" title="2.3.6.测试"></a>2.3.6.测试</h3><p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533301145953.png" alt="1533301145953"></p>
+<h2 id="2-4-登录页面"><a href="#2-4-登录页面" class="headerlink" title="2.4.登录页面"></a>2.4.登录页面</h2><p>接下来，我们看看登录页面，是否能够正确的发出请求。</p>
+<p>我们在页面输入登录信息，然后点击登录：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533301466739.png" alt="1533301466739"></p>
+<p>查看控制台：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533301495759.png" alt="1533301495759"></p>
+<p>发现请求的路径不对，我们的认证接口是：</p>
+<pre><code>/api/auth/accredit</code></pre><p>我们打开login.html，修改路径信息：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527517811770.png" alt="1527517811770"></p>
+<p>页面ajax请求：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527517866435.png" alt="1527517866435"></p>
+<p>然后再次测试，成功跳转到了首页：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527518012727.png" alt="1527518012727"></p>
+<h2 id="2-5-解决cookie写入问题"><a href="#2-5-解决cookie写入问题" class="headerlink" title="2.5.解决cookie写入问题"></a>2.5.解决cookie写入问题</h2><p>接下来我们查看首页cookie：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533302034190.png" alt="1533302034190"></p>
+<p>什么都没有，为什么？</p>
+<h3 id="2-5-1-问题分析"><a href="#2-5-1-问题分析" class="headerlink" title="2.5.1.问题分析"></a>2.5.1.问题分析</h3><p>我们在之前测试时，清晰的看到了响应头中，有Set-Cookie属性，为什么在这里却什么都没有？</p>
+<p>我们之前在讲cors跨域时，讲到过跨域请求cookie生效的条件：</p>
+<ul>
+<li>服务的响应头中需要携带Access-Control-Allow-Credentials并且为true。</li>
+<li>响应头中的Access-Control-Allow-Origin一定不能为*，必须是指定的域名</li>
+<li>浏览器发起ajax需要指定withCredentials 为true</li>
+</ul>
+<p>看看我们的服务端cors配置：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527518456220.png" alt="1527518456220"></p>
+<p>没有任何问题。</p>
+<p>再看客户端浏览器的ajax配置，我们在<code>js/common.js</code>中对axios进行了统一配置：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527518532739.png" alt="1527518532739"></p>
+<p>一切OK。</p>
+<p>那说明，问题一定出在响应的set-cookie头中。我们再次仔细看看刚才的响应头：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1527518649379.png" alt="1527518649379"></p>
+<p>我们发现cookie的 <code>domain</code>属性似乎不太对。</p>
+<p>cookie也是有<code>域</code> 的限制，<strong>一个网页，只能操作当前域名下的cookie</strong>，但是现在我们看到的地址是0.0.1，而页面是<a href="http://www.leyou.com,域名不匹配，cookie设置肯定失败了！" target="_blank" rel="noopener">www.leyou.com,域名不匹配，cookie设置肯定失败了！</a></p>
+<h3 id="2-5-2-跟踪CookieUtils"><a href="#2-5-2-跟踪CookieUtils" class="headerlink" title="2.5.2.跟踪CookieUtils"></a>2.5.2.跟踪CookieUtils</h3><p>我们去Debug跟踪CookieUtils，看看到底是怎么回事：</p>
+<p>我们发现内部有一个方法，用来获取Domain：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533303181817.png" alt="1533303181817"></p>
+<p>它获取domain是通过服务器的host来计算的，然而我们的地址竟然是：127.0.0.1:8087，因此后续的运算，最终得到的domain就变成了：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533303213902.png" alt="1533303213902"></p>
+<p>问题找到了：我们请求时的serverName明明是：api.leyou.com，现在却被变成了：127.0.0.1，因此计算domain是错误的，从而导致cookie设置失败！</p>
+<h3 id="2-5-3-解决host地址的变化"><a href="#2-5-3-解决host地址的变化" class="headerlink" title="2.5.3.解决host地址的变化"></a>2.5.3.解决host地址的变化</h3><p>那么问题来了：为什么我们这里的请求serverName变成了：127.0.0.1:8087呢？</p>
+<p>这里的server name其实就是请求的时的主机名：Host，之所以改变，有两个原因：</p>
+<ul>
+<li>我们使用了nginx反向代理，当监听到api.leyou.com的时候，会自动将请求转发至127.0.0.1:10010，即Zuul。</li>
+<li>而后请求到达我们的网关Zuul，Zuul就会根据路径匹配，我们的请求是/api/auth，根据规则被转发到了 127.0.0.1:8087 ，即我们的授权中心。</li>
+</ul>
+<p>我们首先去更改nginx配置，让它不要修改我们的host：<code>proxy_set_header Host $host;</code></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533303544219.png" alt="1533303544219"></p>
+<p>把nginx进行reload：</p>
+<pre><code>nginx -s reload</code></pre><p>这样就解决了nginx这里的问题。但是Zuul还会有一次转发，所以要去修改网关的配置（leyou-gateway工程）：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533303659673.png" alt="1533303659673"></p>
+<p>重启后，我们再次测试。</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533716093162.png" alt="1533716093162"></p>
+<p>最后计算得到的domain：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533716136698.png" alt="1533716136698"></p>
+<p>完美！</p>
+<h3 id="2-5-4-再次测试"><a href="#2-5-4-再次测试" class="headerlink" title="2.5.4.再次测试"></a>2.5.4.再次测试</h3><p>我们再次登录，发现依然没有cookie！！</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/01348FC2.gif" alt="img"> </p>
+<p>怎么回事呢？</p>
+<p>我们通过RestClient访问下看看：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1534225751381.png" alt="1534225751381"></p>
+<p>发现，响应头中还是没有<code>set-cookie</code>。</p>
+<p>这是怎么回事？？</p>
+<h3 id="2-5-5-Zuul的敏感头过滤"><a href="#2-5-5-Zuul的敏感头过滤" class="headerlink" title="2.5.5.Zuul的敏感头过滤"></a>2.5.5.Zuul的敏感头过滤</h3><p>Zuul内部有默认的过滤器，会对请求和响应头信息进行重组，过滤掉敏感的头信息：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533732985089.png" alt="1533732985089"></p>
+<p>会发现，这里会通过一个属性为<code>SensitiveHeaders</code>的属性，来获取敏感头列表，然后添加到<code>IgnoredHeaders</code>中，这些头信息就会被忽略。</p>
+<p>而这个<code>SensitiveHeaders</code>的默认值就包含了<code>set-cookie</code>：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733081367.png" alt="1533733081367"></p>
+<p>解决方案有两种：</p>
+<p>全局设置：</p>
+<ul>
+<li><code>zuul.sensitive-headers=</code> </li>
+</ul>
+<p>指定路由设置：</p>
+<ul>
+<li><code>zuul.routes.&lt;routeName&gt;.sensitive-headers=</code></li>
+<li><code>zuul.routes.&lt;routeName&gt;.custom-sensitive-headers=true</code></li>
+</ul>
+<p>思路都是把敏感头设置为null</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733356133.png" alt="1533733356133"></p>
+<h3 id="2-5-6-最后的测试"><a href="#2-5-6-最后的测试" class="headerlink" title="2.5.6.最后的测试"></a>2.5.6.最后的测试</h3><p>再次重启后测试：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733550548.png" alt="1533733550548"></p>
+<h1 id="3-首页判断登录状态"><a href="#3-首页判断登录状态" class="headerlink" title="3.首页判断登录状态"></a>3.首页判断登录状态</h1><p>虽然cookie已经成功写入，但是我们首页的顶部，登录状态依然没能判断出用户信息：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733618901.png" alt="1533733618901"></p>
+<p>这里需要向后台发起请求，获取根据cookie获取当前用户的信息。</p>
+<p>我们先看页面实现</p>
+<h2 id="3-1-页面JS代码"><a href="#3-1-页面JS代码" class="headerlink" title="3.1.页面JS代码"></a>3.1.页面JS代码</h2><p>页面的顶部已经被我们封装为一个独立的Vue组件，在<code>/js/pages/shortcut.js</code>中</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733732779.png" alt="1533733732779"></p>
+<p>打开js，发现里面已经定义好了Vue组件，并且在created函数中，查询用户信息：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733810408.png" alt="1533733810408"></p>
+<p>查看网络控制台，发现发起了请求：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533733946470.png" alt="1533733946470"></p>
+<p>因为token在cookie中，因此本次请求肯定会携带token信息在头中。</p>
+<h2 id="3-2-后台实现校验用户接口"><a href="#3-2-后台实现校验用户接口" class="headerlink" title="3.2.后台实现校验用户接口"></a>3.2.后台实现校验用户接口</h2><p>我们在<code>leyou-auth-service</code>中定义用户的校验接口，通过cookie获取token，然后校验通过返回用户信息。</p>
+<ul>
+<li>请求方式：GET</li>
+<li>请求路径：/verify</li>
+<li>请求参数：无，不过我们需要从cookie中获取token信息</li>
+<li>返回结果：UserInfo，校验成功返回用户信息；校验失败，则返回401</li>
+</ul>
+<p>代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+  * 验证用户信息
+  * @param token
+  * @return
+  */</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"verify"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span> <span class="token function">verifyUser</span><span class="token punctuation">(</span><span class="token annotation punctuation">@CookieValue</span><span class="token punctuation">(</span><span class="token string">"LY_TOKEN"</span><span class="token punctuation">)</span>String token<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 从token中解析token信息</span>
+        UserInfo userInfo <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">getInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 解析成功返回用户信息</span>
+        <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 出现异常则，响应500</span>
+    <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>INTERNAL_SERVER_ERROR<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="3-3-测试"><a href="#3-3-测试" class="headerlink" title="3.3.测试"></a>3.3.测试</h2><p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533734761745.png" alt="1533734761745"></p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533734803538.png" alt="1533734803538"></p>
+<p>页面效果：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533734834479.png" alt="1533734834479"></p>
+<h2 id="3-4-刷新token"><a href="#3-4-刷新token" class="headerlink" title="3.4.刷新token"></a>3.4.刷新token</h2><p>每当用户在页面进行新的操作，都应该刷新token的过期时间，否则30分钟后用户的登录信息就无效了。而刷新其实就是重新生成一份token，然后写入cookie即可。</p>
+<p>那么问题来了：我们怎么知道用户有操作呢？</p>
+<p>事实上，每当用户来查询其个人信息，就证明他正在浏览网页，此时刷新cookie是比较合适的时机。因此我们可以对刚刚的校验用户登录状态的接口进行改进，加入刷新token的逻辑。</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+  * 验证用户信息
+  * @param token
+  * @return
+  */</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"verify"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span> <span class="token function">verifyUser</span><span class="token punctuation">(</span><span class="token annotation punctuation">@CookieValue</span><span class="token punctuation">(</span><span class="token string">"LY_TOKEN"</span><span class="token punctuation">)</span>String token<span class="token punctuation">,</span> HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 从token中解析token信息</span>
+        UserInfo userInfo <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">getInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 解析成功要重新刷新token</span>
+        token <span class="token operator">=</span> JwtUtils<span class="token punctuation">.</span><span class="token function">generateToken</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getExpire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 更新cookie中的token</span>
+        CookieUtils<span class="token punctuation">.</span><span class="token function">setCookie</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> token<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getCookieMaxAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 解析成功返回用户信息</span>
+        <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 出现异常则，响应500</span>
+    <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>INTERNAL_SERVER_ERROR<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h1 id="4-网关的登录拦截器"><a href="#4-网关的登录拦截器" class="headerlink" title="4.网关的登录拦截器"></a>4.网关的登录拦截器</h1><p>接下来，我们在Zuul编写拦截器，对用户的token进行校验，如果发现未登录，则进行拦截。</p>
+<h2 id="4-1-引入jwt相关配置"><a href="#4-1-引入jwt相关配置" class="headerlink" title="4.1.引入jwt相关配置"></a>4.1.引入jwt相关配置</h2><p>既然是登录拦截，一定是前置拦截器，我们在<code>leyou-gateway</code>中定义。</p>
+<p>首先在pom.xml中，引入所需要的依赖：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.auth<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-auth-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>然后编写application.yml属性文件，添加如下内容：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">leyou</span><span class="token punctuation">:</span>
+  <span class="token key atrule">jwt</span><span class="token punctuation">:</span>
+    <span class="token key atrule">pubKeyPath</span><span class="token punctuation">:</span>  C<span class="token punctuation">:</span>\\tmp\\rsa\\rsa.pub <span class="token comment" spellcheck="true"># 公钥地址</span>
+    <span class="token key atrule">cookieName</span><span class="token punctuation">:</span> LY_TOKEN <span class="token comment" spellcheck="true"># cookie的名称</span></code></pre>
+<p>编写属性类，读取公钥：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533736124053.png" alt="1533736124053"></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"leyou.jwt"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtProperties</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> String pubKeyPath<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 公钥</span>
+
+    <span class="token keyword">private</span> PublicKey publicKey<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 公钥</span>
+
+    <span class="token keyword">private</span> String cookieName<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>JwtProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@PostConstruct</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 获取公钥和私钥</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>publicKey <span class="token operator">=</span> RsaUtils<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>pubKeyPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"初始化公钥失败！"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getPubKeyPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> pubKeyPath<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPubKeyPath</span><span class="token punctuation">(</span>String pubKeyPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>pubKeyPath <span class="token operator">=</span> pubKeyPath<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> PublicKey <span class="token function">getPublicKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> publicKey<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPublicKey</span><span class="token punctuation">(</span>PublicKey publicKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>publicKey <span class="token operator">=</span> publicKey<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cookieName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCookieName</span><span class="token punctuation">(</span>String cookieName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>cookieName <span class="token operator">=</span> cookieName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="4-2-编写过滤器逻辑"><a href="#4-2-编写过滤器逻辑" class="headerlink" title="4.2.编写过滤器逻辑"></a>4.2.编写过滤器逻辑</h2><p>基本逻辑：</p>
+<ul>
+<li><p>获取cookie中的token</p>
+</li>
+<li><p>通过JWT对token进行校验</p>
+</li>
+<li><p>通过：则放行；不通过：则重定向到登录页</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1534200523009.png" alt="1534200523009"></p>
+</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>JwtProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginFilter</span> <span class="token keyword">extends</span> <span class="token class-name">ZuulFilter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> JwtProperties properties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">filterType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"pre"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">filterOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">shouldFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> ZuulException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取上下文</span>
+        RequestContext context <span class="token operator">=</span> RequestContext<span class="token punctuation">.</span><span class="token function">getCurrentContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取request</span>
+        HttpServletRequest request <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取token</span>
+        String token <span class="token operator">=</span> CookieUtils<span class="token punctuation">.</span><span class="token function">getCookieValue</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 校验</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 校验通过什么都不做，即放行</span>
+            JwtUtils<span class="token punctuation">.</span><span class="token function">getInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 校验出现异常，返回403</span>
+            context<span class="token punctuation">.</span><span class="token function">setSendZuulResponse</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            context<span class="token punctuation">.</span><span class="token function">setResponseStatusCode</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>FORBIDDEN<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>重启，刷新页面，发现请求校验的接口也被拦截了：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533737074966.png" alt="1533737074966"></p>
+<p>证明我们的拦截器生效了，但是，似乎有什么不对的。这个路径似乎不应该被拦截啊！</p>
+<h2 id="4-3-白名单"><a href="#4-3-白名单" class="headerlink" title="4.3.白名单"></a>4.3.白名单</h2><p>要注意，并不是所有的路径我们都需要拦截，例如：</p>
+<ul>
+<li>登录校验接口：<code>/auth/**</code></li>
+<li>注册接口：<code>/user/register</code></li>
+<li>数据校验接口：<code>/user/check/**</code></li>
+<li>发送验证码接口：<code>/user/code</code></li>
+<li>搜索接口：<code>/search/**</code></li>
+</ul>
+<p>另外，跟后台管理相关的接口，因为我们没有做登录和权限，因此暂时都放行，但是生产环境中要做登录校验：</p>
+<ul>
+<li>后台商品服务：<code>/item/**</code></li>
+</ul>
+<p>所以，我们需要在拦截时，配置一个白名单，如果在名单内，则不进行拦截。</p>
+<p>在<code>application.yaml</code>中添加规则：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">leyou</span><span class="token punctuation">:</span>
+  <span class="token key atrule">filter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">allowPaths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /api/auth
+      <span class="token punctuation">-</span> /api/search
+      <span class="token punctuation">-</span> /api/user/register
+      <span class="token punctuation">-</span> /api/user/check
+      <span class="token punctuation">-</span> /api/user/code
+      <span class="token punctuation">-</span> /api/item</code></pre>
+<p>然后读取这些属性：</p>
+<p> <img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533737234087.png" alt="1533737234087"></p>
+<p>内容：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"leyou.filter"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FilterProperties</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>String<span class="token operator">></span> allowPaths<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token function">getAllowPaths</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> allowPaths<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAllowPaths</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>String<span class="token operator">></span> allowPaths<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>allowPaths <span class="token operator">=</span> allowPaths<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在过滤器中的<code>shouldFilter</code>方法中添加判断逻辑</p>
+<p>代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span>JwtProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> FilterProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginFilter</span> <span class="token keyword">extends</span> <span class="token class-name">ZuulFilter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> JwtProperties jwtProp<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> FilterProperties filterProp<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>LoginFilter<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">filterType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"pre"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">filterOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">shouldFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取上下文</span>
+        RequestContext ctx <span class="token operator">=</span> RequestContext<span class="token punctuation">.</span><span class="token function">getCurrentContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取request</span>
+        HttpServletRequest req <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取路径</span>
+        String requestURI <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 判断白名单</span>
+        <span class="token comment" spellcheck="true">// 遍历允许访问的路径</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>String path <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filterProp<span class="token punctuation">.</span><span class="token function">getAllowPaths</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 然后判断是否是符合</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>requestURI<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> ZuulException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取上下文</span>
+        RequestContext ctx <span class="token operator">=</span> RequestContext<span class="token punctuation">.</span><span class="token function">getCurrentContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取request</span>
+        HttpServletRequest request <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 获取token</span>
+        String token <span class="token operator">=</span> CookieUtils<span class="token punctuation">.</span><span class="token function">getCookieValue</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> jwtProp<span class="token punctuation">.</span><span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 校验</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 校验通过什么都不做，即放行</span>
+            JwtUtils<span class="token punctuation">.</span><span class="token function">getInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> jwtProp<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 校验出现异常，返回403</span>
+            ctx<span class="token punctuation">.</span><span class="token function">setSendZuulResponse</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ctx<span class="token punctuation">.</span><span class="token function">setResponseStatusCode</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"非法访问，未登录，地址：{}"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span><span class="token function">getRemoteHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>再次测试：</p>
+<p><img src="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/1533737743491.png" alt="1533737743491"></p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://chaining.coding.me" class="b-link-green">柴米油盐</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/chaining/2019/07/17/xiang-mu-shi-zhan/le-you-shang-cheng/day17-shou-quan-zhong-xin/" class="b-link-green">day17-授权中心</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'bee4fd2b7760acfaf98d',
+        clientSecret: '4ebf2c41dd6701ef493eee655aa1a9a31108b868',
+        repo: 'chainingning.github.io',
+        owner: 'chainingning',
+        admin: ["chainingning"],
+        id: '2019-07-17T17-40-56',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/chaining/2019/07/18/xiang-mu-shi-zhan/le-you-shang-cheng/day18-gou-wu-che/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="day18-购物车">
+                        
+                        <span class="card-title">day18-购物车</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">0.学习目标1.实现未登录状态的购物车
+2.实现登陆状态下的购物车
+1.搭建购物车服务1.1.创建module
+
+1.2.pom依赖&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;project </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                    项目实战
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/chaining/tags/SpringBoot/" target="_blank">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/chaining/tags/项目实战/" target="_blank">
+                        <span class="chip bg-color">项目实战</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="day16-用户注册">
+                        
+                        <span class="card-title">day16-用户注册</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">0.学习目标
+创建用户中心
+了解面向接口开发方式
+实现数据校验功能
+实现短信发送功能
+实现注册功能
+实现根据用户名和密码查询用户功能
+
+1.创建用户中心用户搜索到自己心仪的商品，接下来就要去购买，但是购买必须先登录。所以接下来我们编写用户中</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/chaining/categories/项目实战/" class="post-category" target="_blank">
+                                    项目实战
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/chaining/tags/SpringBoot/" target="_blank">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/chaining/tags/项目实战/" target="_blank">
+                        <span class="chip bg-color">项目实战</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 柴米油盐<br />'
+            + '作者: Chester<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://chainingning.github.io/" target="_blank">Chester</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a>搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">347.3k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chainingning" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:ning.chai@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=88905457" class="tooltipped" data-tooltip="QQ联系我: 88905457" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/chaining/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/chaining/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
