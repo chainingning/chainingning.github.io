@@ -564,7 +564,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span></code></pre>
 <p>需要注意的是，我们并没有在这里指定版本信息。因为SpringBoot的父工程已经对版本进行了管理了。</p>
 <p>这个时候，我们会发现项目中多出了大量的依赖：</p>
-<p> <img src="/chaining/2019/06/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/../../../%E6%95%99%E5%AD%A6/leyou/day01-springboot/%E7%AC%94%E8%AE%B0/day01-springboot/1540894098029.png" alt="1540894098029"></p>
+<p> <img src="/chaining/2019/06/21/xiang-mu-shi-zhan/le-you-shang-cheng/day01-springboot/1540894098029.png" alt="1540894098029"></p>
 <p>这些都是SpringBoot根据spring-boot-starter-web这个依赖自动引入的，而且所有的版本都已经管理好，不会出现冲突。</p>
 <h3 id="2-5-2-EnableAutoConfiguration"><a href="#2-5-2-EnableAutoConfiguration" class="headerlink" title="2.5.2.@EnableAutoConfiguration"></a>2.5.2.@EnableAutoConfiguration</h3><p>关于这个注解，官网上有一段说明：</p>
 <blockquote>
