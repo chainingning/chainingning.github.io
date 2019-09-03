@@ -7,6 +7,8 @@ tags:
 date: 2019-08-21 17:54:36
 ---
 
+>  [本文转自**vuejs-tutorial**，尊重原创，点击可直接访问原文](https://vuejs.lipengzhou.com/)
+
 # 第 1 章 Vue.js 介绍
 
 ## 疯狂发展的前端技术

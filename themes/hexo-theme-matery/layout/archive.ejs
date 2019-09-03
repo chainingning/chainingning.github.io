@@ -6,6 +6,9 @@
     <%- partial('_widget/post-calendar') %>
     <% } %>
 
+	
+	
+	
     <%
     /**
      * hashCode function.
@@ -34,7 +37,9 @@
     var featureimg = '/medias/featureimages/0.jpg';
     var featureImages = theme.featureImages;
     %>
-
+	
+	<%- partial('_widget/post-charts') %>
+	
     <div id="cd-timeline" class="container">
         <% page.posts.each(function(post) { %>
         <div class="cd-timeline-block">
