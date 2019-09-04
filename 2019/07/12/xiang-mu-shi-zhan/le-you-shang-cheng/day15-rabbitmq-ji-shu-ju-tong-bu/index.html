@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day15-rabbitmq及数据同步, 柴米油盐, Chester">
+    <meta name="keywords" content="day15-rabbitmq及数据同步, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解常见的MQ产品
 了解RabbitMQ的5种消息模型
@@ -38,7 +38,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -511,7 +512,7 @@
 <p>导入后：</p>
 <p> <img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532762308507.png" alt="1532762308507"></p>
 <p>依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>cn.itcast.rabbitmq<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -540,9 +541,9 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们抽取一个建立RabbitMQ连接的工具类，方便其他程序获取连接：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConnectionUtil</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConnectionUtil</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/**
      * 建立与RabbitMQ的连接
      * @return
@@ -563,7 +564,7 @@
         Connection connection <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">newConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-1-基本消息模型"><a href="#2-1-基本消息模型" class="headerlink" title="2.1.基本消息模型"></a>2.1.基本消息模型</h2><p>官方介绍：</p>
 <p> <img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532762961149.png" alt="1532762961149"></p>
 <p>RabbitMQ是一个消息代理：它接受和转发消息。 你可以把它想象成一个邮局：当你把邮件放在邮箱里时，你可以确定邮差先生最终会把邮件发送给你的收件人。 在这个比喻中，RabbitMQ是邮政信箱，邮局和邮递员。</p>
@@ -576,7 +577,7 @@
 <p>生产者将消息发送到队列，消费者从队列中获取消息，队列是存储消息的缓冲区。</p>
 <p>我们将用Java编写两个程序;发送单个消息的生产者，以及接收消息并将其打印出来的消费者。我们将详细介绍Java API中的一些细节，这是一个消息传递的“Hello World”。</p>
 <p>我们将调用我们的消息发布者（发送者）Send和我们的消息消费者（接收者）Recv。发布者将连接到RabbitMQ，发送一条消息，然后退出。</p>
-<h3 id="2-1-1-生产者发送消息"><a href="#2-1-1-生产者发送消息" class="headerlink" title="2.1.1.生产者发送消息"></a>2.1.1.生产者发送消息</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
+<h3 id="2-1-1-生产者发送消息"><a href="#2-1-1-生产者发送消息" class="headerlink" title="2.1.1.生产者发送消息"></a>2.1.1.生产者发送消息</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"simple_queue"</span><span class="token punctuation">;</span>
 
@@ -599,7 +600,7 @@
         channel<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>控制台：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532763328424.png" alt="1532763328424"></p>
 <h3 id="2-1-2-管理工具中查看消息"><a href="#2-1-2-管理工具中查看消息" class="headerlink" title="2.1.2.管理工具中查看消息"></a>2.1.2.管理工具中查看消息</h3><p>进入队列页面，可以看到新建了一个队列：simple_queue</p>
@@ -607,7 +608,7 @@
 <p>点击队列名称，进入详情页，可以查看消息：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532763489858.png" alt="1532763489858"></p>
 <p>在控制台查看消息并不会将消息消费，所以消息还在。</p>
-<h3 id="2-1-3-消费者获取消息"><a href="#2-1-3-消费者获取消息" class="headerlink" title="2.1.3.消费者获取消息"></a>2.1.3.消费者获取消息</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
+<h3 id="2-1-3-消费者获取消息"><a href="#2-1-3-消费者获取消息" class="headerlink" title="2.1.3.消费者获取消息"></a>2.1.3.消费者获取消息</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"simple_queue"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -631,7 +632,7 @@
         <span class="token comment" spellcheck="true">// 监听队列，第二个参数：是否自动进行消息确认。</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>控制台：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532763733443.png" alt="1532763733443"></p>
 <p>这个时候，队列中的消息就没了：</p>
@@ -652,7 +653,7 @@
 <li>如果消息非常重要，不容丢失。那么最好在消费完成后手动ACK，否则接收消息后就自动ACK，RabbitMQ就会把消息从队列中删除。如果此时消费者宕机，那么消息就丢失了。</li>
 </ul>
 <p>我们之前的测试都是自动ACK的，如果要手动ACK，需要改动我们的代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"simple_queue"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -678,9 +679,9 @@
         <span class="token comment" spellcheck="true">// 监听队列，第二个参数false，手动进行ACK</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意到最后一行代码：</p>
-<pre class=" language-java"><code class="language-java">channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java">channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果第二个参数为true，则会自动进行ACK；如果为false，则需要手动ACK。方法的声明：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532764253019.png" alt="1532764253019"></p>
 <h4 id="2-1-4-1-自动ACK存在的问题"><a href="#2-1-4-1-自动ACK存在的问题" class="headerlink" title="2.1.4.1.自动ACK存在的问题"></a>2.1.4.1.自动ACK存在的问题</h4><p>修改消费者，添加异常，如下：</p>
@@ -722,7 +723,7 @@ C2：消费者2：领取任务并完成任务，假设完成速度慢</code></pr
 <p>1）采用workqueue，多个消费者监听同一队列。</p>
 <p>2）接收到消息以后，而是通过线程池，异步消费。</p>
 <h3 id="2-2-1-生产者"><a href="#2-2-1-生产者" class="headerlink" title="2.2.1.生产者"></a>2.2.1.生产者</h3><p>生产者与案例1中的几乎一样：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"test_work_queue"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -745,7 +746,7 @@ C2：消费者2：领取任务并完成任务，假设完成速度慢</code></pr
         channel<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>不过这里我们是循环发送50条消息。</p>
 <h3 id="2-2-2-消费者1"><a href="#2-2-2-消费者1" class="headerlink" title="2.2.2.消费者1"></a>2.2.2.消费者1</h3><p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1527085386747.png" alt="1527085386747"></p>
 <h3 id="2-2-3-消费者2"><a href="#2-2-3-消费者2" class="headerlink" title="2.2.3.消费者2"></a>2.2.3.消费者2</h3><p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1527085448377.png" alt="1527085448377"></p>
@@ -800,7 +801,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <li>1）  声明Exchange，不再声明Queue</li>
 <li>2）  发送消息到Exchange，不再发送到Queue</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"fanout_exchange_test"</span><span class="token punctuation">;</span>
 
@@ -822,8 +823,8 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         channel<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="2-4-2-消费者1"><a href="#2-4-2-消费者1" class="headerlink" title="2.4.2.消费者1"></a>2.4.2.消费者1</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-4-2-消费者1"><a href="#2-4-2-消费者1" class="headerlink" title="2.4.2.消费者1"></a>2.4.2.消费者1</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"fanout_exchange_queue_1"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"fanout_exchange_test"</span><span class="token punctuation">;</span>
@@ -853,9 +854,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，自动返回完成</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>要注意代码中：<strong>队列需要和交换机绑定</strong></p>
-<h3 id="2-4-3-消费者2"><a href="#2-4-3-消费者2" class="headerlink" title="2.4.3.消费者2"></a>2.4.3.消费者2</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
+<h3 id="2-4-3-消费者2"><a href="#2-4-3-消费者2" class="headerlink" title="2.4.3.消费者2"></a>2.4.3.消费者2</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"fanout_exchange_queue_2"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"fanout_exchange_test"</span><span class="token punctuation">;</span>
@@ -885,7 +886,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，手动返回完成</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-4-4-测试"><a href="#2-4-4-测试" class="headerlink" title="2.4.4.测试"></a>2.4.4.测试</h3><p>我们运行两个消费者，然后发送1条消息：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532766264386.png" alt="1532766264386"></p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532766291204.png" alt="1532766291204"></p>
@@ -901,7 +902,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <p>C1：消费者，其所在队列指定了需要routing key 为 error 的消息</p>
 <p>C2：消费者，其所在队列指定了需要routing key 为 info、error、warning 的消息</p>
 <h3 id="2-5-1-生产者"><a href="#2-5-1-生产者" class="headerlink" title="2.5.1.生产者"></a>2.5.1.生产者</h3><p>此处我们模拟商品的增删改，发送消息的RoutingKey分别是：insert、update、delete</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"direct_exchange_test"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -920,9 +921,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         channel<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-5-2-消费者1"><a href="#2-5-2-消费者1" class="headerlink" title="2.5.2.消费者1"></a>2.5.2.消费者1</h3><p>我们此处假设消费者1只接收两种类型的消息：更新商品和删除商品。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"direct_exchange_queue_1"</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"direct_exchange_test"</span><span class="token punctuation">;</span>
 
@@ -952,9 +953,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，自动ACK</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-5-3-消费者2"><a href="#2-5-3-消费者2" class="headerlink" title="2.5.3.消费者2"></a>2.5.3.消费者2</h3><p>我们此处假设消费者2接收所有类型的消息：新增商品，更新商品和删除商品。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"direct_exchange_queue_2"</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"direct_exchange_test"</span><span class="token punctuation">;</span>
 
@@ -985,7 +986,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，自动ACK</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-5-4-测试"><a href="#2-5-4-测试" class="headerlink" title="2.5.4.测试"></a>2.5.4.测试</h3><p>我们分别发送增、删、改的RoutingKey，发现结果：</p>
 <p> <img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1527088296131.png" alt="1527088296131"></p>
 <h2 id="2-6-订阅模型-Topic"><a href="#2-6-订阅模型-Topic" class="headerlink" title="2.6.订阅模型-Topic"></a>2.6.订阅模型-Topic</h2><p><code>Topic</code>类型的<code>Exchange</code>与<code>Direct</code>相比，都是可以根据<code>RoutingKey</code>把消息路由到不同的队列。只不过<code>Topic</code>类型<code>Exchange</code>可以让队列在绑定<code>Routing key</code> 的时候使用通配符！</p>
@@ -1010,7 +1011,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <p>quick.orange.male.rabbit </p>
 <p>orange </p>
 <h3 id="2-6-1-生产者"><a href="#2-6-1-生产者" class="headerlink" title="2.6.1.生产者"></a>2.6.1.生产者</h3><p>使用topic类型的Exchange，发送消息的routing key有3种： <code>item.isnert</code>、<code>item.update</code>、<code>item.delete</code>：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Send</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"topic_exchange_test"</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -1029,9 +1030,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         channel<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-6-2-消费者1"><a href="#2-6-2-消费者1" class="headerlink" title="2.6.2.消费者1"></a>2.6.2.消费者1</h3><p>我们此处假设消费者1只接收两种类型的消息：更新商品和删除商品</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String QUEUE_NAME <span class="token operator">=</span> <span class="token string">"topic_exchange_queue_1"</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> String EXCHANGE_NAME <span class="token operator">=</span> <span class="token string">"topic_exchange_test"</span><span class="token punctuation">;</span>
 
@@ -1061,9 +1062,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，自动ACK</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-6-3-消费者2"><a href="#2-6-3-消费者2" class="headerlink" title="2.6.3.消费者2"></a>2.6.3.消费者2</h3><p>我们此处假设消费者2接收所有类型的消息：新增商品，更新商品和删除商品。</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 消费者2
  */</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Recv2</span> <span class="token punctuation">{</span>
@@ -1095,7 +1096,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 监听队列，自动ACK</span>
         channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>QUEUE_NAME<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> consumer<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-7-持久化"><a href="#2-7-持久化" class="headerlink" title="2.7.持久化"></a>2.7.持久化</h2><p>如何避免消息丢失？</p>
 <p>1）  消费者的ACK机制。可以防止消费者丢失消息。</p>
 <p>2）  但是，如果在消费者消费之前，MQ就宕机了，消息就没了。</p>
@@ -1111,19 +1112,19 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <p>注意这里一段描述：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532767227821.png" alt="1532767227821">                                             </p>
 <pre><code>     Spring-amqp是对AMQP协议的抽象实现，而spring-rabbit 是对协议的具体实现，也是目前的唯一实现。底层使用的就是RabbitMQ。</code></pre><h2 id="3-2-依赖和配置"><a href="#3-2-依赖和配置" class="headerlink" title="3.2.依赖和配置"></a>3.2.依赖和配置</h2><p>添加AMQP的启动器：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在<code>application.yml</code>中添加RabbitMQ地址：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
     <span class="token key atrule">password</span><span class="token punctuation">:</span> leyou
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou</code></pre>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-3-监听者"><a href="#3-3-监听者" class="headerlink" title="3.3.监听者"></a>3.3.监听者</h2><p>在SpringAmqp中，对消息的消费者进行了封装和抽象，一个普通的JavaBean中的普通方法，只要通过简单的注解，就可以成为一个消费者。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Listener</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
@@ -1137,7 +1138,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listen</span><span class="token punctuation">(</span>String msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"接收到消息："</span> <span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><code>@Componet</code>：类上的注解，注册到Spring容器</li>
 <li><code>@RabbitListener</code>：方法上的注解，声明这个方法是一个消费者方法，需要指定下面的属性：<ul>
@@ -1160,7 +1161,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <li>指定消息</li>
 <li>指定RoutingKey和消息，会向默认的交换机发送消息</li>
 </ul>
-<h2 id="3-5-测试代码"><a href="#3-5-测试代码" class="headerlink" title="3.5.测试代码"></a>3.5.测试代码</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<h2 id="3-5-测试代码"><a href="#3-5-测试代码" class="headerlink" title="3.5.测试代码"></a>3.5.测试代码</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> Application<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MqDemo</span> <span class="token punctuation">{</span>
 
@@ -1174,7 +1175,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 等待10秒后再结束</span>
         Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行后查看日志：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532767726274.png" alt="1532767726274"></p>
 <h1 id="3-项目改造"><a href="#3-项目改造" class="headerlink" title="3.项目改造"></a>3.项目改造</h1><p>接下来，我们就改造项目，实现搜索服务、商品静态页的数据同步。</p>
@@ -1206,12 +1207,12 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 </li>
 </ul>
 <h2 id="3-2-商品服务发送消息"><a href="#3-2-商品服务发送消息" class="headerlink" title="3.2.商品服务发送消息"></a>3.2.商品服务发送消息</h2><p>我们先在商品微服务<code>leyou-item-service</code>中实现发送消息。</p>
-<h3 id="3-2-1-引入依赖"><a href="#3-2-1-引入依赖" class="headerlink" title="3.2.1.引入依赖"></a>3.2.1.引入依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<h3 id="3-2-1-引入依赖"><a href="#3-2-1-引入依赖" class="headerlink" title="3.2.1.引入依赖"></a>3.2.1.引入依赖</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-2-2-配置文件"><a href="#3-2-2-配置文件" class="headerlink" title="3.2.2.配置文件"></a>3.2.2.配置文件</h3><p>我们在application.yml中添加一些有关RabbitMQ的配置：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
@@ -1219,7 +1220,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
     <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou
     <span class="token key atrule">template</span><span class="token punctuation">:</span>
       <span class="token key atrule">exchange</span><span class="token punctuation">:</span> leyou.item.exchange
-    <span class="token key atrule">publisher-confirms</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+    <span class="token key atrule">publisher-confirms</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>template：有关<code>AmqpTemplate</code>的配置<ul>
 <li>exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个</li>
@@ -1228,14 +1229,14 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <li>publisher-confirms：生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试</li>
 </ul>
 <h3 id="3-2-3-改造GoodsService"><a href="#3-2-3-改造GoodsService" class="headerlink" title="3.2.3.改造GoodsService"></a>3.2.3.改造GoodsService</h3><p>在GoodsService中封装一个发送消息到mq的方法：<strong>（需要注入AmqpTemplate模板）</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sendMessage</span><span class="token punctuation">(</span>Long id<span class="token punctuation">,</span> String type<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sendMessage</span><span class="token punctuation">(</span>Long id<span class="token punctuation">,</span> String type<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 发送消息</span>
     <span class="token keyword">try</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>amqpTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token string">"item."</span> <span class="token operator">+</span> type<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"{}商品消息发送异常，商品id：{}"</span><span class="token punctuation">,</span> type<span class="token punctuation">,</span> id<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里没有指定交换机，因此默认发送到了配置中的：<code>leyou.item.exchange</code></p>
 <p><strong>注意：这里要把所有异常都try起来，不能让消息的发送影响到正常的业务逻辑</strong></p>
 <p>然后在新增的时候调用：</p>
@@ -1249,20 +1250,20 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <li>改：修改索引库数据</li>
 </ul>
 <p>因为索引库的新增和修改方法是合二为一的，因此我们可以将这两类消息一同处理，删除另外处理。</p>
-<h3 id="3-3-1-引入依赖"><a href="#3-3-1-引入依赖" class="headerlink" title="3.3.1.引入依赖"></a>3.3.1.引入依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<h3 id="3-3-1-引入依赖"><a href="#3-3-1-引入依赖" class="headerlink" title="3.3.1.引入依赖"></a>3.3.1.引入依赖</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="3-3-2-添加配置"><a href="#3-3-2-添加配置" class="headerlink" title="3.3.2.添加配置"></a>3.3.2.添加配置</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-3-2-添加配置"><a href="#3-3-2-添加配置" class="headerlink" title="3.3.2.添加配置"></a>3.3.2.添加配置</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
     <span class="token key atrule">password</span><span class="token punctuation">:</span> leyou
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou</code></pre>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里只是接收消息而不发送，所以不用配置template相关内容。</p>
 <h3 id="3-3-3-编写监听器"><a href="#3-3-3-编写监听器" class="headerlink" title="3.3.3.编写监听器"></a>3.3.3.编写监听器</h3><p> <img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532769181819.png" alt="1532769181819"></p>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsListener</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1308,9 +1309,9 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 删除索引</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>searchService<span class="token punctuation">.</span><span class="token function">deleteIndex</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-3-4-编写创建和删除索引方法"><a href="#3-3-4-编写创建和删除索引方法" class="headerlink" title="3.3.4.编写创建和删除索引方法"></a>3.3.4.编写创建和删除索引方法</h3><p>这里因为要创建和删除索引，我们需要在SearchService中拓展两个方法，创建和删除索引：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createIndex</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createIndex</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
 
     Spu spu <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>goodsClient<span class="token punctuation">.</span><span class="token function">querySpuById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 构建商品</span>
@@ -1322,7 +1323,7 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteIndex</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>goodsRepository<span class="token punctuation">.</span><span class="token function">deleteById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>创建索引的方法可以从之前导入数据的测试类中拷贝和改造。</p>
 <h2 id="3-4-静态页服务接收消息"><a href="#3-4-静态页服务接收消息" class="headerlink" title="3.4.静态页服务接收消息"></a>3.4.静态页服务接收消息</h2><p>商品静态页服务接收到消息后的处理：</p>
 <ul>
@@ -1331,20 +1332,20 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
 <li>改：创建新的静态页并覆盖原来的</li>
 </ul>
 <p>不过，我们编写的创建静态页的方法也具备覆盖以前页面的功能，因此：增和改的消息可以放在一个方法中处理，删除消息放在另一个方法处理。</p>
-<h3 id="3-4-1-引入依赖"><a href="#3-4-1-引入依赖" class="headerlink" title="3.4.1.引入依赖"></a>3.4.1.引入依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<h3 id="3-4-1-引入依赖"><a href="#3-4-1-引入依赖" class="headerlink" title="3.4.1.引入依赖"></a>3.4.1.引入依赖</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="3-4-2-添加配置"><a href="#3-4-2-添加配置" class="headerlink" title="3.4.2.添加配置"></a>3.4.2.添加配置</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-4-2-添加配置"><a href="#3-4-2-添加配置" class="headerlink" title="3.4.2.添加配置"></a>3.4.2.添加配置</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
     <span class="token key atrule">password</span><span class="token punctuation">:</span> leyou
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou</code></pre>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里只是接收消息而不发送，所以不用配置template相关内容。</p>
 <h3 id="3-4-3-编写监听器"><a href="#3-4-3-编写监听器" class="headerlink" title="3.4.3.编写监听器"></a>3.4.3.编写监听器</h3><p> <img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532769581964.png" alt="1532769581964"></p>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsListener</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1379,11 +1380,11 @@ Topic：通配符，把消息交给符合routing pattern（路由模式） 的�
         <span class="token comment" spellcheck="true">// 删除页面</span>
         goodsHtmlService<span class="token punctuation">.</span><span class="token function">deleteHtml</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="3-4-4-添加删除页面方法"><a href="#3-4-4-添加删除页面方法" class="headerlink" title="3.4.4.添加删除页面方法"></a>3.4.4.添加删除页面方法</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteHtml</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-4-4-添加删除页面方法"><a href="#3-4-4-添加删除页面方法" class="headerlink" title="3.4.4.添加删除页面方法"></a>3.4.4.添加删除页面方法</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteHtml</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"C:\\project\\nginx-1.14.0\\html\\item\\"</span><span class="token punctuation">,</span> id <span class="token operator">+</span> <span class="token string">".html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     file<span class="token punctuation">.</span><span class="token function">deleteOnExit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-5-测试"><a href="#3-5-测试" class="headerlink" title="3.5.测试"></a>3.5.测试</h2><h3 id="3-5-1-查看RabbitMQ控制台"><a href="#3-5-1-查看RabbitMQ控制台" class="headerlink" title="3.5.1.查看RabbitMQ控制台"></a>3.5.1.查看RabbitMQ控制台</h3><p>重新启动项目，并且登录RabbitMQ管理界面：<a href="http://192.168.56.101:15672" target="_blank" rel="noopener">http://192.168.56.101:15672</a></p>
 <p>可以看到，交换机已经创建出来了：</p>
 <p><img src="/chaining/2019/07/12/xiang-mu-shi-zhan/le-you-shang-cheng/day15-rabbitmq-ji-shu-ju-tong-bu/1532772446520.png" alt="1532772446520"></p>

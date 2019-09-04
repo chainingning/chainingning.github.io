@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day10-商品管理, 柴米油盐, Chester">
+    <meta name="keywords" content="day10-商品管理, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 独立实现商品新增后台
 独立实现商品编辑后台
@@ -43,7 +43,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -507,27 +508,27 @@
 <blockquote>
 <p>BrandController</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"cid/{cid}"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"cid/{cid}"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Brand<span class="token operator">>></span> <span class="token function">queryBrandsByCid</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"cid"</span><span class="token punctuation">)</span>Long cid<span class="token punctuation">)</span><span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>brandService<span class="token punctuation">.</span><span class="token function">queryBrandsByCid</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>CollectionUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>brands<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>brands<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>BrandService</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">queryBrandsByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">queryBrandsByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>brandMapper<span class="token punctuation">.</span><span class="token function">selectBrandByCid</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>BrandMapper</p>
 </blockquote>
 <p>根据分类查询品牌有中间表，需要自己编写Sql：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"SELECT b.* from tb_brand b INNER JOIN tb_category_brand cb on b.id=cb.brand_id where cb.category_id=#{cid}"</span><span class="token punctuation">)</span>
-List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">selectBrandByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"SELECT b.* from tb_brand b INNER JOIN tb_category_brand cb on b.id=cb.brand_id where cb.category_id=#{cid}"</span><span class="token punctuation">)</span>
+List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> <span class="token function">selectBrandByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>效果：</p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1528462393536.png" alt="1528462393536"></p>
 <h3 id="1-2-3-其它文本框"><a href="#1-2-3-其它文本框" class="headerlink" title="1.2.3.其它文本框"></a>1.2.3.其它文本框</h3><p>剩余的几个属性：标题、子标题等都是普通文本框，我们直接填写即可，没有需要特别注意的。</p>
@@ -546,14 +547,14 @@ List<span class="token operator">&lt;</span>Brand<span class="token operator">><
 <p>第一步：安装，使用npm命令：</p>
 <pre><code>npm install vue-quill-editor --save</code></pre><p>第二步：加载，在js中引入：</p>
 <p>全局引入：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> VueQuillEditor <span class="token keyword">from</span> <span class="token string">'vue-quill-editor'</span>
 
 <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* { default global options } */</span>
 
-Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueQuillEditor<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// options可选</span></code></pre>
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueQuillEditor<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// options可选</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>局部引入：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">'quill/dist/quill.core.css'</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">'quill/dist/quill.core.css'</span>
 <span class="token keyword">import</span> <span class="token string">'quill/dist/quill.snow.css'</span>
 <span class="token keyword">import</span> <span class="token string">'quill/dist/quill.bubble.css'</span>
 
@@ -563,17 +564,17 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     components<span class="token punctuation">:</span><span class="token punctuation">{</span>
         quillEditor
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们这里采用局部引用：</p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1528465859061.png" alt="1528465859061"></p>
 <p>第三步：页面使用：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>quill-editor</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goods.spuDetail.description<span class="token punctuation">"</span></span> <span class="token attr-name">:options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>editorOption<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>quill-editor</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goods.spuDetail.description<span class="token punctuation">"</span></span> <span class="token attr-name">:options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>editorOption<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="1-3-4-自定义的富文本编辑器"><a href="#1-3-4-自定义的富文本编辑器" class="headerlink" title="1.3.4.自定义的富文本编辑器"></a>1.3.4.自定义的富文本编辑器</h3><p>不过这个组件有个小问题，就是图片上传的无法直接上传到后台，因此我们对其进行了封装，支持了图片的上传。</p>
 <p> <img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1526296083605.png" alt="1526296083605.png"></p>
 <p>使用也非常简单：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>v-stepper-content</span> <span class="token attr-name">step</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>v-stepper-content</span> <span class="token attr-name">step</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>v-editor</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goods.spuDetail.description<span class="token punctuation">"</span></span> <span class="token attr-name">upload-url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/upload/image<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>v-stepper-content</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>v-stepper-content</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>upload-url：是图片上传的路径</li>
 <li>v-model：双向绑定，将富文本编辑器的内容绑定到goods.spuDetail.description</li>
@@ -587,7 +588,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1543415396355.png" alt="1543415396355"></p>
 <p>我们在原来的根据 gid（规格组id)查询规格参数的接口上，添加一个参数：cid，即商品分类id。</p>
 <p>等一下， 考虑到以后可能还会根据是否搜索、是否为通用属性等条件过滤，我们多添加几个过滤条件：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"params"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java">    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"params"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>SpecParam<span class="token operator">>></span> <span class="token function">queryParams</span><span class="token punctuation">(</span>
             <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"gid"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>Long gid<span class="token punctuation">,</span>
             <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"cid"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>Long cid<span class="token punctuation">,</span>
@@ -601,9 +602,9 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
             <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>改造SpecificationService：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
      * 根据gid查询规格参数
      * @param gid
      * @return
@@ -615,7 +616,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         record<span class="token punctuation">.</span><span class="token function">setGeneric</span><span class="token punctuation">(</span>generic<span class="token punctuation">)</span><span class="token punctuation">;</span>
         record<span class="token punctuation">.</span><span class="token function">setSearching</span><span class="token punctuation">(</span>searching<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>specParamMapper<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span>record<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果param中有属性为null，则不会把属性作为查询条件，因此该方法具备通用性，即可根据gid查询，也可根据cid查询。</p>
 <p>测试：</p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1528470181643.png" alt="1528470181643"></p>
@@ -638,7 +639,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p>并且绑定了点击事件：</p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1528471079383.png" alt="1528471079383"></p>
 <p>点击后会组织数据并向后台提交：</p>
-<pre class=" language-js"><code class="language-js">    <span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">    <span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment" spellcheck="true">// 表单校验。</span>
       <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>basic<span class="token punctuation">.</span>validate<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"请先完成表单内容！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -702,7 +703,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
           <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"保存失败！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>点击提交，查看控制台提交的数据格式：</p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1528472289831.png" alt="1528472289831"></p>
 <p>整体是一个json格式数据，包含Spu表所有数据：</p>
@@ -734,7 +735,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <blockquote>
 <p>Sku</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_sku"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_sku"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Sku</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> GenerationType<span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
@@ -750,42 +751,42 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="token keyword">private</span> Date lastUpdateTime<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 最后修改时间</span>
     <span class="token annotation punctuation">@Transient</span>
     <span class="token keyword">private</span> Integer stock<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 库存</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：这里保存了一个库存字段，在数据库中是另外一张表保存的，方便查询。</p>
 <blockquote>
 <p>Stock</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_stock"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_stock"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Stock</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token keyword">private</span> Long skuId<span class="token punctuation">;</span>
     <span class="token keyword">private</span> Integer seckillStock<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 秒杀可用库存</span>
     <span class="token keyword">private</span> Integer seckillTotal<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 已秒杀数量</span>
     <span class="token keyword">private</span> Integer stock<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 正常库存</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-7-2-GoodsController"><a href="#1-7-2-GoodsController" class="headerlink" title="1.7.2.GoodsController"></a>1.7.2.GoodsController</h3><p>结合浏览器页面控制台，可以发现：</p>
 <p>请求方式：POST</p>
 <p>请求路径：/goods</p>
 <p>请求参数：Spu的json格式的对象，spu中包含spuDetail和Sku集合。这里我们该怎么接收？我们之前定义了一个SpuBo对象，作为业务对象。这里也可以用它，不过需要再扩展spuDetail和skus字段：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpuBo</span> <span class="token keyword">extends</span> <span class="token class-name">Spu</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpuBo</span> <span class="token keyword">extends</span> <span class="token class-name">Spu</span> <span class="token punctuation">{</span>
 
     String cname<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 商品分类名称</span>
     String bname<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 品牌名称</span>
     SpuDetail spuDetail<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 商品详情</span>
     List<span class="token operator">&lt;</span>Sku<span class="token operator">></span> skus<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// sku列表</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>返回类型：无</li>
 </ul>
 <p>在GoodsController中添加新增商品的代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"goods"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"goods"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">saveGoods</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SpuBo spuBo<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>goodsService<span class="token punctuation">.</span><span class="token function">saveGoods</span><span class="token punctuation">(</span>spuBo<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>CREATED<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：通过@RequestBody注解来接收Json请求</p>
 <h3 id="1-7-3-GoodsService"><a href="#1-7-3-GoodsService" class="headerlink" title="1.7.3.GoodsService"></a>1.7.3.GoodsService</h3><p>这里的逻辑比较复杂，我们除了要对SPU新增以外，还要对SpuDetail、Sku、Stock进行保存</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 新增商品
      * @param spuBo
      */</span>
@@ -822,7 +823,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         stock<span class="token punctuation">.</span><span class="token function">setStock</span><span class="token punctuation">(</span>sku<span class="token punctuation">.</span><span class="token function">getStock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>stockMapper<span class="token punctuation">.</span><span class="token function">insertSelective</span><span class="token punctuation">(</span>stock<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-7-4-Mapper"><a href="#1-7-4-Mapper" class="headerlink" title="1.7.4.Mapper"></a>1.7.4.Mapper</h3><p>都是通用Mapper，略</p>
 <p>目录结构：</p>
 <p> <img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1543416129953.png" alt="1543416129953"></p>
@@ -845,18 +846,18 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <li>请求参数：id，应该是spu的id</li>
 <li>返回结果：SpuDetail对象</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"spu/detail/{spuId}"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"spu/detail/{spuId}"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>SpuDetail<span class="token operator">></span> <span class="token function">querySpuDetailBySpuId</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"spuId"</span><span class="token punctuation">)</span>Long spuId<span class="token punctuation">)</span><span class="token punctuation">{</span>
     SpuDetail spuDetail <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>goodsService<span class="token punctuation">.</span><span class="token function">querySpuDetailBySpuId</span><span class="token punctuation">(</span>spuId<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>spuDetail <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>spuDetail<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GoodsService</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 根据spuId查询spuDetail
      * @param spuId
      * @return
@@ -864,7 +865,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">public</span> SpuDetail <span class="token function">querySpuDetailBySpuId</span><span class="token punctuation">(</span>Long spuId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>spuDetailMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>spuId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>测试</p>
 </blockquote>
@@ -881,19 +882,19 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <blockquote>
 <p>GoodsController</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"sku/list"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"sku/list"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Sku<span class="token operator">>></span> <span class="token function">querySkusBySpuId</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span>Long spuId<span class="token punctuation">)</span><span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Sku<span class="token operator">></span> skus <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>goodsService<span class="token punctuation">.</span><span class="token function">querySkusBySpuId</span><span class="token punctuation">(</span>spuId<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>CollectionUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>skus<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>skus<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GoodsService</p>
 </blockquote>
 <p>需要注意的是，为了页面回显方便，我们一并把sku的库存stock也查询出来</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 根据spuId查询sku的集合
      * @param spuId
      * @return
@@ -907,7 +908,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         s<span class="token punctuation">.</span><span class="token function">setStock</span><span class="token punctuation">(</span>stock<span class="token punctuation">.</span><span class="token function">getStock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> skus<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>测试：</p>
 </blockquote>
@@ -927,15 +928,15 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <li>请求参数：Spu对象</li>
 <li>返回结果：无</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PutMapping</span><span class="token punctuation">(</span><span class="token string">"goods"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PutMapping</span><span class="token punctuation">(</span><span class="token string">"goods"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">updateGoods</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SpuBo spuBo<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>goodsService<span class="token punctuation">.</span><span class="token function">updateGoods</span><span class="token punctuation">(</span>spuBo<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>NO_CONTENT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-6-2-GoodsService"><a href="#2-6-2-GoodsService" class="headerlink" title="2.6.2.GoodsService"></a>2.6.2.GoodsService</h3><p>spu数据可以修改，但是SKU数据无法修改，因为有可能之前存在的SKU现在已经不存在了，或者以前的sku属性都不存在了。比如以前内存有4G，现在没了。</p>
 <p>因此这里直接删除以前的SKU，然后新增即可。</p>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span>SpuBo spu<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 查询以前sku</span>
     List<span class="token operator">&lt;</span>Sku<span class="token operator">></span> skus <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySkuBySpuId</span><span class="token punctuation">(</span>spu<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -965,7 +966,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 
     <span class="token comment" spellcheck="true">// 更新spu详情</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>spuDetailMapper<span class="token punctuation">.</span><span class="token function">updateByPrimaryKeySelective</span><span class="token punctuation">(</span>spu<span class="token punctuation">.</span><span class="token function">getSpuDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-6-3-mapper"><a href="#2-6-3-mapper" class="headerlink" title="2.6.3.mapper"></a>2.6.3.mapper</h3><p>与以前一样。</p>
 <h2 id="2-7-其它"><a href="#2-7-其它" class="headerlink" title="2.7.其它"></a>2.7.其它</h2><p>商品的删除、上下架大家自行实现。</p>
 <h1 id="3-搭建前台系统"><a href="#3-搭建前台系统" class="headerlink" title="3.搭建前台系统"></a>3.搭建前台系统</h1><p>后台系统的内容暂时告一段落，有了商品，接下来我们就要在页面展示商品，给用户提供浏览和购买的入口，那就是我们的门户系统。</p>
@@ -1018,7 +1019,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p>我们希望用域名访问：<a href="http://www.leyou.com" target="_blank" rel="noopener">http://www.leyou.com</a></p>
 <p>第一步，修改hosts文件，添加一行配置：</p>
 <pre><code>127.0.0.1 www.leyou.com</code></pre><p>第二步，修改nginx配置，将<a href="http://www.leyou.com反向代理到127.0.0.1:9002" target="_blank" rel="noopener">www.leyou.com反向代理到127.0.0.1:9002</a></p>
-<pre class=" language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
     <span class="token keyword">listen</span>       <span class="token number">80</span><span class="token punctuation">;</span>
     <span class="token keyword">server_name</span>  www<span class="token punctuation">.</span>leyou<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
 
@@ -1031,7 +1032,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         <span class="token keyword">proxy_connect_timeout</span> <span class="token number">600</span><span class="token punctuation">;</span>
         <span class="token keyword">proxy_read_timeout</span> <span class="token number">600</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>重新加载nginx配置：<code>nginx.exe -s reload</code></p>
 <p><img src="/chaining/2019/07/06/xiang-mu-shi-zhan/le-you-shang-cheng/day10-shang-pin-guan-li/1526462774092.png" alt="1526462774092"></p>
 <h2 id="3-4-common-js"><a href="#3-4-common-js" class="headerlink" title="3.4.common.js"></a>3.4.common.js</h2><p>为了方便后续的开发，我们在前台系统中定义了一些工具，放在了common.js中：</p>

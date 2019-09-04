@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day04-乐优商城项目搭建, 柴米油盐, Chester">
+    <meta name="keywords" content="day04-乐优商城项目搭建, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解电商行业
 了解乐优商城项目结构
@@ -39,7 +39,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -645,7 +646,7 @@
 <p>填写保存的位置信息：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529224804596.png" alt="1529224804596"></p>
 <p>然后将pom文件修改成我这个样子：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
@@ -731,7 +732,7 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以发现，我们在父工程中引入了SpringCloud等，很多以后需要用到的依赖，以后创建的子工程就不需要自己引入了。</p>
 <p>可以删除src目录，工程结构如下：</p>
 <p> <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529225577524.png" alt="1529225577524"></p>
@@ -745,7 +746,7 @@
 <p>选择安装目录，因为是聚合项目，目录应该是在父工程leyou的下面：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529226475238.png" alt="1529226475238"></p>
 <h3 id="3-5-2-添加依赖"><a href="#3-5-2-添加依赖" class="headerlink" title="3.5.2.添加依赖"></a>3.5.2.添加依赖</h3><p>添加EurekaServer的依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -767,16 +768,16 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="3-5-3-编写启动类"><a href="#3-5-3-编写启动类" class="headerlink" title="3.5.3.编写启动类"></a>3.5.3.编写启动类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-5-3-编写启动类"><a href="#3-5-3-编写启动类" class="headerlink" title="3.5.3.编写启动类"></a>3.5.3.编写启动类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableEurekaServer</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouRegistryApplication</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouRegistryApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="3-5-4-配置文件"><a href="#3-5-4-配置文件" class="headerlink" title="3.5.4.配置文件"></a>3.5.4.配置文件</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-5-4-配置文件"><a href="#3-5-4-配置文件" class="headerlink" title="3.5.4.配置文件"></a>3.5.4.配置文件</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">10086</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -789,7 +790,7 @@
     <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false </span><span class="token comment" spellcheck="true"># 拉取eureka服务信息</span>
   <span class="token key atrule">server</span><span class="token punctuation">:</span>
     <span class="token key atrule">enable-self-preservation</span><span class="token punctuation">:</span> <span class="token boolean important">false </span><span class="token comment" spellcheck="true"># 关闭自我保护</span>
-    <span class="token key atrule">eviction-interval-timer-in-ms</span><span class="token punctuation">:</span> <span class="token number">5000 </span><span class="token comment" spellcheck="true"># 每隔5秒钟，进行一次服务列表的清理</span></code></pre>
+    <span class="token key atrule">eviction-interval-timer-in-ms</span><span class="token punctuation">:</span> <span class="token number">5000 </span><span class="token comment" spellcheck="true"># 每隔5秒钟，进行一次服务列表的清理</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-5-5-项目的结构"><a href="#3-5-5-项目的结构" class="headerlink" title="3.5.5.项目的结构"></a>3.5.5.项目的结构</h3><p>目前，整个项目的结构如图：</p>
 <p> <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529288386033.png" alt="1529288386033"></p>
 <h2 id="3-6-创建Zuul网关"><a href="#3-6-创建Zuul网关" class="headerlink" title="3.6.创建Zuul网关"></a>3.6.创建Zuul网关</h2><h3 id="3-6-1-创建工程"><a href="#3-6-1-创建工程" class="headerlink" title="3.6.1.创建工程"></a>3.6.1.创建工程</h3><p>与上面类似，选择maven方式创建Module，然后填写项目名称，我们命名为：leyou-gateway</p>
@@ -797,7 +798,7 @@
 <p>填写保存的目录：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529288865152.png" alt="1529288865152"></p>
 <h3 id="3-6-2-添加依赖"><a href="#3-6-2-添加依赖" class="headerlink" title="3.6.2.添加依赖"></a>3.6.2.添加依赖</h3><p>这里我们需要添加Zuul和EurekaClient的依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -827,16 +828,16 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-actuator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="3-6-3-编写启动类"><a href="#3-6-3-编写启动类" class="headerlink" title="3.6.3.编写启动类"></a>3.6.3.编写启动类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-6-3-编写启动类"><a href="#3-6-3-编写启动类" class="headerlink" title="3.6.3.编写启动类"></a>3.6.3.编写启动类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableDiscoveryClient</span>
 <span class="token annotation punctuation">@EnableZuulProxy</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouGatewayApplication</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouGatewayApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="3-6-4-配置文件"><a href="#3-6-4-配置文件" class="headerlink" title="3.6.4.配置文件"></a>3.6.4.配置文件</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-6-4-配置文件"><a href="#3-6-4-配置文件" class="headerlink" title="3.6.4.配置文件"></a>3.6.4.配置文件</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">10010</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -847,7 +848,7 @@
     <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>10086/eureka
 <span class="token key atrule">zuul</span><span class="token punctuation">:</span>
-  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api <span class="token comment" spellcheck="true"># 路由路径前缀</span></code></pre>
+  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api <span class="token comment" spellcheck="true"># 路由路径前缀</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-6-5-项目结构"><a href="#3-6-5-项目结构" class="headerlink" title="3.6.5.项目结构"></a>3.6.5.项目结构</h3><p>目前，leyou下有两个子模块：</p>
 <ul>
 <li>leyou-registry：服务的注册中心（EurekaServer）</li>
@@ -879,7 +880,7 @@
 <p>保存的位置：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529299138961.png" alt="1529299138961"></p>
 <p>因为是聚合工程，所以把项目打包方式设置为pom</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -896,7 +897,7 @@
     <span class="token comment" spellcheck="true">&lt;!-- 打包方式为pom --></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-7-3-leyou-item-interface"><a href="#3-7-3-leyou-item-interface" class="headerlink" title="3.7.3.leyou-item-interface"></a>3.7.3.leyou-item-interface</h3><p>在leyou-item工程上点击右键，选择new –&gt; module:</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529299709029.png" alt="1529299709029"></p>
 <p>依然是使用maven构建，注意父工程是leyou-item：</p>
@@ -929,7 +930,7 @@
 <li>千万不能忘了，我们自己也需要<code>ly-item-interface</code>中的实体类</li>
 </ul>
 <p>这些依赖，我们在顶级父工程：leyou中已经添加好了。所以直接引入即可：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -992,19 +993,19 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>leyou-item-interface中需要什么我们暂时不清楚，所以先不管。以后需要什么依赖，再引入。</p>
 <h3 id="3-7-7-编写启动和配置"><a href="#3-7-7-编写启动和配置" class="headerlink" title="3.7.7.编写启动和配置"></a>3.7.7.编写启动和配置</h3><p>在整个<code>leyou-item工程</code>中，只有<code>leyou-item-service</code>是需要启动的。因此在其中编写启动类即可：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableDiscoveryClient</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouItemServiceApplication</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouItemServiceApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后是全局属性文件：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -1024,13 +1025,13 @@
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>10086/eureka
   <span class="token key atrule">instance</span><span class="token punctuation">:</span>
     <span class="token key atrule">lease-renewal-interval-in-seconds</span><span class="token punctuation">:</span> <span class="token number">5 </span><span class="token comment" spellcheck="true"># 5秒钟发送一次心跳</span>
-    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span></code></pre>
+    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-8-添加商品微服务的路由规则"><a href="#3-8-添加商品微服务的路由规则" class="headerlink" title="3.8.添加商品微服务的路由规则"></a>3.8.添加商品微服务的路由规则</h2><p>既然商品微服务已经创建，接下来肯定要添加路由规则到Zuul中，我们不使用默认的路由规则。</p>
 <p>修改leyou-gateway工程的application.yml配置文件：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">zuul</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">zuul</span><span class="token punctuation">:</span>
   <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api <span class="token comment" spellcheck="true"># 路由路径前缀</span>
   <span class="token key atrule">routes</span><span class="token punctuation">:</span>
-    <span class="token key atrule">item-service</span><span class="token punctuation">:</span> /item/** <span class="token comment" spellcheck="true"># 商品微服务的映射路径</span></code></pre>
+    <span class="token key atrule">item-service</span><span class="token punctuation">:</span> /item/** <span class="token comment" spellcheck="true"># 商品微服务的映射路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-9-启动测试"><a href="#3-9-启动测试" class="headerlink" title="3.9.启动测试"></a>3.9.启动测试</h2><p>我们分别启动：leyou-registry，leyou-gateway，leyou-item-service</p>
 <p> <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529335980812.png" alt="1529335980812"></p>
 <p>查看Eureka面板：</p>
@@ -1045,10 +1046,10 @@
 <li>…</li>
 </ul>
 <p>添加依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-actuator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>重启后访问Eureka控制台：</p>
 <p>鼠标悬停在item-service上，会显示一个地址：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529337273897.png" alt="1529337273897"></p>
@@ -1108,7 +1109,7 @@
 </ul>
 <h2 id="4-3-ES5和6的一些新特性"><a href="#4-3-ES5和6的一些新特性" class="headerlink" title="4.3.ES5和6的一些新特性"></a>4.3.ES5和6的一些新特性</h2><p>我们这里只把一些常用的进行学习，更详细的大家参考：<a href="http://es6.ruanyifeng.com/?search=reduce&x=0&y=0#README" target="_blank" rel="noopener">阮一峰的ES6教程</a></p>
 <p>创建一个空的html页面：</p>
-<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -1122,17 +1123,17 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-3-1-let-和-const-命令"><a href="#4-3-1-let-和-const-命令" class="headerlink" title="4.3.1.let 和 const 命令"></a>4.3.1.let 和 const 命令</h3><blockquote>
 <p>var</p>
 </blockquote>
 <p>之前，js定义变量只有一个关键字：<code>var</code></p>
 <p><code>var</code>有一个问题，就是定义的变量有时会莫名奇妙的成为全局变量。</p>
 <p>例如这样的一段代码：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"循环外："</span> <span class="token operator">+</span> i<span class="token punctuation">)</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"循环外："</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>你猜下打印的结果是什么？</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529376275020.png" alt="1529376275020"></p>
 <blockquote>
@@ -1140,10 +1141,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </blockquote>
 <p><code>let</code>所声明的变量，只在<code>let</code>命令所在的代码块内有效。</p>
 <p>我们把刚才的<code>var</code>改成<code>let</code>试试：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"循环外："</span> <span class="token operator">+</span> i<span class="token punctuation">)</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"循环外："</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1529395660265.png" alt="1529395660265"></p>
 <blockquote>
@@ -1172,29 +1173,29 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>数组解构</p>
 </blockquote>
 <p>比如有一个数组：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>我想获取其中的值，只能通过角标。ES6可以这样：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// x，y，z将与arr中的每个位置对应来取值</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// x，y，z将与arr中的每个位置对应来取值</span>
 <span class="token comment" spellcheck="true">// 然后打印</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p> <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1526109778368.png" alt="1526109778368"></p>
 <blockquote>
 <p>对象解构</p>
 </blockquote>
 <p>例如有个person对象：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span><span class="token string">"jack"</span><span class="token punctuation">,</span>
     age<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">,</span>
     language<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'java'</span><span class="token punctuation">,</span><span class="token string">'js'</span><span class="token punctuation">,</span><span class="token string">'css'</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们可以这么做：</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 解构表达式获取值</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 解构表达式获取值</span>
 <span class="token keyword">const</span> <span class="token punctuation">{</span>name<span class="token punctuation">,</span>age<span class="token punctuation">,</span>language<span class="token punctuation">}</span> <span class="token operator">=</span> person<span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 打印</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>language<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>language<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p> <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1526109984544.png" alt="1526109984544"></p>
 <p>如过想要用其它变量接收，需要额外指定别名：</p>
@@ -1204,45 +1205,45 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>函数参数默认值</p>
 </blockquote>
 <p>在ES6以前，我们无法给一个函数参数设置默认值，只能采用变通写法：</p>
-<pre class=" language-js"><code class="language-js">    <span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">    <span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 判断b是否为空，为空就给默认值1</span>
         b <span class="token operator">=</span> b <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">// 传一个参数</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>现在可以这么写：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// 传一个参数</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>箭头函数</p>
 </blockquote>
 <p>ES6中定义函数的简写方式：</p>
 <p>一个参数时：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> print <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> print <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// 简写为：</span>
-<span class="token keyword">var</span> print2 <span class="token operator">=</span> obj <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token keyword">var</span> print2 <span class="token operator">=</span> obj <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>多个参数：</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 两个参数的情况：</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 两个参数的情况：</span>
 <span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>a <span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// 简写为：</span>
-<span class="token keyword">var</span> sum2 <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a<span class="token operator">+</span>b<span class="token punctuation">;</span></code></pre>
+<span class="token keyword">var</span> sum2 <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>代码不止一行，可以用<code>{}</code>括起来</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum3 <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum3 <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>对象的函数属性简写</p>
 </blockquote>
 <p>比如一个Person对象，里面有eat方法：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span> <span class="token string">"jack"</span><span class="token punctuation">,</span>
     <span class="token comment" spellcheck="true">// 以前：</span>
     eat<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>food<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1254,12 +1255,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <span class="token function">eat3</span><span class="token punctuation">(</span>food<span class="token punctuation">)</span><span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">"在吃"</span> <span class="token operator">+</span> food<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>箭头函数结合解构表达式</p>
 </blockquote>
 <p>比如有一个函数：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span><span class="token string">"jack"</span><span class="token punctuation">,</span>
     age<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">,</span>
     language<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'java'</span><span class="token punctuation">,</span><span class="token string">'js'</span><span class="token punctuation">,</span><span class="token string">'css'</span><span class="token punctuation">]</span>
@@ -1267,20 +1268,20 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <span class="token keyword">function</span> <span class="token function">hello</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hello,"</span> <span class="token operator">+</span> person<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果用箭头函数和解构表达式</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> hi <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hello,"</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> hi <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hello,"</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="4-3-5-map和reduce"><a href="#4-3-5-map和reduce" class="headerlink" title="4.3.5.map和reduce"></a>4.3.5.map和reduce</h3><p>数组中新增了map和reduce方法。</p>
 <blockquote>
 <p>map</p>
 </blockquote>
 <p><code>map()</code>：接收一个函数，将原数组中的所有元素用这个函数处理后放入新数组返回。</p>
 <p>举例：有一个字符串数组，我们希望转为int数组</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'20'</span><span class="token punctuation">,</span><span class="token string">'-5'</span><span class="token punctuation">,</span><span class="token string">'3'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'20'</span><span class="token punctuation">,</span><span class="token string">'-5'</span><span class="token punctuation">,</span><span class="token string">'3'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
 
 arr <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>s <span class="token operator">=</span><span class="token operator">></span> <span class="token function">parseInt</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  <img src="/chaining/2019/06/30/xiang-mu-shi-zhan/le-you-shang-cheng/day04-le-you-shang-cheng-xiang-mu-da-jian/1526110796839.png" alt="1526110796839"></p>
 <blockquote>
 <p>reduce</p>

@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="chapter9-基础综合案例, 柴米油盐, Chester">
+    <meta name="keywords" content="chapter9-基础综合案例, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="
 本文转自vuejs-tutorial，尊重原创，点击可直接访问原文
 
@@ -42,7 +42,8 @@ axios
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -453,23 +454,23 @@ axios
 <li>Vue CLI</li>
 <li>axios</li>
 </ul>
-<h2 id="使用-Vue-CLI-创建项目"><a href="#使用-Vue-CLI-创建项目" class="headerlink" title="使用 Vue CLI 创建项目"></a>使用 Vue CLI 创建项目</h2><pre class=" language-bash"><code class="language-bash">$ vue create 项目名称</code></pre>
+<h2 id="使用-Vue-CLI-创建项目"><a href="#使用-Vue-CLI-创建项目" class="headerlink" title="使用 Vue CLI 创建项目"></a>使用 Vue CLI 创建项目</h2><pre class="line-numbers language-bash"><code class="language-bash">$ vue create 项目名称<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="导入-Bootstrap"><a href="#导入-Bootstrap" class="headerlink" title="导入 Bootstrap"></a>导入 Bootstrap</h2><ol>
 <li>安装</li>
 </ol>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> i bootstrap</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> i bootstrap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="2">
 <li>在 <code>src/main.js</code> 中导入</li>
 </ol>
-<pre class=" language-js"><code class="language-js"><span class="token operator">...</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">...</span>
 <span class="token keyword">import</span> <span class="token string">'bootstrap/dist/css/bootstrap.css'</span>
-<span class="token operator">...</span></code></pre>
+<span class="token operator">...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>VueCLI 自动将该文件内容生成 style 节点插入了页面的 head 中</p>
 <p>不需要像以前一样在页面中通过 link 标签去加载这个样式了</p>
 <p>一切皆模块！</p>
 </blockquote>
-<h2 id="创建视图组件"><a href="#创建视图组件" class="headerlink" title="创建视图组件"></a>创建视图组件</h2><h3 id="列表页-src-views-home-vue"><a href="#列表页-src-views-home-vue" class="headerlink" title="列表页 src/views/home.vue"></a>列表页 <code>src/views/home.vue</code></h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<h2 id="创建视图组件"><a href="#创建视图组件" class="headerlink" title="创建视图组件"></a>创建视图组件</h2><h3 id="列表页-src-views-home-vue"><a href="#列表页-src-views-home-vue" class="headerlink" title="列表页 src/views/home.vue"></a>列表页 <code>src/views/home.vue</code></h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Home Component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -485,8 +486,8 @@ axios
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
-<h3 id="添加页-src-views-add-vue"><a href="#添加页-src-views-add-vue" class="headerlink" title="添加页 src/views/add.vue"></a>添加页 <code>src/views/add.vue</code></h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="添加页-src-views-add-vue"><a href="#添加页-src-views-add-vue" class="headerlink" title="添加页 src/views/add.vue"></a>添加页 <code>src/views/add.vue</code></h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Add Component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -502,8 +503,8 @@ axios
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
-<h3 id="编辑页-src-views-edit-vue"><a href="#编辑页-src-views-edit-vue" class="headerlink" title="编辑页 src/views/edit.vue"></a>编辑页 <code>src/views/edit.vue</code></h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="编辑页-src-views-edit-vue"><a href="#编辑页-src-views-edit-vue" class="headerlink" title="编辑页 src/views/edit.vue"></a>编辑页 <code>src/views/edit.vue</code></h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Edit Component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -519,15 +520,15 @@ axios
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="导入并配置-Vue-Router"><a href="#导入并配置-Vue-Router" class="headerlink" title="导入并配置 Vue Router"></a>导入并配置 Vue Router</h2><ol>
 <li>安装</li>
 </ol>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> vue-router</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> vue-router<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="2">
 <li>创建 <code>src/router.js</code> 文件并写入以下内容</li>
 </ol>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 
 Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
@@ -536,11 +537,11 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
   <span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="3">
 <li>根据你的需要配置路由表，例如下面分别配置了 Home、Add、Edit 三个路由组件导航规则</li>
 </ol>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
 
 <span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'./views/Home.vue'</span>
@@ -565,11 +566,11 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="4">
 <li>在 <code>src/main.js</code> 中将路由实例配置到 Vue 实例中</li>
 </ol>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">...</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">...</span>
 <span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router'</span>
 <span class="token operator">...</span>
 
@@ -578,27 +579,27 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token comment" spellcheck="true">// router: router,</span>
   <span class="token comment" spellcheck="true">// es6简写</span>
   router
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>键名 router 是 Vue 实例选项成员（就像 data、methods 一样，固定语法），值 router 是我们在 router.js 中 new 出来的 VueRouter 路由实例</p>
 </blockquote>
 <ol start="5">
 <li>最后，在 <code>src/App.vue</code> 中设置路由的出口</li>
 </ol>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!-- 路由出口 --></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="6">
 <li>回到浏览器中访问不同的路由路径进行测试</li>
 </ol>
 <h2 id="接口服务"><a href="#接口服务" class="headerlink" title="接口服务"></a>接口服务</h2><p>查看 <code>第4章 和服务端交互/学习准备</code></p>
 <h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="列表展示和删除"><a href="#列表展示和删除" class="headerlink" title="列表展示和删除"></a>列表展示和删除</h3><p>安装 <code>axios</code></p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> i axios</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> i axios<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>代码：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!-- &lt;button type="button" class="btn btn-primary">Add Hero&lt;/button> --></span>
@@ -684,8 +685,8 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
-<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -757,32 +758,32 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="动态展示编辑页面"><a href="#动态展示编辑页面" class="headerlink" title="动态展示编辑页面"></a>动态展示编辑页面</h3><ol>
 <li>修改路由表编辑页面的导航路径</li>
 </ol>
-<pre class=" language-js"><code class="language-js">routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+<pre class="line-numbers language-js"><code class="language-js">routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
   <span class="token operator">...</span>
   <span class="token punctuation">{</span> 
     path<span class="token punctuation">:</span> <span class="token string">'/edit/:id'</span><span class="token punctuation">,</span>
     component<span class="token punctuation">:</span> Edit
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token operator">...</span>
-<span class="token punctuation">]</span></code></pre>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
 <li>在 Home.vue 中处理修改按钮的导航地址</li>
 </ol>
-<pre class=" language-html"><code class="language-html">...
+<pre class="line-numbers language-html"><code class="language-html">...
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">@click.prevent</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleDelete(item)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>删除<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">'</span>/edit/<span class="token punctuation">'</span> + item.id<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>修改<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
 ...
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="3">
 <li>在 <code>Edit.vue</code> 编辑页面获取动态路径参数，请求加载数据更新视图</li>
 </ol>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -860,8 +861,8 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
-<h3 id="提交编辑"><a href="#提交编辑" class="headerlink" title="提交编辑"></a>提交编辑</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="提交编辑"><a href="#提交编辑" class="headerlink" title="提交编辑"></a>提交编辑</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -951,9 +952,9 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="编译打包"><a href="#编译打包" class="headerlink" title="编译打包"></a>编译打包</h2><p>项目开发完成后，面临的就是如何将项目进行打包上线，放到服务器中。</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> run build</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> run build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>打包结果会生成存储到 dist 目录中</li>
 <li>dist 目录<ul>

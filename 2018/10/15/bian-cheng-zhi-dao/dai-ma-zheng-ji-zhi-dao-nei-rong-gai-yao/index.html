@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="代码整洁之道内容概要, 柴米油盐, Chester">
+    <meta name="keywords" content="代码整洁之道内容概要, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="读了代码整洁之道，觉得这本书写的很好，所以就将里面自己觉得很经典的内容记录下来，作为自己以后写代码的标准和准则。同时也为那些曾经困惑过的人一点参考吧！
 一、在正式开始之前，我们先思考几个几个问题：1.需求与代码哪个重要？答：并不是所有的产品">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +33,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -610,9 +611,9 @@
 <p>(27). 结构甚于约定，坚守结构甚于约定的设计决策。</p>
 <p>(28). 封装条件，如果没有if或while语句的上下文，布尔逻辑就难以理解。应该把解释了条件意图的函数抽离出来。</p>
 <p>例如：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">shouldBeDeleted</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">shouldBeDeleted</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>要好于</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>timer<span class="token punctuation">.</span><span class="token function">hasExpired</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">.</span><span class="token function">isRecurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>timer<span class="token punctuation">.</span><span class="token function">hasExpired</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">.</span><span class="token function">isRecurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>(29). 避免否定性条件，尽可能将条件表示为肯定形式。</p>
 <p>(30). 函数只该做一件事</p>
 <p>(31). 掩蔽时序耦合，排列函数参数，好让它们被调用的次序显而易见。</p>

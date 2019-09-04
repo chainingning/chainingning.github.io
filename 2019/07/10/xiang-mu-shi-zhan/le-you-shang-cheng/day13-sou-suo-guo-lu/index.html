@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day13-搜索过滤, 柴米油盐, Chester">
+    <meta name="keywords" content="day13-搜索过滤, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解过滤功能的基本思路
 实现分类和品牌展示
@@ -44,7 +44,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -494,7 +495,7 @@
 <p>品牌：页面展示的有logo，有文字，当然肯定有id，基本上是品牌的完整数据</p>
 <p>我们新建一个类，继承PageResult，然后扩展两个新的属性：分类集合和品牌集合：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543671901773.png" alt="1543671901773"></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">;</span>
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">;</span>
@@ -534,12 +535,12 @@
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setBrands</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>brands <span class="token operator">=</span> brands<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-2-聚合商品分类和品牌"><a href="#2-2-聚合商品分类和品牌" class="headerlink" title="2.2.聚合商品分类和品牌"></a>2.2.聚合商品分类和品牌</h2><p>我们修改搜索的业务逻辑，对分类和品牌聚合。</p>
 <p>因为索引库中只有id，所以我们根据id聚合，然后再根据id去查询完整数据。</p>
 <p>所以，商品微服务需要提供一个接口：根据品牌id集合，批量查询品牌。</p>
 <p>修改SearchService：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">// 判断查询条件</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -625,7 +626,7 @@
         categories<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> categories<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532259453938.png" alt="1532259453938"></p>
 <h2 id="2-3-页面渲染数据"><a href="#2-3-页面渲染数据" class="headerlink" title="2.3.页面渲染数据"></a>2.3.页面渲染数据</h2><h3 id="2-3-1-过滤参数数据结构"><a href="#2-3-1-过滤参数数据结构" class="headerlink" title="2.3.1.过滤参数数据结构"></a>2.3.1.过滤参数数据结构</h3><p>来看下页面的展示效果：</p>
@@ -635,14 +636,14 @@
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526742817804.png" alt="1526742817804"></p>
 <p>所以，我们可以把所有的过滤条件放入一个<code>数组</code>中，然后在页面利用<code>v-for</code>遍历一次生成。</p>
 <p>其基本结构是这样的：</p>
-<pre class=" language-js"><code class="language-js"><span class="token punctuation">[</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
         k<span class="token punctuation">:</span><span class="token string">"过滤字段名"</span><span class="token punctuation">,</span>
         options<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">/*过滤字段值对象*/</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">/*过滤字段值对象*/</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">]</span></code></pre>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们先在data中定义数组：filters，等待组装过滤参数：</p>
-<pre class=" language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     ly<span class="token punctuation">,</span>
     search<span class="token punctuation">:</span><span class="token punctuation">{</span>
         key<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
@@ -652,7 +653,7 @@
     total<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 总条数</span>
     totalPage<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 总页数</span>
     filters<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 过滤参数集合</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后在查询搜索结果的回调函数中，对过滤参数进行封装：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532261937404.png" alt="1532261937404"></p>
 <p>然后刷新页面，通过浏览器工具，查看封装的结果：</p>
@@ -660,7 +661,7 @@
 <h3 id="2-3-2-页面渲染数据"><a href="#2-3-2-页面渲染数据" class="headerlink" title="2.3.2.页面渲染数据"></a>2.3.2.页面渲染数据</h3><p>首先看页面原来的代码：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526803362517.png" alt="1526803362517"></p>
 <p>我们注意到，虽然页面元素是一样的，但是品牌会比其它搜索条件多出一些样式，因为品牌是以图片展示。需要进行特殊处理。数据展示是一致的，我们采用v-for处理：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-wrap<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(f,i) in filters<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>i<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>f.k !<span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>品牌<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-wrap<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(f,i) in filters<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>i<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>f.k !<span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>品牌<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl key<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{f.k}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl value<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -686,7 +687,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl ext<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript:void(0);<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sui-btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>多选<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532264524663.png" alt="1532264524663"></p>
 <h1 id="3-生成规格参数过滤"><a href="#3-生成规格参数过滤" class="headerlink" title="3.生成规格参数过滤"></a>3.生成规格参数过滤</h1><h2 id="3-1-谋而后动"><a href="#3-1-谋而后动" class="headerlink" title="3.1.谋而后动"></a>3.1.谋而后动</h2><p>有四个问题需要先思考清楚：</p>
@@ -728,14 +729,14 @@
 <li>5）将规格参数聚合结果整理后返回</li>
 </ul>
 <h3 id="3-2-1-扩展返回结果"><a href="#3-2-1-扩展返回结果" class="headerlink" title="3.2.1.扩展返回结果"></a>3.2.1.扩展返回结果</h3><p>返回结果中需要增加新数据，用来保存规格参数过滤条件。这里与前面的品牌和分类过滤的json结构类似：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
         <span class="token property">"k"</span><span class="token operator">:</span><span class="token string">"规格参数名"</span><span class="token punctuation">,</span>
         <span class="token property">"options"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"规格参数值"</span><span class="token punctuation">,</span><span class="token string">"规格参数值"</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">]</span></code></pre>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>因此，在java中我们用List&lt;Map&lt;String, Object&gt;&gt;来表示。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchResult</span> <span class="token keyword">extends</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>Goods<span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> categories<span class="token punctuation">;</span>
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Brand<span class="token operator">></span> brands<span class="token punctuation">;</span>
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">;</span>
@@ -786,7 +787,7 @@
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSpecs</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> specs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>specs <span class="token operator">=</span> specs<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-2-2-判断是否需要聚合"><a href="#3-2-2-判断是否需要聚合" class="headerlink" title="3.2.2.判断是否需要聚合"></a>3.2.2.判断是否需要聚合</h3><p>首先，在聚合得到商品分类后，判断分类的个数，如果是1个则进行规格聚合：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543673893654.png" alt="1543673893654"></p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543673960091.png" alt="1543673960091"></p>
@@ -797,7 +798,7 @@
 <h3 id="3-2-4-聚合规格参数"><a href="#3-2-4-聚合规格参数" class="headerlink" title="3.2.4.聚合规格参数"></a>3.2.4.聚合规格参数</h3><p>因为规格参数保存时不做分词，因此其名称会自动带上一个.keyword后缀：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674179820.png" alt="1543674179820"></p>
 <h3 id="3-2-5-解析聚合结果"><a href="#3-2-5-解析聚合结果" class="headerlink" title="3.2.5.解析聚合结果"></a>3.2.5.解析聚合结果</h3><p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674250920.png" alt="1543674250920"></p>
-<h3 id="3-2-6-最终的完整代码"><a href="#3-2-6-最终的完整代码" class="headerlink" title="3.2.6.最终的完整代码"></a>3.2.6.最终的完整代码</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="3-2-6-最终的完整代码"><a href="#3-2-6-最终的完整代码" class="headerlink" title="3.2.6.最终的完整代码"></a>3.2.6.最终的完整代码</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> SearchResult <span class="token function">search</span><span class="token punctuation">(</span>SearchRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">// 判断查询条件</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -885,7 +886,7 @@
 
     <span class="token keyword">return</span> paramMapList<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-2-7-测试结果"><a href="#3-2-7-测试结果" class="headerlink" title="3.2.7.测试结果"></a>3.2.7.测试结果</h3><p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532270167684.png" alt="1532270167684"></p>
 <h2 id="3-3-页面渲染"><a href="#3-3-页面渲染" class="headerlink" title="3.3.页面渲染"></a>3.3.页面渲染</h2><h3 id="3-3-1-渲染规格过滤条件"><a href="#3-3-1-渲染规格过滤条件" class="headerlink" title="3.3.1.渲染规格过滤条件"></a>3.3.1.渲染规格过滤条件</h3><p>首先把后台传递过来的specs添加到filters数组：</p>
 <p>要注意：分类、品牌的option选项是对象，里面有name属性，而specs中的option是简单的字符串，所以需要进行封装，变为相同的结构：</p>
@@ -912,9 +913,9 @@
 <p>要注意，在created构造函数中会对search进行初始化，所以要在构造函数中对filter进行初始化：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1533566768364.png" alt="1533566768364"></p>
 <p>search.filter是一个对象，结构：</p>
-<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token punctuation">{</span>
     <span class="token string">"过滤项名"</span><span class="token punctuation">:</span><span class="token string">"过滤项值"</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-1-2-绑定点击事件"><a href="#4-1-2-绑定点击事件" class="headerlink" title="4.1.2.绑定点击事件"></a>4.1.2.绑定点击事件</h3><p>给所有的过滤项绑定点击事件：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532272879418.png" alt="1532272879418"></p>
 <p>要注意，点击事件传2个参数：</p>
@@ -923,7 +924,7 @@
 <li>option：当前过滤项对象</li>
 </ul>
 <p>在点击事件中，保存过滤项到<code>selectedFilter</code>：</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">selectFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">selectFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">===</span> <span class="token string">'分类'</span> <span class="token operator">||</span> k <span class="token operator">===</span> <span class="token string">'品牌'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -931,7 +932,7 @@
     <span class="token punctuation">}</span>
     obj<span class="token punctuation">.</span>filter<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> o<span class="token punctuation">.</span>name <span class="token operator">||</span> o<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>search <span class="token operator">=</span> obj<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>另外，这里search对象中嵌套了filter对象，请求参数格式化时需要进行特殊处理，修改common.js中的一段代码：</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1532273144046.png" alt="1532273144046"></p>
 <p>我们刷新页面，点击后通过浏览器功能查看<code>search.filter</code>的属性变化：</p>
@@ -946,7 +947,7 @@
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1533567897849.png" alt="1533567897849"></p>
 <p>现在，我们要把页面传递的过滤条件也加入进去。</p>
 <p>因此不能在使用普通的查询，而是要用到BooleanQuery，基本结构是这样的：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"bool"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -956,12 +957,12 @@
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>所以，我们对原来的基本查询进行改造：（SearchService中的search方法）</p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674461682.png" alt="1543674461682"></p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1543674644998.png" alt="1543674644998"></p>
 <p>因为比较复杂，我们将其封装到一个方法中：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 构建bool查询构建器
      * @param request
      * @return
@@ -993,7 +994,7 @@
     <span class="token punctuation">}</span>
 
     <span class="token keyword">return</span> boolQueryBuilder<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其它不变。</p>
 <h2 id="4-3-页面测试"><a href="#4-3-页面测试" class="headerlink" title="4.3.页面测试"></a>4.3.页面测试</h2><p>我们先不点击过滤条件，直接搜索手机：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526910966728.png" alt="1526910966728"></p>
@@ -1010,7 +1011,7 @@
 <blockquote>
 <p>Controller</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 根据3级分类id，查询1~3级的分类
      * @param id
      * @return
@@ -1022,16 +1023,16 @@
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>NOT_FOUND<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>Service</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Category<span class="token operator">></span> <span class="token function">queryAllByCid3</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Category<span class="token operator">></span> <span class="token function">queryAllByCid3</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Category c3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     Category c2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>c3<span class="token punctuation">.</span><span class="token function">getParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Category c1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>c2<span class="token punctuation">.</span><span class="token function">getParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">,</span>c3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526912781014.png" alt="1526912781014"></p>
 <h3 id="5-1-2-页面展示面包屑"><a href="#5-1-2-页面展示面包屑" class="headerlink" title="5.1.2.页面展示面包屑"></a>5.1.2.页面展示面包屑</h3><p>后台提供了接口，下面的问题是，我们在哪里去查询接口？</p>
@@ -1057,20 +1058,20 @@
 <li>非数值类型规格：这个直接展示其值即可</li>
 </ul>
 <p>因此，我们在页面上这样处理：</p>
-<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--已选择过滤项--></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--已选择过滤项--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tags-choose<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tag<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(v,k) in search.filter<span class="token punctuation">"</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k !<span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>cid3<span class="token punctuation">'</span><span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         {{k === 'brandId' ? '品牌' : k}}:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">color</span><span class="token punctuation">:</span> red</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{getFilterValue(k,v)}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sui-icon icon-tb-close<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>判断如果 <code>k === &#39;cid3&#39;</code>说明是商品分类，直接忽略</li>
 <li>判断<code>k === &#39;brandId&#39;</code>说明是品牌，页面显示品牌，其它规格则直接显示<code>k</code>的值</li>
 <li>值的处理比较复杂，我们用一个方法<code>getFilterValue(k,v)</code>来处理，调用时把<code>k</code>和<code>v</code>都传递</li>
 </ul>
 <p>方法内部：</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">getFilterValue</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">getFilterValue</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 如果没有过滤参数，我们跳过展示</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>filters <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
@@ -1082,7 +1083,7 @@
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>f <span class="token operator">=</span><span class="token operator">></span> f<span class="token punctuation">.</span>k <span class="token operator">===</span> <span class="token string">'brandId'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>options<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> v<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后刷新页面，即可看到效果：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526911811998.png" alt="1526911811998"></p>
 <h2 id="5-3-隐藏已经选择的过滤项"><a href="#5-3-隐藏已经选择的过滤项" class="headerlink" title="5.3.隐藏已经选择的过滤项"></a>5.3.隐藏已经选择的过滤项</h2><p>现在，我们已经实现了已选择过滤项的展示，但是你会发现一个问题：</p>
@@ -1093,7 +1094,7 @@
 <p>你必须先知道用户选择了什么。用户选择的项保存在<code>search.filter</code>中：</p>
 <p> <img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526915191753.png" alt="1526915191753"></p>
 <p>我们可以编写一个计算属性，把filters中的 已经被选择的key过滤掉：</p>
-<pre class=" language-js"><code class="language-js">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
     <span class="token function">remainFilters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">const</span> keys <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>cid3<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -1104,7 +1105,7 @@
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>filters<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>f <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">!</span>keys<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后页面不再直接遍历<code>filters</code>，而是遍历<code>remainFilters</code></p>
 <p><img src="/chaining/2019/07/10/xiang-mu-shi-zhan/le-you-shang-cheng/day13-sou-suo-guo-lu/1526916315470.png" alt="1526916315470"></p>
 <p>刷新页面：</p>
@@ -1126,9 +1127,9 @@
 <blockquote>
 <p>删除过滤项</p>
 </blockquote>
-<pre class=" language-js"><code class="language-js"><span class="token function">removeFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">removeFilter</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>filter<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h1 id="7-优化"><a href="#7-优化" class="headerlink" title="7.优化"></a>7.优化</h1><p>搜索系统需要优化的点：</p>
 <ul>
 <li>查询规格参数部分可以添加缓存 </li>

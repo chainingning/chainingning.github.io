@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day09-商品规格管理, 柴米油盐, Chester">
+    <meta name="keywords" content="day09-商品规格管理, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解商品规格数据结构设计思路
 实现商品规格查询
@@ -40,7 +40,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -526,13 +527,13 @@ stock：库存
 <li>tb_spec_param：参数名，与组关联，一对多</li>
 </ul>
 <h3 id="1-3-2-规格组"><a href="#1-3-2-规格组" class="headerlink" title="1.3.2.规格组"></a>1.3.2.规格组</h3><p>规格参数分组表：tb_spec_group</p>
-<pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_spec_group` (
+<pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_spec_group` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `cid` bigint(20) NOT NULL COMMENT '商品分类id，一个分类下有多个规格组',
   `name` varchar(50) NOT NULL COMMENT '规格组的名称',
   PRIMARY KEY (`id`),
   KEY `key_category` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='规格参数的分组表，每个商品分类下有多个规格参数组';</code></pre>
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='规格参数的分组表，每个商品分类下有多个规格参数组';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>规格组有3个字段：</p>
 <ul>
 <li>id：主键</li>
@@ -540,7 +541,7 @@ stock：库存
 <li>name：该规格组的名称。</li>
 </ul>
 <h3 id="1-3-2-规格参数"><a href="#1-3-2-规格参数" class="headerlink" title="1.3.2.规格参数"></a>1.3.2.规格参数</h3><p>规格参数表：tb_spec_param</p>
-<pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_spec_param` (
+<pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_spec_param` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `cid` bigint(20) NOT NULL COMMENT '商品分类id',
   `group_id` bigint(20) NOT NULL,
@@ -553,7 +554,7 @@ stock：库存
   PRIMARY KEY (`id`),
   KEY `key_group` (`group_id`),
   KEY `key_category` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='规格参数组下的参数名';</code></pre>
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='规格参数组下的参数名';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>按道理来说，我们的规格参数就只需要记录参数名、组id、商品分类id即可。但是这里却多出了很多字段，为什么？</p>
 <p>还记得我们之前的分析吧，规格参数中有一部分是 SKU的通用属性，一部分是SKU的特有属性，而且其中会有一些将来用作搜索过滤，这些信息都需要标记出来。</p>
 <blockquote>
@@ -645,7 +646,7 @@ stock：库存
 <p>在<code>leyou-item-interface</code>中添加实体类：</p>
 <p> <img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528429029149.png" alt="1528429029149"></p>
 <p>内容：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_group"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_group"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpecGroup</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Id</span>
@@ -660,8 +661,8 @@ stock：库存
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>SpecParam<span class="token operator">></span> params<span class="token punctuation">;</span>
 
    <span class="token comment" spellcheck="true">// getter和setter省略</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_param"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_param"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpecParam</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> GenerationType<span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
@@ -677,14 +678,14 @@ stock：库存
     <span class="token keyword">private</span> String segments<span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">// getter和setter ...</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在<code>leyou-item-service</code>中编写业务：</p>
 <p> <img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528433648595.png" alt="1528433648595"></p>
 <blockquote>
 <p>mapper</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecGroupMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecGroupMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <blockquote>
 <p>controller</p>
 </blockquote>
@@ -702,7 +703,7 @@ stock：库存
 </li>
 </ul>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"spec"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpecificationController</span> <span class="token punctuation">{</span>
 
@@ -722,11 +723,11 @@ stock：库存
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>groups<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>service</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpecificationService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -743,7 +744,7 @@ stock：库存
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>groupMapper<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span>specGroup<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>页面访问测试：</p>
 </blockquote>
@@ -780,7 +781,7 @@ stock：库存
 <li>返回结果：该分组下的规格参数集合<code>List&lt;SpecParam&gt;</code></li>
 </ul>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
      * 根据条件查询规格参数
      * @param gid
      * @return
@@ -792,11 +793,11 @@ stock：库存
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>SpecificationService</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
 <span class="token keyword">private</span> SpecParamMapper paramMapper<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/**
@@ -808,19 +809,19 @@ stock：库存
     SpecParam param <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SpecParam</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     param<span class="token punctuation">.</span><span class="token function">setGroupId</span><span class="token punctuation">(</span>gid<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>paramMapper<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>SpecParamMapper</p>
 </blockquote>
 <p> <img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1543383516456.png" alt="1543383516456"></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecParamMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>SpecParam<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecParamMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>SpecParam<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>测试：</p>
 <p><img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528442972016.png" alt="1528442972016"></p>
 <h2 id="2-4-增、删、改（作业）"><a href="#2-4-增、删、改（作业）" class="headerlink" title="2.4.增、删、改（作业）"></a>2.4.增、删、改（作业）</h2><p>增删改的作业就留给大家去完成了。页面中接口都已定义，你要做的就是实现后台接口。</p>
 <h1 id="3-SPU和SKU数据结构"><a href="#3-SPU和SKU数据结构" class="headerlink" title="3.SPU和SKU数据结构"></a>3.SPU和SKU数据结构</h1><p>规格确定以后，就可以添加商品了,先看下数据库表</p>
 <h2 id="3-1-SPU表"><a href="#3-1-SPU表" class="headerlink" title="3.1.SPU表"></a>3.1.SPU表</h2><p>SPU表：</p>
-<pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_spu` (
+<pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_spu` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'spu id',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
   `sub_title` varchar(255) DEFAULT '' COMMENT '子标题',
@@ -833,10 +834,10 @@ stock：库存
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',
   `last_update_time` datetime DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 COMMENT='spu表，该表描述的是一个抽象的商品，比如 iphone8';</code></pre>
+) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 COMMENT='spu表，该表描述的是一个抽象的商品，比如 iphone8';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>与我们前面分析的基本类似，但是似乎少了一些字段，比如商品描述。</p>
 <p>我们做了表的垂直拆分，将SPU的详情放到了另一张表：tb_spu_detail</p>
-<pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_spu_detail` (
+<pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_spu_detail` (
   `spu_id` bigint(20) NOT NULL,
   `description` text COMMENT '商品描述信息',
   `generic_spec` varchar(10000) NOT NULL DEFAULT '' COMMENT '通用规格参数数据',
@@ -844,7 +845,7 @@ stock：库存
   `packing_list` varchar(3000) DEFAULT '' COMMENT '包装清单',
   `after_service` varchar(3000) DEFAULT '' COMMENT '售后服务',
   PRIMARY KEY (`spu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这张表中的数据都比较大，为了不影响主表的查询效率我们拆分出这张表。</p>
 <p>需要注意的是这两个字段：generic_spec和special_spec。</p>
 <p>前面讲过规格参数与商品分类绑定，一个分类下的所有SPU具有类似的规格参数。SPU下的SKU可能会有不同的规格参数信息，因此我们计划是这样：</p>
@@ -885,7 +886,7 @@ stock：库存
 <p>因为我们有时候需要把所有规格参数都查询出来，而不是只查询1个sku的属性。比如，商品详情页展示可选的规格参数时：</p>
 <p> <img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1526267828817.png" alt="1526267828817"></p>
 <p>刚好符合我们的结构，这样页面渲染就非常方便了。</p>
-<h2 id="3-2-SKU表"><a href="#3-2-SKU表" class="headerlink" title="3.2.SKU表"></a>3.2.SKU表</h2><pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_sku` (
+<h2 id="3-2-SKU表"><a href="#3-2-SKU表" class="headerlink" title="3.2.SKU表"></a>3.2.SKU表</h2><pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_sku` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'sku id',
   `spu_id` bigint(20) NOT NULL COMMENT 'spu id',
   `title` varchar(255) NOT NULL COMMENT '商品标题',
@@ -898,20 +899,20 @@ stock：库存
   `last_update_time` datetime NOT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`),
   KEY `key_spu_id` (`spu_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sku表,该表表示具体的商品实体,如黑色的64GB的iphone 8';</code></pre>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sku表,该表表示具体的商品实体,如黑色的64GB的iphone 8';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>还有一张表，代表库存：</p>
-<pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_stock` (
+<pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_stock` (
   `sku_id` bigint(20) NOT NULL COMMENT '库存对应的商品sku id',
   `seckill_stock` int(9) DEFAULT '0' COMMENT '可秒杀库存',
   `seckill_total` int(9) DEFAULT '0' COMMENT '秒杀总数量',
   `stock` int(9) NOT NULL COMMENT '库存数量',
   PRIMARY KEY (`sku_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存表，代表库存，秒杀库存等信息';</code></pre>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存表，代表库存，秒杀库存等信息';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>问题：为什么要将库存独立一张表？</p>
 <p>因为库存字段写频率较高，而SKU的其它字段以读为主，因此我们将两张表分离，读写不会干扰。</p>
 <p>特别需要注意的是sku表中的<code>indexes</code>字段和<code>own_spec</code>字段。sku中应该保存特有规格参数的值，就在这两个字段中。</p>
 <h3 id="3-2-1-indexes字段"><a href="#3-2-1-indexes字段" class="headerlink" title="3.2.1.indexes字段"></a>3.2.1.indexes字段</h3><p>在SPU表中，已经对特有规格参数及可选项进行了保存，结构如下：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"4"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
         <span class="token string">"香槟金"</span><span class="token punctuation">,</span>
         <span class="token string">"樱花粉"</span><span class="token punctuation">,</span>
@@ -925,7 +926,7 @@ stock：库存
         <span class="token string">"16GB"</span><span class="token punctuation">,</span>
         <span class="token string">"32GB"</span>
     <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这些特有属性如果排列组合，会产生12个不同的SKU，而不同的SKU，其属性就是上面备选项中的一个。</p>
 <p>比如：</p>
 <ul>
@@ -943,7 +944,7 @@ stock：库存
 <p> <img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1526267180997.png" alt="1526267180997"></p>
 <p>当用户点击选中一个特有属性，你就能根据 角标快速定位到sku。</p>
 <h3 id="3-2-2-own-spec字段"><a href="#3-2-2-own-spec字段" class="headerlink" title="3.2.2.own_spec字段"></a>3.2.2.own_spec字段</h3><p>看结构：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"4"</span><span class="token operator">:</span><span class="token string">"香槟金"</span><span class="token punctuation">,</span><span class="token property">"12"</span><span class="token operator">:</span><span class="token string">"2GB"</span><span class="token punctuation">,</span><span class="token property">"13"</span><span class="token operator">:</span><span class="token string">"16GB"</span><span class="token punctuation">}</span></code></pre>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"4"</span><span class="token operator">:</span><span class="token string">"香槟金"</span><span class="token punctuation">,</span><span class="token property">"12"</span><span class="token operator">:</span><span class="token string">"2GB"</span><span class="token punctuation">,</span><span class="token property">"13"</span><span class="token operator">:</span><span class="token string">"16GB"</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>保存的是特有属性的键值对。</p>
 <p>SPU中保存的是可选项，但不确定具体的值，而SKU中的保存的就是具体的值。</p>
 <h2 id="3-3-导入图片信息"><a href="#3-3-导入图片信息" class="headerlink" title="3.3.导入图片信息"></a>3.3.导入图片信息</h2><p>现在商品表中虽然有数据，但是所有的图片信息都是无法访问的，我们需要把图片导入到虚拟机：</p>
@@ -951,11 +952,11 @@ stock：库存
 <p><img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528445149890.png" alt="1528445149890"></p>
 <p><img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528479229165.png" alt="1528479229165"></p>
 <p>然后，使用命令解压缩：</p>
-<pre class=" language-sh"><code class="language-sh">unzip images.zip</code></pre>
+<pre class="line-numbers language-sh"><code class="language-sh">unzip images.zip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>修改Nginx配置，使nginx反向代理这些图片地址：</p>
-<pre class=" language-sh"><code class="language-sh">vim /opt/nginx/config/nginx.conf</code></pre>
+<pre class="line-numbers language-sh"><code class="language-sh">vim /opt/nginx/config/nginx.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>修改成如下配置：</p>
-<pre class=" language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
     <span class="token keyword">listen</span>       <span class="token number">80</span><span class="token punctuation">;</span>
     <span class="token keyword">server_name</span>  image<span class="token punctuation">.</span>leyou<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
 
@@ -973,7 +974,7 @@ stock：库存
         <span class="token keyword">root</span>   html<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>不要忘记重新加载nginx配置</p>
 <pre><code>nginx -s reload</code></pre><h1 id="4-商品查询"><a href="#4-商品查询" class="headerlink" title="4.商品查询"></a>4.商品查询</h1><h2 id="4-1-效果预览"><a href="#4-1-效果预览" class="headerlink" title="4.1.效果预览"></a>4.1.效果预览</h2><p>接下来，我们实现商品管理的页面，先看下我们要实现的效果：</p>
 <p><img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1526268595873.png" alt="1526268595873"></p>
@@ -992,7 +993,7 @@ stock：库存
 <blockquote>
 <p>SPU</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spu"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spu"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Spu</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> GenerationType<span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
@@ -1008,11 +1009,11 @@ stock：库存
     <span class="token keyword">private</span> Date createTime<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 创建时间</span>
     <span class="token keyword">private</span> Date lastUpdateTime<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 最后修改时间</span>
     <span class="token comment" spellcheck="true">// 省略getter和setter</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>SPU详情</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"tb_spu_detail"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"tb_spu_detail"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpuDetail</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token keyword">private</span> Long spuId<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 对应的SPU的id</span>
@@ -1022,9 +1023,9 @@ stock：库存
     <span class="token keyword">private</span> String packingList<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 包装清单</span>
     <span class="token keyword">private</span> String afterService<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 售后服务</span>
     <span class="token comment" spellcheck="true">// 省略getter和setter</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="4-4-2-mapper"><a href="#4-4-2-mapper" class="headerlink" title="4.4.2.mapper"></a>4.4.2.mapper</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpuMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>Spu<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-4-2-mapper"><a href="#4-4-2-mapper" class="headerlink" title="4.4.2.mapper"></a>4.4.2.mapper</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpuMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>Spu<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="4-3-3-controller"><a href="#4-3-3-controller" class="headerlink" title="4.3.3.controller"></a>4.3.3.controller</h3><p>先分析：</p>
 <ul>
 <li><p>请求方式：GET</p>
@@ -1043,21 +1044,21 @@ stock：库存
 <ul>
 <li><p>要注意，页面展示的是商品分类和品牌名称，而数据库中保存的是id，怎么办？</p>
 <p>我们可以新建一个类，继承SPU，并且拓展cname和bname属性，写到<code>leyou-item-interface</code></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpuBo</span> <span class="token keyword">extends</span> <span class="token class-name">Spu</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpuBo</span> <span class="token keyword">extends</span> <span class="token class-name">Spu</span> <span class="token punctuation">{</span>
 
     String cname<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 商品分类名称</span>
 
     String bname<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 品牌名称</span>
 
     <span class="token comment" spellcheck="true">// 略 。。</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 </li>
 </ul>
 <p>编写controller代码：</p>
 <p>我们把与商品相关的一切业务接口都放到一起，起名为GoodsController，业务层也是这样</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsController</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1077,9 +1078,9 @@ stock：库存
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>pageResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-4-4-service"><a href="#4-4-4-service" class="headerlink" title="4.4.4.service"></a>4.4.4.service</h3><p>所有商品相关的业务（包括SPU和SKU）放到一个业务下：GoodsService。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1128,10 +1129,10 @@ stock：库存
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>pageInfo<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> spuBos<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-4-5-Category中拓展查询名称的功能"><a href="#4-4-5-Category中拓展查询名称的功能" class="headerlink" title="4.4.5.Category中拓展查询名称的功能"></a>4.4.5.Category中拓展查询名称的功能</h3><p>页面需要商品的分类名称需要在这里查询，因此要额外提供查询分类名称的功能，</p>
 <p>在CategoryService中添加功能：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token function">queryNamesByIds</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Long<span class="token operator">></span> ids<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token function">queryNamesByIds</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Long<span class="token operator">></span> ids<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Category<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryMapper<span class="token punctuation">.</span><span class="token function">selectByIdList</span><span class="token punctuation">(</span>ids<span class="token punctuation">)</span><span class="token punctuation">;</span>
     List<span class="token operator">&lt;</span>String<span class="token operator">></span> names <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span>Category category <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1139,11 +1140,11 @@ stock：库存
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> names<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// return list.stream().map(category -> category.getName()).collect(Collectors.toList());</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>mapper的selectByIdList方法是来自于通用mapper。不过需要我们在mapper上继承一个通用mapper接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CategoryMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>Category<span class="token operator">></span><span class="token punctuation">,</span> SelectByIdListMapper<span class="token operator">&lt;</span>Category<span class="token punctuation">,</span> Long<span class="token operator">></span> <span class="token punctuation">{</span> 
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CategoryMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>Category<span class="token operator">></span><span class="token punctuation">,</span> SelectByIdListMapper<span class="token operator">&lt;</span>Category<span class="token punctuation">,</span> Long<span class="token operator">></span> <span class="token punctuation">{</span> 
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-5-测试"><a href="#4-5-测试" class="headerlink" title="4.5.测试"></a>4.5.测试</h2><p>刷新页面，查看效果：</p>
 <p><img src="/chaining/2019/07/04/xiang-mu-shi-zhan/le-you-shang-cheng/day09-shang-pin-gui-ge-guan-li/1528450054541.png" alt="1528450054541"></p>
 <p>基本与预览的效果一致，OK！</p>

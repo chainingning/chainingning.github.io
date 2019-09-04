@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day11-Elasticsearch, 柴米油盐, Chester">
+    <meta name="keywords" content="day11-Elasticsearch, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 独立安装Elasticsearch
 会使用Rest的API操作索引
@@ -39,7 +39,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -474,7 +475,7 @@
 <h2 id="1-2-安装和配置"><a href="#1-2-安装和配置" class="headerlink" title="1.2.安装和配置"></a>1.2.安装和配置</h2><p>为了模拟真实场景，我们将在linux下安装Elasticsearch。</p>
 <h3 id="1-2-1-新建一个用户leyou"><a href="#1-2-1-新建一个用户leyou" class="headerlink" title="1.2.1.新建一个用户leyou"></a>1.2.1.新建一个用户leyou</h3><p>出于安全考虑，elasticsearch默认不允许以root账号运行。</p>
 <p>创建用户：</p>
-<pre class=" language-sh"><code class="language-sh">useradd leyou</code></pre>
+<pre class="line-numbers language-sh"><code class="language-sh">useradd leyou<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>设置密码：</p>
 <pre><code>passwd leyou</code></pre><p>切换用户：</p>
 <pre><code>su - leyou</code></pre><h3 id="1-2-2-上传安装包-并解压"><a href="#1-2-2-上传安装包-并解压" class="headerlink" title="1.2.2.上传安装包,并解压"></a>1.2.2.上传安装包,并解压</h3><p>我们将安装包上传到：/home/leyou目录</p>
@@ -503,8 +504,8 @@
 <pre><code>vim elasticsearch.yml</code></pre><ul>
 <li>修改数据和日志目录：</li>
 </ul>
-<pre class=" language-yml"><code class="language-yml">path.data: /home/leyou/elasticsearch/data # 数据目录位置
-path.logs: /home/leyou/elasticsearch/logs # 日志目录位置</code></pre>
+<pre class="line-numbers language-yml"><code class="language-yml">path.data: /home/leyou/elasticsearch/data # 数据目录位置
+path.logs: /home/leyou/elasticsearch/logs # 日志目录位置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>我们把data和logs目录修改指向了elasticsearch的安装目录。但是这两个目录并不存在，因此我们需要创建出来。</p>
 <p>进入elasticsearch的根目录，然后创建：</p>
 <pre><code>mkdir data
@@ -756,12 +757,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <li><p>请求路径：/索引库名</p>
 </li>
 <li><p>请求参数：json格式：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token property">"number_of_shards"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
         <span class="token property">"number_of_replicas"</span><span class="token operator">:</span> <span class="token number">2</span>
       <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>settings：索引库的设置<ul>
 <li>number_of_shards：分片数量</li>
@@ -830,7 +831,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p>示例</p>
 </blockquote>
 <p>发起请求：</p>
-<pre class=" language-json"><code class="language-json">PUT heima/_mapping/goods
+<pre class="line-numbers language-json"><code class="language-json">PUT heima/_mapping/goods
 <span class="token punctuation">{</span>
   <span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -846,7 +847,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>响应结果：</p>
 <pre><code>{
   &quot;acknowledged&quot;: true
@@ -860,7 +861,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <pre><code>GET /heima/_mapping</code></pre><blockquote>
 <p>响应：</p>
 </blockquote>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"heima"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"goods"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -880,7 +881,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-5-3-字段属性详解"><a href="#2-5-3-字段属性详解" class="headerlink" title="2.5.3.字段属性详解"></a>2.5.3.字段属性详解</h3><h4 id="2-5-3-1-type"><a href="#2-5-3-1-type" class="headerlink" title="2.5.3.1.type"></a>2.5.3.1.type</h4><p>Elasticsearch中支持的数据类型非常丰富：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531712631982.png" alt="1531712631982"></p>
 <p>我们说几个关键的：</p>
@@ -929,14 +930,14 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 }</code></pre><blockquote>
 <p>示例：</p>
 </blockquote>
-<pre class=" language-json"><code class="language-json">POST /heima/goods/
+<pre class="line-numbers language-json"><code class="language-json">POST /heima/goods/
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"小米手机"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">2699.00</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>响应：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"heima"</span><span class="token punctuation">,</span>
   <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"goods"</span><span class="token punctuation">,</span>
   <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"r9c1KGMBIhaxtY5rlRKv"</span><span class="token punctuation">,</span>
@@ -949,15 +950,15 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"_seq_no"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
   <span class="token property">"_primary_term"</span><span class="token operator">:</span> <span class="token number">2</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>通过kibana查看数据：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">get</span> _search
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">get</span> _search
 <span class="token punctuation">{</span>
     <span class="token string">"query"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
         <span class="token string">"match_all"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"heima"</span><span class="token punctuation">,</span>
   <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"goods"</span><span class="token punctuation">,</span>
   <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"r9c1KGMBIhaxtY5rlRKv"</span><span class="token punctuation">,</span>
@@ -968,7 +969,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token property">"images"</span><span class="token operator">:</span> <span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">2699</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><code>_source</code>：源文档信息，所有的数据都在里面。</li>
 <li><code>_id</code>：这条文档的唯一标示，与文档自己的id字段没有关联</li>
@@ -979,14 +980,14 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     ...
 }
 </code></pre><p>示例：</p>
-<pre class=" language-json"><code class="language-json">POST /heima/goods/<span class="token number">2</span>
+<pre class="line-numbers language-json"><code class="language-json">POST /heima/goods/<span class="token number">2</span>
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"大米手机"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">2899.00</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>得到的数据：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"heima"</span><span class="token punctuation">,</span>
   <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"goods"</span><span class="token punctuation">,</span>
   <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"2"</span><span class="token punctuation">,</span>
@@ -996,22 +997,22 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token property">"images"</span><span class="token operator">:</span> <span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">2899</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-6-3-智能判断"><a href="#2-6-3-智能判断" class="headerlink" title="2.6.3.智能判断"></a>2.6.3.智能判断</h3><p>在学习Solr时我们发现，我们在新增数据时，只能使用提前配置好映射属性的字段，否则就会报错。</p>
 <p>不过在Elasticsearch中并没有这样的规定。</p>
 <p>事实上Elasticsearch非常智能，你不需要给索引库设置任何mapping映射，它也可以根据你输入的数据来判断类型，动态添加数据映射。</p>
 <p>测试一下：</p>
-<pre class=" language-json"><code class="language-json">POST /heima/goods/<span class="token number">3</span>
+<pre class="line-numbers language-json"><code class="language-json">POST /heima/goods/<span class="token number">3</span>
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"超米手机"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">2899.00</span><span class="token punctuation">,</span>
     <span class="token property">"stock"</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
     <span class="token property">"saleable"</span><span class="token operator">:</span><span class="token boolean">true</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们额外添加了stock库存，和saleable是否上架两个字段。</p>
 <p>来看结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"heima"</span><span class="token punctuation">,</span>
   <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"goods"</span><span class="token punctuation">,</span>
   <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"3"</span><span class="token punctuation">,</span>
@@ -1024,9 +1025,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token property">"stock"</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
     <span class="token property">"saleable"</span><span class="token operator">:</span> <span class="token boolean">true</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在看下索引库的映射关系:</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"heima"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"goods"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1052,7 +1053,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>stock和saleable都被成功映射了。</p>
 <h2 id="2-7-修改数据"><a href="#2-7-修改数据" class="headerlink" title="2.7.修改数据"></a>2.7.修改数据</h2><p>把刚才新增的请求方式改为PUT，就是修改了。不过修改必须指定id，</p>
 <ul>
@@ -1060,16 +1061,16 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <li>id对应文档不存在，则新增</li>
 </ul>
 <p>比如，我们把id为3的数据进行修改：</p>
-<pre class=" language-json"><code class="language-json">PUT /heima/goods/<span class="token number">3</span>
+<pre class="line-numbers language-json"><code class="language-json">PUT /heima/goods/<span class="token number">3</span>
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"超大米手机"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">3899.00</span><span class="token punctuation">,</span>
     <span class="token property">"stock"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
     <span class="token property">"saleable"</span><span class="token operator">:</span><span class="token boolean">true</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">17</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1097,7 +1098,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-8-删除数据"><a href="#2-8-删除数据" class="headerlink" title="2.8.删除数据"></a>2.8.删除数据</h2><p>删除使用DELETE请求，同样，需要根据id进行删除：</p>
 <blockquote>
 <p>语法</p>
@@ -1117,14 +1118,14 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <h2 id="3-1-基本查询"><a href="#3-1-基本查询" class="headerlink" title="3.1.基本查询"></a>3.1.基本查询</h2><blockquote>
 <p>基本语法</p>
 </blockquote>
-<pre class=" language-json"><code class="language-json">GET /索引库名/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /索引库名/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"查询类型"</span><span class="token operator">:</span><span class="token punctuation">{</span>
             <span class="token property">"查询条件"</span><span class="token operator">:</span><span class="token string">"查询条件值"</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里的query代表一个查询对象，里面可以有不同的查询属性</p>
 <ul>
 <li>查询类型：<ul>
@@ -1136,12 +1137,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <h3 id="3-1-1-查询所有（match-all"><a href="#3-1-1-查询所有（match-all" class="headerlink" title="3.1.1 查询所有（match_all)"></a>3.1.1 查询所有（match_all)</h3><blockquote>
 <p>示例：</p>
 </blockquote>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"match_all"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><code>query</code>：代表查询对象</li>
 <li><code>match_all</code>：代表查询所有</li>
@@ -1149,7 +1150,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <blockquote>
 <p>结果：</p>
 </blockquote>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1186,7 +1187,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>took：查询花费时间，单位是毫秒</li>
 <li>time_out：是否超时</li>
@@ -1206,28 +1207,28 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </li>
 </ul>
 <h3 id="3-1-2-匹配查询（match）"><a href="#3-1-2-匹配查询（match）" class="headerlink" title="3.1.2 匹配查询（match）"></a>3.1.2 匹配查询（match）</h3><p>我们先加入一条数据，便于测试：</p>
-<pre class=" language-json"><code class="language-json">PUT /heima/goods/<span class="token number">3</span>
+<pre class="line-numbers language-json"><code class="language-json">PUT /heima/goods/<span class="token number">3</span>
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"小米电视4A"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">3899.00</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>现在，索引库中有2部手机，1台电视：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531728628406.png" alt="1531728628406"></p>
 <ul>
 <li>or关系</li>
 </ul>
 <p><code>match</code>类型查询，会把查询条件进行分词，然后进行查询,多个词条之间是or的关系</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"match"</span><span class="token operator">:</span><span class="token punctuation">{</span>
             <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"小米电视"</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token property">"hits"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token property">"hits"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span><span class="token operator">:</span> <span class="token number">0.6931472</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -1254,13 +1255,13 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在上面的案例中，不仅会查询到电视，而且与小米相关的都会查询到，多个词之间是<code>or</code>的关系。</p>
 <ul>
 <li>and关系</li>
 </ul>
 <p>某些情况下，我们需要更精确查找，我们希望这个关系变成<code>and</code>，可以这样做：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1270,9 +1271,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
           <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1298,7 +1299,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本例中，只有同时包含<code>小米</code>和<code>电视</code>的词条才会被搜索到。</p>
 <ul>
 <li>or和and之间？</li>
@@ -1306,7 +1307,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p>在 <code>or</code> 与 <code>and</code> 间二选一有点过于非黑即白。 如果用户给定的条件分词后有 5 个查询词项，想查找只包含其中 4 个词的文档，该如何处理？将 operator 操作符参数设置成 <code>and</code> 只会将此文档排除。</p>
 <p>有时候这正是我们期望的，但在全文搜索的大多数应用场景下，我们既想包含那些可能相关的文档，同时又排除那些不太相关的。换句话说，我们想要处于中间某种结果。</p>
 <p><code>match</code> 查询支持 <code>minimum_should_match</code> 最小匹配参数， 这让我们可以指定必须匹配的词项数用来表示一个文档是否相关。我们可以将其设置为某个具体数字，更常用的做法是将其设置为一个<code>百分数</code>，因为我们无法控制用户搜索时输入的单词数量：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"match"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -1316,12 +1317,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本例中，搜索语句可以分为3个词，如果使用and关系，需要同时满足3个词才会被搜索到。这里我们采用最小品牌数：75%，那么也就是说只要匹配到总词条数量的75%即可，这里3*75% 约等于2。所以只要包含2个词条就算满足条件了。</p>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531730367614.png" alt="1531730367614"></p>
 <h3 id="3-1-3-多字段查询（multi-match）"><a href="#3-1-3-多字段查询（multi-match）" class="headerlink" title="3.1.3 多字段查询（multi_match）"></a>3.1.3 多字段查询（multi_match）</h3><p><code>multi_match</code>与<code>match</code>类似，不同的是它可以在多个字段中查询</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"multi_match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1329,19 +1330,19 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token property">"fields"</span><span class="token operator">:</span>   <span class="token punctuation">[</span> <span class="token string">"title"</span><span class="token punctuation">,</span> <span class="token string">"subTitle"</span> <span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本例中，我们会在title字段和subtitle字段中查询<code>小米</code>这个词</p>
 <h3 id="3-1-4-词条匹配-term"><a href="#3-1-4-词条匹配-term" class="headerlink" title="3.1.4 词条匹配(term)"></a>3.1.4 词条匹配(term)</h3><p><code>term</code> 查询被用于精确值 匹配，这些精确值可能是数字、时间、布尔或者那些<strong>未分词</strong>的字符串</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"term"</span><span class="token operator">:</span><span class="token punctuation">{</span>
             <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">2699.00</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1367,18 +1368,18 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-1-5-多词条精确匹配-terms"><a href="#3-1-5-多词条精确匹配-terms" class="headerlink" title="3.1.5 多词条精确匹配(terms)"></a>3.1.5 多词条精确匹配(terms)</h3><p><code>terms</code> 查询和 term 查询一样，但它允许你指定多值进行匹配。如果这个字段包含了指定值中的任何一个值，那么这个文档满足条件：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"terms"</span><span class="token operator">:</span><span class="token punctuation">{</span>
             <span class="token property">"price"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">2699.00</span><span class="token punctuation">,</span><span class="token number">2899.00</span><span class="token punctuation">,</span><span class="token number">3899.00</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1426,11 +1427,11 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-2-结果过滤"><a href="#3-2-结果过滤" class="headerlink" title="3.2.结果过滤"></a>3.2.结果过滤</h2><p>默认情况下，elasticsearch在搜索的结果中，会把文档中保存在<code>_source</code>的所有字段都返回。</p>
 <p>如果我们只想获取其中的部分字段，我们可以添加<code>_source</code>的过滤</p>
 <h3 id="3-2-1-直接指定字段"><a href="#3-2-1-直接指定字段" class="headerlink" title="3.2.1.直接指定字段"></a>3.2.1.直接指定字段</h3><p>示例：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"price"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
   <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1438,9 +1439,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">2699</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>返回的结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1465,7 +1466,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-2-2-指定includes和excludes"><a href="#3-2-2-指定includes和excludes" class="headerlink" title="3.2.2.指定includes和excludes"></a>3.2.2.指定includes和excludes</h3><p>我们也可以通过：</p>
 <ul>
 <li>includes：来指定想要显示的字段</li>
@@ -1473,7 +1474,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </ul>
 <p>二者都是可选的。</p>
 <p>示例：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"includes"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"price"</span><span class="token punctuation">]</span>
@@ -1483,9 +1484,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">2699</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>与下面的结果将是一样的：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
      <span class="token property">"excludes"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"images"</span><span class="token punctuation">]</span>
@@ -1495,9 +1496,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">2699</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-3-高级查询"><a href="#3-3-高级查询" class="headerlink" title="3.3 高级查询"></a>3.3 高级查询</h2><h3 id="3-3-1-布尔组合（bool"><a href="#3-3-1-布尔组合（bool" class="headerlink" title="3.3.1 布尔组合（bool)"></a>3.3.1 布尔组合（bool)</h3><p><code>bool</code>把各种其它查询通过<code>must</code>（与）、<code>must_not</code>（非）、<code>should</code>（或）的方式进行组合</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"bool"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -1506,9 +1507,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token property">"should"</span><span class="token operator">:</span>   <span class="token punctuation">{</span> <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"手机"</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1534,9 +1535,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-3-2-范围查询-range"><a href="#3-3-2-范围查询-range" class="headerlink" title="3.3.2 范围查询(range)"></a>3.3.2 范围查询(range)</h3><p><code>range</code> 查询找出那些落在指定区间内的数字或者时间</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"range"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1546,7 +1547,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>range</code>查询允许以下字符：</p>
 <table>
 <thead>
@@ -1573,24 +1574,24 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </tr>
 </tbody></table>
 <h3 id="3-3-3-模糊查询-fuzzy"><a href="#3-3-3-模糊查询-fuzzy" class="headerlink" title="3.3.3 模糊查询(fuzzy)"></a>3.3.3 模糊查询(fuzzy)</h3><p>我们新增一个商品：</p>
-<pre class=" language-json"><code class="language-json">POST /heima/goods/<span class="token number">4</span>
+<pre class="line-numbers language-json"><code class="language-json">POST /heima/goods/<span class="token number">4</span>
 <span class="token punctuation">{</span>
     <span class="token property">"title"</span><span class="token operator">:</span><span class="token string">"apple手机"</span><span class="token punctuation">,</span>
     <span class="token property">"images"</span><span class="token operator">:</span><span class="token string">"http://image.leyou.com/12479122.jpg"</span><span class="token punctuation">,</span>
     <span class="token property">"price"</span><span class="token operator">:</span><span class="token number">6899.00</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>fuzzy</code> 查询是 <code>term</code> 查询的模糊等价。它允许用户搜索词条与实际词条的拼写出现偏差，但是偏差的编辑距离不得超过2：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"fuzzy"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"appla"</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面的查询，也能查询到apple手机</p>
 <p>我们可以通过<code>fuzziness</code>来指定允许的编辑距离：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"fuzzy"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1600,12 +1601,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-4-过滤-filter"><a href="#3-4-过滤-filter" class="headerlink" title="3.4 过滤(filter)"></a>3.4 过滤(filter)</h2><blockquote>
 <p><strong>条件查询中进行过滤</strong></p>
 </blockquote>
 <p>所有的查询都会影响到文档的评分及排名。如果我们需要在查询结果中进行过滤，并且不希望过滤条件影响评分，那么就不要把过滤条件作为查询条件来用。而是使用<code>filter</code>方式：</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"bool"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -1615,13 +1616,13 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：<code>filter</code>中还可以再次进行<code>bool</code>组合条件过滤。</p>
 <blockquote>
 <p><strong>无查询条件，直接过滤</strong></p>
 </blockquote>
 <p>如果一次查询只有过滤，没有查询条件，不希望进行评分，我们可以使用<code>constant_score</code>取代只有 filter 语句的 bool 查询。在性能上是完全相同的，但对于提高查询简洁性和清晰度有很大帮助。</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"constant_score"</span><span class="token operator">:</span>   <span class="token punctuation">{</span>
@@ -1629,9 +1630,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
                  <span class="token property">"range"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"price"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"gt"</span><span class="token operator">:</span><span class="token number">2000.00</span><span class="token punctuation">,</span><span class="token property">"lt"</span><span class="token operator">:</span><span class="token number">3000.00</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-5-排序"><a href="#3-5-排序" class="headerlink" title="3.5 排序"></a>3.5 排序</h2><h3 id="3-4-1-单字段排序"><a href="#3-4-1-单字段排序" class="headerlink" title="3.4.1 单字段排序"></a>3.4.1 单字段排序</h3><p><code>sort</code> 可以让我们按照不同的字段进行排序，并且通过<code>order</code>指定排序的方式</p>
-<pre class=" language-json"><code class="language-json">GET /heima/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /heima/_search
 <span class="token punctuation">{</span>
   <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1645,9 +1646,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-4-2-多字段排序"><a href="#3-4-2-多字段排序" class="headerlink" title="3.4.2 多字段排序"></a>3.4.2 多字段排序</h3><p>假定我们想要结合使用 price和 _score（得分） 进行查询，并且匹配的结果首先按照价格排序，然后按照相关性得分排序：</p>
-<pre class=" language-json"><code class="language-json">GET /goods/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /goods/_search
 <span class="token punctuation">{</span>
     <span class="token property">"query"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"bool"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -1661,7 +1662,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">{</span> <span class="token property">"price"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"order"</span><span class="token operator">:</span> <span class="token string">"desc"</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token punctuation">{</span> <span class="token property">"_score"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"order"</span><span class="token operator">:</span> <span class="token string">"desc"</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="4-聚合aggregations"><a href="#4-聚合aggregations" class="headerlink" title="4. 聚合aggregations"></a>4. 聚合aggregations</h1><p>聚合可以让我们极其方便的实现对数据的统计、分析。例如：</p>
 <ul>
 <li>什么品牌的手机最受欢迎？</li>
@@ -1701,7 +1702,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </ul>
 <p>为了测试聚合，我们先批量导入一些数据</p>
 <p>创建索引：</p>
-<pre class=" language-json"><code class="language-json">PUT /cars
+<pre class="line-numbers language-json"><code class="language-json">PUT /cars
 <span class="token punctuation">{</span>
   <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"number_of_shards"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
@@ -1719,10 +1720,10 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意</strong>：在ES中，需要进行聚合、排序、过滤的字段其处理方式比较特殊，因此不能被分词。这里我们将color和make这两个文字类型的字段设置为keyword类型，这个类型不会被分词，将来就可以参与聚合</p>
 <p>导入数据</p>
-<pre class=" language-json"><code class="language-json">POST /cars/transactions/_bulk
+<pre class="line-numbers language-json"><code class="language-json">POST /cars/transactions/_bulk
 <span class="token punctuation">{</span> <span class="token property">"index"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
 <span class="token punctuation">{</span> <span class="token property">"price"</span> <span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token property">"color"</span> <span class="token operator">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token property">"make"</span> <span class="token operator">:</span> <span class="token string">"honda"</span><span class="token punctuation">,</span> <span class="token property">"sold"</span> <span class="token operator">:</span> <span class="token string">"2014-10-28"</span> <span class="token punctuation">}</span>
 <span class="token punctuation">{</span> <span class="token property">"index"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
@@ -1738,9 +1739,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <span class="token punctuation">{</span> <span class="token property">"index"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
 <span class="token punctuation">{</span> <span class="token property">"price"</span> <span class="token operator">:</span> <span class="token number">80000</span><span class="token punctuation">,</span> <span class="token property">"color"</span> <span class="token operator">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token property">"make"</span> <span class="token operator">:</span> <span class="token string">"bmw"</span><span class="token punctuation">,</span> <span class="token property">"sold"</span> <span class="token operator">:</span> <span class="token string">"2014-01-01"</span> <span class="token punctuation">}</span>
 <span class="token punctuation">{</span> <span class="token property">"index"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
-<span class="token punctuation">{</span> <span class="token property">"price"</span> <span class="token operator">:</span> <span class="token number">25000</span><span class="token punctuation">,</span> <span class="token property">"color"</span> <span class="token operator">:</span> <span class="token string">"blue"</span><span class="token punctuation">,</span> <span class="token property">"make"</span> <span class="token operator">:</span> <span class="token string">"ford"</span><span class="token punctuation">,</span> <span class="token property">"sold"</span> <span class="token operator">:</span> <span class="token string">"2014-02-12"</span> <span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">{</span> <span class="token property">"price"</span> <span class="token operator">:</span> <span class="token number">25000</span><span class="token punctuation">,</span> <span class="token property">"color"</span> <span class="token operator">:</span> <span class="token string">"blue"</span><span class="token punctuation">,</span> <span class="token property">"make"</span> <span class="token operator">:</span> <span class="token string">"ford"</span><span class="token punctuation">,</span> <span class="token property">"sold"</span> <span class="token operator">:</span> <span class="token string">"2014-02-12"</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-2-聚合为桶"><a href="#4-2-聚合为桶" class="headerlink" title="4.2 聚合为桶"></a>4.2 聚合为桶</h2><p>首先，我们按照 汽车的颜色<code>color</code>来划分<code>桶</code></p>
-<pre class=" language-json"><code class="language-json">GET /cars/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /cars/_search
 <span class="token punctuation">{</span>
     <span class="token property">"size"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token property">"aggs"</span> <span class="token operator">:</span> <span class="token punctuation">{</span> 
@@ -1750,7 +1751,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>size： 查询条数，这里设置为0，因为我们不关心搜索到的数据，只关心聚合结果，提高效率</li>
 <li>aggs：声明这是一个聚合查询，是aggregations的缩写<ul>
@@ -1765,7 +1766,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </li>
 </ul>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1799,7 +1800,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>hits：查询结果为空，因为我们设置了size为0</li>
 <li>aggregations：聚合的结果</li>
@@ -1814,7 +1815,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <h2 id="4-3-桶内度量"><a href="#4-3-桶内度量" class="headerlink" title="4.3 桶内度量"></a>4.3 桶内度量</h2><p>前面的例子告诉我们每个桶里面的文档数量，这很有用。 但通常，我们的应用需要提供更复杂的文档度量。 例如，每种颜色汽车的平均价格是多少？</p>
 <p>因此，我们需要告诉Elasticsearch<code>使用哪个字段</code>，<code>使用何种度量方式</code>进行运算，这些信息要嵌套在<code>桶</code>内，<code>度量</code>的运算会基于<code>桶</code>内的文档进行</p>
 <p>现在，我们为刚刚的聚合结果添加 求价格平均值的度量：</p>
-<pre class=" language-json"><code class="language-json">GET /cars/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /cars/_search
 <span class="token punctuation">{</span>
     <span class="token property">"size"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token property">"aggs"</span> <span class="token operator">:</span> <span class="token punctuation">{</span> 
@@ -1831,7 +1832,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>aggs：我们在上一个aggs(popular_colors)中添加新的aggs。可见<code>度量</code>也是一个聚合</li>
 <li>avg_price：聚合的名称</li>
@@ -1839,7 +1840,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <li>field：度量运算的字段</li>
 </ul>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json">...
+<pre class="line-numbers language-json"><code class="language-json">...
   <span class="token property">"aggregations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"popular_colors"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"doc_count_error_upper_bound"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
@@ -1869,11 +1870,11 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-...</code></pre>
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以看到每个桶中都有自己的<code>avg_price</code>字段，这是度量聚合的结果</p>
 <h2 id="4-4-桶内嵌套桶"><a href="#4-4-桶内嵌套桶" class="headerlink" title="4.4 桶内嵌套桶"></a>4.4 桶内嵌套桶</h2><p>刚刚的案例中，我们在桶内嵌套度量运算。事实上桶不仅可以嵌套运算， 还可以再嵌套其它桶。也就是说在每个分组中，再分更多组。</p>
 <p>比如：我们想统计每种颜色的汽车中，分别属于哪个制造商，按照<code>make</code>字段再进行分桶</p>
-<pre class=" language-json"><code class="language-json">GET /cars/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /cars/_search
 <span class="token punctuation">{</span>
     <span class="token property">"size"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token property">"aggs"</span> <span class="token operator">:</span> <span class="token punctuation">{</span> 
@@ -1895,7 +1896,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>原来的color桶和avg计算我们不变</li>
 <li>maker：在嵌套的aggs下新添一个桶，叫做maker</li>
@@ -1903,7 +1904,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <li>filed：这里根据make字段进行划分</li>
 </ul>
 <p>部分结果：</p>
-<pre class=" language-json"><code class="language-json">...
+<pre class="line-numbers language-json"><code class="language-json">...
 <span class="token punctuation">{</span><span class="token property">"aggregations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"popular_colors"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"doc_count_error_upper_bound"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
@@ -1976,7 +1977,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-...</code></pre>
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>我们可以看到，新的聚合<code>maker</code>被嵌套在原来每一个<code>color</code>的桶中。</li>
 <li>每个颜色下面都根据 <code>make</code>字段进行了分组</li>
@@ -2013,7 +2014,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p>操作一下：</p>
 </blockquote>
 <p>比如，我们对汽车的价格进行分组，指定间隔interval为5000：</p>
-<pre class=" language-json"><code class="language-json">GET /cars/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /cars/_search
 <span class="token punctuation">{</span>
   <span class="token property">"size"</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
   <span class="token property">"aggs"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -2024,9 +2025,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -2106,11 +2107,11 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>你会发现，中间有大量的文档数量为0 的桶，看起来很丑。</p>
 <p>我们可以增加一个参数min_doc_count为1，来约束最少文档数量为1，这样文档数量为0的桶会被过滤</p>
 <p>示例：</p>
-<pre class=" language-json"><code class="language-json">GET /cars/_search
+<pre class="line-numbers language-json"><code class="language-json">GET /cars/_search
 <span class="token punctuation">{</span>
   <span class="token property">"size"</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
   <span class="token property">"aggs"</span><span class="token operator">:</span><span class="token punctuation">{</span>
@@ -2122,9 +2123,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -2168,7 +2169,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>完美，！</p>
 <p>如果你用kibana将结果变为柱形图，会更好看：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531752558505.png" alt="1531752558505"></p>
@@ -2205,7 +2206,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531973082475.png" alt="1531973082475"></p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531974312212.png" alt="1531974312212"></p>
 <p>pom依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
@@ -2251,22 +2252,22 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>application.yml文件配置：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">data</span><span class="token punctuation">:</span>
     <span class="token key atrule">elasticsearch</span><span class="token punctuation">:</span>
       <span class="token key atrule">cluster-name</span><span class="token punctuation">:</span> elasticsearch
-      <span class="token key atrule">cluster-nodes</span><span class="token punctuation">:</span> 192.168.56.101<span class="token punctuation">:</span><span class="token number">9300</span></code></pre>
+      <span class="token key atrule">cluster-nodes</span><span class="token punctuation">:</span> 192.168.56.101<span class="token punctuation">:</span><span class="token number">9300</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="5-3-实体类及注解"><a href="#5-3-实体类及注解" class="headerlink" title="5.3.实体类及注解"></a>5.3.实体类及注解</h2><p>首先我们准备好实体类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Item</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Item</span> <span class="token punctuation">{</span>
     Long id<span class="token punctuation">;</span>
     String title<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//标题</span>
     String category<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 分类</span>
     String brand<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 品牌</span>
     Double price<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 价格</span>
     String images<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 图片地址</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>映射</p>
 </blockquote>
@@ -2289,7 +2290,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </li>
 </ul>
 <p>示例：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"item"</span><span class="token punctuation">,</span>type <span class="token operator">=</span> <span class="token string">"docs"</span><span class="token punctuation">,</span> shards <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> replicas <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"item"</span><span class="token punctuation">,</span>type <span class="token operator">=</span> <span class="token string">"docs"</span><span class="token punctuation">,</span> shards <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> replicas <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Item</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token keyword">private</span> Long id<span class="token punctuation">;</span>
@@ -2308,7 +2309,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 
     <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>index <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> type <span class="token operator">=</span> FieldType<span class="token punctuation">.</span>Keyword<span class="token punctuation">)</span>
     <span class="token keyword">private</span> String images<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 图片地址</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="5-4-Template索引操作"><a href="#5-4-Template索引操作" class="headerlink" title="5.4.Template索引操作"></a>5.4.Template索引操作</h2><h3 id="5-4-1-创建索引和映射"><a href="#5-4-1-创建索引和映射" class="headerlink" title="5.4.1.创建索引和映射"></a>5.4.1.创建索引和映射</h3><blockquote>
 <p>创建索引</p>
 </blockquote>
@@ -2323,7 +2324,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531985337698.png" alt="1531985337698"></p>
 <p>可以根据类的字节码信息（注解配置）来生成映射，或者手动编写映射</p>
 <p>我们这里采用类的字节码信息创建索引并映射：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> ItcastElasticsearchApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IndexTest</span> <span class="token punctuation">{</span>
 
@@ -2337,9 +2338,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
         <span class="token comment" spellcheck="true">// 配置映射，会根据Item类中的id、Field等字段来自动完成映射</span>
         elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">putMapping</span><span class="token punctuation">(</span>Item<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
-<pre class=" language-json"><code class="language-json">GET /item
+<pre class="line-numbers language-json"><code class="language-json">GET /item
 <span class="token punctuation">{</span>
   <span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"aliases"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -2383,27 +2384,27 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-3-2-删除索引"><a href="#5-3-2-删除索引" class="headerlink" title="5.3.2.删除索引"></a>5.3.2.删除索引</h3><p>删除索引的API：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531986474606.png" alt="1526544759120"></p>
 <p>可以根据类名或索引名删除。</p>
 <p>示例：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteIndex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">deleteIndex</span><span class="token punctuation">(</span><span class="token string">"heima"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531986618059.png" alt="1531986618059"></p>
 <h2 id="5-4-Repository文档操作"><a href="#5-4-Repository文档操作" class="headerlink" title="5.4.Repository文档操作"></a>5.4.Repository文档操作</h2><p>Spring Data 的强大之处，就在于你不用写任何DAO处理，自动根据方法名或类的信息进行CRUD操作。只要你定义一个接口，然后继承Repository提供的一些子接口，就能具备各种基本的CRUD功能。</p>
 <p>我们只需要定义接口，然后继承它就OK了。</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531987244855.png" alt="1531987244855"></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Item<span class="token punctuation">,</span>Long<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Item<span class="token punctuation">,</span>Long<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>来看下Repository的继承关系：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531986965570.png" alt="1531986965570"></p>
 <p>我们看到有一个ElasticsearchRepository接口：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531987044693.png" alt="1531987044693"></p>
-<h3 id="5-4-1-新增文档"><a href="#5-4-1-新增文档" class="headerlink" title="5.4.1.新增文档"></a>5.4.1.新增文档</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<h3 id="5-4-1-新增文档"><a href="#5-4-1-新增文档" class="headerlink" title="5.4.1.新增文档"></a>5.4.1.新增文档</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
 <span class="token keyword">private</span> ItemRepository itemRepository<span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Test</span>
@@ -2411,10 +2412,10 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     Item item <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>1L<span class="token punctuation">,</span> <span class="token string">"小米手机7"</span><span class="token punctuation">,</span> <span class="token string">" 手机"</span><span class="token punctuation">,</span>
                          <span class="token string">"小米"</span><span class="token punctuation">,</span> <span class="token number">3499.00</span><span class="token punctuation">,</span> <span class="token string">"http://image.leyou.com/13123.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     itemRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>去页面查询看看：</p>
 <pre><code>GET /item/_search</code></pre><p>结果：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">14</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -2443,18 +2444,18 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-4-2-批量新增"><a href="#5-4-2-批量新增" class="headerlink" title="5.4.2.批量新增"></a>5.4.2.批量新增</h3><p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">indexList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Item<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>2L<span class="token punctuation">,</span> <span class="token string">"坚果手机R1"</span><span class="token punctuation">,</span> <span class="token string">" 手机"</span><span class="token punctuation">,</span> <span class="token string">"锤子"</span><span class="token punctuation">,</span> <span class="token number">3699.00</span><span class="token punctuation">,</span> <span class="token string">"http://image.leyou.com/123.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>3L<span class="token punctuation">,</span> <span class="token string">"华为META10"</span><span class="token punctuation">,</span> <span class="token string">" 手机"</span><span class="token punctuation">,</span> <span class="token string">"华为"</span><span class="token punctuation">,</span> <span class="token number">4499.00</span><span class="token punctuation">,</span> <span class="token string">"http://image.leyou.com/3.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 接收对象集合，实现批量新增</span>
     itemRepository<span class="token punctuation">.</span><span class="token function">saveAll</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>再次去页面查询：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"took"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token property">"_shards"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -2511,12 +2512,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-4-3-修改文档"><a href="#5-4-3-修改文档" class="headerlink" title="5.4.3.修改文档"></a>5.4.3.修改文档</h3><p>修改和新增是同一个接口，区分的依据就是id，这一点跟我们在页面发起PUT请求是类似的。</p>
 <h3 id="5-4-4-基本查询"><a href="#5-4-4-基本查询" class="headerlink" title="5.4.4.基本查询"></a>5.4.4.基本查询</h3><p>ElasticsearchRepository提供了一些基本的查询方法：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531989728869.png" alt="1531989728869"></p>
 <p>我们来试试查询所有：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     Optional<span class="token operator">&lt;</span>Item<span class="token operator">></span> optional <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemRepository<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>optional<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2527,7 +2528,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token comment" spellcheck="true">// 查询全部，并按照价格降序排序</span>
     Iterable<span class="token operator">&lt;</span>Item<span class="token operator">></span> items <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span>Sort<span class="token punctuation">.</span><span class="token function">by</span><span class="token punctuation">(</span>Sort<span class="token punctuation">.</span>Direction<span class="token punctuation">.</span>DESC<span class="token punctuation">,</span> <span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     items<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item<span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531990510740.png" alt="1531990510740"></p>
 <h3 id="5-4-5-自定义方法"><a href="#5-4-5-自定义方法" class="headerlink" title="5.4.5.自定义方法"></a>5.4.5.自定义方法</h3><p>Spring Data 的另一个强大功能，是根据方法名称自动实现功能。</p>
@@ -2638,7 +2639,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 </tr>
 </tbody></table>
 <p>例如，我们来按照价格区间查询，定义这样的一个方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Item<span class="token punctuation">,</span>Long<span class="token operator">></span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Item<span class="token punctuation">,</span>Long<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
      * 根据价格区间查询
@@ -2647,9 +2648,9 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
      * @return
      */</span>
     List<span class="token operator">&lt;</span>Item<span class="token operator">></span> <span class="token function">findByPriceBetween</span><span class="token punctuation">(</span><span class="token keyword">double</span> price1<span class="token punctuation">,</span> <span class="token keyword">double</span> price2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后添加一些测试数据：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">indexList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Item<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>1L<span class="token punctuation">,</span> <span class="token string">"小米手机7"</span><span class="token punctuation">,</span> <span class="token string">"手机"</span><span class="token punctuation">,</span> <span class="token string">"小米"</span><span class="token punctuation">,</span> <span class="token number">3299.00</span><span class="token punctuation">,</span> <span class="token string">"http://image.leyou.com/13123.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2659,27 +2660,27 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>5L<span class="token punctuation">,</span> <span class="token string">"荣耀V10"</span><span class="token punctuation">,</span> <span class="token string">"手机"</span><span class="token punctuation">,</span> <span class="token string">"华为"</span><span class="token punctuation">,</span> <span class="token number">2799.00</span><span class="token punctuation">,</span> <span class="token string">"http://image.leyou.com/13123.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 接收对象集合，实现批量新增</span>
     itemRepository<span class="token punctuation">.</span><span class="token function">saveAll</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>不需要写实现类，然后我们直接去运行：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">queryByPriceBetween</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>Item<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemRepository<span class="token punctuation">.</span><span class="token function">findByPriceBetween</span><span class="token punctuation">(</span><span class="token number">2000.00</span><span class="token punctuation">,</span> <span class="token number">3500.00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span>Item item <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"item = "</span> <span class="token operator">+</span> item<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1531993518230.png" alt="1531993518230"></p>
 <p>虽然基本查询和自定义方法已经很强大了，但是如果是复杂查询（模糊、通配符、词条查询等）就显得力不从心了。此时，我们只能使用原生查询。</p>
 <h2 id="5-5-高级查询"><a href="#5-5-高级查询" class="headerlink" title="5.5.高级查询"></a>5.5.高级查询</h2><h3 id="5-5-1-基本查询"><a href="#5-5-1-基本查询" class="headerlink" title="5.5.1.基本查询"></a>5.5.1.基本查询</h3><p>先看看基本玩法</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 词条查询</span>
     MatchQueryBuilder queryBuilder <span class="token operator">=</span> QueryBuilders<span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span> <span class="token string">"小米"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 执行查询</span>
     Iterable<span class="token operator">&lt;</span>Item<span class="token operator">></span> items <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemRepository<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>queryBuilder<span class="token punctuation">)</span><span class="token punctuation">;</span>
     items<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Repository的search方法需要QueryBuilder参数，elasticSearch为我们提供了一个对象QueryBuilders：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532008212626.png" alt="1532008212626"></p>
 <p>QueryBuilders提供了大量的静态方法，用于生成各种不同类型的查询对象，例如：词条、模糊、通配符等QueryBuilder对象。</p>
@@ -2687,7 +2688,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532008415257.png" alt="1532008415257"></p>
 <p>elasticsearch提供很多可用的查询方式，但是不够灵活。如果想玩过滤或者聚合查询等就很难了。</p>
 <h3 id="5-5-2-自定义查询"><a href="#5-5-2-自定义查询" class="headerlink" title="5.5.2.自定义查询"></a>5.5.2.自定义查询</h3><p>先来看最基本的match query：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testNativeQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 构建查询条件</span>
     NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2700,7 +2701,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token comment" spellcheck="true">// 打印总页数</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>items<span class="token punctuation">.</span><span class="token function">getTotalPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     items<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>NativeSearchQueryBuilder：Spring提供的一个查询条件构建器，帮助构建json格式的请求体</p>
 <p><code>Page&lt;item&gt;</code>：默认是分页查询，因此返回的是一个分页的结果对象，包含属性：</p>
 <ul>
@@ -2712,7 +2713,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532009679148.png" alt="1532009679148"></p>
 <p>结果：<img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532009717623.png" alt="1532009717623"></p>
 <h3 id="5-5-4-分页查询"><a href="#5-5-4-分页查询" class="headerlink" title="5.5.4.分页查询"></a>5.5.4.分页查询</h3><p>利用<code>NativeSearchQueryBuilder</code>可以方便的实现分页：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testNativeQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 构建查询条件</span>
     NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2736,12 +2737,12 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token comment" spellcheck="true">// 当前页</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>items<span class="token punctuation">.</span><span class="token function">getNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     items<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532011610028.png" alt="1532011610028"></p>
 <p>可以发现，<strong>Elasticsearch中的分页是从第0页开始</strong>。</p>
 <h3 id="5-5-5-排序"><a href="#5-5-5-排序" class="headerlink" title="5.5.5.排序"></a>5.5.5.排序</h3><p>排序也通用通过<code>NativeSearchQueryBuilder</code>完成：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 构建查询条件</span>
     NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2756,11 +2757,11 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
     <span class="token comment" spellcheck="true">// 打印总条数</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>items<span class="token punctuation">.</span><span class="token function">getTotalElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     items<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532012155435.png" alt="1532012155435"></p>
 <h2 id="5-6-聚合"><a href="#5-6-聚合" class="headerlink" title="5.6.聚合"></a>5.6.聚合</h2><h3 id="5-6-1-聚合为桶"><a href="#5-6-1-聚合为桶" class="headerlink" title="5.6.1.聚合为桶"></a>5.6.1.聚合为桶</h3><p>桶就是分组，比如这里我们按照品牌brand进行分组：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testAgg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 不查询任何结果</span>
@@ -2784,7 +2785,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>显示的结果：</p>
 <p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1532012598213.png" alt="1532012598213"></p>
 <p>关键API：</p>
@@ -2803,7 +2804,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
 <p>我们看下页面的查询的JSON结果与Java类的对照关系：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1526571200130.png" alt="1526571200130"></p>
 <h3 id="5-6-2-嵌套聚合，求平均值"><a href="#5-6-2-嵌套聚合，求平均值" class="headerlink" title="5.6.2.嵌套聚合，求平均值"></a>5.6.2.嵌套聚合，求平均值</h3><p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSubAgg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     NativeSearchQueryBuilder queryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 不查询任何结果</span>
@@ -2831,7 +2832,7 @@ mkdir logs</code></pre><p><img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-yo
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"平均售价："</span> <span class="token operator">+</span> avg<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p> <img src="/chaining/2019/07/07/xiang-mu-shi-zhan/le-you-shang-cheng/day11-elasticsearch/1526572198447.png" alt="1526572198447"></p>
 

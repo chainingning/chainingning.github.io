@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day12-基本搜索, 柴米油盐, Chester">
+    <meta name="keywords" content="day12-基本搜索, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 编写数据导入功能
 实现基本搜索
@@ -42,7 +42,8 @@ P">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -459,7 +460,7 @@ P">
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532178218793.png" alt="1532178218793"></p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532178276070.png" alt="1532178276070"></p>
 <p>Pom文件：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -496,9 +497,9 @@ P">
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>application.yml：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8083</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -513,9 +514,9 @@ P">
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>10086/eureka
   <span class="token key atrule">instance</span><span class="token punctuation">:</span>
     <span class="token key atrule">lease-renewal-interval-in-seconds</span><span class="token punctuation">:</span> <span class="token number">5 </span><span class="token comment" spellcheck="true"># 每隔5秒发送一次心跳</span>
-    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span></code></pre>
+    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>引导类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableDiscoveryClient</span>
 <span class="token annotation punctuation">@EnableFeignClients</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouSearchService</span> <span class="token punctuation">{</span>
@@ -523,7 +524,7 @@ P">
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LySearchService<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="1-2-索引库数据格式分析"><a href="#1-2-索引库数据格式分析" class="headerlink" title="1.2.索引库数据格式分析"></a>1.2.索引库数据格式分析</h2><p>接下来，我们需要商品数据导入索引库，便于用户搜索。</p>
 <p>那么问题来了，我们有SPU和SKU，到底如何保存到索引库？</p>
 <h3 id="1-2-1-以结果为导向"><a href="#1-2-1-以结果为导向" class="headerlink" title="1.2.1.以结果为导向"></a>1.2.1.以结果为导向</h3><p>大家来看下搜索结果页：</p>
@@ -542,7 +543,7 @@ P">
 <p>综上所述，我们需要的数据格式有：</p>
 <p>spuId、SkuId、商品分类id、品牌id、图片、价格、商品的创建时间、sku信息集、可搜索的规格参数</p>
 <h3 id="1-2-3-最终的数据结构"><a href="#1-2-3-最终的数据结构" class="headerlink" title="1.2.3.最终的数据结构"></a>1.2.3.最终的数据结构</h3><p>我们创建一个类，封装要保存到索引库的数据，并设置映射属性：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"goods"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token string">"docs"</span><span class="token punctuation">,</span> shards <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> replicas <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"goods"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token string">"docs"</span><span class="token punctuation">,</span> shards <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> replicas <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Goods</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token keyword">private</span> Long id<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// spuId</span>
@@ -559,7 +560,7 @@ P">
     <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>type <span class="token operator">=</span> FieldType<span class="token punctuation">.</span>Keyword<span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
     <span class="token keyword">private</span> String skus<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// List&lt;sku>信息的json结构</span>
     <span class="token keyword">private</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> specs<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 可搜索的规格参数，key是参数名，值是参数值</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>一些特殊字段解释：</p>
 <ul>
 <li><p>all：用来进行全文检索的字段，里面包含标题、商品分类信息</p>
@@ -570,12 +571,12 @@ P">
 </li>
 <li><p>specs：所有规格参数的集合。key是参数名，值是参数值。</p>
 <p>例如：我们在specs中存储 内存：4G,6G，颜色为红色，转为json就是：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"specs"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"内存"</span><span class="token operator">:</span><span class="token punctuation">[</span>4G<span class="token punctuation">,</span>6G<span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token property">"颜色"</span><span class="token operator">:</span><span class="token string">"红色"</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当存储到索引库时，elasticsearch会处理为两个字段：</p>
 <ul>
 <li>specs.内存：[4G,6G]</li>
@@ -614,7 +615,7 @@ P">
 </ul>
 <p>因此我们需要额外提供一个查询商品分类名称的接口。</p>
 <h3 id="1-3-1-商品分类名称查询"><a href="#1-3-1-商品分类名称查询" class="headerlink" title="1.3.1.商品分类名称查询"></a>1.3.1.商品分类名称查询</h3><p>在CategoryController中添加接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"names"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"names"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>String<span class="token operator">>></span> <span class="token function">queryNamesByIds</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"ids"</span><span class="token punctuation">)</span>List<span class="token operator">&lt;</span>Long<span class="token operator">></span> ids<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
     List<span class="token operator">&lt;</span>String<span class="token operator">></span> names <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryService<span class="token punctuation">.</span><span class="token function">queryNamesByIds</span><span class="token punctuation">(</span>ids<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -622,13 +623,13 @@ P">
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532213731039.png" alt="1532213731039"></p>
 <h3 id="1-3-2-编写FeignClient"><a href="#1-3-2-编写FeignClient" class="headerlink" title="1.3.2.编写FeignClient"></a>1.3.2.编写FeignClient</h3><h4 id="1-3-2-1-问题展现"><a href="#1-3-2-1-问题展现" class="headerlink" title="1.3.2.1.问题展现"></a>1.3.2.1.问题展现</h4><p>操作leyou-search工程</p>
 <p>现在，我们要在搜索微服务调用商品微服务的接口。</p>
 <p>第一步要在leyou-search工程中，引入商品微服务依赖：<code>leyou-item-interface</code>。</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--商品微服务--></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--商品微服务--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.item<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-item-interface<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -638,10 +639,10 @@ P">
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>第二步，编写FeignClient</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543416825258.png" alt="1543416825258"></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsClient</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -674,7 +675,7 @@ P">
      */</span>
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"sku/list"</span><span class="token punctuation">)</span>
     List<span class="token operator">&lt;</span>Sku<span class="token operator">></span> <span class="token function">querySkuBySpuId</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上的这些代码直接从商品微服务中拷贝而来，完全一致。差别就是没有方法的具体实现。大家觉得这样有没有问题？</p>
 <p>而FeignClient代码遵循SpringMVC的风格，因此与商品微服务的Controller完全一致。这样就存在一定的问题：</p>
 <ul>
@@ -689,14 +690,14 @@ P">
 <p>第一步：服务的提供方在<code>leyou-item-interface</code>中提供API接口，并编写接口声明：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543416889053.png" alt="1543416889053"></p>
 <p>商品分类服务接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"category"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"category"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CategoryApi</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"names"</span><span class="token punctuation">)</span>
     ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>String<span class="token operator">>></span> <span class="token function">queryNameByIds</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"ids"</span><span class="token punctuation">)</span> List<span class="token operator">&lt;</span>Long<span class="token operator">></span> ids<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>商品服务接口，返回值不再使用ResponseEntity：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/goods"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/goods"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsApi</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -729,16 +730,16 @@ P">
      */</span>
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"sku/list"</span><span class="token punctuation">)</span>
     List<span class="token operator">&lt;</span>Sku<span class="token operator">></span> <span class="token function">querySkuBySpuId</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>品牌的接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"brand"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"brand"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BrandApi</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{id}"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> Brand <span class="token function">queryBrandById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>规格参数的接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"spec"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"spec"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecificationApi</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"params"</span><span class="token punctuation">)</span>
@@ -749,9 +750,9 @@ P">
             <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"searching"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> Boolean searching
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>需要引入springMVC及leyou-common的依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-webmvc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>5.0.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
@@ -760,38 +761,38 @@ P">
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>第二步：在调用方<code>leyou-search</code>中编写FeignClient，但不要写方法声明了，直接继承<code>leyou-item-interface</code>提供的api接口：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543417084636.png" alt="1543417084636"></p>
 <p>商品的FeignClient：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsClient</span> <span class="token keyword">extends</span> <span class="token class-name">GoodsApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>商品分类的FeignClient：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CategoryClient</span> <span class="token keyword">extends</span> <span class="token class-name">CategoryApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>品牌的FeignClient：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BrandClient</span> <span class="token keyword">extends</span> <span class="token class-name">BrandApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>规格参数的FeignClient:</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecificationClient</span> <span class="token keyword">extends</span> <span class="token class-name">SpecificationApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>是不是简单多了？</p>
 <h4 id="1-3-2-3-测试"><a href="#1-3-2-3-测试" class="headerlink" title="1.3.2.3.测试"></a>1.3.2.3.测试</h4><p>在leyou-search中引入springtest依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>创建测试类：</p>
 <p>在接口上按快捷键：<code>Ctrl + Shift + T</code></p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532216103709.png" alt="1532216103709"></p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532216169168.png" alt="1532216169168"></p>
 <p>测试代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> LeyouSearchApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CategoryClientTest</span> <span class="token punctuation">{</span>
 
@@ -803,16 +804,16 @@ P">
         List<span class="token operator">&lt;</span>String<span class="token operator">></span> names <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>categoryClient<span class="token punctuation">.</span><span class="token function">queryNamesByIds</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>1L<span class="token punctuation">,</span> 2L<span class="token punctuation">,</span> 3L<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         names<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532216884221.png" alt="1532216884221"></p>
 <h2 id="1-4-导入数据"><a href="#1-4-导入数据" class="headerlink" title="1.4.导入数据"></a>1.4.导入数据</h2><h3 id="1-4-1-创建GoodsRepository"><a href="#1-4-1-创建GoodsRepository" class="headerlink" title="1.4.1.创建GoodsRepository"></a>1.4.1.创建GoodsRepository</h3><p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543418137705.png" alt="1543418137705"></p>
 <p>java代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Goods<span class="token punctuation">,</span> Long<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token operator">&lt;</span>Goods<span class="token punctuation">,</span> Long<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="1-4-2-创建索引"><a href="#1-4-2-创建索引" class="headerlink" title="1.4.2.创建索引"></a>1.4.2.创建索引</h3><p>我们新建一个测试类，在里面进行数据的操作：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543417536876.png" alt="1543417536876"></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>SpringRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> LeyouSearchApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ElasticsearchTest</span> <span class="token punctuation">{</span>
 
@@ -828,11 +829,11 @@ P">
         <span class="token keyword">this</span><span class="token punctuation">.</span>template<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span>Goods<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>template<span class="token punctuation">.</span><span class="token function">putMapping</span><span class="token punctuation">(</span>Goods<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>通过kibana查看：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532217819818.png" alt="1532217819818"></p>
 <h3 id="1-4-3-导入数据"><a href="#1-4-3-导入数据" class="headerlink" title="1.4.3.导入数据"></a>1.4.3.导入数据</h3><p>导入数据其实就是查询数据，然后把查询到的Spu转变为Goods来保存，因此我们先编写一个SearchService，然后在里面定义一个方法， 把Spu转为Goods</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -947,11 +948,11 @@ P">
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>因为过滤参数中有一类比较特殊，就是数值区间：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1526608095471.png" alt="1526608095471"></p>
 <p>所以我们在存入时要进行处理：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> String <span class="token function">chooseSegment</span><span class="token punctuation">(</span>String value<span class="token punctuation">,</span> SpecParam p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">private</span> String <span class="token function">chooseSegment</span><span class="token punctuation">(</span>String value<span class="token punctuation">,</span> SpecParam p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">double</span> val <span class="token operator">=</span> NumberUtils<span class="token punctuation">.</span><span class="token function">toDouble</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
     String result <span class="token operator">=</span> <span class="token string">"其它"</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 保存数值段</span>
@@ -976,9 +977,9 @@ P">
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后编写一个测试类，循环查询Spu，然后调用IndexService中的方法，把SPU变为Goods，然后写入索引库：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 创建索引</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span>Goods<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1006,7 +1007,7 @@ P">
         <span class="token comment" spellcheck="true">// 每次循环页码加1</span>
         page<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>rows <span class="token operator">==</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>通过kibana查询， 可以看到数据成功导入：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532228358310.png" alt="1532228358310"></p>
 <h1 id="2-实现基本搜索"><a href="#2-实现基本搜索" class="headerlink" title="2.实现基本搜索"></a>2.实现基本搜索</h1><h2 id="2-1-页面分析"><a href="#2-1-页面分析" class="headerlink" title="2.1.页面分析"></a>2.1.页面分析</h2><h3 id="2-1-1-页面跳转"><a href="#2-1-1-页面跳转" class="headerlink" title="2.1.1.页面跳转"></a>2.1.1.页面跳转</h3><p>在首页的顶部，有一个输入框：</p>
@@ -1015,7 +1016,7 @@ P">
 <p>并且将搜索关键字以请求参数携带过来：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532229236516.png" alt="1532229236516"></p>
 <p>我们打开<code>search.html</code>，在最下面会有提前定义好的Vue实例：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
     <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         el<span class="token punctuation">:</span> <span class="token string">"#searchApp"</span><span class="token punctuation">,</span>
         data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -1025,17 +1026,17 @@ P">
             lyTop<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"./js/pages/top.js"</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这个Vue实例中，通过import导入的方式，加载了另外一个js：top.js并作为一个局部组件。top其实是页面顶部导航组件，我们暂时不管</p>
 <h3 id="2-1-2-发起异步请求"><a href="#2-1-2-发起异步请求" class="headerlink" title="2.1.2.发起异步请求"></a>2.1.2.发起异步请求</h3><p>要想在页面加载后，就展示出搜索结果。我们应该在页面加载时，获取地址栏请求参数，并发起异步请求，查询后台数据，然后在页面渲染。</p>
 <p>我们在data中定义一个对象，记录请求的参数：</p>
-<pre class=" language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     search<span class="token punctuation">:</span><span class="token punctuation">{</span>
         key<span class="token punctuation">:</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 搜索页面的关键字</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们通过钩子函数created，在页面加载时获取请求参数，并记录下来。</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 判断是否有请求参数</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>location<span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -1047,16 +1048,16 @@ P">
 
     <span class="token comment" spellcheck="true">// 发起请求，根据条件搜索</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后发起请求，搜索数据。</p>
-<pre class=" language-js"><code class="language-js">methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// ly.http.post("/search/page", ly.stringify(this.search)).then(resp=>{</span>
         ly<span class="token punctuation">.</span>http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/search/page"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>resp<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>我们这里使用<code>ly</code>是common.js中定义的工具对象。</li>
 <li>这里使用的是post请求，这样可以携带更多参数，并且以json格式发送</li>
@@ -1076,7 +1077,7 @@ P">
 <li><p>请求路径：/search/page，不过前面的/search应该是网关的映射路径，因此真实映射路径page，代表分页查询</p>
 </li>
 <li><p>请求参数：json格式，目前只有一个属性：key-搜索关键字，但是搜索结果页一定是带有分页查询的，所以将来肯定会有page属性，因此我们可以用一个对象来接收请求的json数据：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchRequest</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchRequest</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> String key<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 搜索条件</span>
 
     <span class="token keyword">private</span> Integer page<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 当前页</span>
@@ -1107,13 +1108,13 @@ P">
     <span class="token keyword">public</span> Integer <span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> DEFAULT_SIZE<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>返回结果：作为分页结果，一般都两个属性：当前页数据、总条数信息，我们可以使用之前定义的PageResult类</p>
 </li>
 </ul>
 <p>代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchController</span> <span class="token punctuation">{</span>
 
@@ -1134,9 +1135,9 @@ P">
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-2-2-service"><a href="#2-2-2-service" class="headerlink" title="2.2.2.service"></a>2.2.2.service</h3><p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1543418304067.png" alt="1543418304067"></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SearchService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1171,16 +1172,16 @@ P">
         <span class="token comment" spellcheck="true">// 封装结果并返回</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>goodsPage<span class="token punctuation">.</span><span class="token function">getTotalElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getTotalPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> goodsPage<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意点：我们要设置SourceFilter，来选择要返回的结果，否则返回一堆没用的数据，影响查询效率。</p>
 <h3 id="2-2-3-测试"><a href="#2-2-3-测试" class="headerlink" title="2.2.3.测试"></a>2.2.3.测试</h3><p>刷新页面测试：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532237344249.png" alt="1532237344249"></p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532237401249.png" alt="1532237401249"></p>
 <p>数据是查到了，但是因为我们只查询部分字段，所以结果json 数据中有很多null，这很不优雅。</p>
 <p>解决办法很简单，在leyou-search的application.yml中添加一行配置，json处理时忽略空值：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">jackson</span><span class="token punctuation">:</span>
-    <span class="token key atrule">default-property-inclusion</span><span class="token punctuation">:</span> non_null <span class="token comment" spellcheck="true"># 配置json处理时忽略空值</span></code></pre>
+    <span class="token key atrule">default-property-inclusion</span><span class="token punctuation">:</span> non_null <span class="token comment" spellcheck="true"># 配置json处理时忽略空值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532237986819.png" alt="1532237986819"></p>
 <h2 id="2-3-页面渲染"><a href="#2-3-页面渲染" class="headerlink" title="2.3.页面渲染"></a>2.3.页面渲染</h2><p>页面已经拿到了结果，接下来就要渲染样式了。</p>
@@ -1214,13 +1215,13 @@ P">
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532240706261.png" alt="1532240706261"></p>
 <p>看到又是一个无序列表，这里我们也一样删掉多余的，保留一个<code>li</code>，需要注意选中的项有一个样式类：selected</p>
 <p>我们的代码：</p>
-<pre class=" language-vue"><code class="language-vue"><!--多sku图片列表-->
+<pre class="line-numbers language-vue"><code class="language-vue"><!--多sku图片列表-->
 <ul class="skus">
     <li :class="{selected: sku.id == goods.selected.id}" v-for="sku in goods.skus" :key="sku.id"
         @mouseOver="goods.selected=sku">
         <img :src="sku.image">
     </li>
-</ul></code></pre>
+</ul><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：</p>
 <ul>
 <li>class样式通过 goods.selected的id是否与当前sku的id一致来判断</li>
@@ -1273,7 +1274,7 @@ P">
 <li>总条数：需要后台传递给我们</li>
 </ul>
 <p>我们首先在data中记录下这几个值：page-当前页，total-总条数，totalPage-总页数</p>
-<pre class=" language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     ly<span class="token punctuation">,</span>
     search<span class="token punctuation">:</span><span class="token punctuation">{</span>
         key<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
@@ -1282,7 +1283,7 @@ P">
     goodsList<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 接收搜索得到的结果</span>
     total<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 总条数</span>
     totalPage<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">// 总页数</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>因为page是搜索条件之一，所以记录在search对象中。</p>
 <p>要注意：我们在created钩子函数中，会读取url路径的参数，然后赋值给search。如果是第一次请求页面，page是不存在的。因此为了避免page被覆盖，我们应该这么做：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532243978471.png" alt="1532243978471"></p>
@@ -1314,7 +1315,7 @@ P">
 <p>所以，我们的页面这样来做：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532246481241.png" alt="1532246481241"></p>
 <p>a标签中的分页数字通过<code>index</code>函数来计算，需要把<code>i</code>传递过去：</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">index</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">index</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>page <span class="token operator">&lt;=</span> <span class="token number">3</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalPage <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 如果当前页小于等于3或者总页数小于等于5</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
@@ -1324,11 +1325,11 @@ P">
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalPage <span class="token operator">-</span> <span class="token number">5</span> <span class="token operator">+</span> i<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>需要注意的是，如果总页数不足5页，我们就不应该遍历1<del>5，而是1</del>总页数，稍作改进：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1526698842013.png" alt="1526698842013"></p>
 <p>分页条的其它部分就比较简单了：</p>
-<pre class=" language-vue"><code class="language-vue"><div class="sui-pagination pagination-large">
+<pre class="line-numbers language-vue"><code class="language-vue"><div class="sui-pagination pagination-large">
     <ul style="width: 550px">
         <li :class="{prev:true,disabled:search.page === 1}">
             <a href="#">«上一页</a>
@@ -1349,12 +1350,12 @@ P">
             页 <button class="page-confirm" onclick="alert(1)">确定</button>
         </span>
     </div>
-</div></code></pre>
+</div><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-2-点击分页做什么"><a href="#3-2-点击分页做什么" class="headerlink" title="3.2.点击分页做什么"></a>3.2.点击分页做什么</h2><p>点击分页按钮后，自然是要修改<code>page</code>的值</p>
 <p>所以，我们在<code>上一页</code>、<code>下一页</code>按钮添加点击事件，对page进行修改，在数字按钮上绑定点击事件，点击直接修改page：</p>
 <p><img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1532248549662.png" alt="1532248549662"></p>
 <p>翻页事件的方法：</p>
-<pre class=" language-js"><code class="language-js">    <span class="token function">prevPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">    <span class="token function">prevPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>page <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>page<span class="token operator">--</span>
         <span class="token punctuation">}</span>
@@ -1363,12 +1364,12 @@ P">
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>page <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalPage<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span>page<span class="token operator">++</span>
         <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当<code>page</code>发生变化，我们应该去后台重新查询数据。</p>
 <p>不过，如果我们直接发起ajax请求，那么浏览器的地址栏中是不会有变化的，没有记录下分页信息。如果用户刷新页面，那么就会回到第一页。</p>
 <p>这样不太友好，我们应该把<strong>搜索条件记录在地址栏的查询参数中</strong>。</p>
 <p>因此，我们监听search的变化，然后把search的过滤字段拼接在url路径后：</p>
-<pre class=" language-js"><code class="language-js">watch<span class="token punctuation">:</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">watch<span class="token punctuation">:</span><span class="token punctuation">{</span>
     search<span class="token punctuation">:</span><span class="token punctuation">{</span>
         deep<span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
         <span class="token function">handler</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -1376,13 +1377,13 @@ P">
             window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">"http://www.leyou.com/search.html?"</span> <span class="token operator">+</span> ly<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>刷新页面测试，然后就出现重大bug：页面无限刷新！为什么？</p>
 <p>因为Vue实例初始化的钩子函数中，我们读取请求参数，赋值给search的时候，也触发了watch监视！也就是说，每次页面创建完成，都会触发watch，然后就会去修改window.location路径，然后页面被刷新，再次触发created钩子，又触发watch，周而复始，无限循环。</p>
 <p>所以，我们需要在watch中进行监控，如果发现是第一次初始化，则不继续向下执行。</p>
 <p>那么问题是，如何判断是不是第一次？</p>
 <p>第一次初始化时，search中的key值肯定是空的，所以，我们这么做：</p>
-<pre class=" language-js"><code class="language-js">watch<span class="token punctuation">:</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">watch<span class="token punctuation">:</span><span class="token punctuation">{</span>
     search<span class="token punctuation">:</span><span class="token punctuation">{</span>
         deep<span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
         <span class="token function">handler</span><span class="token punctuation">(</span>val<span class="token punctuation">,</span>old<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -1394,7 +1395,7 @@ P">
             window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">"http://www.leyou.com/search.html?"</span> <span class="token operator">+</span> ly<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>再次刷新，OK了！</p>
 <h2 id="3-3-页面顶部分页条"><a href="#3-3-页面顶部分页条" class="headerlink" title="3.3.页面顶部分页条"></a>3.3.页面顶部分页条</h2><p>在页面商品列表的顶部，也有一个分页条：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1526716212704.png" alt="1526716212704"></p>
@@ -1411,7 +1412,7 @@ P">
 <p>因此，我们首先在<code>search</code>中记录这两个信息，因为created钩子函数会对search进行覆盖，因此我们在钩子函数中对这两个信息进行初始化即可：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1526717586493.png" alt="1526717586493"></p>
 <p>然后，在页面上给按钮绑定点击事件，修改<code>sortBy</code>和<code>descending</code>的值：</p>
-<pre class=" language-vue"><code class="language-vue"><!--排序字段-->
+<pre class="line-numbers language-vue"><code class="language-vue"><!--排序字段-->
 <ul class="sui-nav">
     <li :class="{active:!search.sortBy}" @click="search.sortBy=''">
         <a href="#">综合</a>
@@ -1433,7 +1434,7 @@ P">
             <v-icon v-show="!search.descending">arrow_drop_up</v-icon>
         </a>
     </li>
-</ul></code></pre>
+</ul><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以看到，页面请求参数中已经有了排序字段了：</p>
 <p> <img src="/chaining/2019/07/08/xiang-mu-shi-zhan/le-you-shang-cheng/day12.ji-ben-sou-suo/1526718252315.png" alt="1526718252315"></p>
 <h2 id="4-2-后台添加排序逻辑"><a href="#4-2-后台添加排序逻辑" class="headerlink" title="4.2.后台添加排序逻辑"></a>4.2.后台添加排序逻辑</h2><p>接下来，后台需要接收请求参数中的排序信息，然后在搜索中加入排序的逻辑。</p>

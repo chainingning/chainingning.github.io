@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="chapter2-Vue 基础, 柴米油盐, Chester">
+    <meta name="keywords" content="chapter2-Vue 基础, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="
  本文转自vuejs-tutorial，尊重原创，点击可直接访问原文
 
@@ -38,7 +38,8 @@ Vue.js 不支持 IE8 及其以下版本
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -480,7 +481,7 @@ Vue.js 不支持 IE8 及其以下版本
 
 npm install</code></pre><hr>
 <h2 id="像使用模板引擎一样使用-Vue"><a href="#像使用模板引擎一样使用-Vue" class="headerlink" title="像使用模板引擎一样使用 Vue"></a>像使用模板引擎一样使用 Vue</h2><p>需求：下面的数据如何显示到页面中？</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
   message<span class="token punctuation">:</span> <span class="token string">'Hello Vue.js!'</span><span class="token punctuation">,</span>
   user<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">,</span>
@@ -488,17 +489,17 @@ npm install</code></pre><hr>
     gender<span class="token punctuation">:</span> <span class="token number">0</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   todos<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'吃饭'</span><span class="token punctuation">,</span> <span class="token string">'睡觉'</span><span class="token punctuation">,</span> <span class="token string">'打豆豆'</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>姓名：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>年龄：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>性别：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>方式一：操作 DOM</p>
 <p>方式二：模板引擎</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scrit</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
@@ -516,9 +517,9 @@ npm install</code></pre><hr>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
   <span class="token keyword">var</span> htmlStr <span class="token operator">=</span> <span class="token function">template</span><span class="token punctuation">(</span><span class="token string">'tpl'</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span>
   document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> htmlStr
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>方式三：使用 Vue</p>
-<pre class=" language-html"><code class="language-html"></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="数据驱动视图"><a href="#数据驱动视图" class="headerlink" title="数据驱动视图"></a>数据驱动视图</h2><p>提问？</p>
 <p>如果我需要修改 <code>h1</code>、<code>用户名</code>、<code>年龄</code>、<code>todos列表</code> 视图。</p>
 <p>方式一：操作 DOM</p>
@@ -539,7 +540,7 @@ npm install</code></pre><hr>
 </ul>
 </li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
 <span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token number">2</span>
 
 <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -550,26 +551,26 @@ npm install</code></pre><hr>
     a<span class="token punctuation">,</span>
     b<span class="token punctuation">:</span> c
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<h2 id="模板语法-插值"><a href="#模板语法-插值" class="headerlink" title="模板语法 - 插值"></a>模板语法 - 插值</h2><h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="模板语法-插值"><a href="#模板语法-插值" class="headerlink" title="模板语法 - 插值"></a>模板语法 - 插值</h2><h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="JavaScript-表达式"><a href="#JavaScript-表达式" class="headerlink" title="JavaScript 表达式"></a>JavaScript 表达式</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ number + 1 }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="JavaScript-表达式"><a href="#JavaScript-表达式" class="headerlink" title="JavaScript 表达式"></a>JavaScript 表达式</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ number + 1 }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ number + 1 > 10 ? 'number大于10' : 'number小于10' }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ arr }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ message.split('').reverse().join('') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>花括号不能使用在属性中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>去百度<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ message.split('').reverse().join('') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>花括号不能使用在属性中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>去百度<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>可以简写</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>花括号不能使用在属性中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>去百度<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<pre class=" language-html"><code class="language-html">属性值中的写法和 {{}}中的写法一致，也是 JavaScript 表达式</code></pre>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message.split(<span class="token punctuation">'</span><span class="token punctuation">'</span>).reverse().join(<span class="token punctuation">'</span><span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>花括号不能使用在属性中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>去百度<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html">属性值中的写法和 {{}}中的写法一致，也是 JavaScript 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>message.split(<span class="token punctuation">'</span><span class="token punctuation">'</span>).reverse().join(<span class="token punctuation">'</span><span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1 + 1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>属性中的表达式<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>number + 1 <span class="token punctuation">></span> 10 ? <span class="token punctuation">'</span>number大于10<span class="token punctuation">'</span> : <span class="token punctuation">'</span>number小于10<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>属性中的表达式<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="原始-HTML-字符串"><a href="#原始-HTML-字符串" class="headerlink" title="原始 HTML 字符串"></a>原始 HTML 字符串</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ htmlStr }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>number + 1 <span class="token punctuation">></span> 10 ? <span class="token punctuation">'</span>number大于10<span class="token punctuation">'</span> : <span class="token punctuation">'</span>number小于10<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>属性中的表达式<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="原始-HTML-字符串"><a href="#原始-HTML-字符串" class="headerlink" title="原始 HTML 字符串"></a>原始 HTML 字符串</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ htmlStr }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token comment" spellcheck="true">&lt;!-- 使用 v-html 指令渲染 html 标签内容字符串 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-html</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>htmlStr<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-html</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>htmlStr<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>v-html 中绑定的 html 内容数据不能使用数据绑定</p>
 </blockquote>
@@ -578,14 +579,14 @@ npm install</code></pre><hr>
 <li><code>v-for=&quot;(item, index) in todos&quot;</code></li>
 </ul>
 <h3 id="数组的更新"><a href="#数组的更新" class="headerlink" title="数组的更新"></a>数组的更新</h3><p>数据中的数据的变化会触发视图更新。哪些数据修改操作会影响视图更新？</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">splice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-直接替换数组的方式，就是直接为数组进行重新赋值</code></pre>
+直接替换数组的方式，就是直接为数组进行重新赋值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：</p>
 <ol>
 <li>当你利用索引直接设置一个数组项时，例如：<code>vm.items[indexOfItem] = newValue</code><ol>
@@ -603,7 +604,7 @@ npm install</code></pre><hr>
 </li>
 <li>当你修改数组的长度时，例如：<code>vm.items.length = newLength</code></li>
 </ol>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
   a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
   b<span class="token punctuation">:</span> <span class="token number">2</span>
 <span class="token punctuation">}</span>
@@ -612,9 +613,9 @@ npm install</code></pre><hr>
 obj <span class="token operator">=</span> xxx
 
 <span class="token comment" spellcheck="true">// 修改</span>
-obj<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">3</span></code></pre>
+obj<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="v-if-和-key"><a href="#v-if-和-key" class="headerlink" title="v-if 和 key"></a>v-if 和 key</h3><p>例如我有这样一段代码：</p>
-<pre class=" language-vue"><code class="language-vue"><!DOCTYPE html>
+<pre class="line-numbers language-vue"><code class="language-vue"><!DOCTYPE html>
 <html lang="en">
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -622,7 +623,8 @@ obj<span class="token punctuation">.</span>a <span class="token operator">=</spa
   <title>vfor和key</title>
   <style></style>
   <!--  -->
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
   <div id="app">
@@ -655,7 +657,7 @@ obj<span class="token punctuation">.</span>a <span class="token operator">=</spa
 </body>
 
 </html>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果如下：</p>
 <p><img src="/chaining/2019/08/23/qian-duan/vue/chapter2-vue-ji-chu/vfor-key.gif" alt="vfor-key"></p>
 <p>修改代码如下：</p>
@@ -737,7 +739,7 @@ v-on=&quot;函数(参数, $event)&quot;</code></pre><h2 id="表单输入绑定">
 <ol>
 <li>下载并编译生成安装文件</li>
 </ol>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载到任何位置都可以</span>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载到任何位置都可以</span>
 $ <span class="token function">git</span> clone https://github.com/vuejs/vue-devtools.git
 
 <span class="token comment" spellcheck="true"># 进入下载的目录中</span>
@@ -748,7 +750,7 @@ $ <span class="token function">npm</span> <span class="token function">install</
 
 <span class="token comment" spellcheck="true"># 构建扩展包</span>
 <span class="token comment" spellcheck="true"># 它会将离线安装文件生成到 vue-devtools/shells/chrome 中</span>
-$ <span class="token function">npm</span> run build</code></pre>
+$ <span class="token function">npm</span> run build<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
 <li>安装 Chrome 扩展管理</li>
 </ol>

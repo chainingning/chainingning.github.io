@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="cmdb编译部署的正确姿势, 柴米油盐, Chester">
+    <meta name="keywords" content="cmdb编译部署的正确姿势, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="cmdb编译部署的正确姿势
 写在前面
 
@@ -36,7 +36,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -690,7 +691,7 @@ git clone https://github.com/Tencent/bk-cmdb  configcenter</code></pre><blockquo
 <p>这里注意一下，如果下载的源码文件夹名不叫configcenter，要重命</p>
 </blockquote>
 <p><img src="https://note.youdao.com/yws/public/resource/e7a22c616f349c8fc6634454391d8995/xmlnote/4CAFC8F18C794AD8BAE882932F9B2953/11429" alt="image"><br>上图是我源码目录层级。<br>在目标机上解压包解<strong>cmdb.tar.gz</strong>，解压后根目录结构如下：</p>
-<pre class=" language-shell"><code class="language-shell">-rwxrwxr-x 1 1004 1004 1.2K Mar 29 14:45 upgrade.sh
+<pre class="line-numbers language-shell"><code class="language-shell">-rwxrwxr-x 1 1004 1004 1.2K Mar 29 14:45 upgrade.sh
 -rwxrwxr-x 1 1004 1004  312 Mar 29 14:45 stop.sh
 -rwxrwxr-x 1 1004 1004  874 Mar 29 14:45 start.sh
 -rwxrwxr-x 1 1004 1004  28K Mar 29 14:45 init.py
@@ -709,7 +710,7 @@ drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_datacollection
 drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_proccontroller
 drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_objectcontroller
 drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_auditcontroller
-drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_hostcontroller</code></pre>
+drwxrwxr-x 3 1004 1004 4.0K Mar 29 14:45 cmdb_hostcontroller<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>各目录代表的服务及职责：</p>
 <table>
 <thead>

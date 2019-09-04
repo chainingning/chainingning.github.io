@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="一个极简的 Java ASCII 表格生成库, 柴米油盐, Chester">
+    <meta name="keywords" content="一个极简的 Java ASCII 表格生成库, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="
 一个轻量级、零依赖的 Java ASCII 表格生成库。
 
@@ -41,7 +41,8 @@ API简单易用
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -451,33 +452,33 @@ API简单易用
 <li>API简单易用</li>
 <li>易于集成或定制修改，仅一个<a href="https://github.com/blinkfox/mini-table/blob/master/src/main/java/com/blinkfox/minitable/MiniTable.java" target="_blank" rel="noopener">Java</a>文件，且代码规范</li>
 </ul>
-<h2 id="集成使用"><a href="#集成使用" class="headerlink" title="集成使用"></a>集成使用</h2><h3 id="Maven集成"><a href="#Maven集成" class="headerlink" title="Maven集成"></a>Maven集成</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<h2 id="集成使用"><a href="#集成使用" class="headerlink" title="集成使用"></a>集成使用</h2><h3 id="Maven集成"><a href="#Maven集成" class="headerlink" title="Maven集成"></a>Maven集成</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.blinkfox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mini-table<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="API-使用"><a href="#API-使用" class="headerlink" title="API 使用"></a>API 使用</h3><h4 id="示例1（无标题）"><a href="#示例1（无标题）" class="headerlink" title="示例1（无标题）"></a>示例1（无标题）</h4><pre class=" language-java"><code class="language-java">String table <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MiniTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="API-使用"><a href="#API-使用" class="headerlink" title="API 使用"></a>API 使用</h3><h4 id="示例1（无标题）"><a href="#示例1（无标题）" class="headerlink" title="示例1（无标题）"></a>示例1（无标题）</h4><pre class="line-numbers language-java"><code class="language-java">String table <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MiniTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addHeaders</span><span class="token punctuation">(</span><span class="token string">"header1"</span><span class="token punctuation">,</span> <span class="token string">"header2"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addDatas</span><span class="token punctuation">(</span><span class="token string">"col11"</span><span class="token punctuation">,</span> <span class="token string">"col12"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addDatas</span><span class="token punctuation">(</span><span class="token string">"col21"</span><span class="token punctuation">,</span> <span class="token string">"col22"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出结果:</p>
-<pre class=" language-bash"><code class="language-bash">+---------+---------+
+<pre class="line-numbers language-bash"><code class="language-bash">+---------+---------+
 <span class="token operator">|</span> header1 <span class="token operator">|</span> header2 <span class="token operator">|</span>
 +---------+---------+
 <span class="token operator">|</span>  col11  <span class="token operator">|</span>  col12  <span class="token operator">|</span>
 <span class="token operator">|</span>  col21  <span class="token operator">|</span>  col22  <span class="token operator">|</span>
-+---------+---------+</code></pre>
-<h4 id="示例2（有标题）"><a href="#示例2（有标题）" class="headerlink" title="示例2（有标题）"></a>示例2（有标题）</h4><pre class=" language-java"><code class="language-java">String table <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MiniTable</span><span class="token punctuation">(</span><span class="token string">"The Title"</span><span class="token punctuation">)</span>
++---------+---------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="示例2（有标题）"><a href="#示例2（有标题）" class="headerlink" title="示例2（有标题）"></a>示例2（有标题）</h4><pre class="line-numbers language-java"><code class="language-java">String table <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MiniTable</span><span class="token punctuation">(</span><span class="token string">"The Title"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addHeaders</span><span class="token punctuation">(</span><span class="token string">"Name"</span><span class="token punctuation">,</span> <span class="token string">"Sex"</span><span class="token punctuation">,</span> <span class="token string">"Age"</span><span class="token punctuation">,</span> <span class="token string">"Email"</span><span class="token punctuation">,</span> <span class="token string">"Phone"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addDatas</span><span class="token punctuation">(</span><span class="token string">"LiLei"</span><span class="token punctuation">,</span> <span class="token string">"male"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">"lilei@gmail.com"</span><span class="token punctuation">,</span> <span class="token string">"13809345219"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addDatas</span><span class="token punctuation">(</span><span class="token string">"hanMeiMei"</span><span class="token punctuation">,</span> <span class="token string">"female"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">"hmm@163.com"</span><span class="token punctuation">,</span> <span class="token string">"13515343853"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">addDatas</span><span class="token punctuation">(</span><span class="token string">"ZhangSan"</span><span class="token punctuation">,</span> <span class="token string">"female"</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token string">"zhangsan@gmail.com"</span><span class="token punctuation">,</span> <span class="token string">"13920199836"</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出结果:</p>
-<pre class=" language-bash"><code class="language-bash">+-------------------------------------------------------------+
+<pre class="line-numbers language-bash"><code class="language-bash">+-------------------------------------------------------------+
 <span class="token operator">|</span>                          The Title                          <span class="token operator">|</span>
 +-----------+--------+-----+--------------------+-------------+
 <span class="token operator">|</span>   Name    <span class="token operator">|</span>  Sex   <span class="token operator">|</span> Age <span class="token operator">|</span>       Email        <span class="token operator">|</span>    Phone    <span class="token operator">|</span>
@@ -485,7 +486,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token operator">|</span>   LiLei   <span class="token operator">|</span>  male  <span class="token operator">|</span> 25  <span class="token operator">|</span>  lilei@gmail.com   <span class="token operator">|</span> 13809345219 <span class="token operator">|</span>
 <span class="token operator">|</span> hanMeiMei <span class="token operator">|</span> female <span class="token operator">|</span> 23  <span class="token operator">|</span>    hmm@163.com     <span class="token operator">|</span> 13515343853 <span class="token operator">|</span>
 <span class="token operator">|</span> ZhangSan  <span class="token operator">|</span> female <span class="token operator">|</span> 32  <span class="token operator">|</span> zhangsan@gmail.com <span class="token operator">|</span> 13920199836 <span class="token operator">|</span>
-+-----------+--------+-----+--------------------+-------------+</code></pre>
++-----------+--------+-----+--------------------+-------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>本 <a href="https://github.com/blinkfox/mini-table" target="_blank" rel="noopener">mini-table</a> 类库遵守 <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache License 2.0</a> 许可证。</p>
 
             </div>

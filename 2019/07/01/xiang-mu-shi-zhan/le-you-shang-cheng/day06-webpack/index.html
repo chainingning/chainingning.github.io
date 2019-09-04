@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day06-webpack, 柴米油盐, Chester">
+    <meta name="keywords" content="day06-webpack, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解vue-router使用
 了解webpack使用
@@ -40,7 +40,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -461,7 +462,7 @@
 <p>然后新建一个HTML文件，作为入口：index.html</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525868284332.png" alt="1525868284332"></p>
 <p>然后编写页面的基本结构：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>注册<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span>
@@ -474,13 +475,13 @@
     <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         el<span class="token punctuation">:</span><span class="token string">"#app"</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>样式：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525868623712.png" alt="1525868623712"></p>
 <h3 id="1-1-2-编写登录组件"><a href="#1-1-2-编写登录组件" class="headerlink" title="1.1.2.编写登录组件"></a>1.1.2.编写登录组件</h3><p>接下来我们来实现登录组件，以前我们都是写在一个文件中，但是为了复用性，开发中都会把组件放如独立的JS文件中，我们新建一个login.js</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525868736799.png" alt="1525868736799"></p>
 <p>编写组件，这里我们只写模板，不写功能：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> loginForm <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> loginForm <span class="token operator">=</span> <span class="token punctuation">{</span>
     template<span class="token punctuation">:</span><span class="token string">'\
     &lt;div>\
     &lt;h2>登录页&lt;/h2> \
@@ -488,11 +489,11 @@
     密码：&lt;input type="password">&lt;br/>\
     &lt;/div>\
     '</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-1-3-编写注册组件"><a href="#1-1-3-编写注册组件" class="headerlink" title="1.1.3.编写注册组件"></a>1.1.3.编写注册组件</h3><p>新建单文件组件：register.js</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525869269916.png" alt="1525869269916"></p>
 <p>编写模板：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> registerForm <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> registerForm <span class="token operator">=</span> <span class="token punctuation">{</span>
     template<span class="token punctuation">:</span><span class="token string">'\
     &lt;div>\
     &lt;h2>注册页&lt;/h2> \
@@ -501,9 +502,9 @@
     确认密码：&lt;input type="password">&lt;br/>\
     &lt;/div>\
     '</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-1-4-在父组件中引用"><a href="#1-1-4-在父组件中引用" class="headerlink" title="1.1.4.在父组件中引用"></a>1.1.4.在父组件中引用</h3><p>在index.html中使用刚刚编写的两个组件</p>
-<pre class=" language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>注册<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span>
@@ -523,7 +524,7 @@
                 registerForm
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525869621647.png" alt="1525869621647"></p>
 <h3 id="1-1-5-问题"><a href="#1-1-5-问题" class="headerlink" title="1.1.5.问题"></a>1.1.5.问题</h3><p>我们期待的是，当点击登录或注册按钮，分别显示登录页或注册页，而不是一起显示。</p>
@@ -534,9 +535,9 @@
 <p>使用npm安装：<code>npm install vue-router --save</code> </p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525870170532.png" alt="1525870170532"></p>
 <p>在index.html中引入依赖：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../node_modules/vue-router/dist/vue-router.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../node_modules/vue-router/dist/vue-router.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="1-3-快速入门"><a href="#1-3-快速入门" class="headerlink" title="1.3.快速入门"></a>1.3.快速入门</h2><p>新建vue-router对象，并且指定路由规则：</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 创建VueRouter对象</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 创建VueRouter对象</span>
 <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     routes<span class="token punctuation">:</span><span class="token punctuation">[</span> <span class="token comment" spellcheck="true">// 编写多个路由规则</span>
         <span class="token punctuation">{</span>
@@ -545,7 +546,7 @@
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token punctuation">{</span>path<span class="token punctuation">:</span><span class="token string">"/register"</span><span class="token punctuation">,</span>component<span class="token punctuation">:</span>registerForm<span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>创建VueRouter对象，并指定路由参数</li>
 <li>routes：路由规则的数组，可以指定多个对象，每个对象是一条路由规则，包含以下属性：<ul>
@@ -555,16 +556,16 @@
 </li>
 </ul>
 <p>在父组件中引入router对象：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     el<span class="token punctuation">:</span><span class="token string">"#app"</span><span class="token punctuation">,</span>
     components<span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 引用登录和注册组件</span>
         loginForm<span class="token punctuation">,</span>
         registerForm
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     router <span class="token comment" spellcheck="true">// 引用上面定义的router对象</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>页面跳转控制：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!--router-link来指定跳转的路径--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/register<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>注册<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
@@ -573,7 +574,7 @@
         <span class="token comment" spellcheck="true">&lt;!--vue-router的锚点--></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>通过<code>&lt;router-view&gt;</code>来指定一个锚点，当路由的路径匹配时，vue-router会自动把对应组件放到锚点位置进行渲染</li>
 <li>通过<code>&lt;router-link&gt;</code>指定一个跳转链接，当点击时，会触发vue-router的路由功能，路径中的hash值会随之改变</li>
@@ -623,7 +624,7 @@
 <p>我们新建一个js，把index.html中的部分内容进行集中，然后在index.html中引用这个js不就OK了！</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525874002350.png" alt="1525874002350"></p>
 <p>然后把原来index.html中的js代码全部移动到main.js中</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 使用es6的语法导入js模块</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 使用es6的语法导入js模块</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'../node_modules/vue/dist/vue'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'../node_modules/vue-router/dist/vue-router'</span>
 <span class="token keyword">import</span> loginForm <span class="token keyword">from</span> <span class="token string">'./js/login'</span>
@@ -648,11 +649,11 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
         registerForm
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     router
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>原来的index.html中引入了很多其它js，在这里我们使用es6的import语法进行导入。</p>
 <p>注意，要使用import，就需要在login.js和register.js中添加export导出语句：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> loginForm <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> loginForm <span class="token operator">=</span> <span class="token punctuation">{</span>
     template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`
     &lt;div> 
     &lt;h2>登录页&lt;/h2> 
@@ -661,9 +662,9 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     &lt;/div>
     `</span></span>
 <span class="token punctuation">}</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> loginForm<span class="token punctuation">;</span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> loginForm<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>register.js:</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> registerForm <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> registerForm <span class="token operator">=</span> <span class="token punctuation">{</span>
     template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`
     &lt;div>
     &lt;h2>注册页&lt;/h2> 
@@ -674,7 +675,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     `</span></span>
 <span class="token punctuation">}</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> registerForm<span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <ul>
@@ -682,20 +683,20 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 </ul>
 <p>这样，main.js就成了我们整个配置的入口了。</p>
 <p>我们在webpack.config.js中添加以下内容：</p>
-<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{</span>
     entry<span class="token punctuation">:</span><span class="token string">'./src/main.js'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//指定打包的入口文件</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-4-2-出口output"><a href="#2-4-2-出口output" class="headerlink" title="2.4.2.出口output"></a>2.4.2.出口output</h3><p>出口，就是输出的目的地。一般我们会用一个dist目录，作为打包输出的文件夹：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/../%E8%AF%BE%E5%90%8E/day05-Vue/day06-webpack/1525875474187.png" alt="1525875474187"></p>
 <p>然后，编写webpack.config.js，添加出口配置：</p>
-<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{</span>
     entry<span class="token punctuation">:</span><span class="token string">'./src/main.js'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//指定打包的入口文件</span>
     output<span class="token punctuation">:</span><span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// path: 输出的目录，__dirname是相对于webpack.config.js配置文件的绝对路径</span>
         path <span class="token punctuation">:</span> __dirname<span class="token operator">+</span><span class="token string">'/dist'</span><span class="token punctuation">,</span>  
         filename<span class="token punctuation">:</span><span class="token string">'build.js'</span>     <span class="token comment" spellcheck="true">//输出的js文件名</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-5-执行打包"><a href="#2-5-执行打包" class="headerlink" title="2.5.执行打包"></a>2.5.执行打包</h2><p>在控制台输入以下命令：</p>
 <pre><code>npx webpack --config webpack.config.js
 </code></pre><p><img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525875749502.png" alt="1525875749502"></p>
@@ -705,7 +706,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p><img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525876060602.png" alt="1525876060602"></p>
 <p>所有的js合并为1个，并且对变量名进行了随机打乱，这样就起到了 压缩、混淆的作用。</p>
 <h2 id="2-6-测试运行"><a href="#2-6-测试运行" class="headerlink" title="2.6.测试运行"></a>2.6.测试运行</h2><p>在index.html中引入刚刚生成的build.js文件，</p>
-<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -724,13 +725,13 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../dist/build.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后运行：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525875932114.png" alt="1525875932114"></p>
 <h2 id="2-7-打包CSS"><a href="#2-7-打包CSS" class="headerlink" title="2.7.打包CSS"></a>2.7.打包CSS</h2><h3 id="2-7-1-编写css文件"><a href="#2-7-1-编写css文件" class="headerlink" title="2.7.1.编写css文件"></a>2.7.1.编写css文件</h3><p>我们来编写一段CSS代码，对index的样式做一些美化：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525877099220.png" alt="1525877099220"></p>
 <p>内容：</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token id">#app</span> a</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token id">#app</span> a</span><span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
     <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">150</span>px<span class="token punctuation">;</span>
     <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span>
@@ -750,7 +751,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token selector"><span class="token id">#app</span></span><span class="token punctuation">{</span>
     <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">305</span>px<span class="token punctuation">;</span>
     <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid dodgerblue<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-7-2-安装加载器"><a href="#2-7-2-安装加载器" class="headerlink" title="2.7.2.安装加载器"></a>2.7.2.安装加载器</h3><p>前面说过，webpack默认只支持js加载。要加载CSS文件，必须安装加载器：</p>
 <p>命令：</p>
 <pre><code>npm install style-loader css-loader --save-dev
@@ -758,8 +759,8 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p>此时，在package.json中能看到新安装的：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525877634350.png" alt="1525877634350"></p>
 <h3 id="2-7-3-在main-js引入css文件"><a href="#2-7-3-在main-js引入css文件" class="headerlink" title="2.7.3.在main.js引入css文件"></a>2.7.3.在main.js引入css文件</h3><p>因为入口在main.js，因此css文件也要在这里引入。依然使用ES6 的模块语法：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">'./css/main.css'</span></code></pre>
-<h3 id="2-7-4-在webpack-config-js添加加载器"><a href="#2-7-4-在webpack-config-js添加加载器" class="headerlink" title="2.7.4.在webpack.config.js添加加载器"></a>2.7.4.在webpack.config.js添加加载器</h3><pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">'./css/main.css'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-7-4-在webpack-config-js添加加载器"><a href="#2-7-4-在webpack-config-js添加加载器" class="headerlink" title="2.7.4.在webpack.config.js添加加载器"></a>2.7.4.在webpack.config.js添加加载器</h3><pre class="line-numbers language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
     entry<span class="token punctuation">:</span> <span class="token string">'./src/main.js'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//指定打包的入口文件</span>
     output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
         path<span class="token punctuation">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/dist'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 注意：__dirname表示webpack.config.js所在目录的绝对路径</span>
@@ -776,7 +777,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
             <span class="token punctuation">}</span>
         <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-7-5-重新打包"><a href="#2-7-5-重新打包" class="headerlink" title="2.7.5.重新打包"></a>2.7.5.重新打包</h3><p>再次输入打包指令：<code>npx webpack --config webpack.config.js</code></p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525877746191.png" alt="1525877746191"></p>
 <p>效果：</p>
@@ -793,7 +794,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p>webpack中的一个插件：html-webpack-plugin，可以解决这个问题。</p>
 <p>1）安装插件：<code>npm install --save-dev html-webpack-plugin</code></p>
 <p>需要在webpack.config.js中添加插件：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'html-webpack-plugin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'html-webpack-plugin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
     entry<span class="token punctuation">:</span> <span class="token string">'./src/main.js'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//指定打包的入口文件</span>
@@ -819,7 +820,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
             template<span class="token punctuation">:</span> <span class="token string">'./src/index.html'</span> <span class="token comment" spellcheck="true">// 我们原来的index.html，作为模板</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2）将原来HTML中的引入js代码删除：</p>
 <p>  <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1527390662284.png" alt="1527390662284"></p>
 <p>3）再次打包：<code>npm run build</code></p>
@@ -827,7 +828,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <p>4）查看dist目录：</p>
 <p> <img src="/chaining/2019/07/01/xiang-mu-shi-zhan/le-you-shang-cheng/day06-webpack/1525879160040.png" alt="1525879160040"></p>
 <p>打开index.html，发现已经自动添加了当前目录下的build.js</p>
-<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -844,15 +845,15 @@ module<span class="token punctuation">.</span>exports <span class="token operato
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>build.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-10-热更新的web服务"><a href="#2-10-热更新的web服务" class="headerlink" title="2.10.热更新的web服务"></a>2.10.热更新的web服务</h2><p>刚才的案例中，每次修改任何js或css内容，都必须重新打包，非常麻烦。</p>
 <p>webpack给我们提供了一个插件，可以帮我们运行一个web服务，加载页面内容，并且修改js后不需要重新加载就能看到最新结果：</p>
 <p>1）安装插件：</p>
 <pre><code>npm install webpack-dev-server --save-dev</code></pre><p>2）添加启动脚本</p>
 <p>在package.json中配置script</p>
-<pre class=" language-js"><code class="language-js">  <span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
     <span class="token string">"dev"</span><span class="token punctuation">:</span> <span class="token string">"webpack-dev-server --inline --hot --open --port 8080 --host 127.0.0.1"</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>–inline：自动刷新</p>
 <p>–hot：热加载</p>
 <p>–port：指定端口</p>

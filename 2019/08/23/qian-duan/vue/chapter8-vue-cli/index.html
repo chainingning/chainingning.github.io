@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="chapter8-Vue CLI, 柴米油盐, Chester">
+    <meta name="keywords" content="chapter8-Vue CLI, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="本文转自vuejs-tutorial，尊重原创，点击可直接访问原文
 第 8 章 Vue CLIVue CLI 是 Vue 的脚手架工具，它可以帮助我们快速生成 Vue 基础项目代码，提供开箱即用的功能特性。
 
@@ -37,7 +37,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -462,9 +463,9 @@
 <li>Vue CLI 需要 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 8.9 或更高版本 (推荐 8.11.0+)。</li>
 </ul>
 </blockquote>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g @vue/cli
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g @vue/cli
 <span class="token comment" spellcheck="true"># OR</span>
-$ yarn global add @vue/cli</code></pre>
+$ yarn global add @vue/cli<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>使用 <code>vue --version</code> 确认是否安装成功。</p>
 <p>![1552844854188](./chapter8-Vue CLI/1552844854188.png)</p>
 <blockquote>
@@ -473,7 +474,7 @@ $ yarn global add @vue/cli</code></pre>
 <p>使用 <code>vue --help</code> 查看使用帮助。</p>
 <p>![1552844831280](./chapter8-Vue CLI/1552844831280.png)</p>
 <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>运行以下命令来创建一个新项目</p>
-<pre class=" language-bash"><code class="language-bash">$ vue create my-project</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ vue create my-project<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>注意：</p>
 <ul>
@@ -491,7 +492,7 @@ $ yarn global add @vue/cli</code></pre>
 <p>最后会提示你使用 cd 命令进入刚刚创建生成的项目中。</p>
 </blockquote>
 <p>启动开发模式：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> run serve</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> run serve<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>![1552730755074](./chapter8-Vue CLI/1552730755074.png)</p>
 <p>等待启动开发服务。。。</p>
 <p>![1552730773305](./chapter8-Vue CLI/1552730773305.png)</p>
@@ -585,7 +586,7 @@ $ yarn global add @vue/cli</code></pre>
 <li>作用：组件的 JavaScript ，用来配置组件的选项（data、methods、watch。。。）</li>
 </ul>
 <p>写法规则：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
   <span class="token comment" spellcheck="true">// 1. 使用一个普通对象配置组件的选项</span>
   <span class="token keyword">const</span> componentOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -596,18 +597,18 @@ $ yarn global add @vue/cli</code></pre>
 
   <span class="token comment" spellcheck="true">// 2. 将这个对象导出（组件的选项对象必须显式的导出，否则不会生效）</span>
   <span class="token keyword">export</span> <span class="token keyword">default</span> componentOptions
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>为了方便，我们可以直接在定义的同时直接导出</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
   <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
     <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     methods<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="style"><a href="#style" class="headerlink" title="style"></a>style</h3><p>当 <code>&lt;style&gt;</code> 标签有 <code>scoped</code> 属性时，它的 CSS 只作用于当前组件中的元素。</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
   <span class="token selector"><span class="token class">.example</span> </span><span class="token punctuation">{</span>
     <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -615,9 +616,9 @@ $ yarn global add @vue/cli</code></pre>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>hi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>转换结果：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
   <span class="token selector"><span class="token class">.example</span><span class="token attribute">[data-v-f3f3eg9]</span> </span><span class="token punctuation">{</span>
     <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -625,26 +626,26 @@ $ yarn global add @vue/cli</code></pre>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example<span class="token punctuation">"</span></span> <span class="token attr-name">data-v-f3f3eg9</span><span class="token punctuation">></span></span>hi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>你可以在一个组件中同时使用有 scoped 和非 scoped 样式：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
   <span class="token comment" spellcheck="true">/* 全局样式 */</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
   <span class="token comment" spellcheck="true">/* 本地样式 */</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用 <code>scoped</code> 后，父组件的样式将不会渗透到子组件中。不过一个子组件的根节点会同时受其父组件的 scoped CSS 和子组件的 scoped CSS 的影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式。</p>
 <p>如果你希望 <code>scoped</code> 样式中的一个选择器能够作用得“更深”，例如影响子组件，你可以使用 <code>&gt;&gt;&gt;</code> 操作符：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
   <span class="token selector"><span class="token class">.a</span> >>> <span class="token class">.b</span> </span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/* ... */</span>
   <span class="token punctuation">}</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上述代码将会编译成：</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.a</span><span class="token attribute">[data-v-f3f3eg9]</span> <span class="token class">.b</span> </span><span class="token punctuation">{</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.a</span><span class="token attribute">[data-v-f3f3eg9]</span> <span class="token class">.b</span> </span><span class="token punctuation">{</span>
   <span class="token comment" spellcheck="true">/* ... */</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="单文件组件的定义和使用"><a href="#单文件组件的定义和使用" class="headerlink" title="单文件组件的定义和使用"></a>单文件组件的定义和使用</h2><h3 id="创建单文件组件"><a href="#创建单文件组件" class="headerlink" title="创建单文件组件"></a>创建单文件组件</h3><ul>
 <li>推荐把通用组件创建到 <code>components</code> 目录中</li>
 <li>把视图组件定义到 <code>views</code> 目录中</li>
@@ -654,7 +655,7 @@ $ yarn global add @vue/cli</code></pre>
 </ul>
 </li>
 </ul>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
     foo 组件
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -668,18 +669,18 @@ $ yarn global add @vue/cli</code></pre>
   <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="全局注册使用"><a href="#全局注册使用" class="headerlink" title="全局注册使用"></a>全局注册使用</h3><p>在 main.js 文件中</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">...</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">...</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> Com1 <span class="token keyword">from</span> <span class="token string">'./components/Com1.vue'</span>
 
 <span class="token operator">...</span>
 
-Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'Com1'</span><span class="token punctuation">,</span> Com1<span class="token punctuation">)</span></code></pre>
+Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'Com1'</span><span class="token punctuation">,</span> Com1<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>接下来就可以在任何组件中使用 <code>Com1</code> 组件了。</p>
 <h3 id="局部注册使用"><a href="#局部注册使用" class="headerlink" title="局部注册使用"></a>局部注册使用</h3><p>在某个组价中局部注册使用</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!-- 使用 Com2 组件 --></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Com2</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Com2</span><span class="token punctuation">></span></span>
@@ -693,7 +694,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
       Com2
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="热重载"><a href="#热重载" class="headerlink" title="热重载"></a>热重载</h2><p>当使用脚手架工具 <code>vue-cli</code> 时，热重载是开箱即用的。</p>
 <p>“热重载”不只是当你修改文件的时候简单重新加载页面。启用热重载后，当你修改 <code>.vue</code> 文件时，该组件的所有实例将在<strong>不刷新页面</strong>的情况下被替换。它甚至保持了应用程序和被替换组件的当前状态！当你调整模版或者修改样式时，这极大地提高了开发体验。</p>
 <p>![hot-reload](./chapter8-Vue CLI/hot-reload.gif)</p>
@@ -709,13 +710,13 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <h2 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h2><p>在一个 <code>*.vue</code> 文件中以单文件形式定义的函数式组件，现在对于模板编译、scoped CSS 和热重载也有了良好的支持。</p>
 <p>要声明一个应该编译为函数式组件的模板，请将 <code>functional</code> 特性添加到模板块中。这样做以后就可以省略 <code>&lt;script&gt;</code> 块中的 <code>functional</code> 选项。</p>
 <p>模板中的表达式会在<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6">函数式渲染上下文</a>中求值。这意味着在模板中，prop 需要以 <code>props.xxx</code> 的形式访问：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">functional</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">functional</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ props.foo }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>你可以在 <code>parent</code> 上访问 <code>Vue.prototype</code> 全局定义的属性：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">functional</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">functional</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ parent.$someProperty }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="代码校验"><a href="#代码校验" class="headerlink" title="代码校验"></a>代码校验</h2><h2 id="ECMAScript-6-Module"><a href="#ECMAScript-6-Module" class="headerlink" title="ECMAScript 6 Module"></a>ECMAScript 6 Module</h2><blockquote>
 <p>建议学习文档：<a href="http://es6.ruanyifeng.com/#docs/module">http://es6.ruanyifeng.com/#docs/module</a></p>
 </blockquote>
@@ -727,12 +728,12 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <p>为了学习方便，我们这里使用 Node 环境来学习 ES6 模块规则。</p>
 <p>首先将你的文件后缀名定义为 <code>.mjs</code>，然后执行这个脚本文件的时候加上 <code>--experimental-modules</code> 选项。</p>
 <p>例如我有一个 <code>main.mjs</code>，则执行命令是：</p>
-<pre class=" language-bash"><code class="language-bash">node --experimental-modules main.mjs</code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">node --experimental-modules main.mjs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>这里只是用于测试学习，不要在生产环境中使用这个模块规则。</p>
 </blockquote>
 <p>foo.js</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// export 也用于导出</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// export 也用于导出</span>
 <span class="token comment" spellcheck="true">// 但是可以多次使用</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
@@ -751,9 +752,9 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <span class="token comment" spellcheck="true">// 如果只有一个成员，那就 export default</span>
 <span class="token comment" spellcheck="true">// 有时候也会混搭</span>
 <span class="token comment" spellcheck="true">//   既有 export default 成员（只能有一个）</span>
-<span class="token comment" spellcheck="true">//   也有 export xxx成员（多个）</span></code></pre>
+<span class="token comment" spellcheck="true">//   也有 export xxx成员（多个）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>main.js</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 加载 export default 导出的成员</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 加载 export default 导出的成员</span>
 <span class="token comment" spellcheck="true">// import foo from './foo'</span>
 <span class="token comment" spellcheck="true">// console.log(foo)</span>
 
@@ -776,27 +777,27 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <span class="token keyword">import</span> <span class="token punctuation">{</span> a <span class="token keyword">as</span> aa <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./foo'</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>aa<span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// console.log(foo(1, 2))</span></code></pre>
+<span class="token comment" spellcheck="true">// console.log(foo(1, 2))</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="导出-export"><a href="#导出-export" class="headerlink" title="导出 export"></a>导出 export</h3><p>如果模块只有一个成员，建议 <code>export default</code></p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> 数字<span class="token operator">|</span>字符串<span class="token operator">|</span>数组<span class="token operator">|</span>对象<span class="token operator">|</span>函数。。。</code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> 数字<span class="token operator">|</span>字符串<span class="token operator">|</span>数组<span class="token operator">|</span>对象<span class="token operator">|</span>函数。。。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>注意：export default 只能有一次，重复会报错</p>
 </blockquote>
 <p>如果一个模块有多个成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   成员<span class="token number">1</span><span class="token punctuation">:</span> 值<span class="token punctuation">,</span>
   成员<span class="token number">2</span><span class="token punctuation">:</span> 值<span class="token number">2</span><span class="token punctuation">,</span>
   成员<span class="token number">3</span><span class="token operator">...</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>如果成员之间没有依赖关系，不是用于某个数据的完整整体，不推荐，你可能只使用其中某个成员，而必须加载整体数据对象</p>
 <p>除非这个对象是一个完整的整体，例如 Vue 组件的实例选项对象，这样是可以的</p>
 </blockquote>
 <p>ECMAScript 6 提供了一种更优化的方案，当多个成员没有具体的依赖关系的时候，我们推荐使用 <code>export</code> 语法进行导出，因为它支持按需加载，就是说你用什么就只加载什么，其它多余的都不要，这样有利于程序的执行效率。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>也可以集中按需导出多个成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
 <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
 <span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token number">3</span>
 
@@ -812,35 +813,35 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token comment" spellcheck="true">// 以上写法等价于</span>
 <span class="token comment" spellcheck="true">// export const a = 1</span>
 <span class="token comment" spellcheck="true">// export const b = 2</span>
-<span class="token comment" spellcheck="true">// export const c = 3</span></code></pre>
+<span class="token comment" spellcheck="true">// export const c = 3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>有时候模块中有很多成员的时候，我们会 <code>export default</code> 和 <code>export</code> 一起使用。</p>
 <p>我们把最常用的使用 <code>export default</code> 导出，把不太常用的使用 <code>export</code> 导出（用于按需加载）。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> x <span class="token operator">+</span> y
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="导入-import"><a href="#导入-import" class="headerlink" title="导入 import"></a>导入 import</h3><p>加载 <code>export default</code> 成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> xxx <span class="token keyword">from</span> <span class="token string">'模块路径'</span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> xxx <span class="token keyword">from</span> <span class="token string">'模块路径'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>按需加载 <code>export</code> 成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> 成员<span class="token number">1</span> <span class="token keyword">as</span> 别名<span class="token punctuation">,</span> 成员<span class="token number">2</span><span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'模块路径'</span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> 成员<span class="token number">1</span> <span class="token keyword">as</span> 别名<span class="token punctuation">,</span> 成员<span class="token number">2</span><span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'模块路径'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>混着加载 <code>export default</code> 和 <code>export</code> 成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> xxx<span class="token punctuation">,</span> <span class="token punctuation">{</span> 成员<span class="token number">1</span><span class="token punctuation">,</span> 成员<span class="token number">2</span><span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'模块路径'</span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> xxx<span class="token punctuation">,</span> <span class="token punctuation">{</span> 成员<span class="token number">1</span><span class="token punctuation">,</span> 成员<span class="token number">2</span><span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'模块路径'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>一次性加载所有成员</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> xxx <span class="token keyword">from</span> <span class="token string">'模块路径'</span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> xxx <span class="token keyword">from</span> <span class="token string">'模块路径'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>包括 <code>export default</code> 和 <code>export</code> 所有成员</p>
 <p><code>export default</code> 就是一个名字叫 <code>default</code> 的成员，知道即可，不推荐这样来使用 <code>xxx.default</code></p>
 </blockquote>
-<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 启动开发服务</span>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 启动开发服务</span>
 <span class="token function">npm</span> run serve
 
 <span class="token comment" spellcheck="true"># 项目打包</span>
 <span class="token function">npm</span> run build
 
 <span class="token comment" spellcheck="true"># 代码检查</span>
-<span class="token function">npm</span> run lint</code></pre>
+<span class="token function">npm</span> run lint<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </style></li></ul>
             </div>
             <hr/>

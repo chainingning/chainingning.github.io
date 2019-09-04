@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day14-商品详情及静态化, 柴米油盐, Chester">
+    <meta name="keywords" content="day14-商品详情及静态化, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 了解Thymeleaf的基本使用
 实现商品详情页的渲染
@@ -39,7 +39,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -459,7 +460,7 @@
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532349011199.png" alt="1532349011199"></p>
 <p>目录：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532349060982.png" alt="1532349060982"></p>
-<h3 id="1-2-2-pom依赖"><a href="#1-2-2-pom依赖" class="headerlink" title="1.2.2.pom依赖"></a>1.2.2.pom依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<h3 id="1-2-2-pom依赖"><a href="#1-2-2-pom依赖" class="headerlink" title="1.2.2.pom依赖"></a>1.2.2.pom依赖</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -497,16 +498,16 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="1-2-3-编写启动类"><a href="#1-2-3-编写启动类" class="headerlink" title="1.2.3.编写启动类"></a>1.2.3.编写启动类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-2-3-编写启动类"><a href="#1-2-3-编写启动类" class="headerlink" title="1.2.3.编写启动类"></a>1.2.3.编写启动类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableDiscoveryClient</span>
 <span class="token annotation punctuation">@EnableFeignClients</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouGoodsWebApplication</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouGoodsWebApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="1-2-4-application-yml文件"><a href="#1-2-4-application-yml文件" class="headerlink" title="1.2.4.application.yml文件"></a>1.2.4.application.yml文件</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-2-4-application-yml文件"><a href="#1-2-4-application-yml文件" class="headerlink" title="1.2.4.application.yml文件"></a>1.2.4.application.yml文件</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8084</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -519,7 +520,7 @@
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>10086/eureka
   <span class="token key atrule">instance</span><span class="token punctuation">:</span>
     <span class="token key atrule">lease-renewal-interval-in-seconds</span><span class="token punctuation">:</span> <span class="token number">5 </span><span class="token comment" spellcheck="true"># 每隔5秒发送一次心跳</span>
-    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span></code></pre>
+    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">10 </span><span class="token comment" spellcheck="true"># 10秒不发送就过期</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-2-5-页面模板"><a href="#1-2-5-页面模板" class="headerlink" title="1.2.5.页面模板"></a>1.2.5.页面模板</h3><p>我们从leyou-portal中复制item.html模板到当前项目resource目录下的templates中：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532353728660.png" alt="1532353728660"></p>
 <h2 id="1-3-页面跳转"><a href="#1-3-页面跳转" class="headerlink" title="1.3.页面跳转"></a>1.3.页面跳转</h2><h3 id="1-3-1-修改页面跳转路径"><a href="#1-3-1-修改页面跳转路径" class="headerlink" title="1.3.1.修改页面跳转路径"></a>1.3.1.修改页面跳转路径</h3><p>首先我们需要修改搜索结果页的商品地址，目前所有商品的地址都是：<a href="http://www.leyou.com/item.html" target="_blank" rel="noopener">http://www.leyou.com/item.html</a></p>
@@ -539,7 +540,7 @@
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532356995455.png" alt="1532356995455"></p>
 <p>把以/item开头的请求，代理到我们的8084端口。</p>
 <h3 id="1-3-3-编写跳转controller"><a href="#1-3-3-编写跳转controller" class="headerlink" title="1.3.3.编写跳转controller"></a>1.3.3.编写跳转controller</h3><p>在<code>leyou-goods-web</code>中编写controller，接收请求，并跳转到商品详情页：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"item"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsController</span> <span class="token punctuation">{</span>
 
@@ -554,7 +555,7 @@
 
         <span class="token keyword">return</span> <span class="token string">"item"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-3-4-测试"><a href="#1-3-4-测试" class="headerlink" title="1.3.4.测试"></a>1.3.4.测试</h3><p>启动<code>leyou-goods-page</code>，点击搜索页面商品，看是能够正常跳转：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532490861851.png" alt="1532490861851"></p>
 <p>现在看到的依然是静态的数据。我们接下来开始页面的渲染</p>
@@ -572,30 +573,30 @@
 <blockquote>
 <p>GoodsApi</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 根据spu的id查询spu
  * @param id
  * @return
  */</span>
 <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"spu/{id}"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> Spu <span class="token function">querySpuById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token keyword">public</span> Spu <span class="token function">querySpuById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GoodsController</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"spu/{id}"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"spu/{id}"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>Spu<span class="token operator">></span> <span class="token function">querySpuById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">{</span>
     Spu spu <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>goodsService<span class="token punctuation">.</span><span class="token function">querySpuById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>spu <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>NOT_FOUND<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>spu<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GoodsService</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Spu <span class="token function">querySpuById</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> Spu <span class="token function">querySpuById</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>spuMapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h4 id="1-4-1-2-查询规格参数组"><a href="#1-4-1-2-查询规格参数组" class="headerlink" title="1.4.1.2.查询规格参数组"></a>1.4.1.2.查询规格参数组</h4><p>我们在页面展示规格时，需要按组展示：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532496187812.png" alt="1532496187812"></p>
 <p>组内有多个参数，为了方便展示。我们在leyou-item-service中提供一个接口，查询规格组，同时在规格组内的所有参数。</p>
@@ -603,7 +604,7 @@
 <p>拓展<code>SpecGroup</code>类：</p>
 </blockquote>
 <p>我们在<code>SpecGroup</code>中添加一个<code>SpecParam</code>的集合，保存该组下所有规格参数</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_group"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_spec_group"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpecGroup</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Id</span>
@@ -616,12 +617,12 @@
 
     <span class="token annotation punctuation">@Transient</span>
     <span class="token keyword">private</span> List<span class="token operator">&lt;</span>SpecParam<span class="token operator">></span> params<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 该组下的所有规格参数集合</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后提供查询接口：</p>
 <blockquote>
 <p>SpecificationAPI：</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"spec"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"spec"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecificationApi</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"groups/{cid}"</span><span class="token punctuation">)</span>
@@ -638,22 +639,22 @@
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{cid}"</span><span class="token punctuation">)</span>
     List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> <span class="token function">querySpecsByCid</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"cid"</span><span class="token punctuation">)</span> Long cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>SpecificationController</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{cid}"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{cid}"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">>></span> <span class="token function">querySpecsByCid</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"cid"</span><span class="token punctuation">)</span> Long cid<span class="token punctuation">)</span><span class="token punctuation">{</span>
     List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>specificationService<span class="token punctuation">.</span><span class="token function">querySpecsByCid</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>list <span class="token operator">==</span> null <span class="token operator">||</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>NOT_FOUND<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>SpecificationService</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> <span class="token function">querySpecsByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> <span class="token function">querySpecsByCid</span><span class="token punctuation">(</span>Long cid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 查询规格组</span>
     List<span class="token operator">&lt;</span>SpecGroup<span class="token operator">></span> groups <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySpecGroups</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
     groups<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>g <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -661,26 +662,26 @@
         g<span class="token punctuation">.</span><span class="token function">setParams</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySpecParams</span><span class="token punctuation">(</span>g<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> groups<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在service中，我们调用之前编写过的方法，查询规格组，和规格参数，然后封装返回。</p>
 <h3 id="1-4-2-创建FeignClient"><a href="#1-4-2-创建FeignClient" class="headerlink" title="1.4.2.创建FeignClient"></a>1.4.2.创建FeignClient</h3><p>我们在<code>leyou-goods-web</code>服务中，创建FeignClient：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1529916126099.png" alt="1529916126099"></p>
 <p>BrandClient：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BrandClient</span> <span class="token keyword">extends</span> <span class="token class-name">BrandApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>CategoryClient</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CategoryClient</span> <span class="token keyword">extends</span> <span class="token class-name">CategoryApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>GoodsClient:</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">GoodsClient</span> <span class="token keyword">extends</span> <span class="token class-name">GoodsApi</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>SpecificationClient：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"item-service"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpecificationClient</span> <span class="token keyword">extends</span> <span class="token class-name">SpecificationApi</span><span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-4-3-封装数据模型"><a href="#1-4-3-封装数据模型" class="headerlink" title="1.4.3.封装数据模型"></a>1.4.3.封装数据模型</h3><p>我们创建一个GoodsService，在里面来封装数据模型。</p>
 <p>这里要查询的数据：</p>
 <ul>
@@ -714,7 +715,7 @@
 <blockquote>
 <p>Service代码</p>
 </blockquote>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -781,9 +782,9 @@
         map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"paramMap"</span><span class="token punctuation">,</span> paramMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> map<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后在controller中把数据放入model：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"item"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsController</span> <span class="token punctuation">{</span>
 
@@ -804,9 +805,9 @@
         model<span class="token punctuation">.</span><span class="token function">addAllAttributes</span><span class="token punctuation">(</span>modelMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token string">"item"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-4-4-页面测试数据"><a href="#1-4-4-页面测试数据" class="headerlink" title="1.4.4.页面测试数据"></a>1.4.4.页面测试数据</h3><p>我们在页面中先写一段JS，把模型中的数据取出观察，看是否成功：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name"><span class="token namespace">th:</span>inline</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name"><span class="token namespace">th:</span>inline</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
     <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${groups}]]*/</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${params}]]*/</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${categories}]]*/</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -814,7 +815,7 @@
     <span class="token keyword">const</span> e <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${spuDetail}]]*/</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> f <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${skus}]]*/</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> g <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${brand}]]*/</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后查看页面源码：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532509946463.png" alt="1532509946463"></p>
 <p>数据都成功查到了！</p>
@@ -827,7 +828,7 @@
 <li>spu标题</li>
 </ul>
 <p>我们的模型中都有，所以直接渲染即可（页面101行开始）：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>crumb-wrap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>crumb-wrap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sui-breadcrumb<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name"><span class="token namespace">th:</span>each</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>category : ${categories}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${category.name}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>手机<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
@@ -837,7 +838,7 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>active<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spu.title}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Apple iPhone 6s<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="1-6-渲染商品列表"><a href="#1-6-渲染商品列表" class="headerlink" title="1.6.渲染商品列表"></a>1.6.渲染商品列表</h2><p>先看下整体效果：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1526979330657.png" alt="1526979330657"></p>
 <p>这个部分需要渲染的数据有5块：</p>
@@ -852,20 +853,20 @@
 <p>因此，我们先对特有规格属性列表进行渲染。等用户选择一个sku，再通过js对其它sku属性渲染</p>
 <h3 id="1-6-1-副标题"><a href="#1-6-1-副标题" class="headerlink" title="1.6.1.副标题"></a>1.6.1.副标题</h3><p>副标题是在spu中，所以我们直接通过Thymeleaf渲染：</p>
 <p>在第146行左右：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>news<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spu.subTitle}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>news<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spu.subTitle}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>副标题中可能会有超链接，因此这里也用<code>th:utext</code>来展示，效果：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1526980061592.png" alt="1526980061592"></p>
 <h3 id="1-6-2-渲染规格属性列表"><a href="#1-6-2-渲染规格属性列表" class="headerlink" title="1.6.2.渲染规格属性列表"></a>1.6.2.渲染规格属性列表</h3><p>规格属性列表将来会有事件和动态效果。我们需要有js代码参与，不能使用Thymeleaf来渲染了。</p>
 <p>因此，这里我们用vue，不过需要先把数据放到js对象中，方便vue使用</p>
 <h4 id="初始化数据"><a href="#初始化数据" class="headerlink" title="初始化数据"></a>初始化数据</h4><p>我们在页面的<code>head</code>中，定义一个js标签，然后在里面定义变量，保存与sku相关的一些数据：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name"><span class="token namespace">th:</span>inline</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name"><span class="token namespace">th:</span>inline</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
     <span class="token comment" spellcheck="true">// sku集合</span>
     <span class="token keyword">const</span> skus <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${skus}]]*/</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 规格参数id与name对</span>
     <span class="token keyword">const</span> paramMap <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*[[${params}]]*/</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 特有规格参数集合</span>
     <span class="token keyword">const</span> specialSpec <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/*[[${spuDetail.specialSpec}]]*/</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>specialSpec：这是SpuDetail中唯一与Sku相关的数据</p>
 <p>因此我们并没有保存整个spuDetail，而是只保留了这个属性，而且需要手动转为js对象。</p>
@@ -880,7 +881,7 @@
 <h4 id="通过Vue渲染"><a href="#通过Vue渲染" class="headerlink" title="通过Vue渲染"></a>通过Vue渲染</h4><p>我们把刚才获得的几个变量保存在Vue实例中：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532531501925.png" alt="1532531501925"></p>
 <p>然后在页面中渲染：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>specification<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>summary-wrap clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>specification<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>summary-wrap clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(v,k) in specialSpec<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -893,7 +894,7 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后刷新页面查看：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532531590626.png" alt="1532531590626"></p>
 <p>数据成功渲染了。不过我们发现所有的规格都被勾选了。这是因为现在，每一个规格都有样式：<code>selected</code>，我们应该只选中一个，让它的class样式为selected才对！</p>
@@ -902,18 +903,18 @@
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1529923584730.png" alt="1529923584730"></p>
 <p>每一个规格项是数组中的一个元素，因此我们只要保存被选择的规格项的索引，就能判断哪个是用户选择的了！</p>
 <p>我们需要一个对象来保存用户选择的索引，格式如下：</p>
-<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token punctuation">{</span>
     <span class="token string">"4"</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token string">"12"</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token string">"13"</span><span class="token punctuation">:</span><span class="token number">0</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但问题是，第一次进入页面时，用户并未选择任何参数。因此索引应该有一个默认值，我们将默认值设置为0。</p>
 <p>我们在<code>head</code>的script标签中，对索引对象进行初始化：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1529923658242.png" alt="1529923658242"></p>
 <p>然后在vue中保存：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1529923701283.png" alt="1529923701283"></p>
 <h4 id="页面改造"><a href="#页面改造" class="headerlink" title="页面改造"></a>页面改造</h4><p>我们在页面中，通过判断indexes的值来判断当前规格是否被选中，并且给规格绑定点击事件，点击规格项后，修改indexes中的对应值：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>specification<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>summary-wrap clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>specification<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>summary-wrap clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(v,k) in specialSpec<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>k<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fl title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -926,7 +927,7 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532533192037.png" alt="1532533192037"></p>
 <h3 id="1-6-4-确定SKU"><a href="#1-6-4-确定SKU" class="headerlink" title="1.6.4.确定SKU"></a>1.6.4.确定SKU</h3><p>在我们设计sku数据的时候，就已经添加了一个字段：indexes：</p>
@@ -936,17 +937,17 @@
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532533340274.png" alt="1532533340274"></p>
 <p>因此，我们可以根据这个indexes来确定用户要选择的sku</p>
 <p>我们在vue中定义一个<strong>计算属性</strong>，来计算与索引匹配的sku：</p>
-<pre class=" language-js"><code class="language-js">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
     <span class="token function">sku</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">const</span> index <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>indexes<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"_"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>skus<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>s <span class="token operator">=</span><span class="token operator">></span> s<span class="token punctuation">.</span>indexes <span class="token operator">==</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在浏览器工具中查看：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532533876765.png" alt="1532533876765"></p>
 <h3 id="1-6-5-渲染sku列表"><a href="#1-6-5-渲染sku列表" class="headerlink" title="1.6.5.渲染sku列表"></a>1.6.5.渲染sku列表</h3><p>既然已经拿到了用户选中的sku，接下来，就可以在页面渲染数据了</p>
 <h4 id="图片列表"><a href="#图片列表" class="headerlink" title="图片列表"></a>图片列表</h4><p>商品图片是一个字符串，以<code>,</code>分割，页面展示比较麻烦，所以我们编写一个<strong>计算属性：</strong>images()，将图片字符串变成数组：</p>
-<pre class=" language-js"><code class="language-js">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     <span class="token function">sku</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">const</span> index <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>indexes<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"_"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>skus<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>s<span class="token operator">=</span><span class="token operator">></span>s<span class="token punctuation">.</span>indexes<span class="token operator">==</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -954,9 +955,9 @@
     <span class="token function">images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sku<span class="token punctuation">.</span>images <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sku<span class="token punctuation">.</span>images<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>页面改造：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>zoom<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>zoom<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
    <span class="token comment" spellcheck="true">&lt;!--默认第一个预览--></span>
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preview<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>spec-preview<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jqzoom<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -976,7 +977,7 @@
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>next<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token entity" title="&gt;">&amp;gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果：</p>
 <p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1526985783938.png" alt="1526985783938"></p>
 <h4 id="标题和价格"><a href="#标题和价格" class="headerlink" title="标题和价格"></a>标题和价格</h4><p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1526985959427.png" alt="1526985959427"></p>
@@ -991,9 +992,9 @@
 <h3 id="1-7-1-属性列表（作业）"><a href="#1-7-1-属性列表（作业）" class="headerlink" title="1.7.1.属性列表（作业）"></a>1.7.1.属性列表（作业）</h3><p>这部分内容与规格参数部分重复，我就不带大家做了，大家可以自己完成</p>
 <h3 id="1-7-2-商品详情"><a href="#1-7-2-商品详情" class="headerlink" title="1.7.2.商品详情"></a>1.7.2.商品详情</h3><p>商品详情是HTML代码，我们不能使用 <code>th:text</code>，应该使用<code>th:utext</code></p>
 <p>在页面的第444行左右：</p>
-<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--商品详情--></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--商品详情--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>intro-detail<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spuDetail.description}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>最终展示效果：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532536101914.png" alt="1532536101914"></p>
 <h2 id="1-8-规格包装"><a href="#1-8-规格包装" class="headerlink" title="1.8.规格包装"></a>1.8.规格包装</h2><p>规格包装分成两部分：</p>
@@ -1018,7 +1019,7 @@
 <p>把genericSpec引入到Vue实例：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532537863801.png" alt="1532537863801"></p>
 <p>因为sku是动态的，所以我们编写一个<strong>计算属性</strong>，来进行值的组合：</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">groups</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">groups</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     groups<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>group <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         group<span class="token punctuation">.</span>params<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>param <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span><span class="token punctuation">(</span>param<span class="token punctuation">.</span>generic<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -1031,9 +1032,9 @@
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token keyword">return</span> groups<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后在页面渲染：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ptable<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ptable<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ptable-item<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>group in groups<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>group.name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>{{group.name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span>
@@ -1042,20 +1043,20 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-8-2-包装列表"><a href="#1-8-2-包装列表" class="headerlink" title="1.8.2.包装列表"></a>1.8.2.包装列表</h3><p>包装列表在商品详情中，我们一开始并没有赋值到Vue实例中，但是可以通过Thymeleaf来渲染</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>package-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>package-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>包装清单<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spuDetail.packingList}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最终效果：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532538150603.png" alt="1532538150603"></p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532538178543.png" alt="1532538178543"></p>
 <h2 id="1-9-售后服务"><a href="#1-9-售后服务" class="headerlink" title="1.9.售后服务"></a>1.9.售后服务</h2><p>售后服务也可以通过Thymeleaf进行渲染：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>three<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tab-pane<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>three<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tab-pane<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>售后保障<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${spuDetail.afterService}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532538249704.png" alt="1532538249704"></p>
 <h1 id="2-页面静态化"><a href="#2-页面静态化" class="headerlink" title="2.页面静态化"></a>2.页面静态化</h1><h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1.简介"></a>2.1.简介</h2><h3 id="2-1-1-问题分析"><a href="#2-1-1-问题分析" class="headerlink" title="2.1.1.问题分析"></a>2.1.1.问题分析</h3><p>现在，我们的页面是通过Thymeleaf模板引擎渲染后返回到客户端。在后台需要大量的数据查询，而后渲染得到HTML页面。会对数据库造成压力，并且请求的响应时间过长，并发能力不高。</p>
@@ -1091,7 +1092,7 @@
 <p>TemplateEngine</p>
 </blockquote>
 <p>模板引擎：用来解析模板的引擎，需要使用到上下文、模板解析器。分别从两者中获取模板中需要的数据，模板文件。然后利用内置的语法规则解析，从而输出解析后的文件。来看下模板引擎进行处理的函数：</p>
-<pre class=" language-java"><code class="language-java">templateEngine<span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span><span class="token string">"模板名"</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> writer<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java">templateEngine<span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span><span class="token string">"模板名"</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> writer<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>三个参数：</p>
 <ul>
 <li>模板名称</li>
@@ -1102,7 +1103,7 @@
 <p>而在SpringBoot中已经自动配置了模板引擎，因此我们不需要关心这个。现在我们做静态化，就是把输出的目的地改成本地文件即可！</p>
 <h3 id="2-2-2-具体实现"><a href="#2-2-2-具体实现" class="headerlink" title="2.2.2.具体实现"></a>2.2.2.具体实现</h3><p> <img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532757937331.png" alt="1532757937331"></p>
 <p>Service代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GoodsHtmlService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
@@ -1159,22 +1160,22 @@
             }
         });*/</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>线程工具类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadUtils</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadUtils</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> ExecutorService es <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">execute</span><span class="token punctuation">(</span>Runnable runnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         es<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-2-3-什么时候创建静态文件"><a href="#2-2-3-什么时候创建静态文件" class="headerlink" title="2.2.3.什么时候创建静态文件"></a>2.2.3.什么时候创建静态文件</h3><p>我们编写好了创建静态文件的service，那么问题来了：什么时候去调用它呢</p>
 <p>想想这样的场景：</p>
 <p>假如大部分的商品都有了静态页面。那么用户的请求都会被nginx拦截下来，根本不会到达我们的<code>leyou-goods-web</code>服务。只有那些还没有页面的请求，才可能会到达这里。</p>
 <p>因此，如果请求到达了这里，我们除了返回页面视图外，还应该创建一个静态页面，那么下次就不会再来麻烦我们了。</p>
 <p>所以，我们在GoodsController中添加逻辑，去生成静态html文件：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{id}.html"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"{id}.html"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> String <span class="token function">toItemPage</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span>Long id<span class="token punctuation">,</span> Model model<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">// 加载所需的数据</span>
@@ -1186,12 +1187,12 @@
     <span class="token keyword">this</span><span class="token punctuation">.</span>goodsHtmlService<span class="token punctuation">.</span><span class="token function">asyncExcute</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token string">"item"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：生成html 的代码不能对用户请求产生影响，所以这里我们使用额外的线程进行异步创建。</p>
 <h3 id="2-2-4-重启测试"><a href="#2-2-4-重启测试" class="headerlink" title="2.2.4.重启测试"></a>2.2.4.重启测试</h3><p>访问一个商品详情，然后查看nginx目录：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532757980379.png" alt="1532757980379"></p>
 <h2 id="2-3-nginx代理静态页面"><a href="#2-3-nginx代理静态页面" class="headerlink" title="2.3.nginx代理静态页面"></a>2.3.nginx代理静态页面</h2><p>接下来，我们修改nginx，让它对商品请求进行监听，指向本地静态页面，如果本地没找到，才进行反向代理：</p>
-<pre class=" language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">{</span>
     <span class="token keyword">listen</span>       <span class="token number">80</span><span class="token punctuation">;</span>
     <span class="token keyword">server_name</span>  www<span class="token punctuation">.</span>leyou<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
 
@@ -1213,7 +1214,7 @@
         <span class="token keyword">proxy_connect_timeout</span> <span class="token number">600</span><span class="token punctuation">;</span>
         <span class="token keyword">proxy_read_timeout</span> <span class="token number">600</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>重启测试：</p>
 <p>发现请求速度得到了极大提升：</p>
 <p><img src="/chaining/2019/07/11/xiang-mu-shi-zhan/le-you-shang-cheng/day14.shang-pin-xiang-qing-ji-jing-tai-hua/1532758206086.png" alt="1532758206086"></p>

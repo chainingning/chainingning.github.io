@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Java面向对象设计之单例模式, 柴米油盐, Chester">
+    <meta name="keywords" content="Java面向对象设计之单例模式, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="模式动机对于系统中的某些类来说，只有一个实例很重要，例如，一个系统中可以存在多个打印任务，但是只能有一个正在工作的任务；一个系统只能有一个窗口管理器或文件系统；一个系统只能有一个计时工具或ID（序号）生成器。
 如何保证一个类只有一个实例并且">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +33,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -456,7 +457,7 @@
 </ul>
 <h3 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h3><p><img src="http://static.blinkfox.com/Java_design_singleton_uml.jpg" alt="单例模式UML类图"></p>
 <h3 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h3><p><img src="http://static.blinkfox.com/Java_design_singleton_seq.jpg" alt="单例模式时序图"></p>
-<h2 id="代码实现方式"><a href="#代码实现方式" class="headerlink" title="代码实现方式"></a>代码实现方式</h2><h3 id="1-饿汉式（推荐使用）"><a href="#1-饿汉式（推荐使用）" class="headerlink" title="1. 饿汉式（推荐使用）"></a>1. 饿汉式（推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h2 id="代码实现方式"><a href="#代码实现方式" class="headerlink" title="代码实现方式"></a>代码实现方式</h2><h3 id="1-饿汉式（推荐使用）"><a href="#1-饿汉式（推荐使用）" class="headerlink" title="1. 饿汉式（推荐使用）"></a>1. 饿汉式（推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 饿汉式单例模式.
  *
  * @author blinkfox on 2017-10-23.
@@ -472,11 +473,11 @@
         <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：这种方式避免了多线程的同步问题，但不是懒加载。如果不需要懒加载的方式，推荐使用。</p>
 </blockquote>
-<h3 id="2-非线程安全懒汉式（不推荐使用）"><a href="#2-非线程安全懒汉式（不推荐使用）" class="headerlink" title="2. 非线程安全懒汉式（不推荐使用）"></a>2. 非线程安全懒汉式（不推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="2-非线程安全懒汉式（不推荐使用）"><a href="#2-非线程安全懒汉式（不推荐使用）" class="headerlink" title="2. 非线程安全懒汉式（不推荐使用）"></a>2. 非线程安全懒汉式（不推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 非线程安全的懒汉式.
  *
  * @author blinkfox on 2017-10-23.
@@ -498,11 +499,11 @@
         <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：是懒加载的方式，但非线程安全。不推荐使用。</p>
 </blockquote>
-<h3 id="3-低效的线程安全懒汉式（不推荐使用）"><a href="#3-低效的线程安全懒汉式（不推荐使用）" class="headerlink" title="3. 低效的线程安全懒汉式（不推荐使用）"></a>3. 低效的线程安全懒汉式（不推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="3-低效的线程安全懒汉式（不推荐使用）"><a href="#3-低效的线程安全懒汉式（不推荐使用）" class="headerlink" title="3. 低效的线程安全懒汉式（不推荐使用）"></a>3. 低效的线程安全懒汉式（不推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 低效的线程安全的懒汉式.
  *
  * @author blinkfox on 2017-10-23.
@@ -524,11 +525,11 @@
         <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：是懒加载的方式，也线程安全，但是效率很低。因为99%的情况下是不需要去同步的。不推荐使用。</p>
 </blockquote>
-<h3 id="4-双重校验锁线程安全懒汉式（不推荐使用）"><a href="#4-双重校验锁线程安全懒汉式（不推荐使用）" class="headerlink" title="4. 双重校验锁线程安全懒汉式（不推荐使用）"></a>4. 双重校验锁线程安全懒汉式（不推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="4-双重校验锁线程安全懒汉式（不推荐使用）"><a href="#4-双重校验锁线程安全懒汉式（不推荐使用）" class="headerlink" title="4. 双重校验锁线程安全懒汉式（不推荐使用）"></a>4. 双重校验锁线程安全懒汉式（不推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 双重校验锁线程安全懒汉式.
  *
  * @author blinkfox on 2017-10-23.
@@ -554,11 +555,11 @@
         <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：是懒加载的方式，也线程安全，效率也不错。但受限于Jdk5以前的Java内存模型，仍然会有bug，Java5及之后才能正常达到单例效果。</p>
 </blockquote>
-<h3 id="5-枚举式（强烈推荐使用）"><a href="#5-枚举式（强烈推荐使用）" class="headerlink" title="5. 枚举式（强烈推荐使用）"></a>5. 枚举式（强烈推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="5-枚举式（强烈推荐使用）"><a href="#5-枚举式（强烈推荐使用）" class="headerlink" title="5. 枚举式（强烈推荐使用）"></a>5. 枚举式（强烈推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 枚举方式的单例.
  *
  * @author blinkfox on 2017-10-23.
@@ -567,11 +568,11 @@
 
     INSTANCE<span class="token punctuation">;</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：在<code>《Effective Java》</code>一书中强烈推荐使用枚举来实现单例模式，该方式简单可自由序列化；保证只有一个实例（即使使用反射机制也无法多次实例化一个枚举量）；线程安全。唯一的缺点是非懒加载方式。</p>
 </blockquote>
-<h3 id="6-静态内部类（推荐使用）"><a href="#6-静态内部类（推荐使用）" class="headerlink" title="6. 静态内部类（推荐使用）"></a>6. 静态内部类（推荐使用）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h3 id="6-静态内部类（推荐使用）"><a href="#6-静态内部类（推荐使用）" class="headerlink" title="6. 静态内部类（推荐使用）"></a>6. 静态内部类（推荐使用）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 通过使用静态内部类的方式来实现懒加载且线程安全的创建单例.
  *
  * @author blinkfox on 2017-10-23.
@@ -599,7 +600,7 @@
         <span class="token keyword">return</span> SingletonHolder<span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p><strong>注</strong>：这种方式利用了<code>ClassLoader</code>的机制保证初始化<code>instance</code>时只有一个线程，其只有显示通过调用<code>getInstance</code>方法时，才会显示装载<code>SingletonHolder</code>类，从而实例化<code>instance</code>。</p>
 </blockquote>

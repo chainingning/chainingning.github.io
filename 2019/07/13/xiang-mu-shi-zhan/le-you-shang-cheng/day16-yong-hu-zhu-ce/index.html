@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="day16-用户注册, 柴米油盐, Chester">
+    <meta name="keywords" content="day16-用户注册, 柴米油盐, Chester, 柴宁宁的博客 , java工程师">
     <meta name="description" content="0.学习目标
 创建用户中心
 了解面向接口开发方式
@@ -40,7 +40,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/chaining/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/chaining/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -480,7 +481,7 @@
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532779001951.png" alt="1532779001951"></p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532779042843.png" alt="1532779042843"></p>
 <p>pom：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -495,12 +496,12 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-user-interface<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="1-3-创建leyou-user-service"><a href="#1-3-创建leyou-user-service" class="headerlink" title="1.3.创建leyou-user-service"></a>1.3.创建leyou-user-service</h2><p>创建module</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532779120507.png" alt="1532779120507"></p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532779166910.png" alt="1532779166910"></p>
 <p>pom</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -554,9 +555,9 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>启动类</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token annotation punctuation">@EnableDiscoveryClient</span>
 <span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span><span class="token string">"com.leyou.user.mapper"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouUserApplication</span> <span class="token punctuation">{</span>
@@ -564,9 +565,9 @@
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouUserApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>配置：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8085</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -585,9 +586,9 @@
     <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">15</span>
 
 <span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
-  <span class="token key atrule">type-aliases-package</span><span class="token punctuation">:</span> com.leyou.user.pojo</code></pre>
+  <span class="token key atrule">type-aliases-package</span><span class="token punctuation">:</span> com.leyou.user.pojo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>父工程leyou-user的pom：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -607,14 +608,14 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>module</span><span class="token punctuation">></span></span>leyou-user-service<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>module</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modules</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="1-4-添加网关路由"><a href="#1-4-添加网关路由" class="headerlink" title="1.4.添加网关路由"></a>1.4.添加网关路由</h2><p>我们修改<code>leyou-gateway</code>，添加路由规则，对<code>leyou-user-service</code>进行路由:</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532779772325.png" alt="1532779772325"></p>
 <h1 id="2-后台功能准备"><a href="#2-后台功能准备" class="headerlink" title="2.后台功能准备"></a>2.后台功能准备</h1><h2 id="2-1-接口文档"><a href="#2-1-接口文档" class="headerlink" title="2.1.接口文档"></a>2.1.接口文档</h2><p>整个用户中心的开发，我们将模拟公司内面向接口的开发。</p>
 <p>现在假设项目经理已经设计好了接口文档，详见：《用户中心接口说明.md》</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1527174356711.png" alt="1527174356711"></p>
 <p>我们将根据文档直接编写后台功能，不关心页面实现。</p>
-<h2 id="2-2-数据结构"><a href="#2-2-数据结构" class="headerlink" title="2.2.数据结构"></a>2.2.数据结构</h2><pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `tb_user` (
+<h2 id="2-2-数据结构"><a href="#2-2-数据结构" class="headerlink" title="2.2.数据结构"></a>2.2.数据结构</h2><pre class="line-numbers language-mysql"><code class="language-mysql">CREATE TABLE `tb_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
@@ -623,10 +624,10 @@
   `salt` varchar(32) NOT NULL COMMENT '密码加密的salt值',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='用户表';</code></pre>
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='用户表';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>数据结构比较简单，因为根据用户名查询的频率较高，所以我们给用户名创建了索引</p>
 <h2 id="2-3-基本代码"><a href="#2-3-基本代码" class="headerlink" title="2.3.基本代码"></a>2.3.基本代码</h2><p> <img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532781014342.png" alt="1532781014342"></p>
-<h3 id="2-3-1-实体类"><a href="#2-3-1-实体类" class="headerlink" title="2.3.1.实体类"></a>2.3.1.实体类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_user"</span><span class="token punctuation">)</span>
+<h3 id="2-3-1-实体类"><a href="#2-3-1-实体类" class="headerlink" title="2.3.1.实体类"></a>2.3.1.实体类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_user"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> GenerationType<span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
@@ -643,23 +644,23 @@
 
     <span class="token annotation punctuation">@JsonIgnore</span>
     <span class="token keyword">private</span> String salt<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 密码的盐值</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：为了安全考虑。这里对password和salt添加了注解@JsonIgnore，这样在json序列化时，就不会把password和salt返回。</p>
-<h3 id="2-3-2-mapper"><a href="#2-3-2-mapper" class="headerlink" title="2.3.2.mapper"></a>2.3.2.mapper</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="2-3-3-Service"><a href="#2-3-3-Service" class="headerlink" title="2.3.3.Service"></a>2.3.3.Service</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<h3 id="2-3-2-mapper"><a href="#2-3-2-mapper" class="headerlink" title="2.3.2.mapper"></a>2.3.2.mapper</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserMapper</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="2-3-3-Service"><a href="#2-3-3-Service" class="headerlink" title="2.3.3.Service"></a>2.3.3.Service</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> UserMapper userMapper<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="2-3-4-controller"><a href="#2-3-4-controller" class="headerlink" title="2.3.4.controller"></a>2.3.4.controller</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-3-4-controller"><a href="#2-3-4-controller" class="headerlink" title="2.3.4.controller"></a>2.3.4.controller</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> UserService userService<span class="token punctuation">;</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="3-数据验证功能"><a href="#3-数据验证功能" class="headerlink" title="3.数据验证功能"></a>3.数据验证功能</h1><h2 id="3-1-接口说明"><a href="#3-1-接口说明" class="headerlink" title="3.1.接口说明"></a>3.1.接口说明</h2><p>实现用户数据的校验，主要包括对：手机号、用户名的唯一性校验。</p>
 <p><strong>接口路径：</strong></p>
 <pre><code>GET /check/{data}/{type}</code></pre><p><strong>参数说明：</strong></p>
@@ -707,7 +708,7 @@
 <li>请求参数：param,type</li>
 <li>返回结果：true或false</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
   * 校验数据是否可用
   * @param data
   * @param type
@@ -720,8 +721,8 @@
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>boo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="3-3-Service"><a href="#3-3-Service" class="headerlink" title="3.3.Service"></a>3.3.Service</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Boolean <span class="token function">checkData</span><span class="token punctuation">(</span>String data<span class="token punctuation">,</span> Integer type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-3-Service"><a href="#3-3-Service" class="headerlink" title="3.3.Service"></a>3.3.Service</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> Boolean <span class="token function">checkData</span><span class="token punctuation">(</span>String data<span class="token punctuation">,</span> Integer type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     User record <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">switch</span> <span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
@@ -734,7 +735,7 @@
             <span class="token keyword">return</span> null<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userMapper<span class="token punctuation">.</span><span class="token function">selectCount</span><span class="token punctuation">(</span>record<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-4-测试"><a href="#3-4-测试" class="headerlink" title="3.4.测试"></a>3.4.测试</h2><p>我们在数据库插入一条假数据：</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532781696303.png" alt="1532781696303"></p>
 <p>然后在浏览器调用接口，测试：</p>
@@ -750,7 +751,7 @@
 </ul>
 <h3 id="4-2-1-创建module"><a href="#4-2-1-创建module" class="headerlink" title="4.2.1.创建module"></a>4.2.1.创建module</h3><p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532786840913.png" alt="1532786840913"></p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532786877872.png" alt="1532786877872"></p>
-<h3 id="4-2-2-pom"><a href="#4-2-2-pom" class="headerlink" title="4.2.2.pom"></a>4.2.2.pom</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<h3 id="4-2-2-pom"><a href="#4-2-2-pom" class="headerlink" title="4.2.2.pom"></a>4.2.2.pom</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -785,14 +786,14 @@
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span></code></pre>
-<h3 id="4-2-3-编写启动类"><a href="#4-2-3-编写启动类" class="headerlink" title="4.2.3.编写启动类"></a>4.2.3.编写启动类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-2-3-编写启动类"><a href="#4-2-3-编写启动类" class="headerlink" title="4.2.3.编写启动类"></a>4.2.3.编写启动类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeyouSmsApplication</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>LeyouSmsApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="4-2-4-编写application-yml"><a href="#4-2-4-编写application-yml" class="headerlink" title="4.2.4.编写application.yml"></a>4.2.4.编写application.yml</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-2-4-编写application-yml"><a href="#4-2-4-编写application-yml" class="headerlink" title="4.2.4.编写application.yml"></a>4.2.4.编写application.yml</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8086</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -801,18 +802,18 @@
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
     <span class="token key atrule">password</span><span class="token punctuation">:</span> leyou
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou</code></pre>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-3-编写短信工具类"><a href="#4-3-编写短信工具类" class="headerlink" title="4.3.编写短信工具类"></a>4.3.编写短信工具类</h2><p>项目结构：</p>
 <p> <img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1532955721215.png" alt="1532955721215"></p>
 <h3 id="4-3-1-属性抽取"><a href="#4-3-1-属性抽取" class="headerlink" title="4.3.1.属性抽取"></a>4.3.1.属性抽取</h3><p>我们首先把一些常量抽取到application.yml中：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">leyou</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">leyou</span><span class="token punctuation">:</span>
   <span class="token key atrule">sms</span><span class="token punctuation">:</span>
     <span class="token key atrule">accessKeyId</span><span class="token punctuation">:</span> JWffwFJIwada <span class="token comment" spellcheck="true"># 你自己的accessKeyId</span>
     <span class="token key atrule">accessKeySecret</span><span class="token punctuation">:</span> aySRliswq8fe7rF9gQyy1Izz4MQ <span class="token comment" spellcheck="true"># 你自己的AccessKeySecret</span>
     <span class="token key atrule">signName</span><span class="token punctuation">:</span> 乐优商城 <span class="token comment" spellcheck="true"># 签名名称</span>
-    <span class="token key atrule">verifyCodeTemplate</span><span class="token punctuation">:</span> SMS_133976814 <span class="token comment" spellcheck="true"># 模板名称</span></code></pre>
+    <span class="token key atrule">verifyCodeTemplate</span><span class="token punctuation">:</span> SMS_133976814 <span class="token comment" spellcheck="true"># 模板名称</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后注入到属性类中：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"leyou.sms"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"leyou.sms"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SmsProperties</span> <span class="token punctuation">{</span>
 
     String accessKeyId<span class="token punctuation">;</span>
@@ -854,9 +855,9 @@
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setVerifyCodeTemplate</span><span class="token punctuation">(</span>String verifyCodeTemplate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>verifyCodeTemplate <span class="token operator">=</span> verifyCodeTemplate<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-3-2-工具类"><a href="#4-3-2-工具类" class="headerlink" title="4.3.2.工具类"></a>4.3.2.工具类</h3><p>我们把阿里提供的demo进行简化和抽取，封装一个工具类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>SmsProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SmsUtils</span> <span class="token punctuation">{</span>
 
@@ -908,9 +909,9 @@
 
         <span class="token keyword">return</span> sendSmsResponse<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-4-编写消息监听器"><a href="#4-4-编写消息监听器" class="headerlink" title="4.4.编写消息监听器"></a>4.4.编写消息监听器</h2><p>接下来，编写消息监听器，当接收到消息后，我们发送短信。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>SmsProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SmsListener</span> <span class="token punctuation">{</span>
 
@@ -943,7 +944,7 @@
                                                      prop<span class="token punctuation">.</span><span class="token function">getVerifyCodeTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们注意到，消息体是一个Map，里面有两个属性：</p>
 <ul>
 <li>phone：电话号码</li>
@@ -1001,14 +1002,14 @@
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533013812311.png" alt="1533013812311"></p>
 <p> <img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533013709197.png" alt="1533013709197"></p>
 <p>需要在项目中引入Redis启动器：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后在配置文件中指定Redis地址：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">redis</span><span class="token punctuation">:</span>
-    <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101</code></pre>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="5-3-在项目中实现"><a href="#5-3-在项目中实现" class="headerlink" title="5.3.在项目中实现"></a>5.3.在项目中实现</h2><p>需要三个步骤：</p>
 <ul>
 <li>生成随机验证码</li>
@@ -1016,31 +1017,31 @@
 <li>发送验证码到<code>leyou-sms-service</code>服务，发送短信</li>
 </ul>
 <p>因此，我们需要引入Redis和AMQP：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>添加RabbitMQ和Redis配置：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">redis</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.56.101
     <span class="token key atrule">username</span><span class="token punctuation">:</span> leyou
     <span class="token key atrule">password</span><span class="token punctuation">:</span> leyou
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou</code></pre>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /leyou<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>另外还要用到工具类，生成6位随机码，这个我们封装到了<code>leyou-common</code>中，因此需要引入依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.leyou.common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>leyou-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${leyou.latest.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>NumberUtils中有生成随机码的工具方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 生成指定位数的随机数字
  * @param len 随机数的位数
  * @return 生成的随机数
@@ -1051,9 +1052,9 @@
     <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span>
         Double<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> len <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> min<span class="token punctuation">;</span>
     <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-3-1-UserController"><a href="#5-3-1-UserController" class="headerlink" title="5.3.1.UserController"></a>5.3.1.UserController</h3><p>在leyou-user-service工程中的UserController添加方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 发送手机验证码
  * @param phone
  * @return
@@ -1065,9 +1066,9 @@
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>INTERNAL_SERVER_ERROR<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>CREATED<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-3-2-UserService"><a href="#5-3-2-UserService" class="headerlink" title="5.3.2.UserService"></a>5.3.2.UserService</h3><p>在Service中添加代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
 <span class="token keyword">private</span> StringRedisTemplate redisTemplate<span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Autowired</span>
@@ -1093,7 +1094,7 @@
         logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"发送短信失败。phone：{}， code：{}"</span><span class="token punctuation">,</span> phone<span class="token punctuation">,</span> code<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：要设置短信验证码在Redis的缓存时间为5分钟</p>
 <h3 id="5-3-3-测试"><a href="#5-3-3-测试" class="headerlink" title="5.3.3.测试"></a>5.3.3.测试</h3><p>通过RestClient发送请求试试：</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533020768508.png" alt="1533020768508"></p>
@@ -1110,7 +1111,7 @@
 <li>4）写入数据库</li>
 <li>5）删除Redis中的验证码</li>
 </ul>
-<h2 id="6-2-UserController"><a href="#6-2-UserController" class="headerlink" title="6.2.UserController"></a>6.2.UserController</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h2 id="6-2-UserController"><a href="#6-2-UserController" class="headerlink" title="6.2.UserController"></a>6.2.UserController</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 注册
  * @param user
  * @param code
@@ -1123,8 +1124,8 @@
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>CREATED<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="6-3-UserService"><a href="#6-3-UserService" class="headerlink" title="6.3.UserService"></a>6.3.UserService</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Boolean <span class="token function">register</span><span class="token punctuation">(</span>User user<span class="token punctuation">,</span> String code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="6-3-UserService"><a href="#6-3-UserService" class="headerlink" title="6.3.UserService"></a>6.3.UserService</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> Boolean <span class="token function">register</span><span class="token punctuation">(</span>User user<span class="token punctuation">,</span> String code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 校验短信验证码</span>
     String cacheCode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>KEY_PREFIX <span class="token operator">+</span> user<span class="token punctuation">.</span><span class="token function">getPhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>StringUtils<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> cacheCode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1149,14 +1150,14 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>KEY_PREFIX <span class="token operator">+</span> user<span class="token punctuation">.</span><span class="token function">getPhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此处使用了课前资料中的CodeUtils：</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533023141026.png" alt="1533023141026"></p>
 <p>该工具类需要apache加密工具包：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>commons-codec<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-codec<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="6-4-测试"><a href="#6-4-测试" class="headerlink" title="6.4.测试"></a>6.4.测试</h2><p>我们通过RestClient测试：</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533024221725.png" alt="1533024221725"></p>
 <p>查看数据库：</p>
@@ -1266,12 +1267,12 @@
 </tr>
 </tbody></table>
 <h3 id="6-5-3-给User添加校验"><a href="#6-5-3-给User添加校验" class="headerlink" title="6.5.3.给User添加校验"></a>6.5.3.给User添加校验</h3><p>我们在<code>leyou-user-interface</code>中添加Hibernate-Validator依赖：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.hibernate.validator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>hibernate-validator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们在User对象的部分属性上添加注解：</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_user"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tb_user"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> GenerationType<span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
@@ -1290,7 +1291,7 @@
 
     <span class="token annotation punctuation">@JsonIgnore</span>
     <span class="token keyword">private</span> String salt<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 密码的盐值</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="6-5-4-在controller上进行控制"><a href="#6-5-4-在controller上进行控制" class="headerlink" title="6.5.4.在controller上进行控制"></a>6.5.4.在controller上进行控制</h3><p>在controller中改造register方法，只需要给User添加 @Valid注解即可。</p>
 <p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533030001081.png" alt="1533030001081"></p>
 <h3 id="6-5-5-测试"><a href="#6-5-5-测试" class="headerlink" title="6.5.5.测试"></a>6.5.5.测试</h3><p>我们故意填错：</p>
@@ -1328,19 +1329,19 @@
 </tbody></table>
 <p><strong>返回结果</strong></p>
 <p>用户的json格式数据</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">6572312</span><span class="token punctuation">,</span>
     <span class="token property">"username"</span><span class="token operator">:</span><span class="token string">"test"</span><span class="token punctuation">,</span>
     <span class="token property">"phone"</span><span class="token operator">:</span><span class="token string">"13688886666"</span><span class="token punctuation">,</span>
     <span class="token property">"created"</span><span class="token operator">:</span> <span class="token number">1342432424</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>状态码</strong></p>
 <ul>
 <li>200：注册成功</li>
 <li>400：用户名或密码错误</li>
 <li>500：服务器内部异常，注册失败</li>
 </ul>
-<h2 id="7-1-controller"><a href="#7-1-controller" class="headerlink" title="7.1.controller"></a>7.1.controller</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h2 id="7-1-controller"><a href="#7-1-controller" class="headerlink" title="7.1.controller"></a>7.1.controller</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 根据用户名和密码查询用户
  * @param username
  * @param password
@@ -1356,8 +1357,8 @@
             <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>BAD_REQUEST<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> ResponseEntity<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<h2 id="7-2-service"><a href="#7-2-service" class="headerlink" title="7.2.service"></a>7.2.service</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> User <span class="token function">queryUser</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="7-2-service"><a href="#7-2-service" class="headerlink" title="7.2.service"></a>7.2.service</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> User <span class="token function">queryUser</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 查询</span>
     User record <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     record<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1372,7 +1373,7 @@
     <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">// 用户名密码都正确</span>
     <span class="token keyword">return</span> user<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>要注意，查询时也要对密码进行加密后判断是否一致。</p>
 <h2 id="7-3-测试"><a href="#7-3-测试" class="headerlink" title="7.3.测试"></a>7.3.测试</h2><p><img src="/chaining/2019/07/13/xiang-mu-shi-zhan/le-you-shang-cheng/day16-yong-hu-zhu-ce/1533030961886.png" alt="1533030961886"></p>
 <h1 id="8-在注册页进行测试"><a href="#8-在注册页进行测试" class="headerlink" title="8.在注册页进行测试"></a>8.在注册页进行测试</h1><p>在注册页填写信息：</p>
