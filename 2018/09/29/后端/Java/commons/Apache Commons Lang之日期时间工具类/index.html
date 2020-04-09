@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- Google AdSense start -->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Java,Apache,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="柴米丨油盐" type="application/atom+xml">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+<meta name="description" content="码农不识Apache，码尽一生也枉然。  FastDateFormatFastDateFormat是一个快速且线程安全的时间操作类，它完全可以替代SimpleDateFromat。因为是线程安全的，所以你可以把它作为一个类的静态字段使用。构造方法为protected，不允许直接构造它的对象，可以通过工厂方法获取。FastDateFormat之所以是线程安全的，是因为这个类是无状态的：内部的成员在">
+<meta name="keywords" content="Java,Apache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Commons Lang之日期时间工具类">
+<meta property="og:url" content="http://chaining.coding.me/2018/09/29/后端/Java/commons/Apache Commons Lang之日期时间工具类/index.html">
+<meta property="og:site_name" content="柴米丨油盐">
+<meta property="og:description" content="码农不识Apache，码尽一生也枉然。  FastDateFormatFastDateFormat是一个快速且线程安全的时间操作类，它完全可以替代SimpleDateFromat。因为是线程安全的，所以你可以把它作为一个类的静态字段使用。构造方法为protected，不允许直接构造它的对象，可以通过工厂方法获取。FastDateFormat之所以是线程安全的，是因为这个类是无状态的：内部的成员在">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-07T11:09:09.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache Commons Lang之日期时间工具类">
+<meta name="twitter:description" content="码农不识Apache，码尽一生也枉然。  FastDateFormatFastDateFormat是一个快速且线程安全的时间操作类，它完全可以替代SimpleDateFromat。因为是线程安全的，所以你可以把它作为一个类的静态字段使用。构造方法为protected，不允许直接构造它的对象，可以通过工厂方法获取。FastDateFormat之所以是线程安全的，是因为这个类是无状态的：内部的成员在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chaining.coding.me/2018/09/29/后端/Java/commons/Apache Commons Lang之日期时间工具类/">
+
+
+
+
+
+  <title>Apache Commons Lang之日期时间工具类 | 柴米丨油盐</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/chainingning" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">柴米丨油盐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">也许,我们能在柴米油盐的生活中做的更好一些。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chaining.coding.me/2018/09/29/后端/Java/commons/Apache Commons Lang之日期时间工具类/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="柴宁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="柴米丨油盐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Apache Commons Lang之日期时间工具类</h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T22:10:00+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-07T19:09:09+08:00">
+                2019-08-07
+              </time>
+            
+          </span>
+		  
+		  
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+                               
+                <span class="post-meta-item-text">分类于&#58;</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/29/后端/Java/commons/Apache Commons Lang之日期时间工具类/" class="leancloud_visitors" data-flag-title="Apache Commons Lang之日期时间工具类">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>码农不识Apache，码尽一生也枉然。</p>
+</blockquote>
+<h2 id="FastDateFormat"><a href="#FastDateFormat" class="headerlink" title="FastDateFormat"></a>FastDateFormat</h2><p><code>FastDateFormat</code>是一个快速且线程安全的时间操作类，它完全可以替代<code>SimpleDateFromat</code>。因为是线程安全的，所以你可以把它作为一个类的静态字段使用。构造方法为protected，不允许直接构造它的对象，可以通过工厂方法获取。FastDateFormat之所以是线程安全的，是因为这个类是无状态的：内部的成员在构造时就完成了初始化，并在对象存活期，不提供任何API供外界修改他们。</p>
+<h3 id="getInstance-String-pattern"><a href="#getInstance-String-pattern" class="headerlink" title="getInstance(String pattern)"></a>getInstance(String pattern)</h3><p>获取指定日期时间格式的<code>FastDateFormat</code>实例。</p>
+<h3 id="format-Date-date"><a href="#format-Date-date" class="headerlink" title="format(Date date)"></a>format(Date date)</h3><p>将日期时间格式化为字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FastDateFormat.getInstance(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()); <span class="comment">// 2017-06-03 23:32:31</span></span><br></pre></td></tr></table></figure>
+<h3 id="format-long-millis"><a href="#format-long-millis" class="headerlink" title="format(long millis)"></a>format(long millis)</h3><p>同<code>format(Date date)</code>相似。</p>
+<h3 id="format-Calendar-calendar"><a href="#format-Calendar-calendar" class="headerlink" title="format(Calendar calendar)"></a>format(Calendar calendar)</h3><p>同<code>format(Date date)</code>相似。</p>
+<h2 id="DateFormatUtils"><a href="#DateFormatUtils" class="headerlink" title="DateFormatUtils"></a>DateFormatUtils</h2><p>将时间转化为字符串的工具类。不可实例化对象且线程安全，依赖于<code>FastDateFormat</code>。</p>
+<h3 id="预定义的日期格式"><a href="#预定义的日期格式" class="headerlink" title="预定义的日期格式"></a>预定义的日期格式</h3><p><code>DateFormatUtils</code>预定义的日期格式有如下几种：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat ISO_8601_EXTENDED_DATETIME_FORMAT = FastDateFormat.getInstance(<span class="string">"yyyy-MM-dd'T'HH:mm:ss"</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT = FastDateFormat.getInstance(<span class="string">"yyyy-MM-dd'T'HH:mm:ssZZ"</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat ISO_8601_EXTENDED_DATE_FORMAT = FastDateFormat.getInstance(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat ISO_8601_EXTENDED_TIME_FORMAT = FastDateFormat.getInstance(<span class="string">"HH:mm:ss"</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat ISO_8601_EXTENDED_TIME_TIME_ZONE_FORMAT = FastDateFormat.getInstance(<span class="string">"HH:mm:ssZZ"</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> FastDateFormat SMTP_DATETIME_FORMAT = FastDateFormat.getInstance(<span class="string">"EEE, dd MMM yyyy HH:mm:ss Z"</span>, Locale.US);</span><br></pre></td></tr></table></figure>
+<h3 id="format-Date-date-String-pattern"><a href="#format-Date-date-String-pattern" class="headerlink" title="format(Date date, String pattern)"></a>format(Date date, String pattern)</h3><p>将日期格式化为字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DateFormatUtils.format(<span class="keyword">new</span> Date(), <span class="string">"yyyy-MM-dd HH:mm:ss"</span>); <span class="comment">// 2017-06-03 23:03:53</span></span><br><span class="line">DateFormatUtils.ISO_8601_EXTENDED_DATETIME_FORMAT.format(<span class="keyword">new</span> Date()); <span class="comment">// 2017-06-03T23:09:52</span></span><br><span class="line">DateFormatUtils.format(System.currentTimeMillis(), <span class="string">"yyyy-MM-dd HH:mm:ss"</span>); <span class="comment">// 2017-06-03 23:16:59</span></span><br></pre></td></tr></table></figure>
+<h3 id="format-long-millis-String-pattern"><a href="#format-long-millis-String-pattern" class="headerlink" title="format(long millis, String pattern)"></a>format(long millis, String pattern)</h3><p>同<code>format(Date date, String pattern)</code>相似。</p>
+<h3 id="format-Calendar-calendar-String-pattern"><a href="#format-Calendar-calendar-String-pattern" class="headerlink" title="format(Calendar calendar, String pattern)"></a>format(Calendar calendar, String pattern)</h3><p>同<code>format(Date date, String pattern)</code>相似。</p>
+<h2 id="DateUtils"><a href="#DateUtils" class="headerlink" title="DateUtils"></a>DateUtils</h2><p><code>DateUtils</code>提供了很多很方便的功能，减轻了使用Date的复杂性。把原来需用<code>Calendar</code>才能完成的功能统一集中了起来，也就是说没有对应的<code>CalendarUtils</code>类。在JDK中，Date与Calendar概念本身就有些混淆，只是为了保持兼容性才引入的Calendar。相对于Calendar提供的方法，DateUtils提供了更加合理的方法，对时间的单个字段操作变得更加的容易。</p>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MILLIS_PER_SECOND = <span class="number">1000</span>; <span class="comment">// 1秒钟的毫秒数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MILLIS_PER_MINUTE = <span class="number">60</span> * MILLIS_PER_SECOND; <span class="comment">// 1分钟的毫秒数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MILLIS_PER_HOUR = <span class="number">60</span> * MILLIS_PER_MINUTE; <span class="comment">// 1小时的毫秒数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MILLIS_PER_DAY = <span class="number">24</span> * MILLIS_PER_HOUR; <span class="comment">// 1天的毫秒数</span></span><br></pre></td></tr></table></figure>
+<h3 id="boolean-isSameDay-Date-date1-Date-date2"><a href="#boolean-isSameDay-Date-date1-Date-date2" class="headerlink" title="boolean isSameDay(Date date1, Date date2)"></a>boolean isSameDay(Date date1, Date date2)</h3><p>判断两个日期是否是同一天。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DateUtils.isSameDay(<span class="keyword">new</span> Date(), <span class="keyword">new</span> Date()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="boolean-isSameDay-Calendar-cal1-Calendar-cal2"><a href="#boolean-isSameDay-Calendar-cal1-Calendar-cal2" class="headerlink" title="boolean isSameDay(Calendar cal1, Calendar cal2)"></a>boolean isSameDay(Calendar cal1, Calendar cal2)</h3><p>同<code>isSameDay(Date date1, Date date2)</code>相似。</p>
+<h3 id="Date-parseDate-String-str-String…-parsePatterns"><a href="#Date-parseDate-String-str-String…-parsePatterns" class="headerlink" title="Date parseDate(String str, String… parsePatterns)"></a>Date parseDate(String str, String… parsePatterns)</h3><p>解析日期时间字符串日期时间Date对象，通过尝试各种不同的解析器来解析表示日期的字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DateUtils.parseDate(<span class="string">"2017-06-03 23:51:44"</span>, <span class="string">"yyyy-MM-dd HH:mm:ss"</span>); <span class="comment">// 2017-06-03 23:51:44</span></span><br><span class="line">DateUtils.parseDate(<span class="string">"2017年06月03日 23时51分44秒"</span>, <span class="string">"yyyy-MM-dd HH:mm:ss"</span>, <span class="string">"yyyy年MM月dd日 HH时mm分ss秒"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Date-addYears-Date-date-int-amount"><a href="#Date-addYears-Date-date-int-amount" class="headerlink" title="Date addYears(Date date, int amount)"></a>Date addYears(Date date, int amount)</h3><p>得到<code>date</code>日期时间后（前）<code>amount</code>年后的日期时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date d3 = DateUtils.addYears(<span class="keyword">new</span> Date(), <span class="number">3</span>); <span class="comment">// 2020-06-04 00:06:21</span></span><br><span class="line">Date d3 = DateUtils.addYears(<span class="keyword">new</span> Date(), -<span class="number">2</span>); <span class="comment">// 2015-06-04 00:06:21</span></span><br></pre></td></tr></table></figure>
+<h3 id="Date-addMonths-Date-date-int-amount"><a href="#Date-addMonths-Date-date-int-amount" class="headerlink" title="Date addMonths(Date date, int amount)"></a>Date addMonths(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对月份数进行加减。</p>
+<h3 id="Date-addWeeks-Date-date-int-amount"><a href="#Date-addWeeks-Date-date-int-amount" class="headerlink" title="Date addWeeks(Date date, int amount)"></a>Date addWeeks(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对周数进行加减。</p>
+<h3 id="Date-addDays-Date-date-int-amount"><a href="#Date-addDays-Date-date-int-amount" class="headerlink" title="Date addDays(Date date, int amount)"></a>Date addDays(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对天数进行加减。</p>
+<h3 id="Date-addHours-Date-date-int-amount"><a href="#Date-addHours-Date-date-int-amount" class="headerlink" title="Date addHours(Date date, int amount)"></a>Date addHours(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对小时数进行加减。</p>
+<h3 id="Date-addMinutes-Date-date-int-amount"><a href="#Date-addMinutes-Date-date-int-amount" class="headerlink" title="Date addMinutes(Date date, int amount)"></a>Date addMinutes(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对分钟数进行加减。</p>
+<h3 id="Date-addSeconds-Date-date-int-amount"><a href="#Date-addSeconds-Date-date-int-amount" class="headerlink" title="Date addSeconds(Date date, int amount)"></a>Date addSeconds(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对秒数进行加减。</p>
+<h3 id="Date-addMilliseconds-Date-date-int-amount"><a href="#Date-addMilliseconds-Date-date-int-amount" class="headerlink" title="Date addMilliseconds(Date date, int amount)"></a>Date addMilliseconds(Date date, int amount)</h3><p>同<code>addYears(Date date, int amount)</code>相似，对毫秒数进行加减。</p>
+<h3 id="Date-setYears-Date-date-int-amount"><a href="#Date-setYears-Date-date-int-amount" class="headerlink" title="Date setYears(Date date, int amount)"></a>Date setYears(Date date, int amount)</h3><p>对给定的日期时间设置年份。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date d4 = DateUtils.setYears(<span class="keyword">new</span> Date(), <span class="number">2028</span>); <span class="comment">// 2028-06-04 00:16:48</span></span><br></pre></td></tr></table></figure>
+<h3 id="Date-setMonths-Date-date-int-amount"><a href="#Date-setMonths-Date-date-int-amount" class="headerlink" title="Date setMonths(Date date, int amount)"></a>Date setMonths(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对月数进行设置。</p>
+<h3 id="Date-setDays-Date-date-int-amount"><a href="#Date-setDays-Date-date-int-amount" class="headerlink" title="Date setDays(Date date, int amount)"></a>Date setDays(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对天数进行设置。</p>
+<h3 id="Date-setHours-Date-date-int-amount"><a href="#Date-setHours-Date-date-int-amount" class="headerlink" title="Date setHours(Date date, int amount)"></a>Date setHours(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对小时数进行设置。</p>
+<h3 id="Date-setMinutes-Date-date-int-amount"><a href="#Date-setMinutes-Date-date-int-amount" class="headerlink" title="Date setMinutes(Date date, int amount)"></a>Date setMinutes(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对分钟数进行设置。</p>
+<h3 id="Date-setSeconds-Date-date-int-amount"><a href="#Date-setSeconds-Date-date-int-amount" class="headerlink" title="Date setSeconds(Date date, int amount)"></a>Date setSeconds(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对秒钟数进行设置。</p>
+<h3 id="Date-setMilliseconds-Date-date-int-amount"><a href="#Date-setMilliseconds-Date-date-int-amount" class="headerlink" title="Date setMilliseconds(Date date, int amount)"></a>Date setMilliseconds(Date date, int amount)</h3><p>同<code>setYears(Date date, int amount)</code>相似，对毫秒数进行设置。</p>
+<h3 id="toCalendar-Date-date"><a href="#toCalendar-Date-date" class="headerlink" title="toCalendar(Date date)"></a>toCalendar(Date date)</h3><p>将日期转为<code>Calendar</code>实例。</p>
+<h3 id="Date-round-Date-date-int-field"><a href="#Date-round-Date-date-int-field" class="headerlink" title="Date round(Date date, int field)"></a>Date round(Date date, int field)</h3><p>对日期时间进行四舍五入。filed指定取整的字段，可以取的值为</p>
+<ul>
+<li>Calendar.SECOND</li>
+<li>Calendar.MINUTE</li>
+<li>Calendar.HOUR_OF_DAY</li>
+<li>Calendar.DAY_OF_MONTH</li>
+<li>Calendar.MONTH</li>
+<li>Calendar.YEAR<br>… </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前时间为'2017-06-04 00:44:41'，则执行以下代码</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.YEAR); <span class="comment">// 2017-01-01 00:00:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.MONTH); <span class="comment">// 2017-06-01 00:00:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.HOUR_OF_DAY); <span class="comment">// 2017-06-04 01:00:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.DAY_OF_MONTH); <span class="comment">// 2017-06-04 00:00:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.HOUR); <span class="comment">// 2017-06-04 01:00:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.MINUTE); <span class="comment">// 2017-06-04 00:45:00</span></span><br><span class="line">DateUtils.round(<span class="keyword">new</span> Date(), Calendar.SECOND); <span class="comment">// 2017-06-04 00:44:43</span></span><br></pre></td></tr></table></figure>
+<h3 id="Date-truncate-Date-date-int-field"><a href="#Date-truncate-Date-date-int-field" class="headerlink" title="Date truncate(Date date, int field)"></a>Date truncate(Date date, int field)</h3><p>从给定字段开始格式化截取日期。对一个时间对象的某个字段进行截断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前时间为'2017-06-04 00:56:05'，则执行以下代码</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.YEAR); <span class="comment">// 2017-01-01 00:00:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.MONTH); <span class="comment">// 2017-06-01 00:00:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.HOUR_OF_DAY); <span class="comment">// 2017-06-04 00:00:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.DAY_OF_MONTH); <span class="comment">// 2017-06-04 00:00:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.HOUR); <span class="comment">// 2017-06-04 00:00:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.MINUTE); <span class="comment">// 2017-06-04 00:56:00</span></span><br><span class="line">DateUtils.truncate(<span class="keyword">new</span> Date(), Calendar.SECOND); <span class="comment">// 2017-06-04 00:56:05</span></span><br></pre></td></tr></table></figure>
+<h3 id="Date-ceiling-Date-date-int-field"><a href="#Date-ceiling-Date-date-int-field" class="headerlink" title="Date ceiling(Date date, int field)"></a>Date ceiling(Date date, int field)</h3><p>从给定字段开始“向上”格式化日期。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前时间为'2017-06-04 01:02:31'，则执行以下代码</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.YEAR); <span class="comment">// 2018-01-01 00:00:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.MONTH); <span class="comment">// 2017-07-01 00:00:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.HOUR_OF_DAY); <span class="comment">// 2017-06-04 02:00:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.DAY_OF_MONTH); <span class="comment">// 2017-06-05 00:00:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.HOUR); <span class="comment">// 2017-06-04 02:00:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.MINUTE); <span class="comment">// 2017-06-04 01:03:00</span></span><br><span class="line">DateUtils.ceiling(<span class="keyword">new</span> Date(), Calendar.SECOND); <span class="comment">// 2017-06-04 01:02:32</span></span><br></pre></td></tr></table></figure>
+<h3 id="long-getFragmentInDays-Date-date-int-fragment"><a href="#long-getFragmentInDays-Date-date-int-fragment" class="headerlink" title="long getFragmentInDays(Date date, int fragment)"></a>long getFragmentInDays(Date date, int fragment)</h3><p>返回一个指定时间的天数。关键的是参数<code>fragment</code>，它的作用非常重要。它的值必须是Calendar的时间常量字段。</p>
+<p><strong>注意</strong>：小时必须用24小时制的，即<code>Calendar.HOUR_OF_DAY</code>，而不能用<code>Calendar.HOUR</code>字段。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前时间为'2017-06-04 01:12:31'，则执行以下代码</span></span><br><span class="line">DateUtils.getFragmentInDays(<span class="keyword">new</span> Date(), Calendar.YEAR); <span class="comment">// 155</span></span><br><span class="line">DateUtils.getFragmentInDays(<span class="keyword">new</span> Date(), Calendar.MONTH); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="long-getFragmentInMilliseconds-Date-date-int-fragment"><a href="#long-getFragmentInMilliseconds-Date-date-int-fragment" class="headerlink" title="long getFragmentInMilliseconds(Date date, int fragment)"></a>long getFragmentInMilliseconds(Date date, int fragment)</h3><p>同<code>getFragmentInDays(Date date, int fragment)</code>相似。</p>
+<h3 id="long-getFragmentInSeconds-Date-date-int-fragment"><a href="#long-getFragmentInSeconds-Date-date-int-fragment" class="headerlink" title="long getFragmentInSeconds(Date date, int fragment)"></a>long getFragmentInSeconds(Date date, int fragment)</h3><p>同<code>getFragmentInDays(Date date, int fragment)</code>相似。</p>
+<h3 id="long-getFragmentInMinutes-Date-date-int-fragment"><a href="#long-getFragmentInMinutes-Date-date-int-fragment" class="headerlink" title="long getFragmentInMinutes(Date date, int fragment)"></a>long getFragmentInMinutes(Date date, int fragment)</h3><p>同<code>getFragmentInDays(Date date, int fragment)</code>相似。</p>
+<h3 id="long-getFragmentInHours-Date-date-int-fragment"><a href="#long-getFragmentInHours-Date-date-int-fragment" class="headerlink" title="long getFragmentInHours(Date date, int fragment)"></a>long getFragmentInHours(Date date, int fragment)</h3><p>同<code>getFragmentInDays(Date date, int fragment)</code>相似。</p>
+<h3 id="boolean-truncatedEquals-Date-date1-Date-date2-int-field"><a href="#boolean-truncatedEquals-Date-date1-Date-date2-int-field" class="headerlink" title="boolean truncatedEquals(Date date1, Date date2, int field)"></a>boolean truncatedEquals(Date date1, Date date2, int field)</h3><p>比较日历对应字段是否相等。</p>
+<h2 id="StopWatch"><a href="#StopWatch" class="headerlink" title="StopWatch"></a>StopWatch</h2><p><code>StopWatch</code>是一个方便的计时器。</p>
+<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StopWatch stopWatch = <span class="keyword">new</span> StopWatch();</span><br><span class="line">stopWatch.start();</span><br><span class="line">...</span><br><span class="line">stopWatch.stop();</span><br><span class="line">System.out.println(stopWatch.getTime());</span><br></pre></td></tr></table></figure>
+<h3 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h3><ul>
+<li><code>start()</code>: 开始计时</li>
+<li><code>stop()</code>: 停止计时</li>
+<li><code>reset()</code>: 重置计时</li>
+<li><code>suspend()</code>: 暂停计时</li>
+<li><code>resume()</code>: 继续计时</li>
+<li><code>getTime()</code>: 获取消耗的毫秒数</li>
+<li><code>getNanoTime()</code>: 获取消耗的纳秒数</li>
+<li><code>getStartTime()</code>: 获取开始的毫秒数</li>
+<li><code>isStarted()</code>: 是否开始</li>
+<li><code>isSuspended()</code>: 是否暂停</li>
+<li><code>isStopped()</code>: 是否停止</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+	<div>
+      
+        
+      
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的赞助将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="柴宁 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="柴宁 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+		
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/Apache/" rel="tag"><i class="fa fa-tag"></i> Apache</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/后端/Java/commons/Apache commons lang之ArrayUtils/" rel="next" title="Apache Commons Lang之ArrayUtils">
+                <i class="fa fa-chevron-left"></i> Apache Commons Lang之ArrayUtils
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/01/后端/Java/使用Java调用PhantomJS动态导出ECharts图片到Word文件中/" rel="prev" title="使用Java调用PhantomJS动态导出ECharts图片到Word文件中">
+                使用Java调用PhantomJS动态导出ECharts图片到Word文件中 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+	<div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="柴宁">
+            
+              <p class="site-author-name" itemprop="name">柴宁</p>
+              <p class="site-description motion-element" itemprop="description">人生就像骑自行车,想保持平衡就得往前走。——阿尔伯特·爱因斯坦</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chainingning" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/chainingning" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ning.chai@foxmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FastDateFormat"><span class="nav-number">1.</span> <span class="nav-text">FastDateFormat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getInstance-String-pattern"><span class="nav-number">1.1.</span> <span class="nav-text">getInstance(String pattern)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-Date-date"><span class="nav-number">1.2.</span> <span class="nav-text">format(Date date)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-long-millis"><span class="nav-number">1.3.</span> <span class="nav-text">format(long millis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-Calendar-calendar"><span class="nav-number">1.4.</span> <span class="nav-text">format(Calendar calendar)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DateFormatUtils"><span class="nav-number">2.</span> <span class="nav-text">DateFormatUtils</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预定义的日期格式"><span class="nav-number">2.1.</span> <span class="nav-text">预定义的日期格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-Date-date-String-pattern"><span class="nav-number">2.2.</span> <span class="nav-text">format(Date date, String pattern)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-long-millis-String-pattern"><span class="nav-number">2.3.</span> <span class="nav-text">format(long millis, String pattern)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-Calendar-calendar-String-pattern"><span class="nav-number">2.4.</span> <span class="nav-text">format(Calendar calendar, String pattern)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DateUtils"><span class="nav-number">3.</span> <span class="nav-text">DateUtils</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">3.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean-isSameDay-Date-date1-Date-date2"><span class="nav-number">3.2.</span> <span class="nav-text">boolean isSameDay(Date date1, Date date2)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean-isSameDay-Calendar-cal1-Calendar-cal2"><span class="nav-number">3.3.</span> <span class="nav-text">boolean isSameDay(Calendar cal1, Calendar cal2)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-parseDate-String-str-String…-parsePatterns"><span class="nav-number">3.4.</span> <span class="nav-text">Date parseDate(String str, String… parsePatterns)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addYears-Date-date-int-amount"><span class="nav-number">3.5.</span> <span class="nav-text">Date addYears(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addMonths-Date-date-int-amount"><span class="nav-number">3.6.</span> <span class="nav-text">Date addMonths(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addWeeks-Date-date-int-amount"><span class="nav-number">3.7.</span> <span class="nav-text">Date addWeeks(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addDays-Date-date-int-amount"><span class="nav-number">3.8.</span> <span class="nav-text">Date addDays(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addHours-Date-date-int-amount"><span class="nav-number">3.9.</span> <span class="nav-text">Date addHours(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addMinutes-Date-date-int-amount"><span class="nav-number">3.10.</span> <span class="nav-text">Date addMinutes(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addSeconds-Date-date-int-amount"><span class="nav-number">3.11.</span> <span class="nav-text">Date addSeconds(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-addMilliseconds-Date-date-int-amount"><span class="nav-number">3.12.</span> <span class="nav-text">Date addMilliseconds(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setYears-Date-date-int-amount"><span class="nav-number">3.13.</span> <span class="nav-text">Date setYears(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setMonths-Date-date-int-amount"><span class="nav-number">3.14.</span> <span class="nav-text">Date setMonths(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setDays-Date-date-int-amount"><span class="nav-number">3.15.</span> <span class="nav-text">Date setDays(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setHours-Date-date-int-amount"><span class="nav-number">3.16.</span> <span class="nav-text">Date setHours(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setMinutes-Date-date-int-amount"><span class="nav-number">3.17.</span> <span class="nav-text">Date setMinutes(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setSeconds-Date-date-int-amount"><span class="nav-number">3.18.</span> <span class="nav-text">Date setSeconds(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-setMilliseconds-Date-date-int-amount"><span class="nav-number">3.19.</span> <span class="nav-text">Date setMilliseconds(Date date, int amount)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toCalendar-Date-date"><span class="nav-number">3.20.</span> <span class="nav-text">toCalendar(Date date)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-round-Date-date-int-field"><span class="nav-number">3.21.</span> <span class="nav-text">Date round(Date date, int field)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-truncate-Date-date-int-field"><span class="nav-number">3.22.</span> <span class="nav-text">Date truncate(Date date, int field)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-ceiling-Date-date-int-field"><span class="nav-number">3.23.</span> <span class="nav-text">Date ceiling(Date date, int field)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-getFragmentInDays-Date-date-int-fragment"><span class="nav-number">3.24.</span> <span class="nav-text">long getFragmentInDays(Date date, int fragment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-getFragmentInMilliseconds-Date-date-int-fragment"><span class="nav-number">3.25.</span> <span class="nav-text">long getFragmentInMilliseconds(Date date, int fragment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-getFragmentInSeconds-Date-date-int-fragment"><span class="nav-number">3.26.</span> <span class="nav-text">long getFragmentInSeconds(Date date, int fragment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-getFragmentInMinutes-Date-date-int-fragment"><span class="nav-number">3.27.</span> <span class="nav-text">long getFragmentInMinutes(Date date, int fragment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-getFragmentInHours-Date-date-int-fragment"><span class="nav-number">3.28.</span> <span class="nav-text">long getFragmentInHours(Date date, int fragment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean-truncatedEquals-Date-date1-Date-date2-int-field"><span class="nav-number">3.29.</span> <span class="nav-text">boolean truncatedEquals(Date date1, Date date2, int field)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StopWatch"><span class="nav-number">4.</span> <span class="nav-text">StopWatch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例"><span class="nav-number">4.1.</span> <span class="nav-text">使用示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要方法："><span class="nav-number">4.2.</span> <span class="nav-text">主要方法：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">柴宁</span>
+
+  
+</div>
+
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">总字数:</span>
+    
+    <span title="Site words total count">357.1k</span>
+  
+
+
+
+
+	<span>
+		<i class="fa fa-eye"></i>
+	</span>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+总浏览量:<span id="busuanzi_value_site_pv"></span>
+
+<span><i class="fa fa-user"></i></span>
+总访客数:<span id="busuanzi_value_site_uv"></span>
+
+
+<div class="powerd by">
+   
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> 
+<script> 
+	var now = new Date(); 
+	function createtime() { 
+		var grt= new Date("06/07/2018 20:15:00");//此处修改你的建站时间或者网站上线时间 
+		now.setTime(now.getTime()+250); 
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+		document.getElementById("timeDate").innerHTML = "已安全运行 "+dnum+" 天 "; 
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()",250); </script>
+
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'd5baa6f7d4a1b9c36951',
+          clientSecret: '645b9aa56e45f6287710a47970b9e49e5ea7eea5',
+          repo: 'blogTalk',
+          owner: 'chainingning',
+          admin: [''],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yK4bP0J5SG9yN5Xo70kINyon-gzGzoHsz", "pihr3aam43jDkFMNEqVNFsnC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.5,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<!--<script type="text/javascript" src="/js/src/love.js"></script>-->
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
