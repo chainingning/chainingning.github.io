@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- Google AdSense start -->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="项目实战,SpringBoot,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="柴米丨油盐" type="application/atom+xml">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+<meta name="description" content="0.学习目标 独立实现品牌新增 实现图片上传 了解FastDFS的安装 使用FastDFS客户端实现上传  1.品牌的新增昨天我们完成了品牌的查询，接下来就是新增功能。点击新增品牌按钮  Brand.vue页面有一个提交按钮：  点击触发addBrand方法：  把数据模型之的show置为true，而页面中有一个弹窗与show绑定：  弹窗中有一个表单子组件，并且是一个局部子组件，有页面可以找到该">
+<meta name="keywords" content="项目实战,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day08-品牌管理">
+<meta property="og:url" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/index.html">
+<meta property="og:site_name" content="柴米丨油盐">
+<meta property="og:description" content="0.学习目标 独立实现品牌新增 实现图片上传 了解FastDFS的安装 使用FastDFS客户端实现上传  1.品牌的新增昨天我们完成了品牌的查询，接下来就是新增功能。点击新增品牌按钮  Brand.vue页面有一个提交按钮：  点击触发addBrand方法：  把数据模型之的show置为true，而页面中有一个弹窗与show绑定：  弹窗中有一个表单子组件，并且是一个局部子组件，有页面可以找到该">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222288968.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222410267.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222464105.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222628405.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222756536.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530674011487.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530674402709.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545221936052.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530687657711.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530688192442.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545221873038.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530690428352.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526140298249.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532827997361.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530696121642.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530696509189.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1539821449329.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532850873556.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/qs-2.gif">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223244002.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530698685973.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223341933.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530713222558.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715294772.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715390747.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715447962.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715487863.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530717442747.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223629762.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223731347.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720235186.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720263937.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720298725.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722029884.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722280952.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722617437.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722674897.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722728379.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205318630.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205664373.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205705687.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528196441781.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526206304954.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528206263148.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1543400932873.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528207829275.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532920403019.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532920492769.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528208647458.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528208592430.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210076570.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210349042.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532923048027.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210800331.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210594296.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528211066645.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528211235872.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526222999115.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224372366.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224447288.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224495244.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224563838.png">
+<meta property="og:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224628514.png">
+<meta property="og:updated_time" content="2019-08-29T01:06:09.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day08-品牌管理">
+<meta name="twitter:description" content="0.学习目标 独立实现品牌新增 实现图片上传 了解FastDFS的安装 使用FastDFS客户端实现上传  1.品牌的新增昨天我们完成了品牌的查询，接下来就是新增功能。点击新增品牌按钮  Brand.vue页面有一个提交按钮：  点击触发addBrand方法：  把数据模型之的show置为true，而页面中有一个弹窗与show绑定：  弹窗中有一个表单子组件，并且是一个局部子组件，有页面可以找到该">
+<meta name="twitter:image" content="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222288968.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+  <link rel="canonical" href="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/">
+
+
+
+
+
+  <title>day08-品牌管理 | 柴米丨油盐</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/chainingning" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">柴米丨油盐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">也许,我们能在柴米油盐的生活中做的更好一些。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chainingning.github.io/2019/07/03/项目实战/乐优商城/day08-品牌管理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="柴宁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="柴米丨油盐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day08-品牌管理</h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T10:33:23+08:00">
+                2019-07-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-29T09:06:09+08:00">
+                2019-08-29
+              </time>
+            
+          </span>
+		  
+		  
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+                               
+                <span class="post-meta-item-text">分类于&#58;</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/03/项目实战/乐优商城/day08-品牌管理/" class="leancloud_visitors" data-flag-title="day08-品牌管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  29分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><ul>
+<li>独立实现品牌新增</li>
+<li>实现图片上传</li>
+<li>了解FastDFS的安装</li>
+<li>使用FastDFS客户端实现上传</li>
+</ul>
+<h1 id="1-品牌的新增"><a href="#1-品牌的新增" class="headerlink" title="1.品牌的新增"></a>1.品牌的新增</h1><p>昨天我们完成了品牌的查询，接下来就是新增功能。点击新增品牌按钮</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222288968.png" alt="1545222288968"></p>
+<p>Brand.vue页面有一个提交按钮：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222410267.png" alt="1545222410267"></p>
+<p>点击触发addBrand方法：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222464105.png" alt="1545222464105"></p>
+<p>把数据模型之的show置为true，而页面中有一个弹窗与show绑定：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222628405.png" alt="1545222628405"></p>
+<p>弹窗中有一个表单子组件，并且是一个局部子组件，有页面可以找到该组件：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545222756536.png" alt="1545222756536"></p>
+<h2 id="1-1-页面实现"><a href="#1-1-页面实现" class="headerlink" title="1.1.页面实现"></a>1.1.页面实现</h2><h3 id="1-1-1-重置表单"><a href="#1-1-1-重置表单" class="headerlink" title="1.1.1.重置表单"></a>1.1.1.重置表单</h3><p>重置表单相对简单，因为v-form组件已经提供了reset方法，用来清空表单数据。只要我们拿到表单组件对象，就可以调用方法了。</p>
+<p>我们可以通过<code>$refs</code>内置对象来获取表单组件。</p>
+<p>首先，在表单上定义<code>ref</code>属性：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530674011487.png" alt="1530674011487"></p>
+<p>然后，在页面查看<code>this.$refs</code>属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reset()&#123;</span><br><span class="line">  <span class="comment">// 重置表单</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看如下：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530674402709.png" alt="1530674402709"></p>
+<p>看到<code>this.$refs</code>中只有一个属性，就是<code>myBrandForm</code></p>
+<p>我们在clear中来获取表单对象并调用reset方法：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545221936052.png" alt="1545221936052"></p>
+<p>要注意的是，这里我们还手动把this.categories清空了，因为我写的级联选择组件并没有跟表单结合起来。需要手动清空。</p>
+<h3 id="1-1-2-表单校验"><a href="#1-1-2-表单校验" class="headerlink" title="1.1.2.表单校验"></a>1.1.2.表单校验</h3><h4 id="1-1-2-1-校验规则"><a href="#1-1-2-1-校验规则" class="headerlink" title="1.1.2.1.校验规则"></a>1.1.2.1.校验规则</h4><p>Vuetify的表单校验，是通过rules属性来指定的：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530687657711.png" alt="1530687657711"></p>
+<p>校验规则的写法：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530688192442.png" alt="1530688192442"></p>
+<p>说明：</p>
+<ul>
+<li>规则是一个数组</li>
+<li>数组中的元素是一个函数，该函数接收表单项的值作为参数，函数返回值两种情况：<ul>
+<li>返回true，代表成功，</li>
+<li>返回错误提示信息，代表失败</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-2-2-编写校验"><a href="#1-1-2-2-编写校验" class="headerlink" title="1.1.2.2.编写校验"></a>1.1.2.2.编写校验</h4><p>我们有四个字段：</p>
+<ul>
+<li>name：做非空校验和长度校验，长度必须大于1</li>
+<li>letter：首字母，校验长度为1，非空。</li>
+<li>image：图片，不做校验，图片可以为空</li>
+<li>categories：非空校验，自定义组件已经帮我们完成，不用写了</li>
+</ul>
+<p>首先，我们定义规则：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545221873038.png" alt="1545221873038"></p>
+<p>然后，在页面标签中指定：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">v-text-field</span> <span class="attr">v-model</span>=<span class="string">"brand.name"</span> <span class="attr">label</span>=<span class="string">"请输入品牌名称"</span> <span class="attr">hint</span>=<span class="string">"例如：oppo"</span> <span class="attr">:rules</span>=<span class="string">"[rules.required, rules.nameLength]"</span>&gt;</span><span class="tag">&lt;/<span class="name">v-text-field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v-text-field</span> <span class="attr">v-model</span>=<span class="string">"brand.letter"</span> <span class="attr">label</span>=<span class="string">"请输入品牌首字母"</span> <span class="attr">hint</span>=<span class="string">"例如：O"</span> <span class="attr">:rules</span>=<span class="string">"[rules.letter]"</span>&gt;</span><span class="tag">&lt;/<span class="name">v-text-field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530690428352.png" alt="1530690428352"></p>
+<h3 id="1-1-3-表单提交"><a href="#1-1-3-表单提交" class="headerlink" title="1.1.3.表单提交"></a>1.1.3.表单提交</h3><p>在submit方法中添加表单提交的逻辑：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">submit() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$qs);</span><br><span class="line">    <span class="comment">// 表单校验</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.$refs.myBrandForm.validate()) &#123;</span><br><span class="line">        <span class="comment">// 定义一个请求参数对象，通过解构表达式来获取brand中的属性&#123;categories letter name image&#125;</span></span><br><span class="line">        <span class="keyword">const</span> &#123;categories, letter, ...params&#125; = <span class="keyword">this</span>.brand; <span class="comment">// params:&#123;name, image, cids, letter&#125;</span></span><br><span class="line">        <span class="comment">// 数据库中只要保存分类的id即可，因此我们对categories的值进行处理,只保留id，并转为字符串</span></span><br><span class="line">        params.cids = categories.map(<span class="function"><span class="params">c</span> =&gt;</span> c.id).join(<span class="string">","</span>);</span><br><span class="line">        <span class="comment">// 将字母都处理为大写</span></span><br><span class="line">        params.letter = letter.toUpperCase();</span><br><span class="line">        <span class="comment">// 将数据提交到后台</span></span><br><span class="line">        <span class="comment">// this.$http.post('/item/brand', this.$qs.stringify(params))</span></span><br><span class="line">        <span class="keyword">this</span>.$http(&#123;</span><br><span class="line">            method: <span class="keyword">this</span>.isEdit ? <span class="string">'put'</span> : <span class="string">'post'</span>,</span><br><span class="line">            url: <span class="string">'/item/brand'</span>,</span><br><span class="line">            data: params</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 关闭窗口</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">"close"</span>);</span><br><span class="line">            <span class="keyword">this</span>.$message.success(<span class="string">"保存成功！"</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">            .catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.$message.error(<span class="string">"保存失败！"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>通过<code>this.$refs.myBrandForm</code>选中表单，然后调用表单的<code>validate</code>方法，进行表单校验。返回boolean值，true代表校验通过</li>
+<li>通过解构表达式来获取brand中的值，categories需要处理，单独获取。其它的存入params对象中</li>
+<li>品牌和商品分类的中间表只保存两者的id，而brand.categories中保存的是对象数组，里面有id和name属性，因此这里通过数组的map功能转为id数组，然后通过join方法拼接为字符串</li>
+<li>发起请求</li>
+<li><p>弹窗提示成功还是失败，这里用到的是我们的自定义组件功能message组件：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526140298249.png" alt="1526140298249"></p>
+<p>这个插件把<code>$message</code>对象绑定到了Vue的原型上，因此我们可以通过<code>this.$message</code>来直接调用。</p>
+<p>包含以下常用方法：</p>
+</li>
+</ol>
+<ul>
+<li>info、error、success、warning等，弹出一个带有提示信息的窗口，色调与为普通（灰）、错误（红色）、成功（绿色）和警告（黄色）。使用方法：this.$message.info(“msg”)</li>
+<li>confirm：确认框。用法：<code>this.$message.confirm(&quot;确认框的提示信息&quot;)</code>，返回一个Promise。</li>
+</ul>
+<h2 id="1-2-后台实现新增"><a href="#1-2-后台实现新增" class="headerlink" title="1.2.后台实现新增"></a>1.2.后台实现新增</h2><h3 id="1-2-1-controller"><a href="#1-2-1-controller" class="headerlink" title="1.2.1.controller"></a>1.2.1.controller</h3><p>还是一样，先分析四个内容：</p>
+<ul>
+<li>请求方式：POST</li>
+<li>请求路径：/brand</li>
+<li>请求参数：brand对象，外加商品分类的id数组cids</li>
+<li>返回值：无，只需要响应状态码</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增品牌</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> brand</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> cids</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title">saveBrand</span><span class="params">(Brand brand, @RequestParam(<span class="string">"cids"</span>)</span> List&lt;Long&gt; cids)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.brandService.saveBrand(brand, cids);</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.CREATED).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-2-Service"><a href="#1-2-2-Service" class="headerlink" title="1.2.2.Service"></a>1.2.2.Service</h3><p>这里要注意，我们不仅要新增品牌，还要维护品牌和商品分类的中间表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增品牌</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> brand</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> cids</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveBrand</span><span class="params">(Brand brand, List&lt;Long&gt; cids)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 先新增brand</span></span><br><span class="line">    <span class="keyword">this</span>.brandMapper.insertSelective(brand);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在新增中间表</span></span><br><span class="line">    cids.forEach(cid -&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.brandMapper.insertCategoryAndBrand(cid, brand.getId());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里调用了brandMapper中的一个自定义方法，来实现中间表的数据新增</p>
+<h3 id="1-2-3-Mapper"><a href="#1-2-3-Mapper" class="headerlink" title="1.2.3.Mapper"></a>1.2.3.Mapper</h3><p>通用Mapper只能处理单表，也就是Brand的数据，因此我们手动编写一个方法及sql，实现中间表的新增：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BrandMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Brand</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 新增商品分类和品牌中间表数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cid 商品分类id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bid 品牌id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Insert</span>(<span class="string">"INSERT INTO tb_category_brand(category_id, brand_id) VALUES (#&#123;cid&#125;,#&#123;bid&#125;)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insertBrandAndCategory</span><span class="params">(@Param(<span class="string">"cid"</span>)</span> Long cid, @<span class="title">Param</span><span class="params">(<span class="string">"bid"</span>)</span> Long bid)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-4-测试"><a href="#1-2-4-测试" class="headerlink" title="1.2.4.测试"></a>1.2.4.测试</h3><p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532827997361.png" alt="1532827997361"></p>
+<p>400：请求参数不合法</p>
+<h2 id="1-3-解决400"><a href="#1-3-解决400" class="headerlink" title="1.3.解决400"></a>1.3.解决400</h2><h3 id="1-3-1-原因分析"><a href="#1-3-1-原因分析" class="headerlink" title="1.3.1.原因分析"></a>1.3.1.原因分析</h3><p>我们填写表单并提交，发现报错了。查看控制台的请求详情：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530696121642.png" alt="1530696121642"></p>
+<p>发现请求的数据格式是JSON格式。</p>
+<blockquote>
+<p>原因分析：</p>
+</blockquote>
+<p>axios处理请求体的原则会根据请求数据的格式来定：</p>
+<ul>
+<li><p>如果请求体是对象：会转为json发送</p>
+</li>
+<li><p>如果请求体是String：会作为普通表单请求发送，但需要我们自己保证String的格式是键值对。</p>
+<p>如：name=jack&amp;age=12</p>
+</li>
+</ul>
+<h3 id="1-3-2-QS工具"><a href="#1-3-2-QS工具" class="headerlink" title="1.3.2.QS工具"></a>1.3.2.QS工具</h3><p>QS是一个第三方库，我们可以用<code>npm install qs --save</code>来安装。不过我们在项目中已经集成了，大家无需安装：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530696509189.png" alt="1530696509189"></p>
+<p>这个工具的名字：QS，即Query String，请求参数字符串。</p>
+<p>什么是请求参数字符串？例如： name=jack&amp;age=21</p>
+<p>QS工具可以便捷的实现 JS的Object与QueryString的转换。</p>
+<p>在我们的项目中，将QS注入到了Vue的原型对象中，我们可以通过<code>this.$qs</code>来获取这个工具：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1539821449329.png" alt="1539821449329"></p>
+<p>我们将<code>this.$qs</code>对象打印到控制台：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$qs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现其中有3个方法：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532850873556.png" alt="1532850873556"></p>
+<p>这里我们要使用的方法是stringify，它可以把Object转为QueryString。</p>
+<p>测试一下，使用浏览器工具，把qs对象保存为一个临时变量temp1，然后调用stringify方法：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/qs-2.gif" alt="1526182230872"></p>
+<p>成功将person对象变成了 name=zhangsan&amp;age=30的字符串了</p>
+<h3 id="1-3-3-解决问题"><a href="#1-3-3-解决问题" class="headerlink" title="1.3.3.解决问题"></a>1.3.3.解决问题</h3><p>修改页面，对参数处理后发送：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223244002.png" alt="1545223244002"></p>
+<p>然后再次发起请求，发现请求成功：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530698685973.png" alt="1530698685973"></p>
+<h2 id="1-4-新增完成后关闭窗口"><a href="#1-4-新增完成后关闭窗口" class="headerlink" title="1.4.新增完成后关闭窗口"></a>1.4.新增完成后关闭窗口</h2><p>我们发现有一个问题：新增不管成功还是失败，窗口都一致在这里，不会关闭。</p>
+<p>这样很不友好，我们希望如果新增失败，窗口保持；但是新增成功，窗口关闭才对。</p>
+<p>因此，我们需要<strong>在新增的ajax请求完成以后，关闭窗口</strong></p>
+<p>但问题在于，控制窗口是否显示的标记在父组件：MyBrand.vue中。子组件如何才能操作父组件的属性？或者告诉父组件该关闭窗口了？</p>
+<p>之前我们讲过一个父子组件的通信，有印象吗？</p>
+<ul>
+<li>第一步：在父组件中定义一个函数，用来关闭窗口，不过之前已经定义过了。父组件在使用子组件时，绑定事件，关联到这个函数：Brand.vue</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--对话框的内容，表单--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v-card-text</span> <span class="attr">class</span>=<span class="string">"px-5"</span> <span class="attr">style</span>=<span class="string">"height:400px"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">brand-form</span> @<span class="attr">close</span>=<span class="string">"closeWindow"</span> <span class="attr">:oldBrand</span>=<span class="string">"oldBrand"</span> <span class="attr">:isEdit</span>=<span class="string">"isEdit"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v-card-text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二步，子组件通过<code>this.$emit</code>调用父组件的函数：BrandForm.vue</li>
+</ul>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223341933.png" alt="1545223341933"></p>
+<p>测试一下，保存成功：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530713222558.png" alt="1530713222558"></p>
+<p>我们优化一下，关闭的同时重新加载数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">closeWindow()&#123;</span><br><span class="line">    <span class="comment">// 关闭窗口</span></span><br><span class="line">    <span class="keyword">this</span>.show = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// 重新加载数据</span></span><br><span class="line">    <span class="keyword">this</span>.getDataFromServer();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-实现图片上传"><a href="#2-实现图片上传" class="headerlink" title="2.实现图片上传"></a>2.实现图片上传</h1><p>刚才的新增实现中，我们并没有上传图片，接下来我们一起完成图片上传逻辑。</p>
+<p>文件的上传并不只是在品牌管理中有需求，以后的其它服务也可能需要，因此我们创建一个独立的微服务，专门处理各种上传。</p>
+<h2 id="2-1-搭建项目"><a href="#2-1-搭建项目" class="headerlink" title="2.1.搭建项目"></a>2.1.搭建项目</h2><h3 id="2-1-1-创建module"><a href="#2-1-1-创建module" class="headerlink" title="2.1.1.创建module"></a>2.1.1.创建module</h3><p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715294772.png" alt="1530715294772"></p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715390747.png" alt="1530715390747"></p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715447962.png" alt="1530715447962"></p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530715487863.png" alt="1530715487863"></p>
+<h3 id="2-1-2-依赖"><a href="#2-1-2-依赖" class="headerlink" title="2.1.2.依赖"></a>2.1.2.依赖</h3><p>我们需要EurekaClient和web依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>leyou<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.leyou.parent<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.leyou.upload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>leyou-upload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-3-编写配置"><a href="#2-1-3-编写配置" class="headerlink" title="2.1.3.编写配置"></a>2.1.3.编写配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8082</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">upload-service</span></span><br><span class="line"><span class="attr">  servlet:</span></span><br><span class="line"><span class="attr">    multipart:</span></span><br><span class="line"><span class="attr">      max-file-size:</span> <span class="number">5</span><span class="string">MB</span> <span class="comment"># 限制文件上传的大小</span></span><br><span class="line"><span class="comment"># Eureka</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://127.0.0.1:10086/eureka</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    lease-renewal-interval-in-seconds:</span> <span class="number">5</span> <span class="comment"># 每隔5秒发送一次心跳</span></span><br><span class="line"><span class="attr">    lease-expiration-duration-in-seconds:</span> <span class="number">10</span> <span class="comment"># 10秒不发送就过期</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，我们应该添加了限制文件大小的配置</p>
+<h3 id="2-1-4-引导类"><a href="#2-1-4-引导类" class="headerlink" title="2.1.4.引导类"></a>2.1.4.引导类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeyouUploadApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(LeyouUploadApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结构：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530717442747.png" alt="1530717442747"></p>
+<h2 id="2-2-编写上传功能"><a href="#2-2-编写上传功能" class="headerlink" title="2.2.编写上传功能"></a>2.2.编写上传功能</h2><p>文件上传功能，也是自定义组件完成的，参照自定义组件用法指南：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223629762.png" alt="1545223629762"></p>
+<p>在页面中的使用：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1545223731347.png" alt="1545223731347"></p>
+<h3 id="2-2-1-controller"><a href="#2-2-1-controller" class="headerlink" title="2.2.1.controller"></a>2.2.1.controller</h3><p>编写controller需要知道4个内容：结合用法指南</p>
+<ul>
+<li>请求方式：上传肯定是POST</li>
+<li>请求路径：/upload/image</li>
+<li>请求参数：文件，参数名是file，SpringMVC会封装为一个接口：MultipartFile</li>
+<li>返回结果：上传成功后得到的文件的url路径，也就是返回String</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"upload"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UploadService uploadService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 图片上传</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> file</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"image"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title">uploadImage</span><span class="params">(@RequestParam(<span class="string">"file"</span>)</span> MultipartFile file)</span>&#123;</span><br><span class="line">        String url = <span class="keyword">this</span>.uploadService.upload(file);</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(url)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.badRequest().build();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.CREATED).body(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-service"><a href="#2-2-2-service" class="headerlink" title="2.2.2.service"></a>2.2.2.service</h3><p>在上传文件过程中，我们需要对上传的内容进行校验：</p>
+<ol>
+<li>校验文件大小</li>
+<li>校验文件的媒体类型</li>
+<li>校验文件的内容</li>
+</ol>
+<p>文件大小在Spring的配置文件中设置，因此已经会被校验，我们不用管。</p>
+<p>具体代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; CONTENT_TYPES = Arrays.asList(<span class="string">"image/jpeg"</span>, <span class="string">"image/gif"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(UploadService.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile file)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String originalFilename = file.getOriginalFilename();</span><br><span class="line">        <span class="comment">// 校验文件的类型</span></span><br><span class="line">        String contentType = file.getContentType();</span><br><span class="line">        <span class="keyword">if</span> (!CONTENT_TYPES.contains(contentType))&#123;</span><br><span class="line">            <span class="comment">// 文件类型不合法，直接返回null</span></span><br><span class="line">            LOGGER.info(<span class="string">"文件类型不合法：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 校验文件的内容</span></span><br><span class="line">            BufferedImage bufferedImage = ImageIO.read(file.getInputStream());</span><br><span class="line">            <span class="keyword">if</span> (bufferedImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">                LOGGER.info(<span class="string">"文件内容不合法：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 保存到服务器</span></span><br><span class="line">            file.transferTo(<span class="keyword">new</span> File(<span class="string">"C:\\leyou\\images\\"</span> + originalFilename));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 生成url地址，返回</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"http://image.leyou.com/"</span> + originalFilename;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            LOGGER.info(<span class="string">"服务器内部错误：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有一个问题：为什么图片地址需要使用另外的url？</p>
+<ul>
+<li>图片不能保存在服务器内部，这样会对服务器产生额外的加载负担</li>
+<li>一般静态资源都应该使用独立域名，这样访问静态资源时不会携带一些不必要的cookie，减小请求的数据量</li>
+</ul>
+<h3 id="2-2-3-测试上传"><a href="#2-2-3-测试上传" class="headerlink" title="2.2.3.测试上传"></a>2.2.3.测试上传</h3><p>我们通过RestClient工具来测试：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720235186.png" alt="1530720235186"></p>
+<p>结果：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720263937.png" alt="1530720263937"></p>
+<p>去目录下查看：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530720298725.png" alt="1530720298725"></p>
+<p>上传成功！</p>
+<h2 id="2-3-绕过网关"><a href="#2-3-绕过网关" class="headerlink" title="2.3.绕过网关"></a>2.3.绕过网关</h2><p>图片上传是文件的传输，如果也经过Zuul网关的代理，文件就会经过多次网路传输，造成不必要的网络负担。在高并发时，可能导致网络阻塞，Zuul网关不可用。这样我们的整个系统就瘫痪了。</p>
+<p>所以，我们上传文件的请求就不经过网关来处理了。</p>
+<h3 id="2-3-1-Zuul的路由过滤"><a href="#2-3-1-Zuul的路由过滤" class="headerlink" title="2.3.1.Zuul的路由过滤"></a>2.3.1.Zuul的路由过滤</h3><p>Zuul中提供了一个ignored-patterns属性，用来忽略不希望路由的URL路径，示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zuul.ignored-patterns: /upload/**</span><br></pre></td></tr></table></figure>
+<p>路径过滤会对一切微服务进行判定。</p>
+<p>Zuul还提供了<code>ignored-services</code>属性，进行服务过滤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zuul.ignored-services: upload-servie</span><br></pre></td></tr></table></figure>
+<p>我们这里采用忽略服务：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">upload-service</span> <span class="comment"># 忽略upload-service服务</span></span><br></pre></td></tr></table></figure>
+<p>上面的配置采用了集合语法，代表可以配置多个。</p>
+<h3 id="2-3-2-Nginx的rewrite指令"><a href="#2-3-2-Nginx的rewrite指令" class="headerlink" title="2.3.2.Nginx的rewrite指令"></a>2.3.2.Nginx的rewrite指令</h3><p>现在，我们修改页面的访问路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">v-upload</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">"brand.image"</span> </span></span><br><span class="line"><span class="tag">      <span class="attr">url</span>=<span class="string">"/upload/image"</span> </span></span><br><span class="line"><span class="tag">      <span class="attr">:multiple</span>=<span class="string">"false"</span> </span></span><br><span class="line"><span class="tag">      <span class="attr">:pic-width</span>=<span class="string">"250"</span> <span class="attr">:pic-height</span>=<span class="string">"90"</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>查看页面的请求路径：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722029884.png" alt="1530722029884"></p>
+<p>可以看到这个地址不对，依然是去找Zuul网关，因为我们的系统全局配置了URL地址。怎么办？</p>
+<p>有同学会想：修改页面请求地址不就好了。</p>
+<p>注意：原则上，我们是不能把除了网关以外的服务对外暴露的，不安全。</p>
+<p>既然不能修改页面请求，那么就只能在Nginx反向代理上做文章了。</p>
+<p>我们修改nginx配置，将以/api/upload开头的请求拦截下来，转交到真实的服务地址:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /api/upload &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">    <span class="attribute">proxy_connect_timeout</span> <span class="number">600</span>;</span><br><span class="line">    <span class="attribute">proxy_read_timeout</span> <span class="number">600</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写大家觉得对不对呢？</p>
+<p>显然是不对的，因为ip和端口虽然对了，但是路径没变，依然是：<a href="http://127.0.0.1:8002/api/upload/image" target="_blank" rel="noopener">http://127.0.0.1:8002/api/upload/image</a></p>
+<p>前面多了一个/api</p>
+<p>Nginx提供了rewrite指令，用于对地址进行重写，语法规则：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rewrite</span> <span class="string">"用来匹配路径的正则"</span> 重写后的路径 [指令];</span><br></pre></td></tr></table></figure>
+<p>我们的案例：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">       <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">       <span class="attribute">server_name</span>  api.leyou.com;</span><br><span class="line"></span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-Host <span class="variable">$host</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-Server <span class="variable">$host</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">   	<span class="comment"># 上传路径的映射</span></span><br><span class="line">	<span class="attribute">location</span> /api/upload &#123;	</span><br><span class="line">		<span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">		<span class="attribute">proxy_connect_timeout</span> <span class="number">600</span>;</span><br><span class="line">		<span class="attribute">proxy_read_timeout</span> <span class="number">600</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="attribute">rewrite</span> <span class="string">"^/api/(.*)$"</span> /<span class="variable">$1</span> <span class="literal">break</span>; </span><br><span class="line">       &#125;</span><br><span class="line">	</span><br><span class="line">       <span class="attribute">location</span> / &#123;</span><br><span class="line">		<span class="attribute">proxy_pass</span> http://127.0.0.1:10010;</span><br><span class="line">		<span class="attribute">proxy_connect_timeout</span> <span class="number">600</span>;</span><br><span class="line">		<span class="attribute">proxy_read_timeout</span> <span class="number">600</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>首先，我们映射路径是/api/upload，而下面一个映射路径是 / ，根据最长路径匹配原则，/api/upload优先级更高。也就是说，凡是以/api/upload开头的路径，都会被第一个配置处理</p>
+</li>
+<li><p><code>proxy_pass</code>：反向代理，这次我们代理到8082端口，也就是upload-service服务</p>
+</li>
+<li><p><code>rewrite &quot;^/api/(.*)$&quot; /$1 break</code>，路径重写：</p>
+<ul>
+<li><p><code>&quot;^/api/(.*)$&quot;</code>：匹配路径的正则表达式，用了分组语法，把<code>/api/</code>以后的所有部分当做1组</p>
+</li>
+<li><p><code>/$1</code>：重写的目标路径，这里用$1引用前面正则表达式匹配到的分组（组编号从1开始），即<code>/api/</code>后面的所有。这样新的路径就是除去<code>/api/</code>以外的所有，就达到了去除<code>/api</code>前缀的目的</p>
+</li>
+<li><p><code>break</code>：指令，常用的有2个，分别是：last、break</p>
+<ul>
+<li>last：重写路径结束后，将得到的路径重新进行一次路径匹配</li>
+<li>break：重写路径结束后，不再重新匹配路径。</li>
+</ul>
+<p>我们这里不能选择last，否则以新的路径/upload/image来匹配，就不会被正确的匹配到8082端口了</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>修改完成，输入<code>nginx -s reload</code>命令重新加载配置。然后再次上传试试。</p>
+<h2 id="2-4-跨域问题"><a href="#2-4-跨域问题" class="headerlink" title="2.4.跨域问题"></a>2.4.跨域问题</h2><p>重启nginx，再次上传，发现跟上次的状态码已经不一样了，但是依然报错：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722280952.png" alt="1526200471676"></p>
+<p>不过庆幸的是，这个错误已经不是第一次见了，跨域问题。</p>
+<p>我们在upload-service中添加一个CorsFilter即可：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722617437.png" alt="1530722617437"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeyouCorsConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CorsFilter <span class="title">corsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.添加CORS配置信息</span></span><br><span class="line">        CorsConfiguration config = <span class="keyword">new</span> CorsConfiguration();</span><br><span class="line">        <span class="comment">//1) 允许的域,不要写*，否则cookie就无法使用了</span></span><br><span class="line">        config.addAllowedOrigin(<span class="string">"http://manage.leyou.com"</span>);</span><br><span class="line">        <span class="comment">//3) 允许的请求方式</span></span><br><span class="line">        config.addAllowedMethod(<span class="string">"OPTIONS"</span>);</span><br><span class="line">        config.addAllowedMethod(<span class="string">"POST"</span>);</span><br><span class="line">        <span class="comment">// 4）允许的头信息</span></span><br><span class="line">        config.addAllowedHeader(<span class="string">"*"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.添加映射路径，我们拦截一切请求</span></span><br><span class="line">        UrlBasedCorsConfigurationSource configSource = <span class="keyword">new</span> UrlBasedCorsConfigurationSource();</span><br><span class="line">        configSource.registerCorsConfiguration(<span class="string">"/**"</span>, config);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.返回新的CorsFilter.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CorsFilter(configSource);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次测试：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722674897.png" alt="1530722674897"></p>
+<p>不过，非常遗憾的是，访问图片地址，却没有响应。</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1530722728379.png" alt="1530722728379"></p>
+<p>这是因为我们并没有任何服务器对应image.leyou.com这个域名。。</p>
+<p>这个问题，我们暂时放下，回头再来解决。</p>
+<h2 id="2-5-文件上传的缺陷"><a href="#2-5-文件上传的缺陷" class="headerlink" title="2.5.文件上传的缺陷"></a>2.5.文件上传的缺陷</h2><p>先思考一下，现在上传的功能，有没有什么问题？</p>
+<p>上传本身没有任何问题，问题出在保存文件的方式，我们是保存在服务器机器，就会有下面的问题：</p>
+<ul>
+<li>单机器存储，存储能力有限</li>
+<li>无法进行水平扩展，因为多台机器的文件无法共享,会出现访问不到的情况</li>
+<li>数据没有备份，有单点故障风险</li>
+<li>并发能力差</li>
+</ul>
+<p>这个时候，最好使用分布式文件存储来代替本地文件存储。</p>
+<h1 id="3-FastDFS"><a href="#3-FastDFS" class="headerlink" title="3.FastDFS"></a>3.FastDFS</h1><h2 id="3-1-什么是分布式文件系统"><a href="#3-1-什么是分布式文件系统" class="headerlink" title="3.1.什么是分布式文件系统"></a>3.1.什么是分布式文件系统</h2><p>分布式文件系统（Distributed File System）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。 </p>
+<p>通俗来讲：</p>
+<ul>
+<li>传统文件系统管理的文件就存储在本机。</li>
+<li>分布式文件系统管理的文件存储在很多机器，这些机器通过网络连接，要被统一管理。无论是上传或者访问文件，都需要通过管理中心来访问</li>
+</ul>
+<h2 id="3-2-什么是FastDFS"><a href="#3-2-什么是FastDFS" class="headerlink" title="3.2.什么是FastDFS"></a>3.2.什么是FastDFS</h2><p>FastDFS是由淘宝的余庆先生所开发的一个轻量级、高性能的开源分布式文件系统。用纯C语言开发，功能丰富：</p>
+<ul>
+<li>文件存储</li>
+<li>文件同步</li>
+<li>文件访问（上传、下载）</li>
+<li>存取负载均衡</li>
+<li>在线扩容</li>
+</ul>
+<p>适合有大容量存储需求的应用或系统。同类的分布式文件系统有谷歌的GFS、HDFS（Hadoop）、TFS（淘宝）等。</p>
+<h2 id="3-3-FastDFS的架构"><a href="#3-3-FastDFS的架构" class="headerlink" title="3.3.FastDFS的架构"></a>3.3.FastDFS的架构</h2><h3 id="3-3-1-架构图"><a href="#3-3-1-架构图" class="headerlink" title="3.3.1.架构图"></a>3.3.1.架构图</h3><p>先上图：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205318630.png" alt="1526205318630"></p>
+<p>FastDFS两个主要的角色：Tracker Server 和 Storage Server 。</p>
+<ul>
+<li>Tracker Server：跟踪服务器，主要负责调度storage节点与client通信，在访问上起负载均衡的作用，和记录storage节点的运行状态，是连接client和storage节点的枢纽。 </li>
+<li>Storage Server：存储服务器，保存文件和文件的meta data（元数据），每个storage server会启动一个单独的线程主动向Tracker cluster中每个tracker server报告其状态信息，包括磁盘使用情况，文件同步情况及文件上传下载次数统计等信息</li>
+<li>Group：文件组，多台Storage Server的集群。上传一个文件到同组内的一台机器上后，FastDFS会将该文件即时同步到同组内的其它所有机器上，起到备份的作用。不同组的服务器，保存的数据不同，而且相互独立，不进行通信。 </li>
+<li>Tracker Cluster：跟踪服务器的集群，有一组Tracker Server（跟踪服务器）组成。</li>
+<li>Storage Cluster ：存储集群，有多个Group组成。</li>
+</ul>
+<h3 id="3-3-2-上传和下载流程"><a href="#3-3-2-上传和下载流程" class="headerlink" title="3.3.2.上传和下载流程"></a>3.3.2.上传和下载流程</h3><blockquote>
+<p>上传</p>
+</blockquote>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205664373.png" alt="1526205664373"></p>
+<ol>
+<li>Client通过Tracker server查找可用的Storage server。</li>
+<li>Tracker server向Client返回一台可用的Storage server的IP地址和端口号。</li>
+<li>Client直接通过Tracker server返回的IP地址和端口与其中一台Storage server建立连接并进行文件上传。</li>
+<li>上传完成，Storage server返回Client一个文件ID，文件上传结束。</li>
+</ol>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526205705687.png" alt="1526205705687"></p>
+<ol>
+<li>Client通过Tracker server查找要下载文件所在的的Storage server。</li>
+<li>Tracker server向Client返回包含指定文件的某个Storage server的IP地址和端口号。</li>
+<li>Client直接通过Tracker server返回的IP地址和端口与其中一台Storage server建立连接并指定要下载文件。</li>
+<li>下载文件成功。</li>
+</ol>
+<h2 id="3-4-安装和使用"><a href="#3-4-安装和使用" class="headerlink" title="3.4.安装和使用"></a>3.4.安装和使用</h2><p>参考课前资料的：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528196441781.png" alt="1528196441781"></p>
+<h2 id="3-5-java客户端"><a href="#3-5-java客户端" class="headerlink" title="3.5.java客户端"></a>3.5.java客户端</h2><p>余庆先生提供了一个Java客户端，但是作为一个C程序员，写的java代码可想而知。而且已经很久不维护了。</p>
+<p>这里推荐一个开源的FastDFS客户端，支持最新的SpringBoot2.0。</p>
+<p>配置使用极为简单，支持连接池，支持自动生成缩略图，狂拽酷炫吊炸天啊，有木有。</p>
+<p>地址：<a href="https://github.com/tobato/FastDFS_Client" target="_blank" rel="noopener">tobato/FastDFS_client</a></p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526206304954.png" alt="1526206304954"></p>
+<p>接下来，我们就用FastDFS改造<strong>leyou-upload</strong>工程。</p>
+<h3 id="3-5-1-引入依赖"><a href="#3-5-1-引入依赖" class="headerlink" title="3.5.1.引入依赖"></a>3.5.1.引入依赖</h3><p>在父工程中，我们已经管理了依赖，版本为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fastDFS.client.version</span>&gt;</span>1.26.2<span class="tag">&lt;/<span class="name">fastDFS.client.version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因此，这里我们直接在taotao-upload工程的pom.xml中引入坐标即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.tobato<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastdfs-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-5-2-引入配置类"><a href="#3-5-2-引入配置类" class="headerlink" title="3.5.2.引入配置类"></a>3.5.2.引入配置类</h3><p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528206263148.png" alt="1528206263148"></p>
+<p>纯java配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>(FdfsClientConfig.class)</span><br><span class="line"><span class="comment">// 解决jmx重复注册bean的问题</span></span><br><span class="line"><span class="meta">@EnableMBeanExport</span>(registration = RegistrationPolicy.IGNORE_EXISTING)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastClientImporter</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-3-编写FastDFS属性"><a href="#3-5-3-编写FastDFS属性" class="headerlink" title="3.5.3.编写FastDFS属性"></a>3.5.3.编写FastDFS属性</h3><p>在application.yml配置文件中追加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fdfs:</span></span><br><span class="line"><span class="attr">  so-timeout:</span> <span class="number">1501</span> <span class="comment"># 超时时间</span></span><br><span class="line"><span class="attr">  connect-timeout:</span> <span class="number">601</span> <span class="comment"># 连接超时时间</span></span><br><span class="line"><span class="attr">  thumb-image:</span> <span class="comment"># 缩略图</span></span><br><span class="line"><span class="attr">    width:</span> <span class="number">60</span></span><br><span class="line"><span class="attr">    height:</span> <span class="number">60</span></span><br><span class="line"><span class="attr">  tracker-list:</span> <span class="comment"># tracker地址：你的虚拟机服务器地址+端口（默认是22122）</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">192.168</span><span class="number">.56</span><span class="number">.101</span><span class="string">:22122</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-5-4-配置hosts"><a href="#3-5-4-配置hosts" class="headerlink" title="3.5.4.配置hosts"></a>3.5.4.配置hosts</h3><p>将来通过域名：image.leyou.com这个域名访问fastDFS服务器上的图片资源。所以，需要代理到虚拟机地址：</p>
+<p>配置hosts文件，使image.leyou.com可以访问fastDFS服务器</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1543400932873.png" alt="1543400932873"></p>
+<h3 id="3-5-5-测试"><a href="#3-5-5-测试" class="headerlink" title="3.5.5.测试"></a>3.5.5.测试</h3><p>创建测试类：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528207829275.png" alt="1528207829275"></p>
+<p>把以下内容copy进去：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastDFSTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> FastFileStorageClient storageClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ThumbImageConfig thumbImageConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpload</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 要上传的文件</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"C:\\Users\\joedy\\Pictures\\xbx1.jpg"</span>);</span><br><span class="line">        <span class="comment">// 上传并保存图片，参数：1-上传的文件流 2-文件的大小 3-文件的后缀 4-可以不管他</span></span><br><span class="line">        StorePath storePath = <span class="keyword">this</span>.storageClient.uploadFile(</span><br><span class="line">                <span class="keyword">new</span> FileInputStream(file), file.length(), <span class="string">"jpg"</span>, <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">// 带分组的路径</span></span><br><span class="line">        System.out.println(storePath.getFullPath());</span><br><span class="line">        <span class="comment">// 不带分组的路径</span></span><br><span class="line">        System.out.println(storePath.getPath());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUploadAndCreateThumb</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"C:\\Users\\joedy\\Pictures\\xbx1.jpg"</span>);</span><br><span class="line">        <span class="comment">// 上传并且生成缩略图</span></span><br><span class="line">        StorePath storePath = <span class="keyword">this</span>.storageClient.uploadImageAndCrtThumbImage(</span><br><span class="line">                <span class="keyword">new</span> FileInputStream(file), file.length(), <span class="string">"png"</span>, <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">// 带分组的路径</span></span><br><span class="line">        System.out.println(storePath.getFullPath());</span><br><span class="line">        <span class="comment">// 不带分组的路径</span></span><br><span class="line">        System.out.println(storePath.getPath());</span><br><span class="line">        <span class="comment">// 获取缩略图路径</span></span><br><span class="line">        String path = thumbImageConfig.getThumbImagePath(storePath.getPath());</span><br><span class="line">        System.out.println(path);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group1/M00/00/00/wKg4ZVsWl5eAdLNZAABAhya2V0c424.jpg</span><br><span class="line">M00/00/00/wKg4ZVsWl5eAdLNZAABAhya2V0c424.jpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group1/M00/00/00/wKg4ZVsWmD-ARnWiAABAhya2V0c772.png</span><br><span class="line">M00/00/00/wKg4ZVsWmD-ARnWiAABAhya2V0c772.png</span><br><span class="line">M00/00/00/wKg4ZVsWmD-ARnWiAABAhya2V0c772_60x60.png</span><br></pre></td></tr></table></figure>
+<p>访问第二组第一个路径：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532920403019.png" alt="1532920403019"></p>
+<p>访问最后一个路径（缩略图路径），<strong>注意加组名（group1）</strong>：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532920492769.png" alt="1532920492769"></p>
+<h3 id="3-5-6-改造上传逻辑"><a href="#3-5-6-改造上传逻辑" class="headerlink" title="3.5.6.改造上传逻辑"></a>3.5.6.改造上传逻辑</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> FastFileStorageClient storageClient;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; CONTENT_TYPES = Arrays.asList(<span class="string">"image/jpeg"</span>, <span class="string">"image/gif"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(UploadService.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile file)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String originalFilename = file.getOriginalFilename();</span><br><span class="line">        <span class="comment">// 校验文件的类型</span></span><br><span class="line">        String contentType = file.getContentType();</span><br><span class="line">        <span class="keyword">if</span> (!CONTENT_TYPES.contains(contentType))&#123;</span><br><span class="line">            <span class="comment">// 文件类型不合法，直接返回null</span></span><br><span class="line">            LOGGER.info(<span class="string">"文件类型不合法：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 校验文件的内容</span></span><br><span class="line">            BufferedImage bufferedImage = ImageIO.read(file.getInputStream());</span><br><span class="line">            <span class="keyword">if</span> (bufferedImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">                LOGGER.info(<span class="string">"文件内容不合法：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 保存到服务器</span></span><br><span class="line">            <span class="comment">// file.transferTo(new File("C:\\leyou\\images\\" + originalFilename));</span></span><br><span class="line">            String ext = StringUtils.substringAfterLast(originalFilename, <span class="string">"."</span>);</span><br><span class="line">            StorePath storePath = <span class="keyword">this</span>.storageClient.uploadFile(file.getInputStream(), file.getSize(), ext, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 生成url地址，返回</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"http://image.leyou.com/"</span> + storePath.getFullPath();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            LOGGER.info(<span class="string">"服务器内部错误：&#123;&#125;"</span>, originalFilename);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只需要把原来保存文件的逻辑去掉，然后上传到FastDFS即可。</p>
+<h3 id="3-5-7-测试"><a href="#3-5-7-测试" class="headerlink" title="3.5.7.测试"></a>3.5.7.测试</h3><p>通过RestClient测试：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528208647458.png" alt="1528208647458"></p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528208592430.png" alt="1528208592430"></p>
+<h2 id="3-6-页面测试上传"><a href="#3-6-页面测试上传" class="headerlink" title="3.6.页面测试上传"></a>3.6.页面测试上传</h2><p>发现上传成功：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210076570.png" alt="1528210076570"></p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210349042.png" alt="1528210349042"></p>
+<h1 id="4-修改品牌（作业）"><a href="#4-修改品牌（作业）" class="headerlink" title="4.修改品牌（作业）"></a>4.修改品牌（作业）</h1><p>修改的难点在于回显。</p>
+<p>当我们点击编辑按钮，希望弹出窗口的同时，看到原来的数据：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1532923048027.png" alt="1532923048027"></p>
+<h2 id="4-1-点击编辑出现弹窗"><a href="#4-1-点击编辑出现弹窗" class="headerlink" title="4.1.点击编辑出现弹窗"></a>4.1.点击编辑出现弹窗</h2><p>这个比较简单，修改show属性为true即可实现，我们绑定一个点击事件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">v-icon</span> <span class="attr">small</span> <span class="attr">class</span>=<span class="string">"mr-2"</span> @<span class="attr">click</span>=<span class="string">"editItem(props.item)"</span>&gt;</span></span><br><span class="line">    edit</span><br><span class="line"><span class="tag">&lt;/<span class="name">v-icon</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后编写事件，改变show 的状态：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210800331.png" alt="1528210800331"></p>
+<p>如果仅仅是这样，编辑按钮与新增按钮将没有任何区别，关键在于，如何回显呢？</p>
+<h2 id="4-2-回显数据"><a href="#4-2-回显数据" class="headerlink" title="4.2.回显数据"></a>4.2.回显数据</h2><p>回显数据，就是把当前点击的品牌数据传递到子组件（MyBrandForm）。而父组件给子组件传递数据，通过props属性。</p>
+<ul>
+<li><p>第一步：在编辑时获取当前选中的品牌信息，并且记录到data中</p>
+<p>先在data中定义属性，用来接收用来编辑的brand数据：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528210594296.png" alt="1528210594296"></p>
+<p>我们在页面触发编辑事件时，把当前的brand传递给editBrand方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">v-btn</span> <span class="attr">color</span>=<span class="string">"info"</span> @<span class="attr">click</span>=<span class="string">"editBrand(props.item)"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">v-btn</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在editBrand中接收数据，赋值给oldBrand：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">editItem(oldBrand)&#123;</span><br><span class="line">    <span class="comment">// 使编辑窗口可见</span></span><br><span class="line">    <span class="keyword">this</span>.dialog = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 初始化编辑的数据</span></span><br><span class="line">    <span class="keyword">this</span>.oldBrand = oldBrand;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步：把获取的brand数据 传递给子组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--对话框内容--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v-card-text</span> <span class="attr">class</span>=<span class="string">"px-5"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--这是一个表单--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-brand-form</span> @<span class="attr">close</span>=<span class="string">"close"</span> <span class="attr">:oldBrand</span>=<span class="string">"oldBrand"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-brand-form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v-card-text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步：在子组件（MyBrandForm.vue）中通过props接收要编辑的brand数据，Vue会自动完成回显</p>
+<p>接收数据：</p>
+<p><img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528211066645.png" alt="1528211066645"></p>
+<p>通过watch函数监控oldBrand的变化，把值copy到本地的brand：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    oldBrand: &#123;<span class="comment">// 监控oldBrand的变化</span></span><br><span class="line">        handler(val) &#123;</span><br><span class="line">            <span class="keyword">if</span>(val)&#123;</span><br><span class="line">                <span class="comment">// 注意不要直接赋值，否则这边的修改会影响到父组件的数据，copy属性即可</span></span><br><span class="line">                <span class="keyword">this</span>.brand =  <span class="built_in">Object</span>.deepCopy(val)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 为空，初始化brand</span></span><br><span class="line">                <span class="keyword">this</span>.brand = &#123;</span><br><span class="line">                    name: <span class="string">''</span>,</span><br><span class="line">                    letter: <span class="string">''</span>,</span><br><span class="line">                    image: <span class="string">''</span>,</span><br><span class="line">                    categories: []</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">            deep: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Object.deepCopy 自定义的对象进行深度复制的方法。</li>
+<li>需要判断监听到的是否为空，如果为空，应该进行初始化</li>
+</ul>
+</li>
+</ul>
+<p>测试：发现数据回显了，除了商品分类以外：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1528211235872.png" alt="1528211235872"></p>
+<h2 id="4-3-商品分类回显"><a href="#4-3-商品分类回显" class="headerlink" title="4.3.商品分类回显"></a>4.3.商品分类回显</h2><p>为什么商品分类没有回显？</p>
+<p>因为品牌中并没有商品分类数据。我们需要在进入编辑页面之前，查询商品分类信息：</p>
+<h3 id="4-3-1-后台提供接口"><a href="#4-3-1-后台提供接口" class="headerlink" title="4.3.1.后台提供接口"></a>4.3.1.后台提供接口</h3><blockquote>
+<h4 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h4></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过品牌id查询商品分类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bid</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"bid/&#123;bid&#125;"</span>)</span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;List&lt;Category&gt;&gt; queryByBrandId(<span class="meta">@PathVariable</span>(<span class="string">"bid"</span>) Long bid) &#123;</span><br><span class="line">    List&lt;Category&gt; list = <span class="keyword">this</span>.categoryService.queryByBrandId(bid);</span><br><span class="line">    <span class="keyword">if</span> (list == <span class="keyword">null</span> || list.size() &lt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;&gt;(HttpStatus.NOT_FOUND);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Service</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Category&gt; <span class="title">queryByBrandId</span><span class="params">(Long bid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.categoryMapper.queryByBrandId(bid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>mapper</p>
+</blockquote>
+<p>因为需要通过中间表进行子查询，所以这里要手写Sql：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据品牌id查询商品分类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bid</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Select</span>(<span class="string">"SELECT * FROM tb_category WHERE id IN (SELECT category_id FROM tb_category_brand WHERE brand_id = #&#123;bid&#125;)"</span>)</span><br><span class="line"><span class="function">List&lt;Category&gt; <span class="title">queryByBrandId</span><span class="params">(Long bid)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-2-前台查询分类并渲染"><a href="#4-3-2-前台查询分类并渲染" class="headerlink" title="4.3.2.前台查询分类并渲染"></a>4.3.2.前台查询分类并渲染</h3><p>我们在编辑页面打开之前，先把数据查询完毕：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">editBrand(oldBrand)&#123;</span><br><span class="line">    <span class="comment">// 根据品牌信息查询商品分类</span></span><br><span class="line">    <span class="keyword">this</span>.$http.get(<span class="string">"/item/category/bid/"</span> + oldBrand.id)</span><br><span class="line">        .then(<span class="function">(<span class="params">&#123;data&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 控制弹窗可见：</span></span><br><span class="line">        <span class="keyword">this</span>.dialog = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 获取要编辑的brand</span></span><br><span class="line">        <span class="keyword">this</span>.oldBrand = oldBrand</span><br><span class="line">        <span class="comment">// 回显商品分类</span></span><br><span class="line">        <span class="keyword">this</span>.oldBrand.categories = data;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次测试：数据成功回显了</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526222999115.png" alt="1526222999115"></p>
+<h3 id="4-3-3-新增窗口数据干扰"><a href="#4-3-3-新增窗口数据干扰" class="headerlink" title="4.3.3.新增窗口数据干扰"></a>4.3.3.新增窗口数据干扰</h3><p>但是，此时却产生了新问题：新增窗口竟然也有数据？</p>
+<p>原因：</p>
+<pre><code>如果之前打开过编辑，那么在父组件中记录的oldBrand会保留。下次再打开窗口，如果是编辑窗口到没问题，但是新增的话，就会再次显示上次打开的品牌信息了。
+</code></pre><p>解决：</p>
+<pre><code>新增窗口打开前，把数据置空。
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">addBrand() &#123;</span><br><span class="line">    <span class="comment">// 控制弹窗可见：</span></span><br><span class="line">    <span class="keyword">this</span>.dialog = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 把oldBrand变为null</span></span><br><span class="line">    <span class="keyword">this</span>.oldBrand = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-4-提交表单时判断是新增还是修改"><a href="#4-3-4-提交表单时判断是新增还是修改" class="headerlink" title="4.3.4.提交表单时判断是新增还是修改"></a>4.3.4.提交表单时判断是新增还是修改</h3><p>新增和修改是同一个页面，我们该如何判断？</p>
+<p>父组件中点击按钮弹出新增或修改的窗口，因此父组件非常清楚接下来是新增还是修改。</p>
+<p>因此，最简单的方案就是，在父组件中定义变量，记录新增或修改状态，当弹出页面时，把这个状态也传递给子组件。</p>
+<p>第一步：在父组件中记录状态：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224372366.png" alt="1526224372366"></p>
+<p>第二步：在新增和修改前，更改状态：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224447288.png" alt="1526224447288"></p>
+<p>第三步：传递给子组件</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224495244.png" alt="1526224495244"></p>
+<p>第四步，子组件接收标记：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224563838.png" alt="1526224563838"></p>
+<p>标题的动态化：</p>
+<p> <img src="/2019/07/03/项目实战/乐优商城/day08-品牌管理/1526224628514.png" alt="1526224628514"></p>
+<p>表单提交动态：</p>
+<p>axios除了除了get和post外，还有一个通用的请求方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将数据提交到后台</span></span><br><span class="line"><span class="comment">// this.$http.post('/item/brand', this.$qs.stringify(params))</span></span><br><span class="line"><span class="keyword">this</span>.$http(&#123;</span><br><span class="line">    method: <span class="keyword">this</span>.isEdit ? <span class="string">'put'</span> : <span class="string">'post'</span>, <span class="comment">// 动态判断是POST还是PUT</span></span><br><span class="line">    url: <span class="string">'/item/brand'</span>,</span><br><span class="line">    data: <span class="keyword">this</span>.$qs.stringify(<span class="keyword">this</span>.brand)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 关闭窗口</span></span><br><span class="line">    <span class="keyword">this</span>.$emit(<span class="string">"close"</span>);</span><br><span class="line">    <span class="keyword">this</span>.$message.success(<span class="string">"保存成功！"</span>);</span><br><span class="line">&#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.$message.error(<span class="string">"保存失败！"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="5-删除（作业）"><a href="#5-删除（作业）" class="headerlink" title="5.删除（作业）"></a>5.删除（作业）</h1>
+      
+    </div>
+    
+    
+    
+	<div>
+      
+        
+      
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的赞助将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="柴宁 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="柴宁 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+		
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/项目实战/" rel="tag"><i class="fa fa-tag"></i> 项目实战</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/02/项目实战/乐优商城/day07-自定义组件用法指南/" rel="next" title="day07-自定义组件用法指南">
+                <i class="fa fa-chevron-left"></i> day07-自定义组件用法指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/04/项目实战/乐优商城/day09-商品规格管理/" rel="prev" title="day09-商品规格管理">
+                day09-商品规格管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+	<div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="柴宁">
+            
+              <p class="site-author-name" itemprop="name">柴宁</p>
+              <p class="site-description motion-element" itemprop="description">人生就像骑自行车,想保持平衡就得往前走。——阿尔伯特·爱因斯坦</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chainingning" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/chainingning" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ning.chai@foxmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-学习目标"><span class="nav-number">1.</span> <span class="nav-text">0.学习目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-品牌的新增"><span class="nav-number">2.</span> <span class="nav-text">1.品牌的新增</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-页面实现"><span class="nav-number">2.1.</span> <span class="nav-text">1.1.页面实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-重置表单"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.1.重置表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-表单校验"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.1.2.表单校验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-1-校验规则"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">1.1.2.1.校验规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-2-编写校验"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">1.1.2.2.编写校验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-表单提交"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.1.3.表单提交</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-后台实现新增"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.后台实现新增</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-controller"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.2.1.controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-Service"><span class="nav-number">2.2.2.</span> <span class="nav-text">1.2.2.Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-Mapper"><span class="nav-number">2.2.3.</span> <span class="nav-text">1.2.3.Mapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-测试"><span class="nav-number">2.2.4.</span> <span class="nav-text">1.2.4.测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-解决400"><span class="nav-number">2.3.</span> <span class="nav-text">1.3.解决400</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-原因分析"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.3.1.原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-QS工具"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.3.2.QS工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-解决问题"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.3.3.解决问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-新增完成后关闭窗口"><span class="nav-number">2.4.</span> <span class="nav-text">1.4.新增完成后关闭窗口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实现图片上传"><span class="nav-number">3.</span> <span class="nav-text">2.实现图片上传</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-搭建项目"><span class="nav-number">3.1.</span> <span class="nav-text">2.1.搭建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-创建module"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.1.1.创建module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-依赖"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.1.2.依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-编写配置"><span class="nav-number">3.1.3.</span> <span class="nav-text">2.1.3.编写配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-引导类"><span class="nav-number">3.1.4.</span> <span class="nav-text">2.1.4.引导类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-编写上传功能"><span class="nav-number">3.2.</span> <span class="nav-text">2.2.编写上传功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-controller"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.2.1.controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-service"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2.2.service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-测试上传"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.2.3.测试上传</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-绕过网关"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.绕过网关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-Zuul的路由过滤"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1.Zuul的路由过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Nginx的rewrite指令"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2.Nginx的rewrite指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-跨域问题"><span class="nav-number">3.4.</span> <span class="nav-text">2.4.跨域问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-文件上传的缺陷"><span class="nav-number">3.5.</span> <span class="nav-text">2.5.文件上传的缺陷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-FastDFS"><span class="nav-number">4.</span> <span class="nav-text">3.FastDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-什么是分布式文件系统"><span class="nav-number">4.1.</span> <span class="nav-text">3.1.什么是分布式文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-什么是FastDFS"><span class="nav-number">4.2.</span> <span class="nav-text">3.2.什么是FastDFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-FastDFS的架构"><span class="nav-number">4.3.</span> <span class="nav-text">3.3.FastDFS的架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-架构图"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1.架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-上传和下载流程"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2.上传和下载流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-安装和使用"><span class="nav-number">4.4.</span> <span class="nav-text">3.4.安装和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-java客户端"><span class="nav-number">4.5.</span> <span class="nav-text">3.5.java客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-引入依赖"><span class="nav-number">4.5.1.</span> <span class="nav-text">3.5.1.引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-引入配置类"><span class="nav-number">4.5.2.</span> <span class="nav-text">3.5.2.引入配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-编写FastDFS属性"><span class="nav-number">4.5.3.</span> <span class="nav-text">3.5.3.编写FastDFS属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-配置hosts"><span class="nav-number">4.5.4.</span> <span class="nav-text">3.5.4.配置hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-测试"><span class="nav-number">4.5.5.</span> <span class="nav-text">3.5.5.测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-6-改造上传逻辑"><span class="nav-number">4.5.6.</span> <span class="nav-text">3.5.6.改造上传逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-7-测试"><span class="nav-number">4.5.7.</span> <span class="nav-text">3.5.7.测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-页面测试上传"><span class="nav-number">4.6.</span> <span class="nav-text">3.6.页面测试上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-修改品牌（作业）"><span class="nav-number">5.</span> <span class="nav-text">4.修改品牌（作业）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-点击编辑出现弹窗"><span class="nav-number">5.1.</span> <span class="nav-text">4.1.点击编辑出现弹窗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-回显数据"><span class="nav-number">5.2.</span> <span class="nav-text">4.2.回显数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-商品分类回显"><span class="nav-number">5.3.</span> <span class="nav-text">4.3.商品分类回显</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-后台提供接口"><span class="nav-number">5.3.1.</span> <span class="nav-text">4.3.1.后台提供接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#controller"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">controller</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-前台查询分类并渲染"><span class="nav-number">5.3.2.</span> <span class="nav-text">4.3.2.前台查询分类并渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-新增窗口数据干扰"><span class="nav-number">5.3.3.</span> <span class="nav-text">4.3.3.新增窗口数据干扰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-提交表单时判断是新增还是修改"><span class="nav-number">5.3.4.</span> <span class="nav-text">4.3.4.提交表单时判断是新增还是修改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-删除（作业）"><span class="nav-number">6.</span> <span class="nav-text">5.删除（作业）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">柴宁</span>
+
+  
+</div>
+
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">总字数:</span>
+    
+    <span title="Site words total count">357.1k</span>
+  
+
+
+
+
+	<span>
+		<i class="fa fa-eye"></i>
+	</span>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+总浏览量:<span id="busuanzi_value_site_pv"></span>
+
+<span><i class="fa fa-user"></i></span>
+总访客数:<span id="busuanzi_value_site_uv"></span>
+
+
+<div class="powerd by">
+   
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> 
+<script> 
+	var now = new Date(); 
+	function createtime() { 
+		var grt= new Date("06/07/2018 20:15:00");//此处修改你的建站时间或者网站上线时间 
+		now.setTime(now.getTime()+250); 
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+		document.getElementById("timeDate").innerHTML = "已安全运行 "+dnum+" 天 "; 
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()",250); </script>
+
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'd5baa6f7d4a1b9c36951',
+          clientSecret: '645b9aa56e45f6287710a47970b9e49e5ea7eea5',
+          repo: 'blogTalk',
+          owner: 'chainingning',
+          admin: [''],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yK4bP0J5SG9yN5Xo70kINyon-gzGzoHsz", "pihr3aam43jDkFMNEqVNFsnC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.5,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<!--<script type="text/javascript" src="/js/src/love.js"></script>-->
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>

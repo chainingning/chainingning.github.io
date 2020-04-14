@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- Google AdSense start -->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="GitLab CI,DevOps,Jenkins,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="柴米丨油盐" type="application/atom+xml">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25dc84c3"
+    });
+  daovoice('update');
+  </script>
+
+
+<meta name="description" content="一、持续集成介绍 持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试)来验证，从而尽快地发现集成错误。许多团队发现这个过程可以大大减少集成的问题，让团队能够更快的开发内聚的软件。—— Martin Fowler  1 概念 持续集成(Continuous Integra">
+<meta name="keywords" content="GitLab CI,DevOps,Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitLab CI&#x2F;CD 介绍和使用">
+<meta property="og:url" content="https://chainingning.github.io/2018/11/22/软件工具/devops/GitLab CI 介绍和使用/index.html">
+<meta property="og:site_name" content="柴米丨油盐">
+<meta property="og:description" content="一、持续集成介绍 持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试)来验证，从而尽快地发现集成错误。许多团队发现这个过程可以大大减少集成的问题，让团队能够更快的开发内聚的软件。—— Martin Fowler  1 概念 持续集成(Continuous Integra">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png">
+<meta property="og:image" content="https://docs.gitlab.com/ce/ci/img/pipelines_index.png">
+<meta property="og:image" content="https://docs.gitlab.com/ce/ci/img/pipelines.png">
+<meta property="og:image" content="https://gitlab.com/gitlab-org/gitlab-ce/badges/master/build.svg">
+<meta property="og:image" content="https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg?job=coverage">
+<meta property="og:updated_time" content="2019-08-07T11:09:09.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitLab CI&#x2F;CD 介绍和使用">
+<meta name="twitter:description" content="一、持续集成介绍 持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试)来验证，从而尽快地发现集成错误。许多团队发现这个过程可以大大减少集成的问题，让团队能够更快的开发内聚的软件。—— Martin Fowler  1 概念 持续集成(Continuous Integra">
+<meta name="twitter:image" content="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+  <link rel="canonical" href="https://chainingning.github.io/2018/11/22/软件工具/devops/GitLab CI 介绍和使用/">
+
+
+
+
+
+  <title>GitLab CI/CD 介绍和使用 | 柴米丨油盐</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/chainingning" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">柴米丨油盐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">也许,我们能在柴米油盐的生活中做的更好一些。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chainingning.github.io/2018/11/22/软件工具/devops/GitLab CI 介绍和使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="柴宁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="柴米丨油盐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GitLab CI/CD 介绍和使用</h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T23:30:00+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-07T19:09:09+08:00">
+                2019-08-07
+              </time>
+            
+          </span>
+		  
+		  
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+                               
+                <span class="post-meta-item-text">分类于&#58;</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工具/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/22/软件工具/devops/GitLab CI 介绍和使用/" class="leancloud_visitors" data-flag-title="GitLab CI/CD 介绍和使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.8k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、持续集成介绍"><a href="#一、持续集成介绍" class="headerlink" title="一、持续集成介绍"></a>一、持续集成介绍</h2><blockquote>
+<p>持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试)来验证，从而尽快地发现集成错误。许多团队发现这个过程可以大大减少集成的问题，让团队能够更快的开发内聚的软件。—— Martin Fowler</p>
+</blockquote>
+<h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1 概念"></a>1 概念</h3><ul>
+<li><strong>持续集成</strong>(<code>Continuous Integration</code>)：<strong>频繁地(一天多次)将代码集成到主干。</strong>让产品可以快速迭代，同时还能保持高质量。它的核心措施是，代码集成到主干之前，必须通过自动化测试。只要有一个测试用例失败，就不能集成。“持续集成并不能消除 Bug，而是让它们非常容易发现和改正。”</li>
+<li><strong>持续交付</strong>(<code>Continuous Delivery</code>)：<strong>频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</li>
+<li><strong>持续部署</strong>(<code>continuous Deployment</code>)：<strong>代码通过评审以后，自动部署到生产环境。</strong>是持续部署是持续交付的下一步，持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</li>
+</ul>
+<h3 id="2-持续集成的好处"><a href="#2-持续集成的好处" class="headerlink" title="2 持续集成的好处"></a>2 持续集成的好处</h3><ul>
+<li><strong>自动化构建且状态对每个人可见</strong>。可以使用<code>Maven</code>、<code>Gradle</code>等来实现自动化构建，可以在构建过程中实现自动化测试（前提是有写单元测试用例）。集成服务器在持续集成过程中发现问题可以及时发送警告给相关的干系人。</li>
+<li><strong>解放了重复性劳动。</strong>自动化部署工作可以解放集成、测试、部署等重复性劳动，而机器集成的频率明显比手工高很多。</li>
+<li><strong>更快地发现和修复问题。</strong>持续集成更早的获取变更，更早的进入测试，更早的发现问题，解决问题的成本显著下降。</li>
+<li><strong>更快的交付成果。</strong>更早发现错误减少解决错误所需的工作量。集成服务器在构建环节发现错误可以及时通知开发人员修复。集成服务器在部署环节发现错误可以回退到上一版本，服务器始终有一个可用的版本。</li>
+<li><strong>减少手工的错误。</strong>在重复性动作上，人容易犯错，而机器犯错的几率几乎为零。</li>
+<li><strong>减少了等待时间。</strong>缩短了从开发、集成、测试、部署各个环节的时间，从而也就缩短了中间可以出现的等待时机。持续集成，意味着开发、集成、测试、部署也得以持续。</li>
+<li><strong>更高的产品质量。</strong>集成服务器往往提供代码质量检测等功能，对不规范或有错误的地方会进行标致，也可以设置邮件和短信等进行警告。</li>
+</ul>
+<h3 id="3-常用持续集成工具"><a href="#3-常用持续集成工具" class="headerlink" title="3 常用持续集成工具"></a>3 常用持续集成工具</h3><ul>
+<li><a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins</a></li>
+<li><a href="https://docs.gitlab.com/ee/ci/README.html" target="_blank" rel="noopener">GitLab CI</a></li>
+<li><a href="https://www.jetbrains.com/teamcity/" target="_blank" rel="noopener">TeamCity</a></li>
+<li><a href="https://www.travis-ci.org/" target="_blank" rel="noopener">Travis CI</a></li>
+<li><a href="https://www.atlassian.com/software/bamboo" target="_blank" rel="noopener">Bamboo</a></li>
+<li><a href="https://circleci.com/" target="_blank" rel="noopener">CircleCI</a></li>
+<li>…</li>
+</ul>
+<h2 id="二、Gitlab-持续集成"><a href="#二、Gitlab-持续集成" class="headerlink" title="二、Gitlab 持续集成"></a>二、Gitlab 持续集成</h2><p><img src="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png" alt="GitLab CI/CD"></p>
+<h3 id="1-概念介绍"><a href="#1-概念介绍" class="headerlink" title="1 概念介绍"></a>1 概念介绍</h3><h4 id="1-GitLab"><a href="#1-GitLab" class="headerlink" title="(1) GitLab"></a>(1) GitLab</h4><p><a href="https://about.gitlab.com/" target="_blank" rel="noopener">GitLab</a> 是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的 Git 项目仓库，可通过 Web 界面进行访问公开的或者私人项目。它拥有与<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。</p>
+<h4 id="2-GitLab-CI-CD"><a href="#2-GitLab-CI-CD" class="headerlink" title="(2) GitLab CI/CD"></a>(2) GitLab CI/CD</h4><p><a href="https://docs.gitlab.com/ee/ci/README.html" target="_blank" rel="noopener">GitLab CI/CD</a> 是<code>GitLab Continuous Integration</code>（Gitlab持续集成）的简称。GitLab 自<code>GitLab 8.0</code>开始提供了持续集成的功能，且对所有项目默认开启。只要在项目仓库的根目录添加<code>.gitlab-ci.yml</code>文件，并且配置了Runner（运行器），那么每一次<code>push</code>或者合并请求（<code>Merge Request</code>）都会触发<a href="https://docs.gitlab.com/ce/ci/pipelines.html" target="_blank" rel="noopener">CI Pipeline</a>。</p>
+<h4 id="3-GitLab-Runner"><a href="#3-GitLab-Runner" class="headerlink" title="(3) GitLab Runner"></a>(3) GitLab Runner</h4><p><a href="https://docs.gitlab.com/runner/" target="_blank" rel="noopener">GitLab Runner</a> <code>GitLab Runner</code>是一个开源项目，可以运行在 GNU / Linux，macOS 和 Windows 操作系统上。每次<code>push</code>的时候 GitLab CI 会根据<code>.gitlab-ci.yml</code>配置文件运行你流水线（<code>Pipeline</code>）中各个阶段的任务（<code>Job</code>），并将结果发送回 GitLab。GitLab Runner 是基于 Gitlab CI 的 API 进行构建的相互隔离的机器（或虚拟机）。GitLab Runner 不需要和 Gitlab 安装在同一台机器上，且考虑到 GitLab Runner 的资源消耗问题和安全问题，也不建议这两者安装在同一台机器上。</p>
+<p>Gitlab Runner 分为三种：</p>
+<ul>
+<li>共享Runner(<code>Shared runners</code>)</li>
+<li>专享Runner(<code>Specific runners</code>)</li>
+<li>分组Runner(<code>Group Runners</code>)</li>
+</ul>
+<h4 id="4-Pipelines"><a href="#4-Pipelines" class="headerlink" title="(4) Pipelines"></a>(4) Pipelines</h4><p><a href="https://docs.gitlab.com/ce/ci/pipelines.html" target="_blank" rel="noopener">Pipelines</a> 中文称为流水线，是分阶段执行的构建任务。如：安装依赖、运行测试、打包、部署开发服务器、部署生产服务器等流程。每一次<code>push</code>或者<code>Merge Request</code>都会触发生成一条新的Pipeline。</p>
+<p>下面是流水线示例图：</p>
+<p><img src="https://docs.gitlab.com/ce/ci/img/pipelines_index.png" alt="Pipeline Status"></p>
+<h4 id="5-Stages"><a href="#5-Stages" class="headerlink" title="(5) Stages"></a>(5) Stages</h4><p><a href="https://docs.gitlab.com/ce/ci/yaml/README.html#stages" target="_blank" rel="noopener">Stages</a> 表示构建阶段，可以理解为上面所说“安装依赖”、“运行测试”等环节的流程。我们可以在一次 Pipeline 中定义多个 Stages，这些 Stages 会有以下特点：</p>
+<ul>
+<li>所有 Stages 会按照顺序运行，即当一个 Stage 完成后，下一个 Stage 才会开始（当然可以在<code>.gitlab-ci.yml</code>文件中配置上一阶段失败时下一阶段也执行）</li>
+<li>只有当所有 Stages 完成后，该构建任务 (Pipeline) 才会成功</li>
+<li>如果任何一个 Stage 失败，那么后面的 Stages 不会执行，该构建任务 (Pipeline) 失败</li>
+</ul>
+<p>下面是一个流水线内的阶段任务示例图：</p>
+<p><img src="https://docs.gitlab.com/ce/ci/img/pipelines.png" alt="Job Status"></p>
+<h4 id="6-Jobs"><a href="#6-Jobs" class="headerlink" title="(6) Jobs"></a>(6) Jobs</h4><p><a href="https://docs.gitlab.com/ce/ci/pipelines.html#jobs" target="_blank" rel="noopener">Jobs</a> 表示构建的作业（或称之为任务），表示某个 Stage 里面执行的具体任务。我们可以在 Stages 里面定义多个 Jobs，这些 Jobs 会有以下特点：</p>
+<ul>
+<li>相同 Stage 中的 Jobs 无执行顺序要求，会并行执行</li>
+<li>相同 Stage 中的 Jobs 都执行成功时，该 Stage 才会成功</li>
+<li>如果任何一个 Job 失败，那么该 Stage 失败，即该构建任务 (Pipeline) 也失败（可以在<code>.gitlab-ci.yml</code>文件中配置允许某 Job 可以失败，也算该 Stage 成功）</li>
+</ul>
+<h4 id="7-gitlab-ci-yml"><a href="#7-gitlab-ci-yml" class="headerlink" title="(7) .gitlab-ci.yml"></a>(7) .gitlab-ci.yml</h4><p>GitLab 中默认开启了 Gitlab CI/CD 的支持，且使用<a href="http://yaml.org/" target="_blank" rel="noopener">YAML</a>文件<a href="https://docs.gitlab.com/ee/ci/yaml/README.html#examples" target="_blank" rel="noopener">.gitlab-ci.yml</a>来管理项目构建配置。该文件需要存放于项目仓库的根目录（默认路径，可在 GitLab 中修改），它定义该项目的 CI/CD 如何配置。所以，我们只需要在<code>.gitlab-ci.yml</code>配置文件中定义流水线的各个阶段，以及各个阶段中的若干作业（任务）即可。</p>
+<p>下面是<code>.gitlab-ci.yml</code>文件的一个简单的<code>Hello World</code>示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义 test 和 package 两个 Stages</span></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">test</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">package</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 package 阶段的一个 job</span></span><br><span class="line"><span class="attr">package-job:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">package</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">"Hello, package-job"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">"I am in package stage"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 test 阶段的一个 job</span></span><br><span class="line"><span class="attr">test-job:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">"Hello, test-job"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">"I am in test stage"</span></span><br></pre></td></tr></table></figure>
+<p>以上配置中，用 stages 关键字来定义 Pipeline 中的各个构建阶段，然后用一些非关键字来定义 jobs。每个 job 中可以可以再用 stage 关键字来指定该 job 对应哪个 stage。job 里面的<code>script</code>关键字是每个 job 中必须要包含的，它表示每个 job 要执行的命令。</p>
+<blockquote>
+<p><strong>注</strong>：猜猜上面例子的运行结果？</p>
+</blockquote>
+<h4 id="8-Badges"><a href="#8-Badges" class="headerlink" title="(8) Badges"></a>(8) Badges</h4><p><a href="https://docs.gitlab.com/ce/ci/pipelines.html#badges" target="_blank" rel="noopener">Badges</a> 即：<strong>徽章</strong>，当 Pipelines 执行过程中或者执行完成时会生成徽章，你可以将这些徽章加入到你的<code>README.md</code>文件中，便于从仓库主页看到最新的构建状态。</p>
+<p>徽章的链接形如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.gitlab.com/namespace/project/badges/branch/build.svg</span><br></pre></td></tr></table></figure>
+<p>我们用 GitLab 项目的徽章作为例子，效果如下：</p>
+<p><img src="https://gitlab.com/gitlab-org/gitlab-ce/badges/master/build.svg" alt="Gitlab build badges"> <img src="https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg?job=coverage" alt="Gitlab coverage badges"></p>
+<h3 id="2-安装-GitLab-Runner"><a href="#2-安装-GitLab-Runner" class="headerlink" title="2 安装 GitLab Runner"></a>2 安装 GitLab Runner</h3><p><a href="https://docs.gitlab.com/runner/install/index.html" target="_blank" rel="noopener">这里</a>有 GitLab Runner安装相关的资源和文档可供大家参考。以下仅以咱们公司常用的<code>Centos</code>为例来做安装说明。</p>
+<h4 id="1-在线安装"><a href="#1-在线安装" class="headerlink" title="(1) 在线安装"></a>(1) 在线安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加官方的repo.</span></span><br><span class="line">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum 安装Gtilab Runner.</span></span><br><span class="line">sudo yum install gitlab-runner</span><br></pre></td></tr></table></figure>
+<h4 id="2-离线安装"><a href="#2-离线安装" class="headerlink" title="(2) 离线安装"></a>(2) 离线安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Git</span></span><br><span class="line">sudo yum –y install git</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpm离线安装事先下载好的 Gitlab Runner rpm包.</span></span><br><span class="line">rpm -ivh gitlab-runner-10.5.0-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注</strong>：Gitlab Runner 依赖了<code>Git</code>，所以，离线安装 Gitlab Runner 之前得首先安装Git，离线安装包可以从<a href="https://packages.gitlab.com/runner/gitlab-runner" target="_blank" rel="noopener">这里</a>下载。</p>
+</blockquote>
+<h3 id="3-注册-Gitlab-Runner"><a href="#3-注册-Gitlab-Runner" class="headerlink" title="3 注册 Gitlab Runner"></a>3 注册 Gitlab Runner</h3><p>安装了 GitLab Runner 之后,就可以为 GitLab 中的仓库<a href="https://docs.gitlab.com/runner/register/index.html" target="_blank" rel="noopener">注册一个 Runner</a>，注册的交互式命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register</span><br></pre></td></tr></table></figure>
+<p>命令的交互式的过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输入注册命令</span></span><br><span class="line">sudo gitlab-runner register</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入公司的 GitLab 网站地址</span></span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )</span><br><span class="line">http://gitlab.xxxx.com/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你项目仓库的token，token可以在 Settings -&gt; CI/CD -&gt; Runners settings 中找到.</span></span><br><span class="line">Please enter the gitlab-ci token <span class="keyword">for</span> this runner</span><br><span class="line">xxx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入描述这个 runner 的名称</span></span><br><span class="line">Please enter the gitlab-ci description <span class="keyword">for</span> this runner</span><br><span class="line">[hostame] my-runner</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入 runner 的标签</span></span><br><span class="line">Please enter the gitlab-ci tags <span class="keyword">for</span> this runner (comma separated):</span><br><span class="line">my-tag,another-tag</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入 runner 的执行器.</span></span><br><span class="line">Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:</span><br><span class="line">shell</span><br></pre></td></tr></table></figure>
+<p>以上流程注册成功之后，就可以在你的项目仓库中 <code>Settings</code> -&gt; <code>CI/CD</code> -&gt; <code>Runners settings</code> 看到这个 Runner 了。</p>
+<h3 id="4-Gitlab-Runner-常用命令汇总"><a href="#4-Gitlab-Runner-常用命令汇总" class="headerlink" title="4 Gitlab Runner 常用命令汇总"></a>4 Gitlab Runner 常用命令汇总</h3><p>下面的表格中列出了一些常用的<a href="https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-list" target="_blank" rel="noopener">Gitlab Runner命令</a>，以供参考：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gitlab-runner run</td>
+<td style="text-align:left">运行一个runner服务</td>
+</tr>
+<tr>
+<td>gitlab-runner register</td>
+<td style="text-align:left">注册一个新的runner</td>
+</tr>
+<tr>
+<td>gitlab-runner start</td>
+<td style="text-align:left">启动服务</td>
+</tr>
+<tr>
+<td>gitlab-runner stop</td>
+<td style="text-align:left">关闭服务</td>
+</tr>
+<tr>
+<td>gitlab-runner restart</td>
+<td style="text-align:left">重启服务</td>
+</tr>
+<tr>
+<td>gitlab-runner status</td>
+<td style="text-align:left">查看各个runner的状态</td>
+</tr>
+<tr>
+<td>gitlab-runner unregister</td>
+<td style="text-align:left">注销掉某个runner</td>
+</tr>
+<tr>
+<td>gitlab-runner list</td>
+<td style="text-align:left">显示所有运行着的runner</td>
+</tr>
+<tr>
+<td>gitlab-runner verify</td>
+<td style="text-align:left">检查已注册的运行程序是否可以连接到GitLab，但它不验证GitLab Runner服务是否正在使用运行程序。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三、一个Web项目-CI-CD-简单示例"><a href="#三、一个Web项目-CI-CD-简单示例" class="headerlink" title="三、一个Web项目 CI/CD 简单示例"></a>三、一个Web项目 CI/CD 简单示例</h2><p>接下来，用一个实际项目来演示 GitLab CI/CD 的配置和使用，其中主要包括：编译测试、项目打包、部署服务、Sonar手动检查、Sonar定时检查五个阶段。</p>
+<p>下面用一个传统的 Java web 项目(这里称之为<code>cidemo</code>)和<code>Tomcat</code>来作为示例，并用来展示常用配置的使用。当我每次<code>push</code>代码或者<code>Merge Request</code>时，都会生成一条流水线，且会自动执行我们上面所说的一些阶段，而Sonar手动检查我们设置为手动操作，且再额外配置Sonar定时检查的任务。</p>
+<blockquote>
+<p><strong>注</strong>：我 Gitlab Runner 是安装在<code>Centos</code>环境中，并使用的<code>shell</code>执行器。</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义stages</span></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">test</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">install</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">run</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">sonar</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义安装包的存放位置和Tomcat服务器的地址的变量，便于后续部署使用.</span></span><br><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  CIDEMO_PACKAGE_DIR:</span> <span class="string">'/home/gitlab-runner/packages/cidemo/'</span></span><br><span class="line"><span class="attr">  SERVER_HOME_DIR:</span> <span class="string">'/home/gitlab-runner/tomcat/cidemo-tomcat/'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################### 构建编译和单元测试的job. #######################</span></span><br><span class="line"></span><br><span class="line"><span class="string">编译测试任务:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">branches</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mvn</span> <span class="string">clean</span> <span class="string">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################### Maven安装得到war包的job. #######################</span></span><br><span class="line"></span><br><span class="line"><span class="string">打包任务:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">install</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">develop</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mvn</span> <span class="string">install</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">'准备将最新的war包复制、保存到某个目录里面供后续使用.'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">rm</span> <span class="bullet">-rf</span> <span class="string">$CIDEMO_PACKAGE_DIR/*.war</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cp</span> <span class="string">target/*.war</span> <span class="string">$CIDEMO_PACKAGE_DIR/cidemo.war</span></span><br><span class="line"></span><br><span class="line"><span class="comment">####################### 部署运行war包的job. #######################</span></span><br><span class="line"></span><br><span class="line"><span class="string">部署运行任务:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">run</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">develop</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">'准备部署和运行war包！(为了方便部署到了Tomcat中运行)'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cd</span> <span class="string">$SERVER_HOME_DIR</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">sh</span> <span class="string">bin/shutdown.sh</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">rm</span> <span class="bullet">-rf</span> <span class="string">webapps/cidemo.war</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cp</span> <span class="string">$CIDEMO_PACKAGE_DIR/cidemo.war</span> <span class="string">$SERVER_HOME_DIR/webapps/cidemo.war</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">nohup</span> <span class="string">sh</span> <span class="string">./bin/startup.sh</span> <span class="string">&gt; logs/cidemo_nohup.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">###################### Sonar手动构建的job. #######################</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Sonar手动检查:</span></span><br><span class="line"><span class="string"></span><span class="attr">  stage:</span> <span class="string">sonar</span></span><br><span class="line"><span class="attr">  when:</span> <span class="string">manual</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">develop</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">'准备对项目代码做sonar的质量检查！'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mvn</span> <span class="string">compile</span> <span class="string">&amp;&amp;</span> <span class="string">mvn</span> <span class="attr">sonar:sonar</span> <span class="bullet">-Dsonar.host.url=http://172.16.34.102:9000</span> <span class="bullet">-Dsonar.login=497a0e0e2fc07f64c4b54edc17bb47dfa251ba34</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################### Sonar每晚定时构建的job. #######################</span></span><br><span class="line"></span><br><span class="line"><span class="string">Sonar定时检查:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">sonar</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">schedules</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">echo</span> <span class="string">'开始定时对项目代码做sonar的质量检查！'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mvn</span> <span class="string">compile</span> <span class="string">&amp;&amp;</span> <span class="string">mvn</span> <span class="attr">sonar:sonar</span> <span class="bullet">-Dsonar.host.url=http://172.16.34.102:9000</span> <span class="bullet">-Dsonar.login=497a0e0e2fc07f64c4b54edc17bb47dfa251ba34</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、Gitlab-CI-CD-yaml-常用配置介绍"><a href="#四、Gitlab-CI-CD-yaml-常用配置介绍" class="headerlink" title="四、Gitlab CI/CD yaml 常用配置介绍"></a>四、Gitlab CI/CD yaml 常用配置介绍</h2><p>开始构建之前<code>.gitlab-ci.yml</code>文件定义了一系列带有约束说明的任务。这些任务都是以任务名开始并且至少要包含script部分，<code>.gitlab-ci.yml</code>允许指定无限量 jobs。每个 jobs 必须有一个唯一的名字，且名字不能是下面列出的保留字段：</p>
+<ul>
+<li><code>image</code></li>
+<li><code>services</code></li>
+<li><code>stages</code></li>
+<li><code>types</code></li>
+<li><code>before_script</code></li>
+<li><code>after_script</code></li>
+<li><code>variables</code></li>
+<li><code>cache</code></li>
+</ul>
+<p>job由一列参数来定义 jobs 的行为：</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>script</td>
+<td>yes</td>
+<td>Runner执行的命令或脚本</td>
+</tr>
+<tr>
+<td>extends</td>
+<td>no</td>
+<td>定义此作业将继承的配置条目</td>
+</tr>
+<tr>
+<td>image</td>
+<td>no</td>
+<td>所使用的docker镜像，查阅<a href="https://docs.gitlab.com/ce/ci/docker/using_docker_images.html#define-image-and-services-from-gitlab-ciyml" target="_blank" rel="noopener">使用docker镜像</a></td>
+</tr>
+<tr>
+<td>services</td>
+<td>no</td>
+<td>所使用的docker服务，查阅<a href="https://docs.gitlab.com/ce/ci/docker/using_docker_images.html#define-image-and-services-from-gitlab-ciyml" target="_blank" rel="noopener">使用docker镜像</a></td>
+</tr>
+<tr>
+<td>stage</td>
+<td>no</td>
+<td>定义job stage（默认：<code>test</code>）</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td><code>stage</code>的别名（已弃用）</td>
+</tr>
+<tr>
+<td>variables</td>
+<td>no</td>
+<td>定义job级别的变量</td>
+</tr>
+<tr>
+<td>only</td>
+<td>no</td>
+<td>定义一列git分支，并为其创建job</td>
+</tr>
+<tr>
+<td>except</td>
+<td>no</td>
+<td>定义一列git分支，不创建job</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>no</td>
+<td>定义一列tags，用来指定选择哪个Runner（同时Runner也要设置tags）</td>
+</tr>
+<tr>
+<td>allow_failure</td>
+<td>no</td>
+<td>允许job失败。失败的job不影响commit状态</td>
+</tr>
+<tr>
+<td>when</td>
+<td>no</td>
+<td>定义何时开始job。可以是<code>on_success</code>，<code>on_failure</code>，<code>always</code>或者<code>manual</code></td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>no</td>
+<td>定义job依赖关系，这样他们就可以互相传递artifacts</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>no</td>
+<td>定义应在后续运行之间缓存的文件列表</td>
+</tr>
+<tr>
+<td>before_script</td>
+<td>no</td>
+<td>重写一组在作业前执行的命令</td>
+</tr>
+<tr>
+<td>after_script</td>
+<td>no</td>
+<td>重写一组在作业后执行的命令</td>
+</tr>
+<tr>
+<td>environment</td>
+<td>no</td>
+<td>定义此作业完成部署的环境名称</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>no</td>
+<td>定义给定作业的代码覆盖率设置</td>
+</tr>
+<tr>
+<td>etry</td>
+<td>no</td>
+<td>定义在发生故障时可以自动重试作业的时间和次数</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>no</td>
+<td>定义应并行运行的作业实例数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><blockquote>
+<p>是在 GitLab 11.3 中引入的。</p>
+</blockquote>
+<p><code>extends</code>定义了一个使用<code>extends</code>的作业将继承的条目名称。它是使用<a href="https://docs.gitlab.com/ee/ci/yaml/README.html#anchors" target="_blank" rel="noopener">YAML锚点</a>的替代方案，并且更加灵活和可读：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.tests:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">rake</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="attr">    refs:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">branches</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  extends:</span> <span class="string">.tests</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">rake</span> <span class="string">rspec</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="attr">    variables:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">$RSPEC</span></span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，<code>rspec</code>作业继承自<code>.tests</code>模板作业。 GitLab 将根据键执行反向深度合并。 GitLab将：</p>
+<ul>
+<li>将<code>rspec</code>内容以递归方式合并到<code>.tests</code>中。</li>
+<li>不合并键的值。</li>
+</ul>
+<p>这实际生成的是以下<code>rspec</code>作业：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">rake</span> <span class="string">rspec</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="attr">    refs:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">branches</span></span><br><span class="line"><span class="attr">    variables:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">$RSPEC</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注</strong>: <code>rake test</code>已被<code>rake rspec</code>脚本覆盖。</p>
+</blockquote>
+<h3 id="image-和-services"><a href="#image-和-services" class="headerlink" title="image 和 services"></a>image 和 services</h3><p>这两个关键字允许使用一个自定义的 Docker 镜像和一系列的服务，并且可以用于整个 job 周期。详细配置文档请查看<a href="https://docs.gitlab.com/ee/ci/docker/README.html" target="_blank" rel="noopener">a separate document</a>。</p>
+<h3 id="before-script-和-after-script"><a href="#before-script-和-after-script" class="headerlink" title="before_script 和 after_script"></a>before_script 和 after_script</h3><p><code>before_script</code>用来定义所有 job 之前运行的命令，<code>after_script</code>用来定义所有 job 之后运行的命令。它们可以是一个数组或者是多行字符串。</p>
+<h3 id="stages"><a href="#stages" class="headerlink" title="stages"></a>stages</h3><p>stages 用来定义可以被 job 调用的 stages。stages 的规范允许有灵活的多级 pipelines。</p>
+<p>stages中的元素顺序决定了对应job的执行顺序：</p>
+<ol>
+<li>相同 stage 的 job 可以平行执行。</li>
+<li>下一个 stage 的 job 会在前一个 stage 的 job 成功后开始执行。</li>
+</ol>
+<p>接下仔细看看这个例子，它包含了3个 stage：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">build</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">test</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>首先，所有 build 的 jobs 都是并行执行的。</li>
+<li>所有 build 的 jobs 执行成功后，test 的 jobs 才会开始并行执行。</li>
+<li>所有 test 的 jobs 执行成功，deploy 的 jobs 才会开始并行执行。</li>
+<li>所有的 deploy 的 jobs 执行成功，<code>commit</code>才会标记为<code>success</code>。</li>
+<li>任何一个前置的 jobs 失败了，<code>commit</code>会标记为<code>failed</code>并且下一个 stages 的 jobs 都不会执行。</li>
+</ol>
+<p>这有两个特殊的例子值得一提：</p>
+<ol>
+<li>如果<code>.gitlab-ci.yml</code>中没有定义stages，那么 job’s stages 会默认定义为<code>build</code>，<code>test</code>和<code>deploy</code>。</li>
+<li>如果一个 job 没有指定 stage，那么这个任务会分配到 test stage。</li>
+</ol>
+<h3 id="only-和-except"><a href="#only-和-except" class="headerlink" title="only 和 except"></a>only 和 except</h3><p><code>only</code>和<code>except</code>是两个参数用分支策略来限制 jobs 构建：</p>
+<ul>
+<li><code>only</code>定义哪些分支和标签的git项目将会被job执行。</li>
+<li><code>except</code>定义哪些分支和标签的git项目将不会被job执行。</li>
+</ul>
+<p>下面是refs策略的使用规则：</p>
+<ul>
+<li>only 和 except 可同时使用。如果<code>only</code>和<code>except</code>在一个 job 配置中同时存在，则以 only 为准，跳过 except(从下面示例中得出)。</li>
+<li>only 和 except 可以使用正则表达式。</li>
+<li>only 和 except 允许使用特殊的关键字：<code>branches</code>，<code>tags</code>和<code>triggers</code>。</li>
+<li>only 和 except 允许使用指定仓库地址但不是forks的仓库(查看示例3)。</li>
+</ul>
+<p>在下面这个例子中，job 将只会运行以<code>issue-</code>开始的refs(分支)，然而<code>except</code>中设置将被跳过。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="comment"># use regexp</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/^issue-.*$/</span></span><br><span class="line">  <span class="comment"># use special keyword</span></span><br><span class="line"><span class="attr">  except:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">branches</span></span><br></pre></td></tr></table></figure>
+<p>在下面这个例子中，job 将只会执行有<code>tags</code>的refs，或者通过<code>API</code>触发器明确地请求构建。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="comment"># use special keywords</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">tags</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">triggers</span></span><br></pre></td></tr></table></figure>
+<p>下面这个例子将会为所有的分支执行job，但 master 分支除外。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">branches@gitlab-org/gitlab-ce</span></span><br><span class="line"><span class="attr">  except:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">master@gitlab-org/gitlab-ce</span></span><br></pre></td></tr></table></figure>
+<h3 id="variables"><a href="#variables" class="headerlink" title="variables"></a>variables</h3><p>GItLab CI 允许在<code>.gitlab-ci.yml</code>文件中添加变量，并在 job 环境中起作用。因为这些配置是存储在 git 仓库中，所以<strong>最好是存储项目的非敏感配置</strong>，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  DATABASE_URL:</span><span class="string">"postgres://postgres@postgres/my_database"</span></span><br></pre></td></tr></table></figure>
+<p>这些变量可以被后续的命令和脚本使用。</p>
+<p>除了用户自定义的变量外，Runner 也可以定义它自己的变量。<code>CI_COMMIT_REG_NAME</code>就是一个很好的例子，它的值表示用于构建项目的分支或tag名称。除了在<code>.gitlab-ci.yml</code>中设置变量外，还有可以通过 GitLab 的界面上设置私有变量。</p>
+<p>这里有更多关于<a href="https://docs.gitlab.com/ce/ci/variables/README.html" target="_blank" rel="noopener">variables</a>的介绍。</p>
+<h3 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h3><h4 id="cache-paths"><a href="#cache-paths" class="headerlink" title="cache: paths"></a>cache: paths</h4><p>使用<code>paths</code>指令选择要缓存的文件或目录。也可以使用通配符。</p>
+<p>如果 cache 定义在 jobs 的作用域之外，那么它就是全局缓存，所有 jobs 都可以使用该缓存。</p>
+<p>缓存<code>binaries</code>和<code>.config</code>中的所有文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">binaries/</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">.config</span></span><br></pre></td></tr></table></figure>
+<p>缓存<code>git</code>中没有被跟踪的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>缓存<code>binaries</code>下没有被<code>git</code>跟踪的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    untracked:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+<p>job 中优先级高于全局的。下面这个<code>rspec</code> job中将只会缓存<code>binaries/</code>下的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">my/files</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rspec:</span></span><br><span class="line"><span class="attr">  script:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    key:</span> <span class="string">rspec</span></span><br><span class="line"><span class="attr">    paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+<p>注意，缓存是在 jobs 之前进行共享的。如果你不同的 jobs 缓存不同的文件路径，必须设置不同的<code>cache:key</code>，否则缓存内容将被重写。缓存只是尽力而为之，所以别期望缓存会一直存在。</p>
+<h4 id="cache-key"><a href="#cache-key" class="headerlink" title="cache: key"></a>cache: key</h4><p><code>key</code>指令允许我们定义缓存的作用域(亲和性)，可以是所有 jobs 的单个缓存，也可以是每个 job，也可以是每个分支或者是任何你认为合适的地方。它也可以让你很好的调整缓存，允许你设置不同 jobs 的缓存，甚至是不同分支的缓存。</p>
+<p><code>cache:key</code>可以使用任何的<a href="https://docs.gitlab.com/ce/ci/variables/README.html" target="_blank" rel="noopener">预定义变量</a>。</p>
+<p>默认key是默认设置的这个项目缓存，因此默认情况下，从GitLab 9.0开始，每个 pipelines 和 jobs 中可以共享一切。</p>
+<p>配置示例</p>
+<p>缓存每个job：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">"$CI_JOB_NAME"</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>缓存每个分支：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">"$CI_COMMIT_REF_NAME"</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>缓存每个 job 且每个分支：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">"$CI_JOB_NAME/$CI_COMMIT_REF_NAME"</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>缓存每个分支且每个stage：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">"$CI_JOB_STAGE/$CI_COMMIT_REF_NAME"</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>如果使用的Windows Batch(windows批处理)来跑脚本需要用%替代$：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">"%CI_JOB_STAGE%/%CI_COMMIT_REF_NAME%"</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="allow-failure"><a href="#allow-failure" class="headerlink" title="allow_failure"></a>allow_failure</h3><p><code>allow_failure</code>可以用于当你想设置一个 job 失败的之后并不影响后续的CI组件的时候。失败的 jobs 不会影响到<code>commit</code>状态。</p>
+<p>当开启了允许 job 失败，所有的 intents 和 purposes 里的 pipeline 都是成功/绿色，但是也会有一个”<code>CI build passed with warnings</code>“信息显示在<code>Merge Request</code>或<code>commit</code>或<code>job page</code>。这被允许失败的作业使用，但是如果失败表示其他地方应采取其他（手动）步骤。</p>
+<p>下面的这个例子中，job1和job2将会并列进行，如果job1失败了，它也不会影响进行中的下一个 stage，因为这里有设置了<code>allow_failure: true</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">execute_script_that_will_fail</span></span><br><span class="line"><span class="attr">  allow_failure:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">execute_script_that_will_succeed</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job3:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">deploy</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">deploy_to_staging</span></span><br></pre></td></tr></table></figure>
+<h3 id="when"><a href="#when" class="headerlink" title="when"></a>when</h3><p><code>when</code>用于实现在发生故障或尽管失败时运行的作业。when可以设置以下值：</p>
+<ul>
+<li><code>on_success</code> - 只有前面 stages 的所有工作成功时才执行。这是默认值。</li>
+<li><code>on_failure</code> - 当前面 stages 中任意一个jobs失败后执行。</li>
+<li><code>always</code> - 无论前面 stages 中 jobs 状态如何都执行。</li>
+<li><code>manual</code> - 手动执行(GitLab8.10增加)。更多请查看手动操作。</li>
+</ul>
+<h3 id="artifacts"><a href="#artifacts" class="headerlink" title="artifacts"></a>artifacts</h3><p><code>artifacts</code>用于指定成功后应附加到 job 的文件和目录的列表。只能使用项目工作间内的文件或目录路径。在job成功完成后artifacts将会发送到GitLab中，同时也会在 GitLab UI 中提供下载。如果想要在不通的 job 之间传递<code>artifacts</code>，请查阅<a href="https://docs.gitlab.com/ce/ci/yaml/README.html#dependencies" target="_blank" rel="noopener">依赖关系</a>。以下是一些例子：</p>
+<p>发送<code>binaries</code>和<code>.config</code>中的所有文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">artifacts:</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">binaries/</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">.config</span></span><br></pre></td></tr></table></figure>
+<p>发送所有没有被Git跟踪的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">artifacts:</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>发送没有被Git跟踪和<code>binaries</code>中的所有文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">artifacts:</span></span><br><span class="line"><span class="attr">  untracked:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+<h2 id="五、其他相关内容"><a href="#五、其他相关内容" class="headerlink" title="五、其他相关内容"></a>五、其他相关内容</h2><h3 id="1-API触发器-Triggers"><a href="#1-API触发器-Triggers" class="headerlink" title="1 API触发器 Triggers"></a>1 API触发器 Triggers</h3><p>Triggers 可用于强制使用API调用重建特定分支，<code>tag</code>或<code>commits</code>。API的使用示例可以在<code>Settings</code> -&gt; <code>CI/CD</code> -&gt; <code>Pipeline triggers</code>中找到。</p>
+<p>在<code>triggers</code>文档中<a href="https://docs.gitlab.com/ce/ci/triggers/README.html" target="_blank" rel="noopener">查看更多</a>。</p>
+<h3 id="2-配置定时任务"><a href="#2-配置定时任务" class="headerlink" title="2 配置定时任务"></a>2 配置定时任务</h3><p>GitLab CI 中可以在 GitLab <code>Settings</code> -&gt; <code>CI/CD</code> -&gt; <code>Schedules</code>中配置定时任务，点击<code>New Schedule</code>按钮，可以配置你流水线的定时执行任务，包括：描述信息、定时的Cron表达式、目标分支、变量等信息。</p>
+<p>然后在需要定时执行的作业的<code>only</code>分支写上<code>schedules</code>即可。</p>
+<h3 id="3-校验-gitlab-ci-yml"><a href="#3-校验-gitlab-ci-yml" class="headerlink" title="3 校验 .gitlab-ci.yml"></a>3 校验 .gitlab-ci.yml</h3><p>GitLab CI 的每个实例都有一个名为<code>Lint</code>的嵌入式调试工具。 你可以在 GitLab 实例的<code>-/ci/lint</code>下找到该链接。</p>
+<h3 id="4-配置邮件发送"><a href="#4-配置邮件发送" class="headerlink" title="4 配置邮件发送"></a>4 配置邮件发送</h3><p>如果希望在每次构建完成后（或者在仅构建失败的情况下），想邮件发送给相关开发人员，则可以在 GitLab <code>Settings</code> -&gt; <code>Integrations</code> 中找到<code>Pipelines emails</code>，点击进去就可以配置邮件发送相关的内容了。</p>
+<h3 id="5-GitLab-Pages"><a href="#5-GitLab-Pages" class="headerlink" title="5 GitLab Pages"></a>5 GitLab Pages</h3><p><a href="https://gitlab.com/pages/" target="_blank" rel="noopener">GitLab Pages</a>是用于托管静态文件的服务。而<code>pages</code>是一个特殊的job，用于将静态的内容上传到GitLab，可用于为您的网站提供服务。它有特殊的语法，因此必须满足以下两个要求：</p>
+<ul>
+<li>任何静态内容必须放在<code>public/</code>目录下</li>
+<li>artifacts必须定义在<code>public/</code>目录下</li>
+</ul>
+<p>下面的这个例子是将所有文件从项目根目录移动到<code>public/</code>目录。<code>.public</code>工作流是<code>cp</code>，并且它不会循环复制<code>public/</code>本身。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pages:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">deploy</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">mkdir</span> <span class="string">.public</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">cp</span> <span class="bullet">-r</span> <span class="string">*</span> <span class="string">.public</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">mv</span> <span class="string">.public</span> <span class="string">public</span></span><br><span class="line"><span class="attr">  artifacts:</span></span><br><span class="line"><span class="attr">    paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">public</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>更多内容请查看<a href="https://docs.gitlab.com/ce/user/project/pages/index.html" target="_blank" rel="noopener">GitLab Pages用户文档</a>。</p>
+<h3 id="6-跳过-jobs"><a href="#6-跳过-jobs" class="headerlink" title="6 跳过 jobs"></a>6 跳过 jobs</h3><p>如果你的<code>commit</code>信息中包含<code>[ci skip]</code>或者<code>[skip ci]</code>，不论大小写，那么这个<code>commit</code>将会创建但是 jobs 也会跳过。</p>
+<hr>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">官方文档地址</a></li>
+<li><a href="https://segmentfault.com/a/1190000010442764#articleHeader24" target="_blank" rel="noopener">segmentfault yaml配置中文翻译</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+	<div>
+      
+        
+      
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的赞助将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="柴宁 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="柴宁 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+		
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GitLab-CI/" rel="tag"><i class="fa fa-tag"></i> GitLab CI</a>
+          
+            <a href="/tags/DevOps/" rel="tag"><i class="fa fa-tag"></i> DevOps</a>
+          
+            <a href="/tags/Jenkins/" rel="tag"><i class="fa fa-tag"></i> Jenkins</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/19/软件工具/Markdown/Vue 文档风格的 Typora 主题/" rel="next" title="Vue 文档风格的 Typora 主题">
+                <i class="fa fa-chevron-left"></i> Vue 文档风格的 Typora 主题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/24/软件设计/软件程序设计原则/" rel="prev" title="软件程序设计原则">
+                软件程序设计原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6877569709040311",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+	<div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="柴宁">
+            
+              <p class="site-author-name" itemprop="name">柴宁</p>
+              <p class="site-description motion-element" itemprop="description">人生就像骑自行车,想保持平衡就得往前走。——阿尔伯特·爱因斯坦</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chainingning" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/chainingning" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ning.chai@foxmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、持续集成介绍"><span class="nav-number">1.</span> <span class="nav-text">一、持续集成介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概念"><span class="nav-number">1.1.</span> <span class="nav-text">1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-持续集成的好处"><span class="nav-number">1.2.</span> <span class="nav-text">2 持续集成的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-常用持续集成工具"><span class="nav-number">1.3.</span> <span class="nav-text">3 常用持续集成工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Gitlab-持续集成"><span class="nav-number">2.</span> <span class="nav-text">二、Gitlab 持续集成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概念介绍"><span class="nav-number">2.1.</span> <span class="nav-text">1 概念介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-GitLab"><span class="nav-number">2.1.1.</span> <span class="nav-text">(1) GitLab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GitLab-CI-CD"><span class="nav-number">2.1.2.</span> <span class="nav-text">(2) GitLab CI/CD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-GitLab-Runner"><span class="nav-number">2.1.3.</span> <span class="nav-text">(3) GitLab Runner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Pipelines"><span class="nav-number">2.1.4.</span> <span class="nav-text">(4) Pipelines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Stages"><span class="nav-number">2.1.5.</span> <span class="nav-text">(5) Stages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Jobs"><span class="nav-number">2.1.6.</span> <span class="nav-text">(6) Jobs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-gitlab-ci-yml"><span class="nav-number">2.1.7.</span> <span class="nav-text">(7) .gitlab-ci.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Badges"><span class="nav-number">2.1.8.</span> <span class="nav-text">(8) Badges</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装-GitLab-Runner"><span class="nav-number">2.2.</span> <span class="nav-text">2 安装 GitLab Runner</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在线安装"><span class="nav-number">2.2.1.</span> <span class="nav-text">(1) 在线安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-离线安装"><span class="nav-number">2.2.2.</span> <span class="nav-text">(2) 离线安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-注册-Gitlab-Runner"><span class="nav-number">2.3.</span> <span class="nav-text">3 注册 Gitlab Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Gitlab-Runner-常用命令汇总"><span class="nav-number">2.4.</span> <span class="nav-text">4 Gitlab Runner 常用命令汇总</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、一个Web项目-CI-CD-简单示例"><span class="nav-number">3.</span> <span class="nav-text">三、一个Web项目 CI/CD 简单示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Gitlab-CI-CD-yaml-常用配置介绍"><span class="nav-number">4.</span> <span class="nav-text">四、Gitlab CI/CD yaml 常用配置介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extends"><span class="nav-number">4.1.</span> <span class="nav-text">extends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image-和-services"><span class="nav-number">4.2.</span> <span class="nav-text">image 和 services</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#before-script-和-after-script"><span class="nav-number">4.3.</span> <span class="nav-text">before_script 和 after_script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stages"><span class="nav-number">4.4.</span> <span class="nav-text">stages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#only-和-except"><span class="nav-number">4.5.</span> <span class="nav-text">only 和 except</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#variables"><span class="nav-number">4.6.</span> <span class="nav-text">variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache"><span class="nav-number">4.7.</span> <span class="nav-text">cache</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cache-paths"><span class="nav-number">4.7.1.</span> <span class="nav-text">cache: paths</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cache-key"><span class="nav-number">4.7.2.</span> <span class="nav-text">cache: key</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#allow-failure"><span class="nav-number">4.8.</span> <span class="nav-text">allow_failure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#when"><span class="nav-number">4.9.</span> <span class="nav-text">when</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#artifacts"><span class="nav-number">4.10.</span> <span class="nav-text">artifacts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、其他相关内容"><span class="nav-number">5.</span> <span class="nav-text">五、其他相关内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-API触发器-Triggers"><span class="nav-number">5.1.</span> <span class="nav-text">1 API触发器 Triggers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置定时任务"><span class="nav-number">5.2.</span> <span class="nav-text">2 配置定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-校验-gitlab-ci-yml"><span class="nav-number">5.3.</span> <span class="nav-text">3 校验 .gitlab-ci.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置邮件发送"><span class="nav-number">5.4.</span> <span class="nav-text">4 配置邮件发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-GitLab-Pages"><span class="nav-number">5.5.</span> <span class="nav-text">5 GitLab Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-跳过-jobs"><span class="nav-number">5.6.</span> <span class="nav-text">6 跳过 jobs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">柴宁</span>
+
+  
+</div>
+
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">总字数:</span>
+    
+    <span title="Site words total count">357.1k</span>
+  
+
+
+
+
+	<span>
+		<i class="fa fa-eye"></i>
+	</span>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+总浏览量:<span id="busuanzi_value_site_pv"></span>
+
+<span><i class="fa fa-user"></i></span>
+总访客数:<span id="busuanzi_value_site_uv"></span>
+
+
+<div class="powerd by">
+   
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> 
+<script> 
+	var now = new Date(); 
+	function createtime() { 
+		var grt= new Date("06/07/2018 20:15:00");//此处修改你的建站时间或者网站上线时间 
+		now.setTime(now.getTime()+250); 
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+		document.getElementById("timeDate").innerHTML = "已安全运行 "+dnum+" 天 "; 
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()",250); </script>
+
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'd5baa6f7d4a1b9c36951',
+          clientSecret: '645b9aa56e45f6287710a47970b9e49e5ea7eea5',
+          repo: 'blogTalk',
+          owner: 'chainingning',
+          admin: [''],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yK4bP0J5SG9yN5Xo70kINyon-gzGzoHsz", "pihr3aam43jDkFMNEqVNFsnC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.5,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<!--<script type="text/javascript" src="/js/src/love.js"></script>-->
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
